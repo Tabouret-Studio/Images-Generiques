@@ -1,1 +1,3 @@
-# Images-Generatives
+# Images-Génériques
+
+Tutored project
