@@ -8,12 +8,14 @@
 
 #include "main.hpp"
 
-int main(int argc, const char * argv[])
+int main(int argc, char * argv[])
 {
     //The App
 	Core core;
 
 	core.ignite();
 
-	core.main();	
+	core.main();
+
+	return 0;
 }

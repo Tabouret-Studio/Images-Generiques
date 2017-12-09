@@ -13,6 +13,7 @@
 
 //Forward declarations
 class AppEngine;
+class RenderEngine;
 
 class AppObject
 {
@@ -27,6 +28,7 @@ public:
 
 	//Engines
 	AppEngine * appEngine;
+    RenderEngine * renderEngine;
 
 	//App States
 	/**

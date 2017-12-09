@@ -14,4 +14,13 @@ bool AppEngine::m_instanciated = false;
  * Instanciate the engine as a Singleton
  */
 void AppEngine::instanciate()
-{ }
+{
+    if(m_instanciated)
+        return;
+    
+    App->appEngine = new AppEngine();
+    
+    m_instanciated = true;
+}
+
+AppEngine::AppEngine() {};

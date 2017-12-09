@@ -11,6 +11,13 @@
 
 //System includes
 #include <iostream>
+#include <vector>
+
+//OpenGL and friends
+#include <GL/glew.h>
+#include <glimac/Program.hpp>
+#include <glimac/FilePath.hpp>
+#include <glimac/glm.hpp>
 
 //App core
 #include "Core/AppObject.hpp"
@@ -18,5 +25,6 @@
 
 //App Engines
 #include "Engines/AppEngine/AppEngine.hpp"
+#include "Engines/RenderEngine/RenderEngine.hpp"
 
 #endif /* main_h */

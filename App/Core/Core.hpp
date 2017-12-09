@@ -9,6 +9,8 @@
 #ifndef Core_hpp
 #define Core_hpp
 
+#include "../main.hpp"
+
 class Core
 {
 public:
@@ -21,6 +23,15 @@ public:
 	 Main loop of the app
 	 */
 	void main();
+
+	void setup();
+	void renderer();
+
+private:
+
+	GLuint m_vbo;
+	GLuint m_vao;
+
 };
 
 #endif /* Core_hpp */

@@ -22,8 +22,6 @@ private:
 	//Singleton
 	static bool m_instanciated;
 	AppEngine();
-
-
 };
 
 #endif /* AppEngine_hpp */
