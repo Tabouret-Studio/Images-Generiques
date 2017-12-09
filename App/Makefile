@@ -13,32 +13,31 @@ SRCEXT := cpp
 LIBDIR := libs
 
 # FIND ALL PROJECT SOURCES
-SOURCES := $(shell find $(SRCDIR) -type f -name "**.$(SRCEXT)" -not -path "./$(LIBDIR)/*")
+SOURCES := $(shell find $(SRCDIR) -type f -name "**.$(SRCEXT)" -not -path "./$(LIBDIR)/glm/*")
 OBJECTS := $(SOURCES:.$(SRCEXT)=.o)
 
 # COMPILER FLAGS
-CXXFLAGS := -g -std=c++11 -Wall -pedantic
-LDLIBS :=
+CXXFLAGS :=-g -std=c++11 -Wall -pedantic -I$(LIBDIR) -I$(LIBDIR)/glimac/include
+LDLIBS := -lGLEW
 LDFLAGS :=
 
 # OS-DEPENDANT COMPILER FLAGS
 UNAME_S := $(shell uname -s)
 # Windows (cygwin)
 ifeq ($(OS),Windows_NT)
-LDLIBS += -lGL
+LDLIBS += -lGL -lSDL2
 LDFLAGS +=
 
 # OS X
 else ifeq ($(UNAME_S),Darwin)
-LDLIBS += -framework OpenGL
+LDLIBS += -framework OpenGL -framework SDL2
 LDFLAGS +=
 CXXFLAGS +=
 CXX := g++
 
-
 # Linux (default)
 else
-LDLIBS += -lGL
+LDLIBS += -lGL -lSDL2
 LDFLAGS +=
 CXXFLAGS +=
 endif
@@ -59,8 +58,8 @@ linker: $(OBJECTS)
 	@echo "   LINKING"
 	@echo "========================================\n"
 	@echo "  $(CXX) $^ -o $(TARGET) $(LDFLAGS) $(LDLIBS) $(OSLIB)\n"; $(CXX) $^ -o $(TARGET) $(LDFLAGS) $(LDLIBS) $(OSLIB)
-#    @echo "  Cleaning objects..."
-#    @$(RM) -r $(OBJECTS)
+#	@echo "  Cleaning objects..."
+#	@$(RM) -r $(OBJECTS)
 	@echo "\n========================================"
 	@echo "   $(TARGETNAME) successfully compiled!"
 	@echo "   Type \"./$(TARGET) to launch $(TARGETNAME)\""
