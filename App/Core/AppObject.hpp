@@ -43,6 +43,10 @@ public:
 	 */
 	void endApp();
 
+	void setAppPath(const std::string &path);
+
+	inline std::string getAppPath() const { return m_appPath; }
+
 private:
 	//Singleton
 	AppObject();
@@ -50,6 +54,7 @@ private:
 
 	//App status
 	bool m_running;
+	std::string m_appPath;
 };
 
 extern AppObject * App;

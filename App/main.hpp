@@ -9,9 +9,13 @@
 #ifndef main_h
 #define main_h
 
+#define FRAMERATE 30
+
 //System includes
 #include <iostream>
 #include <vector>
+#include <chrono>
+#include <thread>
 
 //OpenGL and friends
 #include <GL/glew.h>

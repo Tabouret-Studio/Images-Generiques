@@ -39,8 +39,6 @@ namespace glimac
         
         SDL_GLContext glContext = SDL_GL_CreateContext(window);
         SDL_GL_MakeCurrent(window, glContext);
-        
-        glewExperimental = GL_TRUE;
     }
     
     SDLWindowManager::~SDLWindowManager() {

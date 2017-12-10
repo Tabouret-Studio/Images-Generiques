@@ -36,3 +36,8 @@ void AppObject::endApp()
 {
 	m_running = false;
 }
+
+void AppObject::setAppPath(const std::string &path)
+{
+	m_appPath = path;
+}

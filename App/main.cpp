@@ -15,6 +15,8 @@ int main(int argc, char * argv[])
 
 	core.ignite();
 
+	App->setAppPath(argv[0]);
+
 	core.main();
 
 	return 0;

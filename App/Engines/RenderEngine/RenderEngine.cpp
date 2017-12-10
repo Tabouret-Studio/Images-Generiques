@@ -28,10 +28,12 @@ RenderEngine::RenderEngine() {}
 void RenderEngine::init()
 {
     // Initialize SDL and open a window
-	m_window = new glimac::SDLWindowManager(800, 600, "GLImac");
-    
+	m_window = new glimac::SDLWindowManager(800, 600, "Images Génériques");
+
     // Initialize glew for OpenGL3+ support
+	glewExperimental = GL_TRUE;
     GLenum glewInitError = glewInit();
+
     if(GLEW_OK != glewInitError) {
         throw std::runtime_error("Glew init error.");
     }
