@@ -11,6 +11,9 @@
 
 #define FRAMERATE 30
 
+//SET TEST CLASSNAME HERE
+#define TESTCLASS whiteTriangle
+
 //System includes
 #include <iostream>
 #include <vector>
@@ -30,5 +33,8 @@
 //App Engines
 #include "Engines/AppEngine/AppEngine.hpp"
 #include "Engines/RenderEngine/RenderEngine.hpp"
+
+//Tests
+#include "tests/Test.h"
 
 #endif /* main_h */
