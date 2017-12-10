@@ -35,6 +35,6 @@
 #include "Engines/RenderEngine/RenderEngine.hpp"
 
 //Tests
-#include "tests/Test.h"
+#include "tests/Test.hpp"
 
 #endif /* main_h */
