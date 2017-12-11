@@ -25,9 +25,15 @@ public:
      */
     void init();
 
+	/**
+	 Swap OpenGL buffers
+	 basically : Show-What-I-Have-Just-Drawn
+	 */
 	void swapBuffers();
 
 	void pollEvents();
+
+	void setShader(const std::string &shaderName);
     
 private:
     //Singleton

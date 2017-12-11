@@ -12,7 +12,7 @@
 #define FRAMERATE 30
 
 //SET TEST CLASSNAME HERE
-#define TESTCLASS whiteTriangle
+#define TESTCLASS Val01
 
 //System includes
 #include <iostream>
@@ -20,11 +20,19 @@
 #include <chrono>
 #include <thread>
 
+#include <stdio.h>
+#include <string.h>
+#include <math.h>
+
 //OpenGL and friends
 #include <GL/glew.h>
 #include <glimac/Program.hpp>
 #include <glimac/FilePath.hpp>
 #include <glimac/glm.hpp>
+
+//SVG files (NanoSVG)
+#define NANOSVG_ALL_COLOR_KEYWORDS
+#include <NanoSVG/nanosvg.h>
 
 //App core
 #include "Core/AppObject.hpp"
@@ -33,6 +41,9 @@
 //App Engines
 #include "Engines/AppEngine/AppEngine.hpp"
 #include "Engines/RenderEngine/RenderEngine.hpp"
+
+//Utils
+#include "Utils/Bezier.hpp"
 
 //Tests
 #include "tests/Test.hpp"

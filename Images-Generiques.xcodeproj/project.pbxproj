@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3900ECC11FDEB32A001996B9 /* Bezier.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3900ECBF1FDEB32A001996B9 /* Bezier.cpp */; };
 		390196D11FDDE260000F2113 /* whiteTriangle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 390196CF1FDDE260000F2113 /* whiteTriangle.cpp */; };
 		390196D41FDDF087000F2113 /* Val01.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 390196D21FDDF087000F2113 /* Val01.cpp */; };
 		39AF3CCC1FDB4FE10089622E /* SDL2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39AF3CCB1FDB4FE10089622E /* SDL2.framework */; };
@@ -40,6 +41,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		3900ECBF1FDEB32A001996B9 /* Bezier.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Bezier.cpp; sourceTree = "<group>"; };
+		3900ECC01FDEB32A001996B9 /* Bezier.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Bezier.hpp; sourceTree = "<group>"; };
 		390196CB1FDDE0B8000F2113 /* triangle.vs.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = triangle.vs.glsl; sourceTree = "<group>"; };
 		390196CC1FDDE0B8000F2113 /* triangle.fs.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = triangle.fs.glsl; sourceTree = "<group>"; };
 		390196CE1FDDE1E4000F2113 /* Test.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Test.hpp; sourceTree = "<group>"; };
@@ -49,6 +52,8 @@
 		390196D31FDDF087000F2113 /* Val01.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Val01.hpp; sourceTree = "<group>"; };
 		390196D51FDDF2E4000F2113 /* point.vs.glsl */ = {isa = PBXFileReference; lastKnownFileType = text; path = point.vs.glsl; sourceTree = "<group>"; };
 		390196D61FDDF2F3000F2113 /* point.fs.glsl */ = {isa = PBXFileReference; lastKnownFileType = text; path = point.fs.glsl; sourceTree = "<group>"; };
+		390196D81FDE7E29000F2113 /* artist.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = artist.svg; sourceTree = "<group>"; };
+		390196DA1FDE7E34000F2113 /* nanosvg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = nanosvg.h; sourceTree = "<group>"; };
 		397BE0D01FDAED60006254F0 /* Images-Generiques */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "Images-Generiques"; sourceTree = BUILT_PRODUCTS_DIR; };
 		39AF3CCB1FDB4FE10089622E /* SDL2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2.framework; path = ../../../../../Library/Frameworks/SDL2.framework; sourceTree = "<group>"; };
 		39AF3CCE1FDB51AD0089622E /* RenderEngine.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = RenderEngine.cpp; sourceTree = "<group>"; };
@@ -107,9 +112,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3900ECBE1FDEB2FC001996B9 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				3900ECBF1FDEB32A001996B9 /* Bezier.cpp */,
+				3900ECC01FDEB32A001996B9 /* Bezier.hpp */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
 		390196C91FDDD956000F2113 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				390196D71FDE7E29000F2113 /* SVG */,
 				390196CA1FDDD95C000F2113 /* Shaders */,
 			);
 			path = Assets;
@@ -136,6 +151,22 @@
 				390196D31FDDF087000F2113 /* Val01.hpp */,
 			);
 			path = tests;
+			sourceTree = "<group>";
+		};
+		390196D71FDE7E29000F2113 /* SVG */ = {
+			isa = PBXGroup;
+			children = (
+				390196D81FDE7E29000F2113 /* artist.svg */,
+			);
+			path = SVG;
+			sourceTree = "<group>";
+		};
+		390196D91FDE7E34000F2113 /* NanoSVG */ = {
+			isa = PBXGroup;
+			children = (
+				390196DA1FDE7E34000F2113 /* nanosvg.h */,
+			);
+			path = NanoSVG;
 			sourceTree = "<group>";
 		};
 		397BE0C71FDAED60006254F0 = {
@@ -168,14 +199,15 @@
 		39D90C151FDAEDE400282ED1 /* App */ = {
 			isa = PBXGroup;
 			children = (
+				3900ECBE1FDEB2FC001996B9 /* Utils */,
 				390196CD1FDDE1D3000F2113 /* tests */,
 				39D90C421FDB486E00282ED1 /* libs */,
 				39D90C3A1FDAF0C400282ED1 /* build */,
 				39D90C351FDAEF6100282ED1 /* Engines */,
 				39D90C1D1FDAEF0F00282ED1 /* Core */,
 				39D90C161FDAEE1400282ED1 /* Makefile */,
-				39D90C181FDAEE8400282ED1 /* main.cpp */,
 				39D90C191FDAEE8400282ED1 /* main.hpp */,
+				39D90C181FDAEE8400282ED1 /* main.cpp */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -234,6 +266,7 @@
 		39D90C421FDB486E00282ED1 /* libs */ = {
 			isa = PBXGroup;
 			children = (
+				390196D91FDE7E34000F2113 /* NanoSVG */,
 				39D90C4C1FDB4C2D00282ED1 /* glimac */,
 			);
 			path = libs;
@@ -383,6 +416,7 @@
 				39D90C2D1FDAEF0F00282ED1 /* Core.cpp in Sources */,
 				39D90C1A1FDAEE8400282ED1 /* main.cpp in Sources */,
 				39D90C6C1FDB4C2D00282ED1 /* Sphere.cpp in Sources */,
+				3900ECC11FDEB32A001996B9 /* Bezier.cpp in Sources */,
 				39D90C681FDB4C2D00282ED1 /* Image.cpp in Sources */,
 				39D90C2E1FDAEF0F00282ED1 /* AppObject.cpp in Sources */,
 				39D90C341FDAEF0F00282ED1 /* AppEngine.cpp in Sources */,
