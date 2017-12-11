@@ -1,8 +1,6 @@
 #include "../include/glimac/SDLWindowManager.hpp"
 #include <iostream>
 
-#include <OpenGL/gl.h>
-
 namespace glimac
 {
     SDL_Window *window; // Declare a pointer for the window
