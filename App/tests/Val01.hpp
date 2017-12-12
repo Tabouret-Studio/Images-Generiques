@@ -9,7 +9,6 @@
 #ifndef Val01_hpp
 #define Val01_hpp
 
-#define NANOSVG_IMPLEMENTATION
 #include "../main.hpp"
 
 namespace Tests
@@ -21,7 +20,6 @@ namespace Tests
 		void render();
 
 	private:
-		NSVGimage * m_image;
 		int m_points;
 
 		GLuint m_vbo;

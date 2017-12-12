@@ -11,15 +11,6 @@
 
 #include "../main.hpp"
 
-struct Vertex2DColor
-{
-	glm::vec2 position;
-	glm::vec3 color;
-
-	Vertex2DColor(){}
-	Vertex2DColor(glm::vec2 position, glm::vec3 color):position(position), color(color){}
-};
-
 class Core
 {
 public:

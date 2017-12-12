@@ -43,7 +43,9 @@
 #include "Engines/RenderEngine/RenderEngine.hpp"
 
 //Utils
+#include "Utils/vertexColor.h"
 #include "Utils/Bezier.hpp"
+#include "Utils/NSVG.hpp"
 
 //Tests
 #include "tests/Test.hpp"

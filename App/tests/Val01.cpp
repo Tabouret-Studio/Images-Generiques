@@ -10,13 +10,16 @@
 
 namespace Tests
 {
+	//////////////
+	// This is executed only one time at start up
+	///////////
 	void Val01::setup()
 	{
 		App->renderEngine->setShader("point");
 
 		//Load SVG
-		m_image = nsvgParseFromFile("Assets/SVG/ml.svg", "px", 96);
-		std::cout << "size: " << m_image->width << " x " << m_image->height << std::endl;
+		Utils::NSVG svg = Utils::NSVG("Assets/SVG/ml.svg");
+		//std::cout << "size: " << m_image->width << " x " << m_image->height << std::endl;
 
 		// Delete
 		//nsvgDelete(image);
@@ -28,51 +31,14 @@ namespace Tests
 		glBindBuffer(GL_ARRAY_BUFFER, m_vbo);
 
 		//Création d'un tableau de float pour stocker les points du VBO
+		std::vector<Utils::Bezier> paths = svg.getAllPaths();
 		std::vector<Vertex2DColor> vertices;
-		m_points = 0;
+		std::vector<glm::vec2> pathPoints = svg.getAllPoints();
+		m_points = pathPoints.size();
 
-		// Parse SVG
-		for (NSVGshape * shape = m_image->shapes; shape != NULL; shape = shape->next)
+		for(int j = 0; j < pathPoints.size(); ++j)
 		{
-			for (NSVGpath * path = shape->paths; path != NULL; path = path->next)
-			{
-				for (int i = 0; i < path->npts-1; i += 3) {
-
-					float * p = &path->pts[i * 2];
-
-//					x = (p[0] / 1000.f) - .5f,
-//					y = ((p[1] / 1000.f) - .5f) * -1;
-//					vertices.push_back(Vertex2DColor(glm::vec2(x, y), glm::vec3(0, 0, 0)));
-//
-//					/*x = (p[2] / 1000.f) - .5f;
-//					y = ((p[3] / 1000.f) - .5f) * -1;
-//					vertices.push_back(Vertex2DColor(glm::vec2(x, y), glm::vec3(0, 0, 0)));*/
-//
-//					/*x = (p[4] / 1000.f) - .5f;
-//					y = ((p[5] / 1000.f) - .5f) * -1;
-//					vertices.push_back(Vertex2DColor(glm::vec2(x, y), glm::vec3(0, 0, 0)));*/
-//
-//					x = (p[6] / 1000.f) - .5f;
-//					y = ((p[7] / 1000.f) - .5f) * -1;
-//					vertices.push_back(Vertex2DColor(glm::vec2(x, y), glm::vec3(0, 0, 0)));
-
-					glm::vec2 startP = glm::vec2((p[0] / 500.f) - 1.f, ((p[1] / 375.f) - 1.f) * -1);
-					glm::vec2 startH = glm::vec2((p[2] / 500.f) - 1.f, ((p[3] / 375.f) - 1.f) * -1);
-					glm::vec2 endH = glm::vec2((p[4] / 500.f) - 1.f, ((p[5] / 375.f) - 1.f) * -1);
-					glm::vec2 endP = glm::vec2((p[6] / 500.f) - 1.f, ((p[7] / 375.f) - 1.f) * -1);
-
-					Utils::Bezier pathBezier = Utils::Bezier(startP, startH, endH, endP);
-
-					std::vector<glm::vec2> pathPoints = pathBezier.getPoints(150);
-					m_points += pathPoints.size();
-
-					for(int j = 0; j < pathPoints.size(); ++j)
-					{
-						vertices.push_back(Vertex2DColor(pathPoints[j], glm::vec3(0, 0, 0)));
-					}
-//					std::cout << "point coords : " << x << " " << y << std::endl;
-				}
-			}
+			vertices.push_back(Vertex2DColor(pathPoints[j]));
 		}
 
 		//Puis on envois les données à la CG
@@ -89,6 +55,7 @@ namespace Tests
 
 		//Dire à OpenGL qu'on utilise le VAO
 		const GLuint VERTEX_ATTR_POSITION = 1;
+		const GLuint VERTEX_ATTR_COLOR = 2;
 		glEnableVertexAttribArray(VERTEX_ATTR_POSITION);
 
 		//Indiquer à OpenGL où trouver les sommets
@@ -97,6 +64,7 @@ namespace Tests
 
 		//Spécification du format de l'attribut de sommet position
 		glVertexAttribPointer(VERTEX_ATTR_POSITION, 2, GL_FLOAT, GL_FALSE, sizeof(Vertex2DColor), 0);
+		glVertexAttribPointer(VERTEX_ATTR_COLOR, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex2DColor), sizeof(glm::vec2));
 
 		//Débindind du vbo de la cible pour éviter de le remodifier
 		glBindBuffer(GL_ARRAY_BUFFER, 0);
@@ -108,6 +76,10 @@ namespace Tests
 		glEnable(GL_POINT_SMOOTH);
 	}
 
+
+	//////////////
+	// This is executed every frame
+	///////////
 	void Val01::render()
 	{
 		//On nettoit la fenêtre
