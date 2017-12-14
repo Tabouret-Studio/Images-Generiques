@@ -31,7 +31,7 @@ namespace Tests
 		}
 
 		m_vbo = GL::buildVBO<Vertex2DColor>(vertices);
-		m_vao = GL::buildVAO(vertices, m_vbo);
+		m_vao = GL::buildVAO(m_vbo);
 
 		glEnable(GL_PROGRAM_POINT_SIZE);
 		glEnable(GL_POINT_SMOOTH);

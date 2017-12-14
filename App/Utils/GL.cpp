@@ -10,7 +10,7 @@
 
 namespace GL
 {
-	GLuint buildVAO(const std::vector<Vertex2DColor> &vertices, const GLuint &vbo)
+	GLuint buildVAO(const GLuint &vbo)
 	{
 		//Create and bind VAO
 		GLuint vao;

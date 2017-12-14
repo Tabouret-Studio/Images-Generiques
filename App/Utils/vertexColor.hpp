@@ -11,6 +11,12 @@
 
 #include "../main.hpp"
 
+/**
+ Structure representing a vertex
+
+ - coordinates : 2D-vector X-Y
+ - color : 3D-vector R-G-B
+ */
 struct Vertex2DColor
 {
 	glm::vec2 position;

@@ -33,6 +33,13 @@ public:
 
 	void pollEvents();
 
+	/**
+	 Set current duo of fragment and vertex shader
+	 - folder : Shaders must be in the Assets/Shaders folder
+	 - names : shaders names must be <shaderName>.<fs|vs>.glsl
+
+	 @param shaderName the name of the shaders
+	 */
 	void setShader(const std::string &shaderName);
     
 private:

@@ -13,6 +13,13 @@
 
 namespace GL
 {
+	/**
+	 Generate an OpenGL VBO filled with the given vertex
+
+	 @tparam C the type of data in the vector
+	 @param vertices An std::vector
+	 @return ID of the newly-created VBO
+	 */
 	template<class C>
 	GLuint buildVBO(const std::vector<C> &vertices)
 	{
@@ -29,8 +36,14 @@ namespace GL
 
 		return vbo;
 	}
-	
-	GLuint buildVAO(const std::vector<Vertex2DColor> &vertices, const GLuint &vbo);
+
+	/**
+	 Build an OpenGL VAO with the given VBO
+
+	 @param vbo The VBO containing the vertices
+	 @return ID of the newly created VAO
+	 */
+	GLuint buildVAO(const GLuint &vbo);
 }
 
 #endif /* GL_hpp */
