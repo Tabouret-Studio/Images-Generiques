@@ -17,6 +17,7 @@ namespace Utils {
 	{
 	public:
 		NSVG(const std::string &path);
+		~NSVG();
 
 		inline std::vector<Bezier> getAllPaths() const { return m_paths; };
 

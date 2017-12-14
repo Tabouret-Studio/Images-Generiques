@@ -36,6 +36,12 @@ namespace Utils
 		}
 	}
 
+	NSVG::~NSVG()
+	{
+		//Properly delete the nsvg image
+		nsvgDelete(m_image);
+	}
+
 	std::vector<glm::vec2> NSVG::getAllPoints()
 	{
 		return getAllPoints(150);

@@ -19,19 +19,8 @@ namespace Tests
 
 		//Load SVG
 		Utils::NSVG svg = Utils::NSVG("Assets/SVG/ml.svg");
-		//std::cout << "size: " << m_image->width << " x " << m_image->height << std::endl;
-
-		// Delete
-		//nsvgDelete(image);
-
-		//Création d'un VBO
-		glGenBuffers(1, &m_vbo);
-
-		//Bindind du vbo sur la cible
-		glBindBuffer(GL_ARRAY_BUFFER, m_vbo);
 
 		//Création d'un tableau de float pour stocker les points du VBO
-		std::vector<Utils::Bezier> paths = svg.getAllPaths();
 		std::vector<Vertex2DColor> vertices;
 		std::vector<glm::vec2> pathPoints = svg.getAllPoints();
 		m_points = pathPoints.size();
@@ -41,36 +30,8 @@ namespace Tests
 			vertices.push_back(Vertex2DColor(pathPoints[j]));
 		}
 
-		//Puis on envois les données à la CG
-		glBufferData(GL_ARRAY_BUFFER, m_points * sizeof(Vertex2DColor), vertices.data(), GL_STATIC_DRAW);
-
-		//Débindind du vbo de la cible pour éviter de le remodifier
-		glBindBuffer(GL_ARRAY_BUFFER, 0);
-
-		//Création du VAO
-		glGenVertexArrays(1, &m_vao);
-
-		//Binding du vao (un seul à la fois)
-		glBindVertexArray(m_vao);
-
-		//Dire à OpenGL qu'on utilise le VAO
-		const GLuint VERTEX_ATTR_POSITION = 1;
-		const GLuint VERTEX_ATTR_COLOR = 2;
-		glEnableVertexAttribArray(VERTEX_ATTR_POSITION);
-
-		//Indiquer à OpenGL où trouver les sommets
-		//Bindind du vbo sur la cible
-		glBindBuffer(GL_ARRAY_BUFFER, m_vbo);
-
-		//Spécification du format de l'attribut de sommet position
-		glVertexAttribPointer(VERTEX_ATTR_POSITION, 2, GL_FLOAT, GL_FALSE, sizeof(Vertex2DColor), 0);
-		glVertexAttribPointer(VERTEX_ATTR_COLOR, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex2DColor), sizeof(glm::vec2));
-
-		//Débindind du vbo de la cible pour éviter de le remodifier
-		glBindBuffer(GL_ARRAY_BUFFER, 0);
-
-		//Débindind du vao de la cible pour éviter de le remodifier
-		glBindVertexArray(0);
+		m_vbo = GL::buildVBO<Vertex2DColor>(vertices);
+		m_vao = GL::buildVAO(vertices, m_vbo);
 
 		glEnable(GL_PROGRAM_POINT_SIZE);
 		glEnable(GL_POINT_SMOOTH);
