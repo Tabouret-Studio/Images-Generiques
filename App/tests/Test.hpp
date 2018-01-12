@@ -29,5 +29,6 @@ namespace Tests
 
 //Include all tests hpp files here
 #include "whiteTriangle.hpp"
+#include "Val01.hpp"
 
 #endif /* Test_h */

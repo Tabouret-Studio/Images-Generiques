@@ -15,21 +15,7 @@ namespace Tests
 	///////////
 	void whiteTriangle::setup()
 	{
-		//Shader loading
-		glimac::FilePath applicationPath(App->getAppPath().c_str());
-
-		std::string VS = "Assets/Shaders/triangle.vs.glsl";
-		std::string FS = "Assets/Shaders/triangle.fs.glsl";
-
-		//Different loading path on macOS because of reasons
-#if __APPLE__
-		glimac::Program program = glimac::loadProgram(VS, FS);
-#else
-		glimac::Program program = glimac::loadProgram(applicationPath.dirPath() + VS,
-									  applicationPath.dirPath() + FS);
-#endif
-
-		program.use();
+		App->renderEngine->setShader("triangle");
 
 		//Création d'un VBO
 		glGenBuffers(1, &m_vbo);

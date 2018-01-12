@@ -56,3 +56,25 @@ void RenderEngine::pollEvents()
 		}
 	}
 }
+
+void RenderEngine::setShader(const std::string &shaderName)
+{
+	//Shader loading
+	glimac::FilePath applicationPath(App->getAppPath().c_str());
+
+	std::string VS = "Assets/Shaders/" + shaderName + ".vs.glsl";
+	std::string FS = "Assets/Shaders/" + shaderName + ".fs.glsl";
+
+	//Different loading path on macOS because of reasons
+	#if __APPLE__
+		glimac::Program program = glimac::loadProgram(VS, FS);
+	#else
+		glimac::Program program = glimac::loadProgram(applicationPath.dirPath() + VS,
+													  applicationPath.dirPath() + FS);
+	#endif
+
+	program.use();
+}
+
+
+
