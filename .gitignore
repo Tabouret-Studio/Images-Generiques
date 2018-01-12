@@ -35,3 +35,5 @@
 *.xcodeproj
 *.xcuserstate
 *.pbxproj
+
+build/
