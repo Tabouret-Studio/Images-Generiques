@@ -9,7 +9,7 @@
 #ifndef GL_hpp
 #define GL_hpp
 
-#include "../main.hpp"
+#include "libraries.hpp"
 
 namespace GL
 {

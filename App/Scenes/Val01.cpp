@@ -8,14 +8,27 @@
 
 #include "Val01.hpp"
 
-namespace Tests
+#include "Utils/NSVG.hpp"
+#include "Utils/Bezier.hpp"
+#include "Utils/vertexColor.hpp"
+#include "Utils/GL.hpp"
+
+namespace Scenes
 {
+	void Val01::load()
+	{
+		Scene * scene = new Val01();
+		scene->init();
+
+		App->addScene(scene);
+	}
+
 	//////////////
 	// This is executed only one time at start up
 	///////////
-	void Val01::setup()
+	void Val01::init()
 	{
-		App->renderEngine->setShader("point");
+		App->getDefaultProgram()->use();
 
 		//Load SVG
 		Utils::NSVG svg = Utils::NSVG("Assets/SVG/ml.svg");
@@ -39,7 +52,15 @@ namespace Tests
 
 
 	//////////////
-	// This is executed every frame
+	// This is executed every frame before render
+	///////////
+	void Val01::execute()
+	{
+	}
+
+
+	//////////////
+	// This is executed every frame at render
 	///////////
 	void Val01::render()
 	{

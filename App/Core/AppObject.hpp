@@ -9,11 +9,14 @@
 #ifndef AppObject_hpp
 #define AppObject_hpp
 
-#include <iostream>
-
 //Forward declarations
 class AppEngine;
+class RessourcesEngine;
 class RenderEngine;
+class Scene;
+class ShaderProgram;
+
+#include "libraries.hpp"
 
 class AppObject
 {
@@ -21,40 +24,109 @@ public:
 
 	/**
 	 Create the global App object as a singleton
-
-	 @return true on success, false otherwise
 	 */
-	static bool instanciate();
+	static void instanciate(const std::string &appPath);
 
+	/**
+	 Return the path to the app
+
+	 @return The path
+	 */
+	inline std::string getAppPath() const { return m_appPath; }
+
+	/////////
 	//Engines
 	AppEngine * appEngine;
-    RenderEngine * renderEngine;
+	RessourcesEngine * ressourcesEngine;
+	RenderEngine * renderEngine;
 
+	////////////
+	//SDL Window
+	SDL_Window * mainWindow;
+	float screenWidth;
+	float screenHeight;
+
+	////////////
 	//App States
+
 	/**
 	 Tell if the app is currently running
 
 	 @return true if yes, false otherwise
 	 */
-	bool isRunning();
+	inline bool isRunning() const { return m_running; };
 
 	/**
 	 Properly terminate the different components of the app
 	 */
-	void endApp();
+	inline void endApp() { m_running = false; };
 
-	void setAppPath(const std::string &path);
+	////////
+	//Scenes
 
-	inline std::string getAppPath() const { return m_appPath; }
+	/**
+	 Add a new scene to the loop
+	 The scene must have been initialized
+
+	 @param scene The scene to add
+	 */
+	inline void addScene(Scene * scene) { m_scenes.push_back(scene); };
+
+	/**
+	 Return all the scenes currently runnings
+
+	 @return The scenes in a vector
+	 */
+	std::vector<Scene *> getScenes() const { return m_scenes; };
+
+	/**
+	 Remove the given scene from the loop
+	 The scene is free-ed by this function
+
+	 @param scene The scene to remove
+	 */
+	void removeScene(Scene * scene);
+
+	////////
+	//Shader
+
+	/**
+	 Return the default shader program
+
+	 @return A ShaderProgram Object
+	 */
+	inline ShaderProgram * getDefaultProgram() { return m_defaultProgram; };
+
+	/**
+	 Set default shader program
+
+	 @param prog A ShaderProgram
+	 */
+	inline void setDefaultProgram(ShaderProgram * prog) { m_defaultProgram = prog; };
+
+
+	////////////
+	//SCENE UUID
+	inline boost::uuids::uuid genUUID() { return m_uuidGenerator(); };
 
 private:
 	//Singleton
-	AppObject();
+	AppObject(const std::string &appPath):
+		m_appPath(appPath) {};
 	static bool m_instanciated;
 
 	//App status
-	bool m_running;
+	bool m_running = true;
 	std::string m_appPath;
+
+	//Scenes
+	std::vector<Scene *> m_scenes;
+
+	//default shader
+	ShaderProgram * m_defaultProgram;
+
+	//UUID
+	boost::uuids::random_generator m_uuidGenerator;
 };
 
 extern AppObject * App;

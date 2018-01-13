@@ -10,7 +10,9 @@
 #define NSVG_hpp
 
 #define NANOSVG_IMPLEMENTATION
-#include "../main.hpp"
+
+#include "libraries.hpp"
+#include "Utils/Bezier.hpp"
 
 namespace Utils {
 	class NSVG

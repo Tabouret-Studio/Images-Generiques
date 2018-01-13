@@ -1,33 +1,40 @@
 //
 //  Core.cpp
-//  Music Composer
+//  IMACMAN
 //
 //  Created by Valentin Dufois on 21/11/2017.
 //  Copyright © 2017 Valentin Dufois. All rights reserved.
 //
 
-#include "../main.hpp"
+#include "Core.hpp"
+#include <chrono>
 
 //Ignite the different aspects of the game
-void Core::ignite()
+void Core::ignite(std::string appPath)
 {
-    //INIT ENGINES
-	AppObject::instanciate();
-    AppEngine::instanciate();
-    RenderEngine::instanciate();
-    
-    App->renderEngine->init();
+	Igniter igniter = Igniter();
+
+	igniter.igniteAppObject(appPath);
+	igniter.igniteSDL(800, 600);
+	igniter.igniteOpenGL();
+
+	//Init random generator
+	srand((uint)time(NULL));
+
+	//Init render engine
+	App->renderEngine->initRender();
+
+	//Preload default shaderProgram
+	App->setDefaultProgram(new ShaderProgram("triangle.vs.glsl", "triangle.fs.glsl"));
 }
 
 //The main loop
 void Core::main()
 {
-	Tests::Test * currentTest = new Tests::TESTCLASS();
-
-	currentTest->setup();
-
-	//Used to set FPS
 	std::chrono::high_resolution_clock::time_point start, end;
+
+	//Load the first scene
+	Scenes::Val01::load();
 
 	while(App->isRunning())
 	{
@@ -36,11 +43,11 @@ void Core::main()
 
 		start = std::chrono::high_resolution_clock::now();
 
-		App->renderEngine->pollEvents();
+		//Actions
+		App->appEngine->executeScenes();
 
-		currentTest->render();
-
-		App->renderEngine->swapBuffers();
+		//Render
+		App->appEngine->renderScenes();
 
 		end = std::chrono::high_resolution_clock::now();
 
@@ -51,6 +58,20 @@ void Core::main()
 		/////////////////////////////////
 	}
 
-	glDeleteBuffers(1, &m_vbo);
-	glDeleteVertexArrays(1, &m_vao);
+	//End of game, clear everything
+	//TODO
 }
+
+void Core::tempo(std::chrono::high_resolution_clock::time_point start, std::chrono::high_resolution_clock::time_point end)
+{
+	std::chrono::milliseconds elapsed, toWait;
+
+	elapsed = std::chrono::duration_cast<std::chrono::milliseconds>(end - start);
+
+	if(elapsed.count() < FRAMERATE)
+	{
+		toWait = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::milliseconds(FRAMERATE) - elapsed);
+		std::this_thread::sleep_for(toWait);
+	}
+}
+

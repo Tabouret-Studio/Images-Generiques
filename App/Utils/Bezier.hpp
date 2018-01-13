@@ -9,7 +9,7 @@
 #ifndef Bezier_hpp
 #define Bezier_hpp
 
-#include "../main.hpp"
+#include "libraries.hpp"
 
 namespace Utils
 {

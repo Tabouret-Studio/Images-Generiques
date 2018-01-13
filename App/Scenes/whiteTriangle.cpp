@@ -8,14 +8,25 @@
 
 #include "whiteTriangle.hpp"
 
-namespace Tests
+#include "libraries.hpp"
+#include "Core/AppObject.hpp"
+
+namespace Scenes
 {
+	void whiteTriangle::load()
+	{
+		Scene * scene = new whiteTriangle();
+		scene->init();
+
+		App->addScene(scene);
+	}
+
 	//////////////
 	// This is executed only one time at start up
 	///////////
-	void whiteTriangle::setup()
+	void whiteTriangle::init()
 	{
-		App->renderEngine->setShader("triangle");
+		App->getDefaultProgram()->use();
 
 		//Création d'un VBO
 		glGenBuffers(1, &m_vbo);
@@ -55,6 +66,14 @@ namespace Tests
 
 		//Débindind du vao de la cible pour éviter de le remodifier
 		glBindVertexArray(0);
+	}
+
+
+	//////////////
+	// This is executed every frame before any render
+	///////////
+	void whiteTriangle::execute()
+	{
 	}
 
 
