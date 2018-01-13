@@ -19,7 +19,6 @@ enum ressourceType
 	SHADER,
 	SOUND,
 	MESH,
-	LEVEL,
 	FONT
 };
 

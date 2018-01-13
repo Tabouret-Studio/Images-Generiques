@@ -27,7 +27,7 @@ void RessourcesEngine::instanciate()
 RessourcesEngine::RessourcesEngine(): m_ressourcesLoadedCount(0)
 {
 	//Init FreeType Library
-	if(FT_Init_FreeType( &m_FTLibrary ) )
+	if(FT_Init_FreeType( &m_FTLibrary ))
 	{
 		throw std::runtime_error("Could not load FreeType.");
 	}
@@ -96,28 +96,12 @@ Importer * RessourcesEngine::getImporter(ressourceType &type)
 {
 	switch (type)
 	{
-		case IMAGE:
-			return new ImageImporter();
-			break;
-		case SHADER:
-			return new ShaderImporter();
-			break;
-		case SOUND:
-			return new ImageImporter();
-			break;
-		case MESH:
-			return new MeshImporter();
-			break;
-		case LEVEL:
-			return new LevelImporter();
-			break;
-		case FONT:
-			return new FontImporter();
-			break;
-		default:
-			throw std::runtime_error("No Importer Found !");
-			break;
-
+		case  IMAGE: return new ImageImporter();  break;
+		case SHADER: return new ShaderImporter(); break;
+		case  SOUND: return new ImageImporter();  break;
+		case   MESH: return new MeshImporter();   break;
+		case   FONT: return new FontImporter();   break;
+		default: throw std::runtime_error("No Importer Found !"); break;
 	}
 }
 
@@ -128,26 +112,15 @@ std::string RessourcesEngine::buildPath(std::string &file, ressourceType &type)
 
 	switch (type)
 	{
-		case IMAGE:
-			prefix = "assets/images/";
-			break;
-		case SHADER:
-			prefix = "assets/shaders/";
-			break;
-		case SOUND:
-			prefix = "assets/sounds/";
-			break;
-		case MESH:
-			prefix = "assets/meshs/";
-			break;
-		case LEVEL:
-			prefix = "assets/levels/";
-			break;
-		case FONT:
-			prefix = "assets/fonts/";
-			break;
+		case IMAGE: prefix = "assets/images/"; break;
+		case SHADER: prefix = "assets/shaders/"; break;
+		case SOUND: prefix = "assets/sounds/"; break;
+		case MESH: prefix = "assets/meshs/"; break;
+		case FONT: prefix = "assets/fonts/"; break;
 	}
-	;
+
+	std::cout << App->getAppPath() << std::endl;
+
 	return App->getAppPath() + prefix + file;
 }
 

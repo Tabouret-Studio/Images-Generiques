@@ -36,7 +36,7 @@ namespace Scenes
 		//Création d'un tableau de float pour stocker les points du VBO
 		std::vector<Vertex2DColor> vertices;
 		std::vector<glm::vec2> pathPoints = svg.getAllPoints();
-		m_points = pathPoints.size();
+		m_points = (uint)pathPoints.size();
 
 		for(int j = 0; j < pathPoints.size(); ++j)
 		{

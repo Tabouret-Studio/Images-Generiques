@@ -11,26 +11,35 @@
 
 ///////////////////
 // Needed libraries
+
+//GL + GLEW
 #include <GL/glew.h>
+
+//SDL2
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_opengl.h>
 
+//SDL2 Image
 #ifdef __APPLE__
 #    include <SDL2_image/SDL_image.h>
 #else
 #    include <SDL2/SDL_image.h>
 #endif
 
+//FreeType 2
 #include <ft2build.h>
 #include FT_FREETYPE_H
 
-#include <assimp/Importer.hpp>
-#include <assimp/scene.h>
-#include <assimp/postprocess.h>
+//Assimp
+//#include <assimp/Importer.hpp>
+//#include <assimp/scene.h>
+//#include <assimp/postprocess.h>
 
+//GLM
 #include <glm/glm.hpp>
 
-//SVG files (NanoSVG)
+//////////
+//NanoSVG
 #define NANOSVG_ALL_COLOR_KEYWORDS
 #include <NanoSVG/nanosvg.h>
 

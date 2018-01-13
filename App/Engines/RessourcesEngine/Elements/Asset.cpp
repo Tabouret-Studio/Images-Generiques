@@ -28,14 +28,6 @@ Asset::operator Font*()
 	return dynamic_cast<Font *>(this);
 }
 
-Asset::operator Level*()
-{
-	if(getType() != LEVEL)
-		throw std::runtime_error("Invalid conversion.\nInvalid conversion from Asset * to Level * : Given Asset * is not a Level.");
-
-	return dynamic_cast<Level *>(this);
-}
-
 Asset::operator Mesh*()
 {
 	if(getType() != MESH)

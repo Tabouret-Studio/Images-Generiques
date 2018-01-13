@@ -24,7 +24,6 @@ public:
 #include "ImageImporter.hpp"
 #include "SoundImporter.hpp"
 #include "MeshImporter.hpp"
-#include "LevelImporter.hpp"
 #include "ShaderImporter.hpp"
 #include "FontImporter.hpp"
 

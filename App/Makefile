@@ -25,13 +25,13 @@ OBJECTS := $(SOURCES:.$(SRCEXT)=.o)
 
 # COMPILER FLAGS
 CXXFLAGS := -g -std=c++11 -Wall -pedantic -I$(LIBDIR) -I.
-LDLIBS := `pkg-config --libs assimp` `pkg-config --libs freetype2`
-LDFLAGS := `pkg-config --cflags assimp` `pkg-config --cflags freetype2`
+LDLIBS := `pkg-config --libs freetype2` #`pkg-config --libs assimp`
+LDFLAGS := `pkg-config --cflags freetype2` #`pkg-config --cflags assimp`
 
 # OS-DEPENDANT COMPILER FLAGS
 # Windows (cygwin)
 ifeq ($(OS),Windows_NT)
-LDLIBS += -lGL -lSDL2 -lSDL2_image -lGLEW
+LDLIBS +=  -lGLEW -lGL -lSDL2 -lSDL2_image
 
 # OS X
 else ifeq ($(UNAME_S),Darwin)
