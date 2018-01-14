@@ -8,6 +8,15 @@
 
 #include "RessourcesEngine.hpp"
 
+#include "Core/AppObject.hpp"
+#include "Importers/Importer.hpp"
+#include "Elements/Asset.hpp"
+
+#include <iostream>
+#include <fstream>
+#include <string>
+
+
 bool RessourcesEngine::m_instanciated = false;
 
 /**
@@ -24,7 +33,7 @@ void RessourcesEngine::instanciate()
 }
 
 
-RessourcesEngine::RessourcesEngine(): m_ressourcesLoadedCount(0)
+RessourcesEngine::RessourcesEngine()
 {
 	//Init FreeType Library
 	if(FT_Init_FreeType( &m_FTLibrary ))
@@ -58,12 +67,10 @@ rId RessourcesEngine::loadAsset(std::string path, ressourceType type)
 	delete importer;
 
 	//store the asset
-	rId newAssetId = m_ressourcesLoadedCount;
+	rId newAssetId = App->genUUID();
 
 	m_assets.insert(std::pair<rId, Asset *>(newAssetId, newAsset));
 	m_loadedPaths.insert(std::pair<std::string, rId>(assetPath, newAssetId));
-
-	m_ressourcesLoadedCount++;
 
 	//return the asset ID
 	return newAssetId;
@@ -73,8 +80,9 @@ Asset * RessourcesEngine::getAsset(rId assetID)
 {
 	//Is this asset already loaded ?
 	if(m_assets.find(assetID) == m_assets.end())
-		throw std::runtime_error("Error fetching ressource. The ressource #" + std::to_string(assetID) + " does not exist.");
-
+	{
+		throw std::runtime_error("Error fetching ressource. The ressource #" + boost::uuids::to_string(assetID) + " does not exist.");
+	}
 	return m_assets[assetID];
 }
 
@@ -101,6 +109,7 @@ Importer * RessourcesEngine::getImporter(ressourceType &type)
 		case  SOUND: return new ImageImporter();  break;
 		case   MESH: return new MeshImporter();   break;
 		case   FONT: return new FontImporter();   break;
+		case   VECTOR: return new SVGImporter();   break;
 		default: throw std::runtime_error("No Importer Found !"); break;
 	}
 }
@@ -117,6 +126,7 @@ std::string RessourcesEngine::buildPath(std::string &file, ressourceType &type)
 		case SOUND: prefix = "assets/sounds/"; break;
 		case MESH: prefix = "assets/meshs/"; break;
 		case FONT: prefix = "assets/fonts/"; break;
+		case VECTOR: prefix = "assets/SVG/"; break;
 	}
 
 	std::cout << App->getAppPath() << std::endl;

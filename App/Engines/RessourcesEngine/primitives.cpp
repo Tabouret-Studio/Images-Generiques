@@ -8,6 +8,10 @@
 
 #include "RessourcesEngine.hpp"
 
+#include "Utils/Vertex.hpp"
+#include "Core/AppObject.hpp"
+#include "Elements/Mesh.hpp"
+
 Mesh * RessourcesEngine::genCube(const uint &size, glm::vec4 baseColor)
 {
 	std::vector<Vertex> vertexList;
@@ -171,7 +175,6 @@ Mesh * RessourcesEngine::gen2DTile(const float &posX, const float &posY, const f
 	tile->getCursor()
 		->translate(posX, posY, 0)
 		->scale(width, height, 0);
-	tile->setProgram(App->getDefaultProgram());
 
 	return tile;
 }

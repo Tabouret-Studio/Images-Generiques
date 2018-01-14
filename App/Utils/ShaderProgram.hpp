@@ -13,10 +13,6 @@
 class Shader;
 
 #include "libraries.hpp"
-#include "Core/AppObject.hpp"
-#include "Engines/RessourcesEngine/RessourcesEngine.hpp"
-
-#include <glm/glm.hpp>
 
 #include <map>
 

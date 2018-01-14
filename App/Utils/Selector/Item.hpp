@@ -9,12 +9,13 @@
 #ifndef Item_hpp
 #define Item_hpp
 
-#include "libraries.hpp"
-#include "Engines/RessourcesEngine/Elements/Mesh.hpp"
-#include "Engines/RessourcesEngine/Elements/Font.hpp"
+//////////////////////
+//Forward declarations
+class Mesh;
+class Font;
 
+#include "libraries.hpp"
 #include <iostream>
-#include <functional>
 
 enum ITEM_TYPE
 {

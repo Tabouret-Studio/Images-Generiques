@@ -8,6 +8,15 @@
 
 #include "Item.hpp"
 
+#include "Engines/RessourcesEngine/RessourcesEngine.hpp"
+#include "Engines/RenderEngine/RenderEngine.hpp"
+#include "Engines/RessourcesEngine/Elements/Mesh.hpp"
+#include "Engines/RessourcesEngine/Elements/Font.hpp"
+#include "Engines/RessourcesEngine/Elements/Image.hpp"
+#include "Core/AppObject.hpp"
+
+#include <functional>
+
 Item::Item(const ITEM_TYPE &type, const uint &posX, const uint &posY, const uint &width, const uint &height, std::function<void()> callback):
 	m_display(true),
 	m_type(type),

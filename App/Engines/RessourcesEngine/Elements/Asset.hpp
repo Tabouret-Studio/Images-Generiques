@@ -12,12 +12,11 @@
 //////////////////////
 //Forward declarations
 class Font;
-class Level;
 class Mesh;
 class Shader;
 class Image;
+class VectorImage;
 
-#include "libraries.hpp"
 #include "../RessourcesEngine.hpp"
 
 class Asset
@@ -75,15 +74,17 @@ public:
 	 */
 	operator Image*();
 
+	/**
+	 Casting operator for VectorImage assets
+
+	 @return Return the asset as a VectorImage, nullptr if the asset is not a VectorImage
+	 */
+	operator VectorImage*();
+
 	virtual ~Asset() {};
 
 protected:
 	ressourceType m_type;
 };
-
-#include "Font.hpp"
-#include "Mesh.hpp"
-#include "Shader.hpp"
-#include "Image.hpp"
 
 #endif /* Asset_hpp */

@@ -8,6 +8,12 @@
 
 #include "Font.hpp"
 
+#include "Utils/SDL.hpp"
+#include "Utils/ShaderProgram.hpp"
+#include "Engines/RenderEngine/RenderEngine.hpp"
+
+#include "Mesh.hpp"
+
 Font::Font(FT_Face &face): Asset(FONT), m_face(face) {}
 
 void Font::setHeight(const float &newSize)

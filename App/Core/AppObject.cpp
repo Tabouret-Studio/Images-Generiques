@@ -7,6 +7,7 @@
 //
 
 #include "AppObject.hpp"
+
 #include "Utils/ShaderProgram.hpp"
 #include "Scenes/Scene.hpp"
 

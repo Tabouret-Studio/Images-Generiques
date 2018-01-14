@@ -8,6 +8,18 @@
 
 #include "Shader.hpp"
 
+#include "libraries.hpp"
+
+Shader::Shader(std::string shaderPath, GLenum shaderType):
+	Asset(SHADER),
+	m_shaderPath(shaderPath),
+	m_shaderID(glCreateShader(shaderType)) {};
+
+void Shader::setSource(const char * source)
+{
+	glShaderSource(m_shaderID, 1, &source, 0);
+}
+
 void Shader::compile()
 {
 	glCompileShader(m_shaderID);

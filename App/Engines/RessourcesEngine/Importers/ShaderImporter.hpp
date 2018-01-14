@@ -14,17 +14,15 @@ class Asset;
 
 #include "Importer.hpp"
 
-#include <fstream>
-#include <vector>
-#include <sstream>
+#include "libraries.hpp"
 
 class ShaderImporter: public Importer
 {
 public:
-	Asset * getAsset(std::string path);
+	Asset * getAsset(const std::string &path);
 
 private:
-	GLenum getShaderType(std::string path);
+	GLenum getShaderType(const std::string &path);
 };
 
 #endif /* ShaderImporter_hpp */

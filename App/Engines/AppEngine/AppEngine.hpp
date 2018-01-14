@@ -9,6 +9,8 @@
 #ifndef AppEngine_hpp
 #define AppEngine_hpp
 
+#include "libraries.hpp"
+
 struct keyboard
 {
 	bool A = false;
@@ -85,6 +87,8 @@ private:
 	//Events
 	keyboard m_keys;
 	void parseEvents();
+	void windowEvents(const SDL_Event &event);
+	void keyBoardEvents(const SDL_Event &event);
 };
 
 #endif /* AppEngine_hpp */

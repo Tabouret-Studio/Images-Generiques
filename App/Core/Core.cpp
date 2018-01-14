@@ -7,7 +7,16 @@
 //
 
 #include "Core.hpp"
-#include <chrono>
+
+#include "AppObject.hpp"
+#include "Igniter.hpp"
+#include "Scenes/Scene.hpp"
+
+#include "Utils/ShaderProgram.hpp"
+#include "Engines/RenderEngine/RenderEngine.hpp"
+#include "Engines/AppEngine/AppEngine.hpp"
+
+#include <thread>
 
 //Ignite the different aspects of the game
 void Core::ignite(std::string appPath)
@@ -25,7 +34,7 @@ void Core::ignite(std::string appPath)
 	App->renderEngine->initRender();
 
 	//Preload default shaderProgram
-	App->setDefaultProgram(new ShaderProgram("triangle.vs.glsl", "triangle.fs.glsl"));
+	App->setDefaultProgram(new ShaderProgram("main.vs.glsl", "main.fs.glsl"));
 }
 
 //The main loop

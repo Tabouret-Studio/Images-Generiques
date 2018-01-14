@@ -8,10 +8,13 @@
 
 #include "Val01.hpp"
 
-#include "Utils/NSVG.hpp"
 #include "Utils/Bezier.hpp"
-#include "Utils/vertexColor.hpp"
-#include "Utils/GL.hpp"
+#include "Utils/Vertex.hpp"
+
+#include "Engines/RessourcesEngine/Elements/VectorImage.hpp"
+#include "Engines/RessourcesEngine/Elements/Mesh.hpp"
+#include "Engines/RenderEngine/RenderEngine.hpp"
+#include "Utils/Selector/Item.hpp"
 
 namespace Scenes
 {
@@ -28,26 +31,14 @@ namespace Scenes
 	///////////
 	void Val01::init()
 	{
-		App->getDefaultProgram()->use();
-
 		//Load SVG
-		Utils::NSVG svg = Utils::NSVG("Assets/SVG/ml.svg");
+		//Utils::NSVG svg = Utils::NSVG("Assets/SVG/ml.svg");
+		rId svgID = App->ressourcesEngine->loadAsset("artist.svg", VECTOR);
+		VectorImage * svg = *App->ressourcesEngine->getAsset(svgID);
 
-		//Création d'un tableau de float pour stocker les points du VBO
-		std::vector<Vertex2DColor> vertices;
-		std::vector<glm::vec2> pathPoints = svg.getAllPoints();
-		m_points = (uint)pathPoints.size();
+		m_mesh = svg->getMesh();
+		m_mesh->generate();
 
-		for(int j = 0; j < pathPoints.size(); ++j)
-		{
-			vertices.push_back(Vertex2DColor(pathPoints[j]));
-		}
-
-		m_vbo = GL::buildVBO<Vertex2DColor>(vertices);
-		m_vao = GL::buildVAO(m_vbo);
-
-		glEnable(GL_PROGRAM_POINT_SIZE);
-		glEnable(GL_POINT_SMOOTH);
 	}
 
 
@@ -64,15 +55,7 @@ namespace Scenes
 	///////////
 	void Val01::render()
 	{
-		//On nettoit la fenêtre
-		glClear(GL_COLOR_BUFFER_BIT);
-
-		//On rebind le vao
-		glBindVertexArray(m_vao);
-
-		glDrawArrays(GL_POINTS, 0, m_points);
-
-		//Débinding du vao de la cible pour éviter de le remodifier
-		glBindVertexArray(0);
+		App->renderEngine->setProjection2D();
+		App->renderEngine->render(m_mesh, m_mesh->getCursor());
 	}
 }

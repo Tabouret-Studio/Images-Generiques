@@ -8,6 +8,12 @@
 
 #include "Asset.hpp"
 
+#include "Font.hpp"
+#include "Mesh.hpp"
+#include "Shader.hpp"
+#include "Image.hpp"
+#include "VectorImage.hpp"
+
 bool Asset::isRenderable()
 {
 	switch(getType())
@@ -47,8 +53,16 @@ Asset::operator Shader*()
 Asset::operator Image*()
 {
 	if(getType() != IMAGE)
-		throw std::runtime_error("Invalid conversion.\nInvalid conversion from Image * to Shader * : Given Asset * is not an Image.");
+		throw std::runtime_error("Invalid conversion.\nInvalid conversion from Asset * to Image * : Given Asset * is not an Image.");
 
 	return dynamic_cast<Image *>(this);
+}
+
+Asset::operator VectorImage*()
+{
+	if(getType() != VECTOR)
+		throw std::runtime_error("Invalid conversion.\nInvalid conversion from Asset * to VectorImage * : Given Asset * is not a VectorImage.");
+
+	return dynamic_cast<VectorImage *>(this);
 }
 

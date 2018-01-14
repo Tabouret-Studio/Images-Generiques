@@ -9,18 +9,13 @@
 #ifndef RenderEngine_hpp
 #define RenderEngine_hpp
 
+//////////////////////
+//Forward declarations
+class Mesh;
+
 //Get engine dependancies
 #include "libraries.hpp"
-#include "Utils/Vertex.hpp"
-#include "Utils/Enums.hpp"
 #include "Utils/DrawCursor.hpp"
-#include "Engines/RessourcesEngine/Elements/Mesh.hpp"
-
-#include "Core/AppObject.hpp"
-
-#include <map>
-#include <glm/gtx/string_cast.hpp>
-#include <glm/ext.hpp>
 
 //The engine
 class RenderEngine
@@ -112,12 +107,5 @@ private:
 	RenderEngine();
 	~RenderEngine();
 };
-
-//////////////////
-//OpenGL Debugging
-#include <iostream>
-void _check_gl_error(const char *file, int line);
-#define check_gl_error() _check_gl_error(__FILE__,__LINE__)
-//////////////////
 
 #endif /* RenderEngine_hpp */

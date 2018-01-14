@@ -9,33 +9,20 @@
 #ifndef Mesh_hpp
 #define Mesh_hpp
 
+/////////////////////
 //Forward declaration
 class ShaderProgram;
 
 #include "Asset.hpp"
-#include "Utils/ShaderProgram.hpp"
 #include "Utils/DrawCursor.hpp"
 #include "Utils/Vertex.hpp"
-#include "Engines/RenderEngine/RenderEngine.hpp"
-
-#include <glm/glm.hpp>
 
 class Mesh : public Asset
 {
 public:
 	//Constructor
-	Mesh(const std::vector<Vertex> vertexList):
-		Asset(MESH),
-		m_vertexList(vertexList),
-		m_vertexCount((uint)vertexList.size()),
-		m_textureID(0)
-	{};
-
-	Mesh():
-		Asset(MESH),
-		m_vertexList(),
-		m_vertexCount(0),
-		m_textureID(0) {};
+	Mesh();
+	Mesh(const std::vector<Vertex> vertexList);
 
 	//Getters
 	/**
@@ -49,7 +36,7 @@ public:
 
 	 @return Number of vertex
 	 */
-	GLsizei getVertexCount() { return m_vertexCount; }
+	GLsizei getVertexCount() const { return m_vertexCount; }
 
 	/**
 	 Return the texture ID used by the mesh
@@ -70,7 +57,7 @@ public:
 
 	 @return True if textured, false otherwise
 	 */
-	inline bool isTextured() { return m_textureID != 0; };
+	inline bool isTextured() const { return m_textureID != 0; };
 	 
 
 	//Utils
@@ -115,8 +102,19 @@ public:
 	 */
 	void generate();
 
-	GLuint vbo = 0;
-	GLuint vao = 0;
+	/**
+	 Get a pointer to the mesh VBO ID
+
+	 @return Pointer to the vbo
+	 */
+	inline GLuint * getVBO() { return &m_vbo; };
+
+	/**
+	 Get a pointer to the mesh VAO ID
+
+	 @return Pointer to the vao
+	 */
+	inline GLuint * getVAO() { return &m_vao; };
 
 	/**
 	 Return the drawing cursor of the object
@@ -131,12 +129,31 @@ public:
 	 */
 	void applyCursor();
 
+	/**
+	 Set the render format used by OpenGL to render this mesh
+	 Default format : GL_TRIANGLES
+
+	 @param format New format (GL_LINES, GL_TRIANGLES, GL_POINTS, etc.)
+	 */
+	inline void setRenderFormat(const GLenum &format) { m_renderFormat = format; };
+
+	/**
+	 Tell the OpenGL render format used by this mesh
+	 Default format : GL_TRIANGLES
+
+	 @return The format (GL_LINES, GL_TRIANGLES, GL_POINTS, etc.)
+	 */
+	inline GLenum getRenderFormat() const { return m_renderFormat; };
+
 	~Mesh();
 
 private:
 	//Vertex
 	std::vector<Vertex> m_vertexList;
 	uint m_vertexCount;
+
+	GLuint m_vbo;
+	GLuint m_vao;
 
 	//Position
 	DrawCursor m_cursor;
@@ -146,6 +163,9 @@ private:
 	
 	//Shader program
 	ShaderProgram * m_program;
+
+	//Render type
+	GLenum m_renderFormat;
 };
 
 #endif /* Mesh_hpp */

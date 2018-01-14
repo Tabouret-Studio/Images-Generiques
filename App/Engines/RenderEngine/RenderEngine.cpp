@@ -8,6 +8,11 @@
 
 #include "RenderEngine.hpp"
 
+#include "Utils/Vertex.hpp"
+#include "Utils/ShaderProgram.hpp"
+#include "Core/AppObject.hpp"
+#include "Engines/RessourcesEngine/Elements/Mesh.hpp"
+
 bool RenderEngine::m_instanciated = false;
 
 /**
@@ -42,11 +47,11 @@ void RenderEngine::initRender()
 
 void RenderEngine::setProjection3D()
 {
-	float screenRatio = (float) App->screenWidth / App->screenHeight;
+	float screenRatio = (float) App->getWidth() / App->getHeight();
 
 	m_ProjectionMatrix.setMatrix(glm::mat4(1.0))
 		->perspective(70.f, screenRatio, 0.1f, 100.f);
-	glViewport(0, 0, App->screenWidth, App->screenHeight);
+	glViewport(0, 0, App->getWidth(), App->getHeight());
 
 	if(m_stored)
 	{
@@ -57,7 +62,7 @@ void RenderEngine::setProjection3D()
 
 void RenderEngine::setProjection2D()
 {
-	setProjection2D((float)App->screenWidth, (float)App->screenHeight);
+	setProjection2D((float)App->getWidth(), (float)App->getHeight());
 }
 
 void RenderEngine::setProjection2D(const float &width, const float &height)
@@ -77,8 +82,8 @@ void RenderEngine::initVBO(Mesh * mesh)
 	//Get Manager for VBO
 	
 	//Generate & bind VBO
-	glGenBuffers(1, &mesh->vbo);
-	glBindBuffer(GL_ARRAY_BUFFER, mesh->vbo);
+	glGenBuffers(1, mesh->getVBO());
+	glBindBuffer(GL_ARRAY_BUFFER, *mesh->getVBO());
 
 	//Fill VBO with data
 	std::vector<Vertex> vertexList = mesh->getVertexList();
@@ -99,11 +104,11 @@ void RenderEngine::initVBO(Mesh * mesh)
 
 void RenderEngine::initVAO(Mesh * mesh)
 {
-	if(mesh->vbo == 0)
+	if(*mesh->getVBO() == 0)
 		return; //No VBO, No VAO!
 
-	glGenVertexArrays(1, &mesh->vao);
-	glBindVertexArray(mesh->vao);
+	glGenVertexArrays(1, mesh->getVAO());
+	glBindVertexArray(*mesh->getVAO());
 
 	glEnableVertexAttribArray(VERTEX_ATTR_POSITION);
 	glEnableVertexAttribArray(VERTEX_ATTR_NORMAL);
@@ -111,7 +116,7 @@ void RenderEngine::initVAO(Mesh * mesh)
 	glEnableVertexAttribArray(VERTEX_ATTR_UV);
 
 	//Bind mesh VBO
-	glBindBuffer(GL_ARRAY_BUFFER, mesh->vbo);
+	glBindBuffer(GL_ARRAY_BUFFER, *mesh->getVAO());
 
 	//Specify vertice properties positions
 	glVertexAttribPointer(VERTEX_ATTR_POSITION, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), 0);
@@ -126,7 +131,7 @@ void RenderEngine::initVAO(Mesh * mesh)
 
 void RenderEngine::render(Mesh * mesh, DrawCursor * cursor)
 {
-	if(mesh->vao == 0)
+	if(*mesh->getVAO() == 0)
 		return; //No VAO, no render!
 
 	//Set program
@@ -150,35 +155,13 @@ void RenderEngine::render(Mesh * mesh, DrawCursor * cursor)
 	mesh->getProgram()->setUniformMat4("uMVPMatrix", m_ProjectionMatrix * m_MVMatrix * cursor->getMatrix());
 
 	//Bind VAO
-	glBindVertexArray(mesh->vao);
+	glBindVertexArray(*mesh->getVAO());
 
 	//Draw cube
-	glDrawArrays(GL_TRIANGLES, 0, mesh->getVertexCount());
+	glDrawArrays(mesh->getRenderFormat(), 0, mesh->getVertexCount());
 	check_gl_error();
 
 	//Debind and clean
 	glBindTexture(GL_TEXTURE_2D, 0);
 	glBindVertexArray(0);
-}
-
-void _check_gl_error(const char *file, int line)
-{
-	GLenum err (glGetError());
-
-	while(err != GL_NO_ERROR)
-	{
-		std::string error;
-
-		switch(err)
-		{
-			case GL_INVALID_OPERATION:      error="INVALID_OPERATION";      break;
-			case GL_INVALID_ENUM:           error="INVALID_ENUM";           break;
-			case GL_INVALID_VALUE:          error="INVALID_VALUE";          break;
-			case GL_OUT_OF_MEMORY:          error="OUT_OF_MEMORY";          break;
-			case GL_INVALID_FRAMEBUFFER_OPERATION:  error="INVALID_FRAMEBUFFER_OPERATION";  break;
-		}
-
-		std::cerr << "GL_" << error.c_str() << " - " << file << ":" << line << std::endl;
-		err= glGetError();
-	}
 }

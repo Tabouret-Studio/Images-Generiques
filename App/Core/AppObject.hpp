@@ -43,8 +43,34 @@ public:
 	////////////
 	//SDL Window
 	SDL_Window * mainWindow;
-	float screenWidth;
-	float screenHeight;
+
+	/**
+	 Get the window width
+
+	 @return The window width
+	 */
+	inline uint getWidth() const { return m_width; };
+
+	/**
+	 Get the window height
+
+	 @return The window heigth
+	 */
+	inline uint getHeight() const { return m_height; };
+
+	/**
+	 Set the windows width
+
+	 @param width New window width
+	 */
+	inline void setWidth(const uint &width) { m_width = width; };
+
+	/**
+	 Set the windows height
+
+	 @param height New window height
+	 */
+	inline void setHeigth(const uint &height) { m_height = height; };
 
 	////////////
 	//App States
@@ -118,6 +144,10 @@ private:
 	//App status
 	bool m_running = true;
 	std::string m_appPath;
+
+	//window dimensions
+	uint m_width;
+	uint m_height;
 
 	//Scenes
 	std::vector<Scene *> m_scenes;

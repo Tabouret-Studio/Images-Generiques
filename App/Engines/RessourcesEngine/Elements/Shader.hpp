@@ -11,18 +11,31 @@
 
 #include "Asset.hpp"
 
+#include <iostream>
+
 class Shader : public Asset
 {
 public:
-	Shader(std::string shaderPath, GLenum shaderType): Asset(SHADER), m_shaderPath(shaderPath), m_shaderID(glCreateShader(shaderType)) {};
+	Shader(std::string shaderPath, GLenum shaderType);
 
-	inline void setSource(const char * source)
-	{
-		glShaderSource(m_shaderID, 1, &source, 0);
-	}
+	/**
+	 Set the source stream (char array) for the shader content
 
+	 @param source The sahder content
+	 */
+	void setSource(const char * source);
+
+	/**
+	 Compile the shader in OpenGL
+	 Throw an std::runtime_error if the compilation fails
+	 */
 	void compile();
 
+	/**
+	 Return the openGL shader ID
+
+	 @return The shader ID
+	 */
 	inline GLuint getShaderID() const { return m_shaderID; };
 
 	~Shader();

@@ -9,8 +9,12 @@
 #ifndef Val01_hpp
 #define Val01_hpp
 
+//////////////////////
+//Forward declarations
+class Mesh;
+
 #include "Scene.hpp"
-#include "Engines/RessourcesEngine/Elements/Asset.hpp"
+#include "Utils/Selector/Selector.hpp"
 
 namespace Scenes
 {
@@ -45,10 +49,7 @@ namespace Scenes
 	private:
 
 		//Elements
-		GLuint m_vbo;
-		GLuint m_vao;
-
-		uint m_points;
+		Mesh * m_mesh;
 	};
 }
 

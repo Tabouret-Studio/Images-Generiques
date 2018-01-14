@@ -6,6 +6,8 @@
 //  Copyright © 2017 Valentin Dufois. All rights reserved.
 //
 
+#include "libraries.hpp"
+
 #include "AppEngine.hpp"
 #include "Core/AppObject.hpp"
 #include "Scenes/Scene.hpp"

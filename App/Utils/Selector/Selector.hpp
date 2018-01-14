@@ -9,10 +9,13 @@
 #ifndef Selector_hpp
 #define Selector_hpp
 
-#include "Item.hpp"
+//////////////////////
+//Forward declarations
+class Item;
 
+#include <iostream>
 #include <vector>
-#include <chrono>
+#include <cstdint>
 
 class Selector
 {
@@ -52,7 +55,7 @@ private:
 	Item * m_currentItem;
 
 	//Tempo moves to prevent sliding
-	Uint32 m_lastAction;
+	uint32_t m_lastAction;
 
 	int m_waitBeforeExecute = 3;
 };

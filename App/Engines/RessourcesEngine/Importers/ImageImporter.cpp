@@ -8,7 +8,10 @@
 
 #include "ImageImporter.hpp"
 
-Asset * ImageImporter::getAsset(std::string path)
+#include "libraries.hpp"
+#include "../Elements/Image.hpp"
+
+Asset * ImageImporter::getAsset(const std::string &path)
 {
 	//Load image
 	SDL_Surface * imageSurface = IMG_Load(path.c_str());

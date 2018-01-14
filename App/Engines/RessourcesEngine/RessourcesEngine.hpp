@@ -9,9 +9,6 @@
 #ifndef RessourcesEngine_hpp
 #define RessourcesEngine_hpp
 
-//Create type for ressource IDs
-using rId = unsigned short int;
-
 //Ressources types
 enum ressourceType
 {
@@ -19,17 +16,15 @@ enum ressourceType
 	SHADER,
 	SOUND,
 	MESH,
-	FONT
+	FONT,
+	VECTOR
 };
 
 class Importer;
+class Asset;
+class Mesh;
 
 #include "libraries.hpp"
-#include "Core/AppObject.hpp"
-#include "Importers/Importer.hpp"
-#include "Elements/Asset.hpp"
-
-#include <glm/gtc/constants.hpp>
 
 #include <vector>
 #include <map>
@@ -103,7 +98,6 @@ private:
 	//Assets holders
 	std::map<std::string, rId> m_loadedPaths;
 	std::map<rId, Asset *> m_assets;
-	unsigned int m_ressourcesLoadedCount;
 
 	/**
 	 Return the appropriate importer for the given assets type

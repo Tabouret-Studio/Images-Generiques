@@ -8,8 +8,11 @@
 
 #include "Selector.hpp"
 
+#include "Item.hpp"
+
 #include "Core/AppObject.hpp"
 #include "Engines/AppEngine/AppEngine.hpp"
+#include "Engines/RenderEngine/RenderEngine.hpp"
 
 Selector::Selector():
 	m_currentItem(nullptr),

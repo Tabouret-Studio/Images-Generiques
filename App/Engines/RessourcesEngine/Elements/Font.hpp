@@ -12,14 +12,11 @@
 //Forward Declaration
 class Asset;
 
+#include "libraries.hpp"
 #include "Asset.hpp"
-#include "Utils/SDL.hpp"
-#include "Utils/ShaderProgram.hpp"
-#include "Engines/RenderEngine/RenderEngine.hpp"
 
 #include <iostream>
-#include <glm/gtc/matrix_transform.hpp>
-#include <glm/gtc/type_ptr.hpp>
+#include <vector>
 
 //////////////////
 //Font structures

@@ -10,16 +10,12 @@
 #define Core_hpp
 
 #include "libraries.hpp"
-#include "AppObject.hpp"
-#include "Igniter.hpp"
-#include "Scenes/Scene.hpp"
 
 ////////////////
 //Game Framerate
 #define FRAMERATE 1000/30
 
 #include <chrono>
-#include <thread>
 
 class Core
 {

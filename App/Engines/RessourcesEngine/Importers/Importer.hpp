@@ -9,15 +9,16 @@
 #ifndef Importer_hpp
 #define Importer_hpp
 
+//////////////////////
+//Forward declarations
 class Asset;
 
-#include "libraries.hpp"
-#include "../Elements/Asset.hpp"
+#include <iostream>
 
 class Importer
 {
 public:
-	virtual Asset * getAsset(std::string path) = 0;
+	virtual Asset * getAsset(const std::string &path) = 0;
 	virtual ~Importer() {}
 };
 
@@ -26,5 +27,6 @@ public:
 #include "MeshImporter.hpp"
 #include "ShaderImporter.hpp"
 #include "FontImporter.hpp"
+#include "SVGImporter.hpp"
 
 #endif /* Importer_hpp */

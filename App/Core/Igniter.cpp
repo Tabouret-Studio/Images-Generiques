@@ -8,7 +8,17 @@
 
 #include "Igniter.hpp"
 
-void Igniter::igniteAppObject(std::string appPath)
+#include "Core/AppObject.hpp"
+
+#include "Engines/AppEngine/AppEngine.hpp"
+#include "Engines/RessourcesEngine/RessourcesEngine.hpp"
+#include "Engines/RenderEngine/RenderEngine.hpp"
+
+#include "Utils/FilePath.hpp"
+
+#include <iostream>
+
+void Igniter::igniteAppObject(const std::string &appPath)
 {
 	//Get app path
 	FilePath applicationPath(appPath.c_str());
@@ -22,7 +32,7 @@ void Igniter::igniteAppObject(std::string appPath)
 	RenderEngine::instanciate();
 }
 
-void Igniter::igniteSDL(float width, float height)
+void Igniter::igniteSDL(const uint &width, const uint &height)
 {
 	//////////////
 	//INIT SDL
@@ -45,20 +55,12 @@ void Igniter::igniteSDL(float width, float height)
 	SDL_GL_SetAttribute(SDL_GL_ALPHA_SIZE, 8 );
 
 	//Create window
-	App->screenWidth = width;
-	App->screenHeight = height;
+	App->setWidth(width);
+	App->setHeigth(height);
 
-	//TODO: Dynamic definition of title and dimensions
-	App->mainWindow = SDL_CreateWindow(
-							  "IMACMAN",                  		// window title
-							  SDL_WINDOWPOS_UNDEFINED,        // initial x position
-							  SDL_WINDOWPOS_UNDEFINED,        // initial y position
-							  width,                              // width, in pixels
-							  height,                              // height, in pixels
-							  SDL_WINDOW_OPENGL                // require OpenGL
-							  );
+	App->mainWindow = SDL_CreateWindow("Images Génériques", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, width, height, SDL_WINDOW_OPENGL | SDL_WINDOW_RESIZABLE);
 
-	//Confirm window creation
+	//Confirm window creations
 	if(!App->mainWindow) {
 		std::cerr << SDL_GetError() << std::endl;
 		return;
@@ -92,4 +94,6 @@ void Igniter::igniteOpenGL()
 
 	glEnable(GL_DEPTH_TEST);
 	glDepthFunc(GL_LESS);
+
+	glEnable(GL_PROGRAM_POINT_SIZE);
 }

@@ -89,7 +89,6 @@ private:
 };
 
 //TestScenes
-#include "whiteTriangle.hpp"
 #include "Val01.hpp"
 
 

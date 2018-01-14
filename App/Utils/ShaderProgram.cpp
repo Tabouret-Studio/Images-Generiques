@@ -8,6 +8,11 @@
 
 #include "ShaderProgram.hpp"
 
+#include "Utils/ShaderProgram.hpp"
+#include "Core/AppObject.hpp"
+#include "Engines/RessourcesEngine/RessourcesEngine.hpp"
+#include "Engines/RessourcesEngine/Elements/Shader.hpp"
+
 ShaderProgram::ShaderProgram(std::string vsPath, std::string fsPath): m_programID(glCreateProgram()), m_vsPath(vsPath), m_fsPath(fsPath)
 {
 	//Load shaders

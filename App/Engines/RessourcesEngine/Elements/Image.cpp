@@ -8,6 +8,8 @@
 
 #include "Image.hpp"
 
+#include "libraries.hpp"
+
 Image::Image(SDL_Surface * imageSurface):
 	Asset(IMAGE),
 	m_surface(imageSurface),

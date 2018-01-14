@@ -10,20 +10,13 @@
 #define Igniter_hpp
 
 #include "libraries.hpp"
-#include "Core/AppObject.hpp"
-
-#include "Engines/AppEngine/AppEngine.hpp"
-#include "Engines/RessourcesEngine/RessourcesEngine.hpp"
-#include "Engines/RenderEngine/RenderEngine.hpp"
-
-#include "Utils/FilePath.hpp"
 
 
 class Igniter
 {
 public:
-	void igniteAppObject(std::string appPath);
-	void igniteSDL(float width, float height);
+	void igniteAppObject(const std::string &appPath);
+	void igniteSDL(const uint &width, const uint &height);
 	void igniteOpenGL();
 	void igniteEngines();
 };

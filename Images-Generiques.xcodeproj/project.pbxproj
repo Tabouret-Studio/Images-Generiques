@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		392360112009066D00400C45 /* whiteTriangle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3923600D2009066D00400C45 /* whiteTriangle.cpp */; };
 		392360122009066D00400C45 /* Val01.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3923600E2009066D00400C45 /* Val01.cpp */; };
 		3923601A20090F6000400C45 /* Interactions.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3923601920090F6000400C45 /* Interactions.cpp */; };
 		3923604B2009105600400C45 /* SoundImporter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3923601D2009105500400C45 /* SoundImporter.cpp */; };
@@ -34,10 +33,12 @@
 		392C9EB3200902E70006ECB9 /* Selector.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 392C9E9E200902E70006ECB9 /* Selector.cpp */; };
 		392C9EB4200902E70006ECB9 /* Bezier.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 392C9EA3200902E70006ECB9 /* Bezier.cpp */; };
 		392C9EB5200902E70006ECB9 /* NSVG.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 392C9EA4200902E70006ECB9 /* NSVG.cpp */; };
-		392C9EB6200902E70006ECB9 /* GL.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 392C9EA5200902E70006ECB9 /* GL.cpp */; };
 		392C9EB7200902E70006ECB9 /* SDL.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 392C9EA8200902E70006ECB9 /* SDL.cpp */; };
 		392C9EB8200902E70006ECB9 /* ShaderProgram.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 392C9EAC200902E70006ECB9 /* ShaderProgram.cpp */; };
 		392C9EB9200902E70006ECB9 /* DrawCursor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 392C9EAE200902E70006ECB9 /* DrawCursor.cpp */; };
+		3952DCAB200BEBCE0098779F /* libraries.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3952DCAA200BEBCE0098779F /* libraries.cpp */; };
+		3952DCAE200BFA820098779F /* SVGImporter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3952DCAC200BFA820098779F /* SVGImporter.cpp */; };
+		3952DCB1200BFC600098779F /* VectorImage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3952DCAF200BFC600098779F /* VectorImage.cpp */; };
 		39AF3CCC1FDB4FE10089622E /* SDL2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39AF3CCB1FDB4FE10089622E /* SDL2.framework */; };
 		39AF3CD01FDB51AD0089622E /* RenderEngine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39AF3CCE1FDB51AD0089622E /* RenderEngine.cpp */; };
 		39D90C1A1FDAEE8400282ED1 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39D90C181FDAEE8400282ED1 /* main.cpp */; };
@@ -59,15 +60,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		390196CB1FDDE0B8000F2113 /* triangle.vs.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = triangle.vs.glsl; sourceTree = "<group>"; };
-		390196CC1FDDE0B8000F2113 /* triangle.fs.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = triangle.fs.glsl; sourceTree = "<group>"; };
-		390196D51FDDF2E4000F2113 /* point.vs.glsl */ = {isa = PBXFileReference; lastKnownFileType = text; path = point.vs.glsl; sourceTree = "<group>"; };
-		390196D61FDDF2F3000F2113 /* point.fs.glsl */ = {isa = PBXFileReference; lastKnownFileType = text; path = point.fs.glsl; sourceTree = "<group>"; };
 		390196D81FDE7E29000F2113 /* artist.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = artist.svg; sourceTree = "<group>"; };
 		390196DA1FDE7E34000F2113 /* nanosvg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = nanosvg.h; sourceTree = "<group>"; };
-		3923600A2009066D00400C45 /* whiteTriangle.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = whiteTriangle.hpp; sourceTree = "<group>"; };
 		3923600B2009066D00400C45 /* Val01.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Val01.hpp; sourceTree = "<group>"; };
-		3923600D2009066D00400C45 /* whiteTriangle.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = whiteTriangle.cpp; sourceTree = "<group>"; };
 		3923600E2009066D00400C45 /* Val01.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Val01.cpp; sourceTree = "<group>"; };
 		3923600F2009066D00400C45 /* Scene.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Scene.hpp; sourceTree = "<group>"; };
 		39236013200908F600400C45 /* libfreetype.6.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libfreetype.6.dylib; path = ../../../../../usr/local/Cellar/freetype/2.8/lib/libfreetype.6.dylib; sourceTree = "<group>"; };
@@ -12720,19 +12715,24 @@
 		392C9E9F200902E70006ECB9 /* Vertex.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Vertex.hpp; sourceTree = "<group>"; };
 		392C9EA0200902E70006ECB9 /* DrawCursor.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = DrawCursor.hpp; sourceTree = "<group>"; };
 		392C9EA1200902E70006ECB9 /* SDL.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = SDL.hpp; sourceTree = "<group>"; };
-		392C9EA2200902E70006ECB9 /* Enums.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Enums.hpp; sourceTree = "<group>"; };
 		392C9EA3200902E70006ECB9 /* Bezier.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Bezier.cpp; sourceTree = "<group>"; };
 		392C9EA4200902E70006ECB9 /* NSVG.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = NSVG.cpp; sourceTree = "<group>"; };
-		392C9EA5200902E70006ECB9 /* GL.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GL.cpp; sourceTree = "<group>"; };
-		392C9EA6200902E70006ECB9 /* vertexColor.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = vertexColor.hpp; sourceTree = "<group>"; };
 		392C9EA7200902E70006ECB9 /* ShaderProgram.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ShaderProgram.hpp; sourceTree = "<group>"; };
 		392C9EA8200902E70006ECB9 /* SDL.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SDL.cpp; sourceTree = "<group>"; };
 		392C9EA9200902E70006ECB9 /* Bezier.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Bezier.hpp; sourceTree = "<group>"; };
 		392C9EAA200902E70006ECB9 /* NSVG.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = NSVG.hpp; sourceTree = "<group>"; };
-		392C9EAB200902E70006ECB9 /* GL.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = GL.hpp; sourceTree = "<group>"; };
 		392C9EAC200902E70006ECB9 /* ShaderProgram.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ShaderProgram.cpp; sourceTree = "<group>"; };
 		392C9EAD200902E70006ECB9 /* FilePath.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = FilePath.hpp; sourceTree = "<group>"; };
 		392C9EAE200902E70006ECB9 /* DrawCursor.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DrawCursor.cpp; sourceTree = "<group>"; };
+		3952DCAA200BEBCE0098779F /* libraries.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = libraries.cpp; sourceTree = "<group>"; };
+		3952DCAC200BFA820098779F /* SVGImporter.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = SVGImporter.cpp; sourceTree = "<group>"; };
+		3952DCAD200BFA820098779F /* SVGImporter.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = SVGImporter.hpp; sourceTree = "<group>"; };
+		3952DCAF200BFC600098779F /* VectorImage.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = VectorImage.cpp; sourceTree = "<group>"; };
+		3952DCB0200BFC600098779F /* VectorImage.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = VectorImage.hpp; sourceTree = "<group>"; };
+		3952DCB2200C16700098779F /* main.vs.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = main.vs.glsl; path = App/build/assets/shaders/main.vs.glsl; sourceTree = SOURCE_ROOT; };
+		3952DCB3200C16700098779F /* textRenderer.vs.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = textRenderer.vs.glsl; path = App/build/assets/shaders/textRenderer.vs.glsl; sourceTree = SOURCE_ROOT; };
+		3952DCB4200C16710098779F /* textRenderer.fs.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = textRenderer.fs.glsl; path = App/build/assets/shaders/textRenderer.fs.glsl; sourceTree = SOURCE_ROOT; };
+		3952DCB5200C16710098779F /* main.fs.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = main.fs.glsl; path = App/build/assets/shaders/main.fs.glsl; sourceTree = SOURCE_ROOT; };
 		397BE0D01FDAED60006254F0 /* ImagesGeneriques */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = ImagesGeneriques; sourceTree = BUILT_PRODUCTS_DIR; };
 		39AF3CCB1FDB4FE10089622E /* SDL2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2.framework; path = ../../../../../Library/Frameworks/SDL2.framework; sourceTree = "<group>"; };
 		39AF3CCE1FDB51AD0089622E /* RenderEngine.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = RenderEngine.cpp; sourceTree = "<group>"; };
@@ -12779,10 +12779,10 @@
 		390196CA1FDDD95C000F2113 /* Shaders */ = {
 			isa = PBXGroup;
 			children = (
-				390196CC1FDDE0B8000F2113 /* triangle.fs.glsl */,
-				390196CB1FDDE0B8000F2113 /* triangle.vs.glsl */,
-				390196D61FDDF2F3000F2113 /* point.fs.glsl */,
-				390196D51FDDF2E4000F2113 /* point.vs.glsl */,
+				3952DCB5200C16710098779F /* main.fs.glsl */,
+				3952DCB2200C16700098779F /* main.vs.glsl */,
+				3952DCB4200C16710098779F /* textRenderer.fs.glsl */,
+				3952DCB3200C16700098779F /* textRenderer.vs.glsl */,
 			);
 			path = Shaders;
 			sourceTree = "<group>";
@@ -12810,8 +12810,6 @@
 				3923600F2009066D00400C45 /* Scene.hpp */,
 				3923600E2009066D00400C45 /* Val01.cpp */,
 				3923600B2009066D00400C45 /* Val01.hpp */,
-				3923600D2009066D00400C45 /* whiteTriangle.cpp */,
-				3923600A2009066D00400C45 /* whiteTriangle.hpp */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";
@@ -12842,6 +12840,8 @@
 				3923602E2009105500400C45 /* ShaderImporter.hpp */,
 				3923601D2009105500400C45 /* SoundImporter.cpp */,
 				3923602D2009105500400C45 /* SoundImporter.hpp */,
+				3952DCAC200BFA820098779F /* SVGImporter.cpp */,
+				3952DCAD200BFA820098779F /* SVGImporter.hpp */,
 			);
 			path = Importers;
 			sourceTree = "<group>";
@@ -12861,6 +12861,8 @@
 				392360402009105500400C45 /* Shader.hpp */,
 				3923603F2009105500400C45 /* Sound.cpp */,
 				392360392009105500400C45 /* Sound.hpp */,
+				3952DCAF200BFC600098779F /* VectorImage.cpp */,
+				3952DCB0200BFC600098779F /* VectorImage.hpp */,
 			);
 			path = Elements;
 			sourceTree = "<group>";
@@ -34057,10 +34059,7 @@
 				392C9EA9200902E70006ECB9 /* Bezier.hpp */,
 				392C9EAE200902E70006ECB9 /* DrawCursor.cpp */,
 				392C9EA0200902E70006ECB9 /* DrawCursor.hpp */,
-				392C9EA2200902E70006ECB9 /* Enums.hpp */,
 				392C9EAD200902E70006ECB9 /* FilePath.hpp */,
-				392C9EA5200902E70006ECB9 /* GL.cpp */,
-				392C9EAB200902E70006ECB9 /* GL.hpp */,
 				392C9EA4200902E70006ECB9 /* NSVG.cpp */,
 				392C9EAA200902E70006ECB9 /* NSVG.hpp */,
 				392C9EA8200902E70006ECB9 /* SDL.cpp */,
@@ -34068,7 +34067,6 @@
 				392C9EAC200902E70006ECB9 /* ShaderProgram.cpp */,
 				392C9EA7200902E70006ECB9 /* ShaderProgram.hpp */,
 				392C9E9F200902E70006ECB9 /* Vertex.hpp */,
-				392C9EA6200902E70006ECB9 /* vertexColor.hpp */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -34076,10 +34074,10 @@
 		392C9E9A200902E70006ECB9 /* Selector */ = {
 			isa = PBXGroup;
 			children = (
-				392C9E9B200902E70006ECB9 /* Selector.hpp */,
 				392C9E9C200902E70006ECB9 /* Item.cpp */,
 				392C9E9D200902E70006ECB9 /* Item.hpp */,
 				392C9E9E200902E70006ECB9 /* Selector.cpp */,
+				392C9E9B200902E70006ECB9 /* Selector.hpp */,
 			);
 			path = Selector;
 			sourceTree = "<group>";
@@ -34123,6 +34121,7 @@
 				39D90C181FDAEE8400282ED1 /* main.cpp */,
 				39D90C191FDAEE8400282ED1 /* main.hpp */,
 				392C9E8F200901370006ECB9 /* libraries.hpp */,
+				3952DCAA200BEBCE0098779F /* libraries.cpp */,
 				39D90C161FDAEE1400282ED1 /* Makefile */,
 			);
 			path = App;
@@ -34131,8 +34130,8 @@
 		39D90C221FDAEF0F00282ED1 /* AppEngine */ = {
 			isa = PBXGroup;
 			children = (
-				39D90C2A1FDAEF0F00282ED1 /* AppEngine.hpp */,
 				39D90C2C1FDAEF0F00282ED1 /* AppEngine.cpp */,
+				39D90C2A1FDAEF0F00282ED1 /* AppEngine.hpp */,
 				3923601920090F6000400C45 /* Interactions.cpp */,
 			);
 			path = AppEngine;
@@ -34263,9 +34262,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				392395D7200A2D8400400C45 /* dummy.cpp in Sources */,
-				392C9EB6200902E70006ECB9 /* GL.cpp in Sources */,
 				392C9EB9200902E70006ECB9 /* DrawCursor.cpp in Sources */,
 				392395D8200A2D8400400C45 /* glm.cpp in Sources */,
+				3952DCAE200BFA820098779F /* SVGImporter.cpp in Sources */,
 				392360522009105600400C45 /* MeshImporter.cpp in Sources */,
 				39AF3CD01FDB51AD0089622E /* RenderEngine.cpp in Sources */,
 				392360562009105600400C45 /* FontImporter.cpp in Sources */,
@@ -34277,11 +34276,12 @@
 				39D90C1A1FDAEE8400282ED1 /* main.cpp in Sources */,
 				392360122009066D00400C45 /* Val01.cpp in Sources */,
 				392360622009105600400C45 /* Sound.cpp in Sources */,
+				3952DCAB200BEBCE0098779F /* libraries.cpp in Sources */,
 				392C9EB3200902E70006ECB9 /* Selector.cpp in Sources */,
 				392C9EB8200902E70006ECB9 /* ShaderProgram.cpp in Sources */,
 				392C9EB2200902E70006ECB9 /* Item.cpp in Sources */,
+				3952DCB1200BFC600098779F /* VectorImage.cpp in Sources */,
 				392C9EB7200902E70006ECB9 /* SDL.cpp in Sources */,
-				392360112009066D00400C45 /* whiteTriangle.cpp in Sources */,
 				392C9EB1200902E70006ECB9 /* AppObject.cpp in Sources */,
 				392360572009105600400C45 /* RessourcesEngine.cpp in Sources */,
 				392360592009105600400C45 /* Mesh.cpp in Sources */,
@@ -34420,9 +34420,8 @@
 				HEADER_SEARCH_PATHS = (
 					/usr/local/include,
 					/usr/local/Cellar/freetype/2.8/include/freetype2,
-					"$(SRCROOT)/App/libs/",
-					"$(SRCROOT)/App/libs/glimac/include",
 					"$(SRCROOT)/App/",
+					"$(SRCROOT)/App/libs/",
 				);
 				LIBRARY_SEARCH_PATHS = (
 					/usr/local/lib,
@@ -34450,9 +34449,8 @@
 				HEADER_SEARCH_PATHS = (
 					/usr/local/include,
 					/usr/local/Cellar/freetype/2.8/include/freetype2,
-					"$(SRCROOT)/App/libs/",
-					"$(SRCROOT)/App/libs/glimac/include",
 					"$(SRCROOT)/App/",
+					"$(SRCROOT)/App/libs/",
 				);
 				LIBRARY_SEARCH_PATHS = (
 					/usr/local/lib,

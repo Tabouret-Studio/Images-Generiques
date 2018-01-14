@@ -17,7 +17,7 @@ class Asset;
 class SoundImporter: public Importer
 {
 public:
-	Asset * getAsset(std::string path);
+	Asset * getAsset(const std::string &path);
 
 private:
 

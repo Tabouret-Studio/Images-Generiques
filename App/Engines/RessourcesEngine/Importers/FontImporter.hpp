@@ -9,16 +9,16 @@
 #ifndef FontImporter_hpp
 #define FontImporter_hpp
 
+/////////////////////
 //Forward declaration
 class Asset;
-class Importer;
 
 #include "Importer.hpp"
 
 class FontImporter: public Importer
 {
 public:
-	Asset * getAsset(std::string path);
+	Asset * getAsset(const std::string &path);
 	~FontImporter();
 
 private:

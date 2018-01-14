@@ -37,6 +37,11 @@
 
 //GLM
 #include <glm/glm.hpp>
+#include <glm/ext.hpp>
+#include <glm/gtc/type_ptr.hpp>
+#include <glm/gtc/constants.hpp>
+#include <glm/gtx/string_cast.hpp>
+#include <glm/gtc/matrix_transform.hpp>
 
 //////////
 //NanoSVG
@@ -48,5 +53,17 @@
 #include <boost/uuid/uuid.hpp>
 #include <boost/uuid/uuid_generators.hpp>
 #include <boost/uuid/uuid_io.hpp>
+
+
+//////////////////
+//OpenGL Debugging
+void _check_gl_error(const char *file, int line);
+#define check_gl_error() _check_gl_error(__FILE__,__LINE__)
+//////////////////
+
+
+//////////
+//Typedefs
+using rId = boost::uuids::uuid;
 
 #endif /* libraries_h */

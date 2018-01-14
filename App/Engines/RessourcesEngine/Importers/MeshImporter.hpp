@@ -9,6 +9,7 @@
 #ifndef MeshImporter_hpp
 #define MeshImporter_hpp
 
+/////////////////////
 //Forward declaration
 class Asset;
 
@@ -17,7 +18,7 @@ class Asset;
 class MeshImporter: public Importer
 {
 public:
-	Asset * getAsset(std::string path);
+	Asset * getAsset(const std::string &path);
 
 private:
 

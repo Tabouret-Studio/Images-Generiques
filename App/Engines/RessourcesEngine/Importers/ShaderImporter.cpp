@@ -8,7 +8,13 @@
 
 #include "ShaderImporter.hpp"
 
-Asset * ShaderImporter::getAsset(std::string path)
+#include "../Elements/Shader.hpp"
+
+#include <sstream>
+#include <fstream>
+#include <vector>
+
+Asset * ShaderImporter::getAsset(const std::string &path)
 {
 	std::ifstream input(path.c_str());
 
@@ -27,7 +33,7 @@ Asset * ShaderImporter::getAsset(std::string path)
 	return shader;
 }
 
-GLenum ShaderImporter::getShaderType(std::string path)
+GLenum ShaderImporter::getShaderType(const std::string &path)
 {
 	std::vector<size_t> positions;
 

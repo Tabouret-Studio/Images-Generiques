@@ -8,7 +8,10 @@
 
 #include "MeshImporter.hpp"
 
-Asset * MeshImporter::getAsset(std::string path)
+#include "libraries.hpp"
+#include "../Elements/Mesh.hpp"
+
+Asset * MeshImporter::getAsset(const std::string &path)
 {
 	/*Assimp::Importer importer;
 
