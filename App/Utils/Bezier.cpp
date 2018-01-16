@@ -20,7 +20,6 @@ std::vector<glm::vec2> Bezier::getPoints(const uint &pointCount) const
 	{
 		//External references
 		vertices.push_back(getPoint(i));
-		std::cout << glm::(*(vertices.end()-1))
 	}
 
 	return vertices;

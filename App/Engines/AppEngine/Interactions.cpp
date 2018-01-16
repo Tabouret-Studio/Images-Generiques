@@ -12,6 +12,8 @@
 void AppEngine::parseEvents()
 {
 	SDL_Event event;
+	
+	m_mouse.scroll = 0;
 
 	while(SDL_PollEvent(&event))
 	{
@@ -26,6 +28,8 @@ void AppEngine::parseEvents()
 				break;
 			case SDL_WINDOWEVENT:
 				windowEvents(event);
+			case SDL_MOUSEWHEEL:
+				mouseEvents(event);
 		}
 
 
@@ -89,4 +93,9 @@ void AppEngine::keyBoardEvents(const SDL_Event &event)
 		case SDLK_BACKSPACE: m_keys.BACKSPACE = newVal; break;
 		case    SDLK_RETURN:     m_keys.ENTER = newVal; break;
 	}
+}
+
+void AppEngine::mouseEvents(const SDL_Event &event)
+{
+	m_mouse.scroll = event.wheel.y;
 }
