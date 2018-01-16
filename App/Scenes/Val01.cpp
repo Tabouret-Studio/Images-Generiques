@@ -33,12 +33,14 @@ namespace Scenes
 	{
 		//Load SVG
 		//Utils::NSVG svg = Utils::NSVG("Assets/SVG/ml.svg");
-		rId svgID = App->ressourcesEngine->loadAsset("artist.svg", VECTOR);
+		rId svgID = App->ressourcesEngine->loadAsset("github.svg", VECTOR);
 		VectorImage * svg = *App->ressourcesEngine->getAsset(svgID);
 
 		m_mesh = svg->getMesh();
 		m_mesh->generate();
+		m_mesh->setRenderFormat(GL_POINTS);
 
+		App->renderEngine->setProjection2D();
 	}
 
 
@@ -55,7 +57,6 @@ namespace Scenes
 	///////////
 	void Val01::render()
 	{
-		App->renderEngine->setProjection2D();
 		App->renderEngine->render(m_mesh, m_mesh->getCursor());
 	}
 }

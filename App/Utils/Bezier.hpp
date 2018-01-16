@@ -58,6 +58,10 @@ public:
 	 */
 	std::vector<glm::vec2> getPoints(const uint &pointCount) const;
 
+	glm::vec2 getPoint(const float &percentage) const;
+
+	double getLength();
+
 private:
 	glm::vec2 m_startPoint;
 	glm::vec2 m_startHandle;

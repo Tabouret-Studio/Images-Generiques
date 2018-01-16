@@ -38,6 +38,8 @@ Asset * SVGImporter::getAsset(const std::string &path)
 				glm::vec2 endP = glm::vec2(p[6], p[7]);
 
 				paths.push_back(Bezier(startP, startH, endH, endP));
+
+				std::cout << (*(paths.end()-1)).getLength() << std::endl;
 			}
 		}
 	}
