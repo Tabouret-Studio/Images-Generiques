@@ -8,6 +8,8 @@
 
 #include "Bezier.hpp"
 
+#include "Engines/RessourcesEngine/Elements/Mesh.hpp"
+
 #include <iostream>
 
 std::vector<glm::vec2> Bezier::getPoints(const uint &pointCount) const
@@ -64,7 +66,6 @@ float Bezier::getLength() const
 		previous_dot = dot;
 
 		dot = getPoint((float) i * stepsCoef);
-		std::cout << "STEP : " << (float) i * stepsCoef << std::endl;
 
 		if(i == 0)
 			continue;
@@ -73,4 +74,18 @@ float Bezier::getLength() const
 	}
 
 	return length;
+}
+
+Mesh * Bezier::getMesh() const
+{
+	Mesh * mesh = new Mesh();
+
+	std::vector<glm::vec2> points = getPoints();
+
+	for(std::vector<glm::vec2>::const_iterator it = points.begin(); it != points.end(); ++it)
+	{
+		*mesh << Vertex(glm::vec3(*it, 0));
+	}
+
+	return mesh;
 }

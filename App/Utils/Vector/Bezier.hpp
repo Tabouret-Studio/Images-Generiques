@@ -9,6 +9,10 @@
 #ifndef Bezier_hpp
 #define Bezier_hpp
 
+//////////////////////
+//Forward declarations
+class Mesh;
+
 #include "libraries.hpp"
 
 class Bezier
@@ -65,9 +69,22 @@ public:
 	 */
 	std::vector<glm::vec2> getPoints(const uint &pointCount) const;
 
+	/**
+	 Return a specific point on the curve
+
+	 @param percentage The percentage location of the point (middle point : .5)
+	 @return The coordinates of the point
+	 */
 	glm::vec2 getPoint(const float &percentage) const;
 
+	/**
+	 Calculate the approximate length of the curve
+
+	 @return The curve's length in px
+	 */
 	float getLength() const;
+
+	Mesh * getMesh() const;
 
 private:
 	glm::vec2 m_startPoint;

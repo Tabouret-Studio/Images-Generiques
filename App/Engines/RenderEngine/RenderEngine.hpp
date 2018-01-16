@@ -2,8 +2,8 @@
 //  RenderEngine.hpp
 //  IMACMAN
 //
-//  Created by Gaëlle Calmels on 19/12/2017.
-//  Copyright © 2017 Gaëlle Calmels. All rights reserved.
+//  Created by Valentin Dufois on 19/12/2017.
+//  Copyright © 2017 Valentin Dufois. All rights reserved.
 //
 
 #ifndef RenderEngine_hpp

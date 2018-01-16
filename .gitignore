@@ -40,3 +40,5 @@
 App/libs/
 App/build/ImagesGeneriques
 App/build/Images-Generiques.build/
+
+build/Images-Generiques\.build/

@@ -33,10 +33,11 @@ public:
 
 	/**
 	 Return the number of vertex in the mesh
+	 Shortcut for *getVertexList().size()*
 
 	 @return Number of vertex
 	 */
-	GLsizei getVertexCount() const { return m_vertexCount; }
+	unsigned long getVertexCount() const { return m_vertexList.size(); }
 
 	/**
 	 Return the texture ID used by the mesh
@@ -68,20 +69,6 @@ public:
 	 @param vertexList A vector of Vertex
 	 */
 	inline void fillVertex(const std::vector<Vertex> &vertexList) { m_vertexList = vertexList; };
-	
-	/**
-	 Append new vertex to the existing ones
-
-	 @param vertexList A vector of vertex
-	 */
-	void appendVertex(const std::vector<Vertex> &vertexList);
-
-	/**
-	 Append a new vertex to the existing one
-
-	 @param vertex A vertex
-	 */
-	void appendVertex(const Vertex &vertex);
 
 	/**
 	 Set the texture ID for the mesh
@@ -146,6 +133,30 @@ public:
 	inline GLenum getRenderFormat() const { return m_renderFormat; };
 
 	~Mesh();
+
+	///////////
+	//Operators
+
+	/**
+	 Append new vertex to the existing ones
+
+	 @param vertexList A vector of vertex
+	 */
+	Mesh &operator <<(const std::vector<Vertex> &vertexList);
+
+	/**
+	 Append a new vertex to the existing one
+
+	 @param vertex A vertex
+	 */
+	Mesh &operator <<(const Vertex &vertex);
+
+	/**
+	 Append a new vertex to the existing one
+
+	 @param mesh A vertex
+	 */
+	Mesh &operator <<(const Mesh * mesh);
 
 private:
 	//Vertex

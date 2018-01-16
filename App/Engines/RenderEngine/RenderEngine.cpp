@@ -3,7 +3,7 @@
 //  IMACMAN
 //
 //  Created by Valentin Dufois on 19/12/2017.
-//  Copyright © 2017 Gaëlle Calmels. All rights reserved.
+//  Copyright © 2017 Valentin Dufois. All rights reserved.
 //
 
 #include "RenderEngine.hpp"
@@ -158,7 +158,7 @@ void RenderEngine::render(Mesh * mesh, DrawCursor * cursor)
 	glBindVertexArray(*mesh->getVAO());
 
 	//Draw cube
-	glDrawArrays(mesh->getRenderFormat(), 0, mesh->getVertexCount());
+	glDrawArrays(mesh->getRenderFormat(), 0, (GLsizei)mesh->getVertexCount());
 	check_gl_error();
 
 	//Debind and clean
