@@ -42,6 +42,7 @@ void Core::main()
 {
 	std::chrono::high_resolution_clock::time_point start, end;
 
+	//////////////////////
 	//Load the first scene
 	Scenes::Val01::load();
 

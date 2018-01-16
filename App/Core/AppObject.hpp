@@ -9,6 +9,7 @@
 #ifndef AppObject_hpp
 #define AppObject_hpp
 
+//////////////////////
 //Forward declarations
 class AppEngine;
 class RessourcesEngine;

@@ -12733,6 +12733,7 @@
 		3952DCB3200C16700098779F /* textRenderer.vs.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = textRenderer.vs.glsl; path = App/build/assets/shaders/textRenderer.vs.glsl; sourceTree = SOURCE_ROOT; };
 		3952DCB4200C16710098779F /* textRenderer.fs.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = textRenderer.fs.glsl; path = App/build/assets/shaders/textRenderer.fs.glsl; sourceTree = SOURCE_ROOT; };
 		3952DCB5200C16710098779F /* main.fs.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = main.fs.glsl; path = App/build/assets/shaders/main.fs.glsl; sourceTree = SOURCE_ROOT; };
+		3952DCB6200E16830098779F /* handComputer.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = handComputer.svg; sourceTree = "<group>"; };
 		397BE0D01FDAED60006254F0 /* ImagesGeneriques */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = ImagesGeneriques; sourceTree = BUILT_PRODUCTS_DIR; };
 		39AF3CCB1FDB4FE10089622E /* SDL2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2.framework; path = ../../../../../Library/Frameworks/SDL2.framework; sourceTree = "<group>"; };
 		39AF3CCE1FDB51AD0089622E /* RenderEngine.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = RenderEngine.cpp; sourceTree = "<group>"; };
@@ -12767,13 +12768,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		390196C91FDDD956000F2113 /* Assets */ = {
+		390196C91FDDD956000F2113 /* assets */ = {
 			isa = PBXGroup;
 			children = (
 				390196D71FDE7E29000F2113 /* SVG */,
 				390196CA1FDDD95C000F2113 /* Shaders */,
 			);
-			path = Assets;
+			path = assets;
 			sourceTree = "<group>";
 		};
 		390196CA1FDDD95C000F2113 /* Shaders */ = {
@@ -12790,6 +12791,7 @@
 		390196D71FDE7E29000F2113 /* SVG */ = {
 			isa = PBXGroup;
 			children = (
+				3952DCB6200E16830098779F /* handComputer.svg */,
 				39236069200A2BEA00400C45 /* ml.svg */,
 				390196D81FDE7E29000F2113 /* artist.svg */,
 			);
@@ -34150,7 +34152,7 @@
 		39D90C3A1FDAF0C400282ED1 /* build */ = {
 			isa = PBXGroup;
 			children = (
-				390196C91FDDD956000F2113 /* Assets */,
+				390196C91FDDD956000F2113 /* assets */,
 				39AF3CD11FDB541F0089622E /* ImagesGeneriques */,
 				39D90C3B1FDAF0EB00282ED1 /* thisFileToSyncThisEmptyFolder */,
 			);
