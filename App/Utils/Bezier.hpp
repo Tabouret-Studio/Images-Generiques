@@ -51,6 +51,13 @@ public:
 	m_endPoint(endPoint) {};
 
 	/**
+	 Return the curves as points based on the length
+
+	 @return A vector containing the points
+	 */
+	inline std::vector<glm::vec2> getPoints() const { return getPoints(0); };
+
+	/**
 	 Return *pointCount* points composing the curve
 
 	 @param pointCount In how many points the curve must be decomposed;
@@ -60,7 +67,7 @@ public:
 
 	glm::vec2 getPoint(const float &percentage) const;
 
-	double getLength();
+	float getLength() const;
 
 private:
 	glm::vec2 m_startPoint;

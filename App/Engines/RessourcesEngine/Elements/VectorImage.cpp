@@ -45,7 +45,7 @@ std::vector<glm::vec2> VectorImage::getPoints(const uint &precision) const
 	// Parse SVG
 	for(std::vector<Bezier>::const_iterator it = m_paths.begin(); it != m_paths.end(); ++it)
 	{
-		pathVertices = (*it).getPoints(precision);
+		pathVertices = (*it).getPoints(0);
 
 		vertices.insert(vertices.end(), pathVertices.begin(), pathVertices.end());
 	}
@@ -55,7 +55,7 @@ std::vector<glm::vec2> VectorImage::getPoints(const uint &precision) const
 
 Mesh * VectorImage::getMesh(const uint &precision) const
 {
-	std::vector<glm::vec2> vertices2D = getPoints(m_defaultPrecision);
+	std::vector<glm::vec2> vertices2D = getPoints(precision);
 	std::vector<Vertex> vertices3D;
 
 	// Parse SVG

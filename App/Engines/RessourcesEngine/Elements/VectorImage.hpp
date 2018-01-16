@@ -65,7 +65,7 @@ public:
 
 	 @return All the points in the image
 	 */
-	inline std::vector<glm::vec2> getPoints() const { return getPoints(m_defaultPrecision); };
+	inline std::vector<glm::vec2> getPoints() const { return getPoints(0); };
 
 	/**
 	 Return all the points in the image for the given precision
@@ -81,7 +81,7 @@ public:
 
 	 @return The VectorImage as a renderable Mesh
 	 */
-	inline Mesh * getMesh() const { return getMesh(m_defaultPrecision); };
+	inline Mesh * getMesh() const { return getMesh(0); };
 
 	/**
 	 Return a Mesh object build with the current image for the given precision
@@ -97,8 +97,6 @@ private:
 	float m_height;
 
 	std::vector<Bezier> m_paths;
-
-	uint m_defaultPrecision = 150;
 };
 
 #endif /* VectorImage_hpp */
