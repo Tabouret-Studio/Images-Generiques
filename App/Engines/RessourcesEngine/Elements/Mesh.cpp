@@ -18,7 +18,7 @@ Mesh::Mesh(const std::vector<Vertex> vertexList):
 	m_vertexCount((uint)vertexList.size()),
 	m_textureID(0),
 	m_program(App->getDefaultProgram()),
-	m_renderFormat(GL_TRIANGLES) {};
+	m_renderFormat(GL_TRIANGLES) {}
 
 Mesh::Mesh():
 	Asset(MESH),
@@ -26,7 +26,7 @@ Mesh::Mesh():
 	m_vertexCount(0),
 	m_textureID(0),
 	m_program(App->getDefaultProgram()),
-	m_renderFormat(GL_TRIANGLES){};
+	m_renderFormat(GL_TRIANGLES){}
 
 void Mesh::appendVertex(const std::vector<Vertex> &vertexList)
 {
@@ -53,8 +53,8 @@ void Mesh::applyCursor()
 	{
 		temp = *it;
 
-		temp.position = glm::vec4((*it).position, 1) * m_cursor.getMatrix();
-		temp.normal = glm::vec4((*it).normal, 0) * m_cursor.getMatrix();
+		temp.position = glm::vec3(glm::vec4((*it).position, 1) * m_cursor.getMatrix());
+		temp.normal = glm::vec3(glm::vec4((*it).normal, 0) * m_cursor.getMatrix());
 
 		*it = temp;
 	}
