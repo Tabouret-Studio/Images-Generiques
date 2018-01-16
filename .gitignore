@@ -36,4 +36,7 @@
 *.xcuserstate
 *.pbxproj
 
-build/
+#APP specific
+App/libs/
+App/build/ImagesGeneriques
+App/build/Images-Generiques.build/

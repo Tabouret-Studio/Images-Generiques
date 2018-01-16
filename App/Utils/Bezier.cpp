@@ -6,38 +6,71 @@
 //  Copyright © 2017 Valentin Dufois. All rights reserved.
 //
 
-#include "../main.hpp"
+#include "Bezier.hpp"
 
-namespace Utils
+#include <iostream>
+
+std::vector<glm::vec2> Bezier::getPoints(const uint &pointCount) const
 {
-	std::vector<glm::vec2> Bezier::getPoints(uint pointCount)
+	std::vector<glm::vec2> vertices;
+	uint pc;
+
+	if(pointCount == 0)
+		 pc = getLength() * 2.f;
+	else
+		pc = pointCount;
+
+	float step = 1.f / (float)pc;
+
+	for(float i = 0 ; i < 1 ; i += step)
 	{
-		std::vector<glm::vec2> vertices;
-
-		float step = 1.f / (float)pointCount;
-
-		for(float i = 0 ; i < 1 ; i += step)
-		{
-			//External references
-			glm::vec2 refA = getIPointBetween(m_startPoint, m_startHandle, i);
-			glm::vec2 refB = getIPointBetween(m_startHandle, m_endHandle, i);
-			glm::vec2 refC = getIPointBetween(m_endHandle, m_endPoint, i);
-
-			//Internal references-
-			glm::vec2 internA = getIPointBetween(refA, refB, i);
-			glm::vec2 internB = getIPointBetween(refB, refC, i);
-
-			//Interpolated point
-			glm::vec2 point = getIPointBetween(internA, internB, i);
-
-			vertices.push_back(point);
-		}
-
-		return vertices;
+		//External references
+		vertices.push_back(getPoint(i));
 	}
 
-	glm::vec2 Bezier::getIPointBetween(glm::vec2 A, glm::vec2 B, float coef)
+	return vertices;
+}
+
+glm::vec2 Bezier::getPoint(const float &percentage) const
+{
+	glm::vec2 refA = getIPointBetween(m_startPoint, m_startHandle, percentage);
+	glm::vec2 refB = getIPointBetween(m_startHandle, m_endHandle, percentage);
+	glm::vec2 refC = getIPointBetween(m_endHandle, m_endPoint, percentage);
+
+	//Internal references-
+	glm::vec2 internA = getIPointBetween(refA, refB, percentage);
+	glm::vec2 internB = getIPointBetween(refB, refC, percentage);
+
+	//Interpolated point
+	return  getIPointBetween(internA, internB, percentage);
+}
+
+glm::vec2 Bezier::getIPointBetween(glm::vec2 A, glm::vec2 B, float coef) const
+{
+	return A + ((B - A) * coef);
+}
+
+float Bezier::getLength() const
+{
+	glm::vec2 dot;
+	glm::vec2 previous_dot;
+	double length = 0.0;
+
+	uint steps = 150;
+	float stepsCoef = (100.f / steps) / 100.f;
+
+	for (uint i = 0; i <= steps; ++i)
 	{
-		return A + ((B - A) * coef);
+		previous_dot = dot;
+
+		dot = getPoint((float) i * stepsCoef);
+		std::cout << "STEP : " << (float) i * stepsCoef << std::endl;
+
+		if(i == 0)
+			continue;
+
+		length += glm::length(dot - previous_dot);
 	}
+
+	return length;
 }

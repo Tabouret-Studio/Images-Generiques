@@ -1,5 +1,5 @@
 ########################
-### IMAGES GENERIQUES Makefile ###
+### IMACMAN Makefile ###
 ########################
 
 #THE TARGET
@@ -12,35 +12,38 @@ SRCDIR := .
 SRCEXT := cpp
 LIBDIR := libs
 
+UNAME_S := $(shell uname -s)
+
 # FIND ALL PROJECT SOURCES
-SOURCES := $(shell find $(SRCDIR) -type f -name "**.$(SRCEXT)" -not -path "./$(LIBDIR)/glm/*")
+ifeq ($(OS),Windows_NT)
+SOURCES := $(shell tree $(SRCDIR) -type f -name "**.$(SRCEXT)" -not -path "./$(LIBDIR)/*")
+else
+SOURCES := $(shell find $(SRCDIR) -type f -name "**.$(SRCEXT)" -not -path "./$(LIBDIR)/*")
+endif
+
 OBJECTS := $(SOURCES:.$(SRCEXT)=.o)
 
 # COMPILER FLAGS
-CXXFLAGS :=-g -std=c++11 -Wall -pedantic -I$(LIBDIR) -I$(LIBDIR)/glimac/include
-LDLIBS := -lGLEW
-LDFLAGS :=
+CXXFLAGS := -g -std=c++11 -Wall -pedantic -I$(LIBDIR) -I.
+LDLIBS := `pkg-config --libs freetype2` #`pkg-config --libs assimp`
+LDFLAGS := `pkg-config --cflags freetype2` #`pkg-config --cflags assimp`
 
 # OS-DEPENDANT COMPILER FLAGS
-UNAME_S := $(shell uname -s)
 # Windows (cygwin)
 ifeq ($(OS),Windows_NT)
-LDLIBS += -lGL -lSDL2
-LDFLAGS +=
+LDLIBS +=  -lGLEW -lGL -lSDL2 -lSDL2_image
 
 # OS X
 else ifeq ($(UNAME_S),Darwin)
-LDLIBS += -framework OpenGL -framework SDL2
-LDFLAGS +=
-CXXFLAGS +=
-CXX := g++
+LDLIBS += -framework OpenGL -framework SDL2 -framework SDL2_image -lGLEW
 
 # Linux (default)
 else
-LDLIBS += -lGL -lSDL2
-LDFLAGS +=
-CXXFLAGS +=
+LDLIBS += -lGLEW -lGL -lSDL2 -lSDL2_image
 endif
+
+CXXFLAGS += $(LDFLAGS)
+
 
 # BUILD THE PROGRAM
 $(TARGET): hello linker
@@ -58,8 +61,8 @@ linker: $(OBJECTS)
 	@echo "   LINKING"
 	@echo "========================================\n"
 	@echo "  $(CXX) $^ -o $(TARGET) $(LDFLAGS) $(LDLIBS) $(OSLIB)\n"; $(CXX) $^ -o $(TARGET) $(LDFLAGS) $(LDLIBS) $(OSLIB)
-#	@echo "  Cleaning objects..."
-#	@$(RM) -r $(OBJECTS)
+#    @echo "  Cleaning objects..."
+#    @$(RM) -r $(OBJECTS)
 	@echo "\n========================================"
 	@echo "   $(TARGETNAME) successfully compiled!"
 	@echo "   Type \"./$(TARGET) to launch $(TARGETNAME)\""
@@ -67,7 +70,7 @@ linker: $(OBJECTS)
 
 # COMPILE THE SOURCES
 $(BUILDDIR)/%.o: $(SRCDIR)/%.$(SRCEXT)
-	@echo "  $(CXX) $(CXXFLAGS) $(LDFLAGS) -c -o $@ $<"; $(CXX) $(CXXFLAGS) $(LDFLAGS) -c -o $@ $<
+	@echo "  $(CXX) $(CXXFLAGS) $(LDFLAGS) -c -o -MMD $@ $<"; $(CXX) $(CXXFLAGS) $(LDFLAGS) -c -o -MMD $@ $<
 	@mkdir -p $(BUILDDIR)
 
 # REMOVE ALL OBJECTS
@@ -76,6 +79,3 @@ clean:
 	@echo " $(RM) -r $(OBJECTS) $(TARGET)"; $(RM) -r $(OBJECTS) $(TARGET)
 
 .PHONY: clean
-
-
-

@@ -30,7 +30,7 @@ namespace Utils
 					glm::vec2 endH = glm::vec2((p[4] / 500.f) - 1.f, ((p[5] / 375.f) - 1.f) * -1);
 					glm::vec2 endP = glm::vec2((p[6] / 500.f) - 1.f, ((p[7] / 375.f) - 1.f) * -1);
 
-					m_paths.push_back(Utils::Bezier(startP, startH, endH, endP));
+					m_paths.push_back(Bezier(startP, startH, endH, endP));
 				}
 			}
 		}
@@ -52,7 +52,7 @@ namespace Utils
 		std::vector<glm::vec2> vertices, pathVertices;
 
 		// Parse SVG
-		for(std::vector<Utils::Bezier>::iterator it = m_paths.begin(); it != m_paths.end(); ++it)
+		for(std::vector<Bezier>::iterator it = m_paths.begin(); it != m_paths.end(); ++it)
 		{
 			pathVertices = (*it).getPoints(precision);
 

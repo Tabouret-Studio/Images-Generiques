@@ -6,38 +6,36 @@
 //  Copyright © 2017 Valentin Dufois. All rights reserved.
 //
 
-#include "../main.hpp"
+#include "AppObject.hpp"
+
+#include "Utils/ShaderProgram.hpp"
+#include "Scenes/Scene.hpp"
 
 //Singleton
 AppObject * App = nullptr;
 bool AppObject::m_instanciated = false;
 
-bool AppObject::instanciate()
+void AppObject::instanciate(const std::string &appPath)
 {
-	if(m_instanciated)
-		return false;
+	if(m_instanciated) {
+		return;
+	}
 
-	App = new AppObject();
+	App = new AppObject(appPath + "/");
 
-	return true;
+	m_instanciated = true;
 }
 
-AppObject::AppObject():
-    appEngine(nullptr),
-    m_running(true) {}
-
-//App status Getter and manipulation
-bool AppObject::isRunning()
+//Scenes
+void AppObject::removeScene(Scene * scene)
 {
-	return m_running;
-}
-
-void AppObject::endApp()
-{
-	m_running = false;
-}
-
-void AppObject::setAppPath(const std::string &path)
-{
-	m_appPath = path;
+	for(std::vector<Scene *>::iterator it = m_scenes.begin(); it != m_scenes.end(); ++it)
+	{
+		if((*it) == scene)
+		{
+			delete (*it);
+			m_scenes.erase(it);
+			return;
+		}
+	}
 }
