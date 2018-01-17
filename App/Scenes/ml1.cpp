@@ -39,7 +39,20 @@ namespace Scenes
 		rId svgID = App->ressourcesEngine->loadAsset("github.svg", VECTOR);
 		VectorImage * svg = *App->ressourcesEngine->getAsset(svgID);
 
-		m_mesh = svg->getMesh();
+		//m_mesh = svg->getMesh();
+		m_mesh = new Mesh();
+		Mesh * mesh_ptr;
+
+		std::vector<glm::vec2> points = svg->getPoints();
+		for(std::vector<glm::vec2>::iterator it = points.begin();
+			it != points.end(); ++it)
+		{
+			mesh_ptr = App->ressourcesEngine->gen2DTile((*it).x, (*it).y, 5, 5);
+			mesh_ptr->applyCursor();
+			m_mesh->appendVertex(mesh_ptr->getVertexList());
+		}
+
+		std::cout << "mdr " << glm::to_string(m_mesh->getVertexList()[0].position) << std::endl;
 		m_mesh->generate();
 		m_mesh->setRenderFormat(GL_POINTS);
 
