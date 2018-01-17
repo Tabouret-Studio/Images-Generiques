@@ -67,8 +67,6 @@ void RenderEngine::setProjection2D()
 
 void RenderEngine::setProjection2D(const float &width, const float &height)
 {
-	//glClear(GL_DEPTH_BUFFER_BIT);
-
 	m_ProjectionMatrix.setMatrix(glm::ortho(0.f, width, height, 0.f));
 	glViewport(0, 0, width, height);
 
@@ -111,15 +109,15 @@ void RenderEngine::initVAO(Mesh * mesh)
 	glBindVertexArray(*mesh->getVAO());
 	check_gl_error();
 
+	//Bind mesh VBO
+	glBindBuffer(GL_ARRAY_BUFFER, *mesh->getVBO());
+	check_gl_error();
+
+	//Vertex attribs
 	glEnableVertexAttribArray(VERTEX_ATTR_POSITION);
 	glEnableVertexAttribArray(VERTEX_ATTR_NORMAL);
 	glEnableVertexAttribArray(VERTEX_ATTR_COLOR);
 	glEnableVertexAttribArray(VERTEX_ATTR_UV);
-	check_gl_error();
-
-	//Bind mesh VBO
-	glBindBuffer(GL_ARRAY_BUFFER, *mesh->getVBO());
-	check_gl_error();
 
 	//Specify vertice properties positions
 	glVertexAttribPointer(VERTEX_ATTR_POSITION, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), 0);
@@ -167,6 +165,10 @@ void RenderEngine::render(Mesh * mesh, DrawCursor * cursor)
 	check_gl_error();
 
 	//Debind and clean
-	glBindTexture(GL_TEXTURE_2D, 0);
+	if(mesh->isTextured())
+	{
+		glBindTexture(GL_TEXTURE_2D, 0);
+	}
+	
 	glBindVertexArray(0);
 }

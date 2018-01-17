@@ -46,7 +46,7 @@ namespace Scenes
 	///////////
 	void Val01::execute()
 	{
-		//delete m_mesh;
+		delete m_mesh;
 		m_mesh = new Mesh();
 
 		for(glm::vec2 point : m_points)

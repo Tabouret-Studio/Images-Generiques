@@ -165,6 +165,7 @@ private:
 
 	GLuint m_vbo;
 	GLuint m_vao;
+	bool m_generated;
 
 	//Position
 	DrawCursor m_cursor;
@@ -177,6 +178,8 @@ private:
 
 	//Render type
 	GLenum m_renderFormat;
+
+	void deleteBuffers();
 };
 
 #endif /* Mesh_hpp */

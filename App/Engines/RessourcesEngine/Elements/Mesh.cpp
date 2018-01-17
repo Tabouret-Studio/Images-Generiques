@@ -16,6 +16,7 @@ Mesh::Mesh(const std::vector<Vertex> vertexList):
 	Asset(MESH),
 	m_vertexList(vertexList),
 	m_vertexCount((uint)vertexList.size()),
+	m_generated(false),
 	m_textureID(0),
 	m_program(App->getDefaultProgram()),
 	m_renderFormat(GL_TRIANGLES) {}
@@ -24,17 +25,20 @@ Mesh::Mesh():
 	Asset(MESH),
 	m_vertexList(),
 	m_vertexCount(0),
+	m_generated(false),
 	m_textureID(0),
 	m_program(App->getDefaultProgram()),
 	m_renderFormat(GL_TRIANGLES){}
 
 void Mesh::generate()
 {
+	deleteBuffers();
+
 	App->renderEngine->initVBO(this);
-	check_gl_error();
 
 	App->renderEngine->initVAO(this);
-	check_gl_error();
+
+	m_generated = true;
 }
 
 void Mesh::applyCursor()
@@ -52,8 +56,17 @@ void Mesh::applyCursor()
 
 Mesh::~Mesh()
 {
-	glDeleteBuffers(1, &m_vbo);
-	glDeleteBuffers(2, &m_vao);
+	deleteBuffers();
+}
+
+void Mesh::deleteBuffers()
+{
+	if(m_generated)
+	{
+		glDeleteBuffers(1, &m_vbo);
+		glDeleteBuffers(2, &m_vao);
+		m_generated = false;
+	}
 }
 
 Mesh &Mesh::operator <<(const std::vector<Vertex> &vertexList)

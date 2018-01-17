@@ -58,6 +58,13 @@ void ShaderProgram::setUniformMat4(const std::string &uniformName, const glm::ma
 	//Get location
 	GLuint uniLoc = getUniformLocation(uniformName);
 
+	//Check value to prevent sending value if not changed
+	if(m_uniformMat4Values.find(uniLoc) != m_uniformMat4Values.end())
+		if(m_uniformMat4Values[uniLoc] == value)
+			return; //Same value, do not send anything
+
+	m_uniformMat4Values.insert(std::pair<GLuint, glm::mat4>(uniLoc, value));
+
 	//Pass uniform
 	glUniformMatrix4fv(uniLoc, 1, GL_FALSE, glm::value_ptr(value));
 }
@@ -69,6 +76,13 @@ void ShaderProgram::setUniformUint(const std::string &uniformName, const uint &v
 
 	//Get location
 	GLuint uniLoc = getUniformLocation(uniformName);
+
+	//Check value to prevent sending value if not changed
+	if(m_uniformUintValues.find(uniLoc) != m_uniformUintValues.end())
+		if(m_uniformUintValues[uniLoc] == value)
+			return; //Same value, do not send anything
+
+	m_uniformUintValues.insert(std::pair<GLuint, uint>(uniLoc, value));
 
 	//Pass uniform
 	glUniform1i(uniLoc, value);
