@@ -8,7 +8,7 @@
 
 #include "ml1.hpp"
 
-#include "Utils/Bezier.hpp"
+#include "Utils/Vector/Bezier.hpp"
 #include "Utils/Vertex.hpp"
 
 #include "Engines/RessourcesEngine/Elements/VectorImage.hpp"
@@ -40,7 +40,21 @@ namespace Scenes
 		VectorImage * svg = *App->ressourcesEngine->getAsset(svgID);
 
 		//m_mesh = svg->getMesh();
-		m_mesh = new Mesh();
+
+		 m_mesh = new Mesh(); 
+ 
+	    std::vector<glm::vec2> points = svg->getPoints(10); 
+	 
+	    for(glm::vec2 point : points) 
+	      *m_mesh << App->ressourcesEngine->gen2DTile(point.x, point.y, 10, 10); 
+	 
+	    m_mesh->generate(); 
+	    //m_mesh->setRenderFormat(GL_POINTS); 
+	    //m_mesh->setRenderFormat(GL_POINTS); 
+	 
+	    App->renderEngine->setProjection2D(); 
+
+		/*m_mesh = new Mesh();
 		Mesh * mesh_ptr;
 
 		std::vector<glm::vec2> points = svg->getPoints();
@@ -56,7 +70,7 @@ namespace Scenes
 		m_mesh->generate();
 		m_mesh->setRenderFormat(GL_POINTS);
 
-		App->renderEngine->setProjection2D();
+		App->renderEngine->setProjection2D();*/
 	}
 
 
