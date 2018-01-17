@@ -84,7 +84,7 @@ Mesh * Font::genCaption(const std::string &caption)
 		fChar = m_fontFace.chars[c];
 
 		charMesh = App->ressourcesEngine->gen2DTile(
-			advanceX + fChar.bearing.x,
+			advanceX + fChar.bearing.x + fChar.size.x / 2.0,
 			fChar.size.y,
 			fChar.size.x,
 			fChar.size.y);
@@ -203,59 +203,6 @@ bool Font::prepareTexture(const uint &width, const uint &height, GLuint &frameBu
 	glBindFramebuffer(GL_FRAMEBUFFER, 0);
 
 	return true;
-}
-
-GLuint Font::genTile(const GLuint &textureID)
-{
-	///////////
-	//CHAR TILE
-
-	std::vector<Vertex> vertices;
-	vertices.push_back(Vertex(glm::vec3(0, 0, 0), glm::vec2(0, 0)));
-	vertices.push_back(Vertex(glm::vec3(1, 0, 0), glm::vec2(1, 0)));
-	vertices.push_back(Vertex(glm::vec3(1, 1, 0), glm::vec2(1, 1)));
-
-	vertices.push_back(Vertex(glm::vec3(0, 0, 0), glm::vec2(0, 0)));
-	vertices.push_back(Vertex(glm::vec3(1, 1, 0), glm::vec2(1, 1)));
-	vertices.push_back(Vertex(glm::vec3(0, 1, 0), glm::vec2(0, 1)));
-
-	/////
-	//VBO
-	GLuint vbo;
-	glGenBuffers(1, &vbo);
-	glBindBuffer(GL_ARRAY_BUFFER, vbo);
-
-	glBufferData(GL_ARRAY_BUFFER, 6 * sizeof(Vertex), vertices.data(), GL_STATIC_DRAW);
-
-	glBindBuffer(GL_ARRAY_BUFFER, 0);
-
-	/////////////////
-	check_gl_error();
-	/////////////////
-
-	/////
-	//VAO
-	GLuint vao;
-	glGenVertexArrays(1, &vao);
-	glBindVertexArray(vao);
-
-	const GLuint VERTEX_ATTR_POSITION = 1;
-	const GLuint VERTEX_ATTR_UV = 4;
-	glEnableVertexAttribArray(VERTEX_ATTR_POSITION);
-	glEnableVertexAttribArray(VERTEX_ATTR_UV);
-
-	glBindBuffer(GL_ARRAY_BUFFER, vbo);
-	glVertexAttribPointer(VERTEX_ATTR_POSITION, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), 0);
-	glVertexAttribPointer(VERTEX_ATTR_UV, 2, GL_FLOAT, GL_FALSE, sizeof(Vertex), (const GLvoid*)offsetof(Vertex, UV));
-	glBindBuffer(GL_ARRAY_BUFFER, 0);
-
-	glBindVertexArray(0);
-
-	/////////////////
-	check_gl_error();
-	/////////////////
-
-	return vao;
 }
 
 void Font::cleanFontFace()

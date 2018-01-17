@@ -15,7 +15,12 @@ void main()
 	if(uTexturedMesh)
 	{
 		//texture
+
+		//float mRed = texture(uTexture, vUV_vs).r;
+		//fFragColor = vec4(1-mRed, 1-mRed, 1-mRed, mRed);
+
 		fFragColor = texture(uTexture, vUV_vs).r * vec4(1, 1, 1, 1);
+
 		return;
 	}
 

@@ -166,9 +166,7 @@ void RenderEngine::render(Mesh * mesh, DrawCursor * cursor)
 
 	//Debind and clean
 	if(mesh->isTextured())
-	{
 		glBindTexture(GL_TEXTURE_2D, 0);
-	}
 
 	glBindVertexArray(0);
 }
