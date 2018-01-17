@@ -9,7 +9,6 @@
 #include "Val01.hpp"
 
 #include "Utils/Vector/Bezier.hpp"
-#include "Utils/Vertex.hpp"
 
 #include "Engines/RessourcesEngine/Elements/VectorImage.hpp"
 #include "Engines/RessourcesEngine/Elements/Mesh.hpp"

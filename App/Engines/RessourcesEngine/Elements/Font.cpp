@@ -61,7 +61,7 @@ Mesh * Font::genCaption(const std::string &caption)
 	textureWidth += lastChar->bearing.x + lastChar->size.x;
 
 	//Load shader program
-	ShaderProgram program("triangle.vs.glsl", "textRenderer.fs.glsl");
+	ShaderProgram program("main.vs.glsl", "textRenderer.fs.glsl");
 
 	//generate the frameBuffer & texture
 	GLuint frameBuffer;

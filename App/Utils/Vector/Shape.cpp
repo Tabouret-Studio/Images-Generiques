@@ -28,8 +28,6 @@ Mesh * Shape::getMesh() const
 {
 	Mesh * mesh = new Mesh();
 
-	std::vector<glm::vec2> pathPoints;
-
 	for(std::vector<Bezier>::const_iterator it = m_paths.begin(); it != m_paths.end(); ++it)
 	{
 		*mesh << (*it).getMesh();

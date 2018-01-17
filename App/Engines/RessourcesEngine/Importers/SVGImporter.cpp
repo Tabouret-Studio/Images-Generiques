@@ -22,23 +22,26 @@ Asset * SVGImporter::getAsset(const std::string &path)
 	NSVGimage * image = nsvgParseFromFile(path.c_str(), "px", 96);
 
 	float * p;
-	float width, height, posX, posY, demiWidth, demiHeight;
+	float ShapeWidth, ShapeHeight, ShapePosX, ShapePosY, ShapeDemiWidth, ShapeDemiHeight;
+	float pathMinX, pathMinY, pathMaxX, pathMaxY, pathWidth, pathHeight;
 
 	std::vector<Bezier> paths;
 	std::vector<Shape> shapes;
+	std::vector<glm::vec2> points;
+	Bezier curve;
 
 	//Preload its content -> Store every path of the image as Bezier objects
 	for (NSVGshape * shape = image->shapes; shape != NULL; shape = shape->next)
 	{
 		paths.clear();
 
-		width = shape->bounds[2] - shape->bounds[0];
-		height = shape->bounds[3] - shape->bounds[1];
-		posX = shape->bounds[0];
-		posY = shape->bounds[1];
+		ShapeWidth = shape->bounds[2] - shape->bounds[0];
+		ShapeHeight = shape->bounds[3] - shape->bounds[1];
+		ShapePosX = shape->bounds[0];
+		ShapePosY = shape->bounds[1];
 
-		demiWidth = width / 2;
-		demiHeight = height / 2;
+		ShapeDemiWidth = ShapeWidth / 2.0;
+		ShapeDemiHeight = ShapeHeight / 2.0;
 
 		for (NSVGpath * path = shape->paths; path != NULL; path = path->next)
 		{
@@ -46,17 +49,44 @@ Asset * SVGImporter::getAsset(const std::string &path)
 			{
 				p = &path->pts[i * 2];
 
-				//TODO : Points values adjustements to be updated
-				glm::vec2 startP = glm::vec2(p[0] - demiWidth, p[1] - demiHeight);
-				glm::vec2 startH = glm::vec2(p[2] - demiWidth, p[3] - demiHeight);
-				glm::vec2 endH = glm::vec2(p[4] - demiWidth, p[5] - demiHeight);
-				glm::vec2 endP = glm::vec2(p[6] - demiWidth, p[7] - demiHeight);
+				glm::vec2 startP = glm::vec2(p[0] - ShapeDemiWidth, p[1] - ShapeDemiHeight);
+				glm::vec2 startH = glm::vec2(p[2] - ShapeDemiWidth, p[3] - ShapeDemiHeight);
+				glm::vec2 endH = glm::vec2(p[4] - ShapeDemiWidth, p[5] - ShapeDemiHeight);
+				glm::vec2 endP = glm::vec2(p[6] - ShapeDemiWidth, p[7] - ShapeDemiHeight);
 
-				paths.push_back(Bezier(startP, startH, endH, endP));
+				curve = Bezier(startP, startH, endH, endP);
+
+				//Calculate bounds
+				points = curve.getPoints();
+
+				pathMinX = points[0].x; pathMaxX = points[0].x;
+				pathMinY = points[0].y; pathMaxY = points[0].y;
+
+				for(std::vector<glm::vec2>::const_iterator it = points.begin()+1; it != points.end(); ++it)
+				{
+					if((*it).x < pathMinX) pathMinX = (*it).x;
+					if((*it).x > pathMaxX) pathMaxX = (*it).x;
+					if((*it).y < pathMinY) pathMinY = (*it).y;
+					if((*it).y > pathMaxY) pathMaxY = (*it).y;
+				}
+
+				pathWidth = pathMaxX - pathMinX;
+				pathHeight = pathMaxY - pathMinY;
+
+				curve.getCursor()
+					->translate(-(pathMinX + pathWidth / 2.0), -(pathMinY + pathHeight / 2.0), 0);
+				curve.applyCursor();
+
+				curve.getCursor()
+					->translate(pathMinX + pathWidth / 2.0, pathMinY + pathHeight / 2.0, 0);
+
+				curve.setDimensions(pathWidth, pathHeight);
+
+				paths.push_back(curve);
 			}
 		}
 
-		shapes.push_back(Shape(paths, shape->bounds[0],  shape->bounds[1],  shape->bounds[2],  shape->bounds[3]));
+		shapes.push_back(Shape(paths, ShapePosX, ShapePosY, ShapeWidth, ShapeHeight));
 	}
 
 	return new VectorImage(image->width, image->height, shapes);

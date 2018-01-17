@@ -12,6 +12,12 @@
 
 #include <iostream>
 
+
+void Bezier::setDimensions(const float &width, const float &height)
+{
+	m_dimensions = glm::vec2(width, height);
+}
+
 std::vector<glm::vec2> Bezier::getPoints(const float &precision) const
 {
 	std::vector<glm::vec2> vertices;
@@ -89,6 +95,8 @@ Mesh * Bezier::getMesh() const
 	{
 		*mesh << Vertex(glm::vec3(*it, 0));
 	}
+
+	mesh->getCursor()->setMatrix(m_cursor);
 
 	return mesh;
 }

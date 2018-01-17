@@ -90,7 +90,7 @@ void Igniter::igniteOpenGL()
 	//std::cout << "OpenGL Version : " << glGetString(GL_VERSION) << std::endl;
 	//std::cout << "GLEW Version : " << glewGetString(GLEW_VERSION) << std::endl;
 
-	glClearColor(0.0,0.0,0.0,0.0);
+	glClearColor(1.0,1.0,1.0,1.0);
 
 	glEnable(GL_DEPTH_TEST);
 	glDepthFunc(GL_LESS);

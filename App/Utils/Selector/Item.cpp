@@ -59,7 +59,7 @@ void Item::setTextures(const GLuint &idleTexture, const GLuint &activeTexture)
 void Item::setTextures(const rId &idleTexture, const rId &activeTexture)
 {
 	m_idleTexture = ((Image*)(App->ressourcesEngine->getAsset(idleTexture)))->getTextureID();
-	m_activeTexture = ((Image*)(App->ressourcesEngine->getAsset(activeTexture)))->getTextureID();;
+	m_activeTexture = ((Image*)(App->ressourcesEngine->getAsset(activeTexture)))->getTextureID();
 }
 
 void Item::setFont(Font * font, const std::string &caption)
@@ -149,8 +149,7 @@ void Item::print()
 	}
 
 	//Display item
-	DrawCursor pos = m_tile->getCursor()->getMatrix();
-	App->renderEngine->render(m_tile, pos.translate(0, 0, m_zIndex));
+	App->renderEngine->render(m_tile, m_tile->getCursor());
 }
 
 void Item::action()

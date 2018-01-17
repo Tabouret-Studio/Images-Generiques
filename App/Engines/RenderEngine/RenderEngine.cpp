@@ -169,6 +169,6 @@ void RenderEngine::render(Mesh * mesh, DrawCursor * cursor)
 	{
 		glBindTexture(GL_TEXTURE_2D, 0);
 	}
-	
+
 	glBindVertexArray(0);
 }

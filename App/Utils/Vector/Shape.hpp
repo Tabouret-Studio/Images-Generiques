@@ -30,9 +30,9 @@ public:
 		m_size(glm::vec2(width, height)),
 		m_position(glm::vec2(posX, posY)) {};
 
-	Shape(const std::vector<Bezier> &paths, const float &left, const float &bottom, const float &right, const float &top):
-		m_size(glm::vec2(right - left, top - bottom)),
-		m_position(glm::vec2(left, bottom)),
+	Shape(const std::vector<Bezier> &paths, const float &posX, const float &posY, const float &width, const float &height):
+		m_size(glm::vec2(width, height)),
+		m_position(glm::vec2(posX, posY)),
 		m_paths(paths) {};
 
 	/**
