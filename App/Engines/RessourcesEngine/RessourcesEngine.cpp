@@ -129,8 +129,6 @@ std::string RessourcesEngine::buildPath(std::string &file, ressourceType &type)
 		case VECTOR: prefix = "assets/SVG/"; break;
 	}
 
-	std::cout << App->getAppPath() << std::endl;
-
 	return App->getAppPath() + prefix + file;
 }
 

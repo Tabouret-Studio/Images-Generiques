@@ -15,6 +15,8 @@ class Mesh;
 
 #include "libraries.hpp"
 
+#include "Utils/DrawCursor.hpp"
+
 class Bezier
 {
 public:
@@ -54,20 +56,24 @@ public:
 	m_endHandle(endHandle),
 	m_endPoint(endPoint) {};
 
+	/////////
+	//Getters
+
 	/**
-	 Return the curves as points based on the length
+	 Interpolate the curve and return it composed of number of points based on its length
+	 Preferred for easy rendering without any fuss
 
 	 @return A vector containing the points
 	 */
-	inline std::vector<glm::vec2> getPoints() const { return getPoints(0); };
+	inline std::vector<glm::vec2> getPoints() const { return getPoints(1); };
 
 	/**
-	 Return *pointCount* points composing the curve
+	 Interpolate the curve and return it composed of *pointCount* points
 
-	 @param pointCount In how many points the curve must be decomposed;
+	 @param precision In how many points the curve must be decomposed;
 	 @return A vector containing the points
 	 */
-	std::vector<glm::vec2> getPoints(const uint &pointCount) const;
+	std::vector<glm::vec2> getPoints(const float &precision) const;
 
 	/**
 	 Return a specific point on the curve
@@ -84,7 +90,37 @@ public:
 	 */
 	float getLength() const;
 
+	/**
+	 Generate a mesh with the interpolated curve
+
+	 @return A Mesh Object
+	 */
 	Mesh * getMesh() const;
+
+	/////////////////
+	//Transformations
+
+	/**
+	 Return the transformation cursor of this mesh
+
+	 @return The mesh's cursor
+	 */
+	inline DrawCursor * getCursor()  { return &m_cursor; };
+
+	/**
+	 Apply the current cursor to the curve coordinates
+	 then reset the cursor
+	 */
+	inline void applyCursor()
+	{
+		applyCursor(&m_cursor);
+		m_cursor.setMatrix(glm::mat4(1.0));
+	};
+
+	/**
+	 Apply the given cursor to the curve coordinates
+	 */
+	void applyCursor(const DrawCursor * cursor) ;
 
 private:
 	glm::vec2 m_startPoint;
@@ -103,6 +139,8 @@ private:
 	 @return The coordinates of the point
 	 */
 	glm::vec2 getIPointBetween(glm::vec2 A, glm::vec2 B, float coef) const;
+
+	DrawCursor m_cursor;
 };
 
 #endif /* Bezier_hpp */

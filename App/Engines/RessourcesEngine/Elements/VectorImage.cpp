@@ -38,14 +38,14 @@ void VectorImage::setDimensions(const float &width, const float &height)
 	m_height = height;
 }
 
-std::vector<glm::vec2> VectorImage::getPoints(const uint &precision) const
+std::vector<glm::vec2> VectorImage::getPoints(const float &precision) const
 {
 	std::vector<glm::vec2> vertices, pathVertices;
 
 	// Parse SVG
 	for(std::vector<Shape>::const_iterator it = m_shapes.begin(); it != m_shapes.end(); ++it)
 	{
-		pathVertices = (*it).getPoints(10);
+		pathVertices = (*it).getPoints(precision);
 
 		vertices.insert(vertices.end(), pathVertices.begin(), pathVertices.end());
 	}

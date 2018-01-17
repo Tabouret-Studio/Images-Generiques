@@ -12,15 +12,18 @@
 
 #include <iostream>
 
-std::vector<glm::vec2> Bezier::getPoints(const uint &pointCount) const
+std::vector<glm::vec2> Bezier::getPoints(const float &precision) const
 {
 	std::vector<glm::vec2> vertices;
 	uint pc;
 
-	if(pointCount == 0)
-		 pc = getLength() * 2.f;
+	if(precision <= 0)
+		return vertices;
+	else if(precision <= 1)
+		 pc = getLength() * 2.f * precision;
 	else
-		pc = pointCount;
+		pc = precision;
+
 
 	float step = 1.f / (float)pc;
 
@@ -88,4 +91,14 @@ Mesh * Bezier::getMesh() const
 	}
 
 	return mesh;
+}
+
+void Bezier::applyCursor(const DrawCursor * cursor)
+{
+	Vertex temp;
+
+	m_startPoint = glm::vec2(cursor->getMatrix() * glm::vec4(m_startPoint, 0, 1));
+	m_startHandle = glm::vec2(cursor->getMatrix() * glm::vec4(m_startHandle, 0, 1));
+	m_endHandle = glm::vec2(cursor->getMatrix() * glm::vec4(m_endHandle, 0, 1));
+	m_endPoint = glm::vec2(cursor->getMatrix() * glm::vec4(m_endPoint, 0, 1));
 }

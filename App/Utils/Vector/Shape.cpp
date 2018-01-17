@@ -10,7 +10,7 @@
 
 #include "Engines/RessourcesEngine/Elements/Mesh.hpp"
 
-std::vector<glm::vec2> Shape::getPoints(const uint &precision) const
+std::vector<glm::vec2> Shape::getPoints(const float &precision) const
 {
 	std::vector<glm::vec2> points;
 	std::vector<glm::vec2> pathPoints;
@@ -36,4 +36,15 @@ Mesh * Shape::getMesh() const
 	}
 
 	return mesh;
+}
+
+void Shape::applyCursor(DrawCursor * cursor)
+{
+	for(std::vector<Bezier>::iterator it = m_paths.begin(); it != m_paths.end(); ++it)
+	{
+		(*it).applyCursor(cursor);
+	}
+
+	m_size = glm::vec2(cursor->getMatrix() * glm::vec4(m_size, 0, 1));
+	m_size = glm::vec2(cursor->getMatrix() * glm::vec4(m_size, 0, 1));
 }
