@@ -109,14 +109,17 @@ void RenderEngine::initVAO(Mesh * mesh)
 
 	glGenVertexArrays(1, mesh->getVAO());
 	glBindVertexArray(*mesh->getVAO());
+	check_gl_error();
 
 	glEnableVertexAttribArray(VERTEX_ATTR_POSITION);
 	glEnableVertexAttribArray(VERTEX_ATTR_NORMAL);
 	glEnableVertexAttribArray(VERTEX_ATTR_COLOR);
 	glEnableVertexAttribArray(VERTEX_ATTR_UV);
+	check_gl_error();
 
 	//Bind mesh VBO
-	glBindBuffer(GL_ARRAY_BUFFER, *mesh->getVAO());
+	glBindBuffer(GL_ARRAY_BUFFER, *mesh->getVBO());
+	check_gl_error();
 
 	//Specify vertice properties positions
 	glVertexAttribPointer(VERTEX_ATTR_POSITION, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), 0);
@@ -127,6 +130,7 @@ void RenderEngine::initVAO(Mesh * mesh)
 	//Unbind everything
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 	glBindVertexArray(0);
+	check_gl_error();
 }
 
 void RenderEngine::render(Mesh * mesh, DrawCursor * cursor)
@@ -156,6 +160,7 @@ void RenderEngine::render(Mesh * mesh, DrawCursor * cursor)
 
 	//Bind VAO
 	glBindVertexArray(*mesh->getVAO());
+	check_gl_error();
 
 	//Draw cube
 	glDrawArrays(mesh->getRenderFormat(), 0, (GLsizei)mesh->getVertexCount());

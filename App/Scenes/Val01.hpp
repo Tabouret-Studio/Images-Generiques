@@ -12,6 +12,7 @@
 //////////////////////
 //Forward declarations
 class Mesh;
+class VectorImage;
 
 #include "Scene.hpp"
 #include "Utils/Selector/Selector.hpp"
@@ -50,6 +51,8 @@ namespace Scenes
 
 		//Elements
 		Mesh * m_mesh;
+		VectorImage * m_svg;
+		std::vector<glm::vec2> m_points;
 	};
 }
 
