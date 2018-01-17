@@ -13,24 +13,24 @@
 VectorImage::VectorImage():
 	Asset(VECTOR),
 	m_width(500),
-	m_height(500) {};
+	m_height(500) {}
 
 VectorImage::VectorImage(const std::vector<Shape> &shapes):
 	Asset(VECTOR),
 	m_width(500),
 	m_height(500),
-	m_shapes(shapes) {};
+	m_shapes(shapes) {}
 
 VectorImage::VectorImage(const float &width, const float &height):
 	Asset(VECTOR),
 	m_width(width),
-	m_height(height) {};
+	m_height(height) {}
 
 VectorImage::VectorImage(const float &width, const float &height, const std::vector<Shape> &shapes):
 	Asset(VECTOR),
 	m_width(width),
 	m_height(height),
-	m_shapes(shapes) {};
+	m_shapes(shapes) {}
 
 void VectorImage::setDimensions(const float &width, const float &height)
 {

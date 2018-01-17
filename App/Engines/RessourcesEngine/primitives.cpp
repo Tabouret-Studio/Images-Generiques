@@ -159,7 +159,7 @@ Mesh * RessourcesEngine::genSphere(const float &radius, const uint &precisionLat
 }
 
 
-Mesh * RessourcesEngine::gen2DTile(const float &posX, const float &posY, const float width, const float height)
+Mesh * RessourcesEngine::gen2DTile(const float &posX, const float &posY, const float &width, const float &height)
 {
 	std::vector<Vertex> tileV;
 	tileV.push_back(Vertex(glm::vec3(-.5, -.5, 0.0), glm::vec2(0.0, 0.0)));
