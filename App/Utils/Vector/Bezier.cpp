@@ -8,13 +8,21 @@
 
 #include "Bezier.hpp"
 
+#include "Engines/RessourcesEngine/Elements/Mesh.hpp"
+
 #include <iostream>
 
 std::vector<glm::vec2> Bezier::getPoints(const uint &pointCount) const
 {
 	std::vector<glm::vec2> vertices;
+	uint pc;
 
-	float step = 1.f / (float)pointCount;
+	if(pointCount == 0)
+		 pc = getLength() * 2.f;
+	else
+		pc = pointCount;
+
+	float step = 1.f / (float)pc;
 
 	for(float i = 0 ; i < 1 ; i += step)
 	{
@@ -44,17 +52,16 @@ glm::vec2 Bezier::getIPointBetween(glm::vec2 A, glm::vec2 B, float coef) const
 	return A + ((B - A) * coef);
 }
 
-double Bezier::getLength()
+float Bezier::getLength() const
 {
-	double t;
 	glm::vec2 dot;
 	glm::vec2 previous_dot;
 	double length = 0.0;
 
 	uint steps = 150;
-	float stepsCoef = 100.f / steps;
+	float stepsCoef = (100.f / steps) / 100.f;
 
-	for (uint i = 0; i <= steps; i++)
+	for (uint i = 0; i <= steps; ++i)
 	{
 		previous_dot = dot;
 
@@ -64,14 +71,21 @@ double Bezier::getLength()
 			continue;
 
 		length += glm::length(dot - previous_dot);
-		//std::cout << "dist" << glm::length(dot - previous_dot) << std::endl;
-
-		glm::vec2 distP = dot - previous_dot;
-		float dist = sqrt(distP.x * distP.x + distP.y * distP.y);
-
-		//std::cout << glm::to_string(dot) << glm::to_string(previous_dot) << std::endl;
-		//std::cout << "dist" << dist << std::endl;
 	}
 
 	return length;
+}
+
+Mesh * Bezier::getMesh() const
+{
+	Mesh * mesh = new Mesh();
+
+	std::vector<glm::vec2> points = getPoints();
+
+	for(std::vector<glm::vec2>::const_iterator it = points.begin(); it != points.end(); ++it)
+	{
+		*mesh << Vertex(glm::vec3(*it, 0));
+	}
+
+	return mesh;
 }

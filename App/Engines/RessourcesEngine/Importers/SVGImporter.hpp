@@ -14,8 +14,6 @@ class Asset;
 
 #include "Importer.hpp"
 
-#include "libraries.hpp"
-
 class SVGImporter: public Importer
 {
 public:

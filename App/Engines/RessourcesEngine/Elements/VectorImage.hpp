@@ -14,7 +14,8 @@
 class Mesh;
 
 #include "Asset.hpp"
-#include "Utils/Bezier.hpp"
+#include "Utils/Vector/Bezier.hpp"
+#include "Utils/Vector/Shape.hpp"
 
 #include <iostream>
 #include <vector>
@@ -25,9 +26,9 @@ public:
 
 	//Constructors
 	VectorImage();
-	VectorImage(const std::vector<Bezier> &paths);
+	VectorImage(const std::vector<Shape> &shapes);
 	VectorImage(const float &width, const float &height);
-	VectorImage(const float &width, const float &height, const std::vector<Bezier> &paths);
+	VectorImage(const float &width, const float &height, const std::vector<Shape> &shapes);
 
 
 	/**
@@ -53,11 +54,11 @@ public:
 	inline uint getHeight() const { return m_height; }
 
 	/**
-	 Return all paths in the image
+	 Return all shapes in the image
 
 	 @return paths
 	 */
-	inline std::vector<Bezier> getPath() const { return m_paths; };
+	inline std::vector<Shape> getShapes() const { return m_shapes; };
 
 	/**
 	 Return all the points in the image
@@ -65,7 +66,7 @@ public:
 
 	 @return All the points in the image
 	 */
-	inline std::vector<glm::vec2> getPoints() const { return getPoints(m_defaultPrecision); };
+	inline std::vector<glm::vec2> getPoints() const { return getPoints(0); };
 
 	/**
 	 Return all the points in the image for the given precision
@@ -81,7 +82,7 @@ public:
 
 	 @return The VectorImage as a renderable Mesh
 	 */
-	inline Mesh * getMesh() const { return getMesh(m_defaultPrecision); };
+	inline Mesh * getMesh() const { return getMesh(0); };
 
 	/**
 	 Return a Mesh object build with the current image for the given precision
@@ -96,9 +97,7 @@ private:
 	float m_width;
 	float m_height;
 
-	std::vector<Bezier> m_paths;
-
-	uint m_defaultPrecision = 150;
+	std::vector<Shape> m_shapes;
 };
 
 #endif /* VectorImage_hpp */
