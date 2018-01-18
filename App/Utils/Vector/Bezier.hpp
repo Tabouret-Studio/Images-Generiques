@@ -69,6 +69,10 @@ public:
 
 	/////////
 	//Getters
+	inline glm::vec2 getStartPoint() const { return m_startPoint; };
+	inline glm::vec2 getStartHandle() const { return m_startHandle; };
+	inline glm::vec2 getEndPoint() const { return m_endPoint; };
+	inline glm::vec2 getEndHandle() const { return m_endHandle; };
 
 	/**
 	 Interpolate the curve and return it composed of number of points based on its length
