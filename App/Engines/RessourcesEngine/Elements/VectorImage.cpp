@@ -38,6 +38,22 @@ void VectorImage::setDimensions(const float &width, const float &height)
 	m_height = height;
 }
 
+std::vector<Bezier> VectorImage::getBeziers() const
+{
+
+	std::vector<Bezier> curves;
+	std::vector<Bezier> paths;
+
+	// Parse SVG
+	for(Shape shape : m_shapes) {
+		paths = shape.getPaths();
+		curves.insert(curves.end(), paths.begin(), paths.end());
+	}
+
+	return curves;
+}
+
+
 std::vector<glm::vec2> VectorImage::getPoints(const float &precision) const
 {
 	std::vector<glm::vec2> vertices, pathVertices;
