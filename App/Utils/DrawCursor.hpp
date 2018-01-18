@@ -135,7 +135,7 @@ public:
 	/**
 	 Move back the cursos to its starting state
 	 */
-	inline DrawCursor * reset() { m_cursor = m_sourceCursor; return this; };
+	inline DrawCursor * reset() { m_cursor = glm::mat4(1.0); return this; };
 
 	//////////////////////
 	//Comparison operators

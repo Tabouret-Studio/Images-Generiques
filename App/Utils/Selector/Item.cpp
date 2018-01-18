@@ -14,6 +14,7 @@
 #include "Engines/RessourcesEngine/Elements/Font.hpp"
 #include "Engines/RessourcesEngine/Elements/Image.hpp"
 #include "Core/AppObject.hpp"
+#include "Utils/DrawCursor.hpp"
 
 #include <functional>
 
@@ -78,7 +79,6 @@ void Item::setCaption(const std::string &caption)
 	m_caption = caption;
 
 	m_tile = m_font->genCaption(m_caption);
-	m_tile->setProgram(App->getDefaultProgram());
 	m_tile->getCursor()->translate(m_posX, m_posY, 0);
 	m_tile->generate();
 }
@@ -149,7 +149,8 @@ void Item::print()
 	}
 
 	//Display item
-	App->renderEngine->render(m_tile, m_tile->getCursor());
+	DrawCursor cursor;
+	App->renderEngine->render(m_tile, cursor.translate(m_posX, m_posY, 0));
 }
 
 void Item::action()

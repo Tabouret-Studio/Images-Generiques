@@ -96,4 +96,6 @@ void Igniter::igniteOpenGL()
 	glDepthFunc(GL_LESS);
 
 	glEnable(GL_PROGRAM_POINT_SIZE);
+	glPointSize(1);
+	glEnable(GL_MULTISAMPLE_ARB);
 }

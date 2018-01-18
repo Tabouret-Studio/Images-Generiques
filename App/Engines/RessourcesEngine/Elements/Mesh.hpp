@@ -95,6 +95,7 @@ public:
 	 @return Pointer to the vbo
 	 */
 	inline GLuint * getVBO() { return &m_vbo; };
+	inline const GLuint * getVBO() const { return &m_vbo; };
 
 	/**
 	 Get a pointer to the mesh VAO ID
@@ -102,6 +103,7 @@ public:
 	 @return Pointer to the vao
 	 */
 	inline GLuint * getVAO() { return &m_vao; };
+	inline const GLuint * getVAO() const { return &m_vao; };
 
 	/**
 	 Return the drawing cursor of the object
@@ -131,6 +133,8 @@ public:
 	 @return The format (GL_LINES, GL_TRIANGLES, GL_POINTS, etc.)
 	 */
 	inline GLenum getRenderFormat() const { return m_renderFormat; };
+
+	void render() const;
 
 	~Mesh();
 

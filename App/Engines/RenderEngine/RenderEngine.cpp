@@ -131,7 +131,7 @@ void RenderEngine::initVAO(Mesh * mesh)
 	check_gl_error();
 }
 
-void RenderEngine::render(Mesh * mesh, DrawCursor * cursor)
+void RenderEngine::render(const Mesh * mesh, const DrawCursor * cursor)
 {
 	if(*mesh->getVAO() == 0)
 		return; //No VAO, no render!

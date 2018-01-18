@@ -16,10 +16,12 @@ void main()
 	{
 		//texture
 
-		//float mRed = texture(uTexture, vUV_vs).r;
-		//fFragColor = vec4(1-mRed, 1-mRed, 1-mRed, mRed);
+		float mRed = texture(uTexture, vUV_vs).r;
+		float diff = 1.0 - mRed;
 
-		fFragColor = texture(uTexture, vUV_vs).r * vec4(1, 1, 1, 1);
+		fFragColor = vec4(diff, diff, diff, mRed);
+
+		//fFragColor = texture(uTexture, vUV_vs).r * vec4(1, 1, 1, 1);
 
 		return;
 	}

@@ -121,6 +121,7 @@ Mesh * Font::genCaption(const std::string &caption)
 	Mesh * mesh = App->ressourcesEngine->gen2DTile(0, 0, textureWidth, textureHeight);
 	mesh->setTexture(texture);
 	mesh->applyCursor();
+	mesh->setProgram(App->getDefaultProgram());
 
 	return mesh;
 }
@@ -139,7 +140,7 @@ FontCharacter Font::genFontCharacter(char charID)
 
 	glTexImage2D(GL_TEXTURE_2D,
 				 0,
-				 GL_RED,
+				 GL_RGBA,
 				 m_face->glyph->bitmap.width,
 				 m_face->glyph->bitmap.rows,
 				 0,

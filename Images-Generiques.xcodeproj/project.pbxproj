@@ -41,6 +41,7 @@
 		3952DCAE200BFA820098779F /* SVGImporter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3952DCAC200BFA820098779F /* SVGImporter.cpp */; };
 		3952DCB1200BFC600098779F /* VectorImage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3952DCAF200BFC600098779F /* VectorImage.cpp */; };
 		3952DCBA200E4BB50098779F /* Shape.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3952DCB8200E4BB50098779F /* Shape.cpp */; };
+		3967C57120108C2A006E31AB /* MeshGroup.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3967C56F20108C2A006E31AB /* MeshGroup.cpp */; };
 		39AF3CCC1FDB4FE10089622E /* SDL2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39AF3CCB1FDB4FE10089622E /* SDL2.framework */; };
 		39AF3CD01FDB51AD0089622E /* RenderEngine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39AF3CCE1FDB51AD0089622E /* RenderEngine.cpp */; };
 		39D90C1A1FDAEE8400282ED1 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39D90C181FDAEE8400282ED1 /* main.cpp */; };
@@ -12740,6 +12741,11 @@
 		3952DCB6200E16830098779F /* handComputer.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = handComputer.svg; sourceTree = "<group>"; };
 		3952DCB8200E4BB50098779F /* Shape.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Shape.cpp; sourceTree = "<group>"; };
 		3952DCB9200E4BB50098779F /* Shape.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Shape.hpp; sourceTree = "<group>"; };
+		3967C56F20108C2A006E31AB /* MeshGroup.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = MeshGroup.cpp; sourceTree = "<group>"; };
+		3967C57020108C2A006E31AB /* MeshGroup.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = MeshGroup.hpp; sourceTree = "<group>"; };
+		3967C5722010967B006E31AB /* github.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = github.svg; sourceTree = "<group>"; };
+		3967C5732010967B006E31AB /* val.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = val.svg; sourceTree = "<group>"; };
+		3967C5742010967C006E31AB /* ml3.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = ml3.svg; sourceTree = "<group>"; };
 		397BE0D01FDAED60006254F0 /* ImagesGeneriques */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = ImagesGeneriques; sourceTree = BUILT_PRODUCTS_DIR; };
 		39AF3CCB1FDB4FE10089622E /* SDL2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2.framework; path = ../../../../../Library/Frameworks/SDL2.framework; sourceTree = "<group>"; };
 		39AF3CCE1FDB51AD0089622E /* RenderEngine.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = RenderEngine.cpp; sourceTree = "<group>"; };
@@ -12797,6 +12803,9 @@
 		390196D71FDE7E29000F2113 /* SVG */ = {
 			isa = PBXGroup;
 			children = (
+				3967C5722010967B006E31AB /* github.svg */,
+				3967C5742010967C006E31AB /* ml3.svg */,
+				3967C5732010967B006E31AB /* val.svg */,
 				3952DCB6200E16830098779F /* handComputer.svg */,
 				39236069200A2BEA00400C45 /* ml.svg */,
 				390196D81FDE7E29000F2113 /* artist.svg */,
@@ -34076,6 +34085,8 @@
 				392C9EAC200902E70006ECB9 /* ShaderProgram.cpp */,
 				392C9EA7200902E70006ECB9 /* ShaderProgram.hpp */,
 				392C9E9F200902E70006ECB9 /* Vertex.hpp */,
+				3967C56F20108C2A006E31AB /* MeshGroup.cpp */,
+				3967C57020108C2A006E31AB /* MeshGroup.hpp */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -34301,6 +34312,7 @@
 				3952DCAB200BEBCE0098779F /* libraries.cpp in Sources */,
 				392C9EB3200902E70006ECB9 /* Selector.cpp in Sources */,
 				392C9EB8200902E70006ECB9 /* ShaderProgram.cpp in Sources */,
+				3967C57120108C2A006E31AB /* MeshGroup.cpp in Sources */,
 				392C9EB2200902E70006ECB9 /* Item.cpp in Sources */,
 				3952DCB1200BFC600098779F /* VectorImage.cpp in Sources */,
 				392C9EB7200902E70006ECB9 /* SDL.cpp in Sources */,

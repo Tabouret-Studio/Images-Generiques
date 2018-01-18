@@ -50,9 +50,10 @@ namespace Scenes
 	private:
 
 		//Elements
-		Mesh * m_mesh;
 		VectorImage * m_svg;
-		std::vector<glm::vec2> m_points;
+		Mesh * m_mesh;
+
+		Selector m_interface;
 	};
 }
 

@@ -14,6 +14,7 @@
 #include "Engines/RessourcesEngine/Elements/Mesh.hpp"
 #include "Engines/RessourcesEngine/Elements/Font.hpp"
 #include "Engines/RenderEngine/RenderEngine.hpp"
+#include "Engines/AppEngine/AppEngine.hpp"
 #include "Utils/Selector/Item.hpp"
 
 namespace Scenes
@@ -35,6 +36,21 @@ namespace Scenes
 		rId svgID = App->ressourcesEngine->loadAsset("ml.svg", VECTOR);
 		m_svg = *App->ressourcesEngine->getAsset(svgID);
 
+		//Store full image
+		m_fullImage = m_svg->getMesh();
+		m_fullImage->generate();
+
+		float factor;
+
+		if(m_svg->getWidth() > m_svg->getHeight())
+			factor = 400.0 / m_svg->getWidth();
+		else
+			factor = 400.0 / m_svg->getHeight();
+
+		m_fullImage->getCursor()
+			->translate(225, 225, 0)
+			->scale(factor, factor, 0);
+
 		//Load font
 		rId fontID = App->ressourcesEngine->loadAsset("Joystix.ttf", FONT);
 		Font * font = *App->ressourcesEngine->getAsset(fontID);
@@ -42,14 +58,14 @@ namespace Scenes
 		font->generate();
 
 		Item * text;
-		float factor;
 		int posX, posY;
-		Mesh * mesh;
 		glm::vec2 dimensions;
+		Mesh * textMesh;
 
-		m_mesh = new Mesh();
+		Mesh * pathsMeshs = new Mesh();
 
-		int j = 0;
+		int j;
+		int roofLine = 25;
 
 		for(Shape shape : m_svg->getShapes())
 		{
@@ -57,11 +73,16 @@ namespace Scenes
 
 			int i = 0;
 
-			text = new Item(ITEM_TEXT, 105, 15, 0, 0, nullptr);
-			text->setFont(font, "Shape " + std::to_string(0+1));
+			//Gen Shape text
+			textMesh = font->genCaption("Shape " + std::to_string(j+1));
+			textMesh->getCursor()->translate(175, roofLine, 0);
+			textMesh->generate();
 
-			m_interface.addItem(text);
+			roofLine += 40;
 
+			m_mGroup << textMesh;
+
+			//Parse shape paths
 			for(Bezier path : paths)
 			{
 				path.getCursor()->setMatrix(glm::mat4(1.0));
@@ -73,23 +94,28 @@ namespace Scenes
 				else
 					factor = 50.0 / dimensions.y;
 
-				posX = 35 + (70 * (i % 5)) + 400 * j;
-				posY = 65 + (70 * (i / 5));
+				posX = 25 + (70 * (i % 5));
+				posY = roofLine + 25 + 70 * (i/5);
 
 				path.getCursor()->translate(posX, posY, 0)->scale(factor, factor, 0);
 				path.applyCursor();
 
-				*m_mesh << path.getMesh();
+				*pathsMeshs << path.getMesh();
 
 				++i;
 			}
 
+			roofLine += 70 + 70 * (i/5);
 			++j;
 		}
 
-		m_mesh->generate();
-		m_mesh->setRenderFormat(GL_POINTS);
+		pathsMeshs->generate();
+		pathsMeshs->setRenderFormat(GL_POINTS);
 
+		m_mGroup << pathsMeshs;
+		m_mGroup.getCursor()->translate(450, 0, 0);
+
+		App->renderEngine->setProjection2D();
 	}
 
 
@@ -98,7 +124,7 @@ namespace Scenes
 	///////////
 	void Val02::execute()
 	{
-		App->renderEngine->setProjection2D();
+		m_mGroup.getCursor()->translate(0, App->appEngine->getMouse().scrollY * 10, 0);
 	}
 
 
@@ -107,8 +133,8 @@ namespace Scenes
 	///////////
 	void Val02::render()
 	{
-		App->renderEngine->render(m_mesh, m_mesh->getCursor());
+		m_fullImage->render();
+		m_mGroup.render();
 
-		//m_interface.render();
 	}
 }
