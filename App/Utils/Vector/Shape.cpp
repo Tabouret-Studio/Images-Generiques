@@ -27,10 +27,13 @@ std::vector<glm::vec2> Shape::getPoints(const float &precision) const
 Mesh * Shape::getMesh() const
 {
 	Mesh * mesh = new Mesh();
+	Mesh * bezMesh;
 
 	for(std::vector<Bezier>::const_iterator it = m_paths.begin(); it != m_paths.end(); ++it)
 	{
-		*mesh << (*it).getMesh();
+		bezMesh = (*it).getMesh();
+		//mesh->getCursor()->setMatrix();
+		*mesh << bezMesh;
 	}
 
 	return mesh;

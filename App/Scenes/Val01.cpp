@@ -34,22 +34,16 @@ namespace Scenes
 	{
 		//Load SVG
 		//Utils::NSVG svg = Utils::NSVG("Assets/SVG/ml.svg");
-		rId svgID = App->ressourcesEngine->loadAsset("github.svg", VECTOR);
+		rId svgID = App->ressourcesEngine->loadAsset("artist.svg", VECTOR);
 		m_svg = *App->ressourcesEngine->getAsset(svgID);
 
-		std::vector<glm::vec2> points = m_svg->getPoints(.05);
-
-		m_mesh = new Mesh();
-
-		for(glm::vec2 point : points)
-			*m_mesh << App->ressourcesEngine->gen2DTile(point.x, point.y, rand()%20, rand()%20);
-
+		m_mesh = m_svg->getMesh();
 		m_mesh->generate();
-		m_mesh->getCursor()
-			->translate(App->getWidth()/2, App->getHeight()/2, 0)
-			->scale(.5, .5, .5);
+//		m_mesh->getCursor()
+//		->translate(App->getWidth()/2, App->getHeight()/2, 0);
 
 		App->renderEngine->setProjection2D();
+
 
 		//std::cout << "Val 01 init" << std::endl;
 	}

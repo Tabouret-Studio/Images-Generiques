@@ -33,7 +33,7 @@ namespace Scenes
 	void Val02::init()
 	{
 		//Load SVG
-		rId svgID = App->ressourcesEngine->loadAsset("ml.svg", VECTOR);
+		rId svgID = App->ressourcesEngine->loadAsset("artist.svg", VECTOR);
 		m_svg = *App->ressourcesEngine->getAsset(svgID);
 
 		//Store full image
@@ -133,6 +133,7 @@ namespace Scenes
 	///////////
 	void Val02::render()
 	{
+		App->renderEngine->setProjection2D();
 		m_fullImage->render();
 		m_mGroup.render();
 
