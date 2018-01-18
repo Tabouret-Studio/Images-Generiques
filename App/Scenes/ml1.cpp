@@ -16,6 +16,7 @@
 #include "Engines/RenderEngine/RenderEngine.hpp"
 #include "Engines/AppEngine/AppEngine.hpp"
 #include "Utils/Selector/Item.hpp"
+#include "Engines/RessourcesEngine/Exporters/SVGExporter.hpp"
 
 #include <iostream>
 
@@ -41,18 +42,17 @@ namespace Scenes
 
 		//m_mesh = svg->getMesh();
 
-		 m_mesh = new Mesh(); 
+		 m_mesh = svg->getMesh();
+
+		 m_mesh->generate();
+		 m_mesh->getCursor()->translate(App->getWidth()/2, App->getHeight()/2, 0); 
  
-	    std::vector<glm::vec2> points = svg->getPoints(10); 
-	 
-	    for(glm::vec2 point : points) 
-	      *m_mesh << App->ressourcesEngine->gen2DTile(point.x, point.y, 10, 10); 
-	 
-	    m_mesh->generate(); 
-	    //m_mesh->setRenderFormat(GL_POINTS); 
-	    //m_mesh->setRenderFormat(GL_POINTS); 
 	 
 	    App->renderEngine->setProjection2D(); 
+
+	    SVGExporter fExport;
+	    fExport.exportSVG(svg, " ");
+
 
 		/*m_mesh = new Mesh();
 		Mesh * mesh_ptr;
@@ -79,7 +79,7 @@ namespace Scenes
 	///////////
 	void ml1::execute()
 	{
-		float scrollAmount = App->appEngine->getMouse().scrollX/10.0f;
+		float scrollAmount = App->appEngine->getMouse().scrollY/10.0f;
 		if(scrollAmount != 0) {
 			m_mesh->getCursor()->scale(1+scrollAmount, 1+scrollAmount, 1);
 		}
