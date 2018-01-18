@@ -109,4 +109,6 @@ void Bezier::applyCursor(const DrawCursor * cursor)
 	m_startHandle = glm::vec2(cursor->getMatrix() * glm::vec4(m_startHandle, 0, 1));
 	m_endHandle = glm::vec2(cursor->getMatrix() * glm::vec4(m_endHandle, 0, 1));
 	m_endPoint = glm::vec2(cursor->getMatrix() * glm::vec4(m_endPoint, 0, 1));
+
+	m_dimensions = glm::vec2(cursor->getMatrix() * glm::vec4(m_dimensions, 0, 0));
 }

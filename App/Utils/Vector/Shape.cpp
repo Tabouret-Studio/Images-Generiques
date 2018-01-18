@@ -32,10 +32,10 @@ Mesh * Shape::getMesh() const
 	for(std::vector<Bezier>::const_iterator it = m_paths.begin(); it != m_paths.end(); ++it)
 	{
 		bezMesh = (*it).getMesh();
-		//mesh->getCursor()->setMatrix();
 		*mesh << bezMesh;
 	}
 
+	mesh->getCursor()->setMatrix(m_cursor);
 	return mesh;
 }
 
@@ -45,7 +45,4 @@ void Shape::applyCursor(DrawCursor * cursor)
 	{
 		(*it).applyCursor(cursor);
 	}
-
-	m_size = glm::vec2(cursor->getMatrix() * glm::vec4(m_size, 0, 1));
-	m_size = glm::vec2(cursor->getMatrix() * glm::vec4(m_size, 0, 1));
 }

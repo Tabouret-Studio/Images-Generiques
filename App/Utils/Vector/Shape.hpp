@@ -26,13 +26,6 @@ public:
 	Shape(const std::vector<Bezier> &paths):
 	m_paths(paths) {};
 
-	Shape(const float &width, const float &height):
-		m_size(glm::vec2(width, height)) {};
-
-	Shape(const std::vector<Bezier> &paths, const float &width, const float &height):
-		m_size(glm::vec2(width, height)),
-		m_paths(paths) {};
-
 	/**
 	 Return all the paths in the shape
 
@@ -76,9 +69,6 @@ public:
 	void applyCursor(DrawCursor * cursor);
 
 private:
-
-	//Dimensions
-	glm::vec2 m_size;
 
 	std::vector<Bezier> m_paths;
 

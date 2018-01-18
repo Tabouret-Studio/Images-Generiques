@@ -15,6 +15,8 @@
 #include "Utils/Vector/Bezier.hpp"
 #include "Utils/Vector/Shape.hpp"
 
+#include "Core/AppObject.hpp"
+
 #include <vector>
 
 Asset * SVGImporter::getAsset(const std::string &path)
@@ -22,8 +24,10 @@ Asset * SVGImporter::getAsset(const std::string &path)
 	NSVGimage * image = nsvgParseFromFile(path.c_str(), "px", 96);
 
 	float * p;
-	float ShapeWidth, ShapeHeight, ShapePosX, ShapePosY, ShapeDemiWidth, ShapeDemiHeight;
-	float pathMinX, pathMinY, pathMaxX, pathMaxY, pathWidth, pathHeight;
+	float pathMinX, pathMinY, pathMaxX, pathMaxY;
+
+	glm::vec2 shapePos, shapeDim, shapeDemiDim;
+	glm::vec2 pathPos, pathDim;
 
 	std::vector<Bezier> paths;
 	std::vector<Shape> shapes;
@@ -35,28 +39,29 @@ Asset * SVGImporter::getAsset(const std::string &path)
 	{
 		paths.clear();
 
-		ShapeWidth = shape->bounds[2] - shape->bounds[0];
-		ShapeHeight = shape->bounds[3] - shape->bounds[1];
-		ShapePosX = shape->bounds[0];
-		ShapePosY = shape->bounds[1];
+		//Get shape coordinates
+		shapePos = glm::vec2(shape->bounds[0], shape->bounds[1]);
+		shapeDim = glm::vec2(shape->bounds[2] - shape->bounds[0], shape->bounds[3] - shape->bounds[1]);
 
-		ShapeDemiWidth = ShapeWidth / 2.0;
-		ShapeDemiHeight = ShapeHeight / 2.0;
+		std::cout << "(" << glm::to_string(shapePos) << " - " << glm::to_string(shapeDim) << ")" << std::endl;
 
+		//Parse the shape's paths
 		for (NSVGpath * path = shape->paths; path != NULL; path = path->next)
 		{
 			for (int i = 0; i < path->npts-1; i += 3)
 			{
 				p = &path->pts[i * 2];
 
-				glm::vec2 startP = glm::vec2(p[0] - ShapeDemiWidth, p[1] - ShapeDemiHeight);
-				glm::vec2 startH = glm::vec2(p[2] - ShapeDemiWidth, p[3] - ShapeDemiHeight);
-				glm::vec2 endH = glm::vec2(p[4] - ShapeDemiWidth, p[5] - ShapeDemiHeight);
-				glm::vec2 endP = glm::vec2(p[6] - ShapeDemiWidth, p[7] - ShapeDemiHeight);
+				//Path coordinates
+				glm::vec2 startP = glm::vec2(p[0], p[1]);
+				glm::vec2 startH = glm::vec2(p[2], p[3]);
+				glm::vec2 endH = glm::vec2(p[4], p[5]);
+				glm::vec2 endP = glm::vec2(p[6], p[7]);
 
+				//Create curve
 				curve = Bezier(startP, startH, endH, endP);
 
-				//Calculate bounds
+				//Calculate bezier coordinates
 				points = curve.getPoints();
 
 				pathMinX = points[0].x; pathMaxX = points[0].x;
@@ -70,23 +75,28 @@ Asset * SVGImporter::getAsset(const std::string &path)
 					if((*it).y > pathMaxY) pathMaxY = (*it).y;
 				}
 
-				pathWidth = pathMaxX - pathMinX;
-				pathHeight = pathMaxY - pathMinY;
+				pathPos = glm::vec2(pathMinX, pathMinY);
+				pathDim = glm::vec2(pathMaxX - pathMinX, pathMaxY - pathMinY);
 
+				//Store curve dimensions
+				curve.setDimensions(pathDim.x, pathDim.y);
+
+				//Move bezier to origin
 				curve.getCursor()
-					->translate(-(pathMinX + pathWidth / 2.0), -(pathMinY + pathHeight / 2.0), 0);
+					->translate(-(pathPos.x + pathDim.x / 2.0), -(pathPos.y + pathDim.y / 2.0), 0);
 				curve.applyCursor();
 
 				curve.getCursor()
-					->translate(pathMinX + pathWidth / 2.0, pathMinY + pathHeight / 2.0, 0);
-
-				curve.setDimensions(pathWidth, pathHeight);
+					->translate(pathPos.x + pathDim.x / 2.0, pathPos.y + pathDim.y / 2.0, 0);
 
 				paths.push_back(curve);
 			}
 		}
 
-		shapes.push_back(Shape(paths, ShapePosX, ShapePosY, ShapeWidth, ShapeHeight));
+		Shape renderedShape(paths);
+		renderedShape.getCursor()->translate(-image->width / 2.0, -image->height / 2, 0);
+
+		shapes.push_back(renderedShape);
 	}
 
 	return new VectorImage(image->width, image->height, shapes);

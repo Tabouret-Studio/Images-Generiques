@@ -33,7 +33,7 @@ namespace Scenes
 	void Val02::init()
 	{
 		//Load SVG
-		rId svgID = App->ressourcesEngine->loadAsset("artist.svg", VECTOR);
+		rId svgID = App->ressourcesEngine->loadAsset("handComputer.svg", VECTOR);
 		m_svg = *App->ressourcesEngine->getAsset(svgID);
 
 		//Store full image
@@ -57,14 +57,13 @@ namespace Scenes
 		font->setHeight(20);
 		font->generate();
 
-		Item * text;
 		int posX, posY;
 		glm::vec2 dimensions;
 		Mesh * textMesh;
 
 		Mesh * pathsMeshs = new Mesh();
 
-		int j;
+		int j = 0;
 		int roofLine = 25;
 
 		for(Shape shape : m_svg->getShapes())
@@ -85,7 +84,7 @@ namespace Scenes
 			//Parse shape paths
 			for(Bezier path : paths)
 			{
-				path.getCursor()->setMatrix(glm::mat4(1.0));
+				path.getCursor()->reset();
 
 				dimensions = path.getDimensions();
 
@@ -94,10 +93,10 @@ namespace Scenes
 				else
 					factor = 50.0 / dimensions.y;
 
-				posX = 25 + (70 * (i % 5));
-				posY = roofLine + 25 + 70 * (i/5);
+				posX = 25 + (100 * (i % 5));
+				posY = roofLine + 25 + 100 * (i/5);
 
-				path.getCursor()->translate(posX, posY, 0)->scale(factor, factor, 0);
+				path.getCursor()->translate(posX, posY, 0)/*->scale(factor, factor, 0)*/;
 				path.applyCursor();
 
 				*pathsMeshs << path.getMesh();
@@ -105,7 +104,7 @@ namespace Scenes
 				++i;
 			}
 
-			roofLine += 70 + 70 * (i/5);
+			roofLine += 100 + 100 * (i/5);
 			++j;
 		}
 
