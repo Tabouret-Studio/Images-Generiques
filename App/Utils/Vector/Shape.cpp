@@ -27,12 +27,15 @@ std::vector<glm::vec2> Shape::getPoints(const float &precision) const
 Mesh * Shape::getMesh() const
 {
 	Mesh * mesh = new Mesh();
+	Mesh * bezMesh;
 
 	for(std::vector<Bezier>::const_iterator it = m_paths.begin(); it != m_paths.end(); ++it)
 	{
-		*mesh << (*it).getMesh();
+		bezMesh = (*it).getMesh();
+		*mesh << bezMesh;
 	}
 
+	mesh->getCursor()->setMatrix(m_cursor);
 	return mesh;
 }
 
@@ -42,7 +45,4 @@ void Shape::applyCursor(DrawCursor * cursor)
 	{
 		(*it).applyCursor(cursor);
 	}
-
-	m_size = glm::vec2(cursor->getMatrix() * glm::vec4(m_size, 0, 1));
-	m_size = glm::vec2(cursor->getMatrix() * glm::vec4(m_size, 0, 1));
 }
