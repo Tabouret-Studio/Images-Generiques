@@ -21,22 +21,26 @@ std::string SVGExporter::shapeToPath(const Shape &shape)
 
 	for(Bezier bez : shape.getPaths())
 	{
+		bez.applyCursor();
+
 		std::string startPoint = vec2ToString(bez.getStartPoint());
-		std::string startHandle = vec2ToString(bez.getStartPoint());
-		std::string endHandle = vec2ToString(bez.getStartPoint());
-		std::string endPoint = vec2ToString(bez.getStartPoint());
+		std::string startHandle = vec2ToString(bez.getStartHandle());
+		std::string endHandle = vec2ToString(bez.getEndHandle());
+		std::string endPoint = vec2ToString(bez.getEndPoint());
 
 		path += "M"+startPoint+" C "+startHandle+" "+endHandle+" "+endPoint+" ";
 	}
 
 	path += "Z\"/>";
+
+	return path;
 }
 
 std::string SVGExporter::getHeader(const int &width, const int &height)
 {
 	std::string svgWidth = std::to_string(width);
 	std::string svgHeight = std::to_string(height);
-	std::string svgHeader = "<svg height=\""+svgWidth+"\" width=\""+svgHeader+"\" xmlns=\"http://www.w3.org/2000/svg\">";
+	std::string svgHeader = "<svg height=\""+svgHeight+"\" width=\""+svgWidth+"\" xmlns=\"http://www.w3.org/2000/svg\">";
 	std::cout << svgHeader << std::endl;
 
 	return svgHeader;

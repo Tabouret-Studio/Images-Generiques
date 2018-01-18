@@ -44,7 +44,7 @@ void Core::main()
 
 	//////////////////////
 	//Load the first scene
-	Scenes::Val02::load();
+	Scenes::ml1::load();
 
 	while(App->isRunning())
 	{
