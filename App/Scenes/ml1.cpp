@@ -79,7 +79,7 @@ namespace Scenes
 	///////////
 	void ml1::execute()
 	{
-		float scrollAmount = App->appEngine->getMouse().scroll/10.0f;
+		float scrollAmount = App->appEngine->getMouse().scrollX/10.0f;
 		if(scrollAmount != 0) {
 			m_mesh->getCursor()->scale(1+scrollAmount, 1+scrollAmount, 1);
 		}

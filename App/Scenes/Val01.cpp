@@ -9,11 +9,12 @@
 #include "Val01.hpp"
 
 #include "Utils/Vector/Bezier.hpp"
-#include "Utils/Vertex.hpp"
 
 #include "Engines/RessourcesEngine/Elements/VectorImage.hpp"
+#include "Engines/RessourcesEngine/Elements/Font.hpp"
 #include "Engines/RessourcesEngine/Elements/Mesh.hpp"
 #include "Engines/RenderEngine/RenderEngine.hpp"
+#include "Engines/AppEngine/AppEngine.hpp"
 #include "Utils/Selector/Item.hpp"
 
 namespace Scenes
@@ -36,20 +37,11 @@ namespace Scenes
 		rId svgID = App->ressourcesEngine->loadAsset("github.svg", VECTOR);
 		m_svg = *App->ressourcesEngine->getAsset(svgID);
 
-		m_mesh = new Mesh();
-		m_points = m_svg->getPoints(.05);
-	}
+		std::vector<glm::vec2> points = m_svg->getPoints(.05);
 
-
-	//////////////
-	// This is executed every frame before render
-	///////////
-	void Val01::execute()
-	{
-		delete m_mesh;
 		m_mesh = new Mesh();
 
-		for(glm::vec2 point : m_points)
+		for(glm::vec2 point : points)
 			*m_mesh << App->ressourcesEngine->gen2DTile(point.x, point.y, rand()%20, rand()%20);
 
 		m_mesh->generate();
@@ -58,6 +50,17 @@ namespace Scenes
 			->scale(.5, .5, .5);
 
 		App->renderEngine->setProjection2D();
+
+		//std::cout << "Val 01 init" << std::endl;
+	}
+
+
+	//////////////
+	// This is executed every frame before render
+	///////////
+	void Val01::execute()
+	{
+		//std::cout << "Val 01 executed" << std::endl;
 	}
 
 
@@ -66,7 +69,10 @@ namespace Scenes
 	///////////
 	void Val01::render()
 	{
-		check_gl_error();
+		App->renderEngine->setProjection2D();
+
 		App->renderEngine->render(m_mesh, m_mesh->getCursor());
+
+		//std::cout << "Val 01 rendered" << std::endl;
 	}
 }

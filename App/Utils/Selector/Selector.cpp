@@ -74,8 +74,6 @@ void Selector::render()
 
 	for(std::vector<Item *>::iterator it = m_items.begin(); it != m_items.end(); ++it)
         (*it)->print();
-
-	App->renderEngine->setProjection3D();
 }
 
 void Selector::moveCursor(Item * item)

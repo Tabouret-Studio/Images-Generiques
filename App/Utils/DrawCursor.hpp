@@ -135,23 +135,19 @@ public:
 	/**
 	 Move back the cursos to its starting state
 	 */
-	inline DrawCursor * reset() { m_cursor = m_sourceCursor; return this; };
+	inline DrawCursor * reset() { m_cursor = glm::mat4(1.0); return this; };
 
 	//////////////////////
 	//Comparison operators
 
 	/**
-	 Compare the cursor with another cursor
+	 Cast the cursor as a mat4
 
-	 @param cursor The cursor to compare to
-	 @return True if equals, false otherwise
+	 @return The cursor's matrix
 	 */
-	bool operator == (const DrawCursor &cursor) const
+	operator glm::mat4 () const
 	{
-		if(m_cursor == cursor.m_cursor)
-			return true;
-
-		return false;
+		return m_cursor;
 	}
 
 	/**
@@ -166,16 +162,6 @@ public:
 			return true;
 
 		return false;
-	}
-
-	/**
-	 Cast the cursor as a mat4
-
-	 @return The cursor's matrix
-	 */
-	operator glm::mat4 () const
-	{
-		return m_cursor;
 	}
 
 	/**

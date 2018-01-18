@@ -56,6 +56,17 @@ public:
 	m_endHandle(endHandle),
 	m_endPoint(endPoint) {};
 
+	Bezier() {};
+
+	/**
+	 Set the path dimensions
+	 Dimensions are automatically calculated on import
+
+	 @param width Width of the curve
+	 @param height Height of the curve
+	 */
+	void setDimensions(const float &width, const float &height);
+
 	/////////
 	//Getters
 
@@ -97,6 +108,13 @@ public:
 	 */
 	Mesh * getMesh() const;
 
+	/**
+	 Return the dimensions of the bezier if defined with setBounds();
+
+	 @return Width and height
+	 */
+	inline glm::vec2 getDimensions() const { return m_dimensions; };
+
 	/////////////////
 	//Transformations
 
@@ -120,13 +138,15 @@ public:
 	/**
 	 Apply the given cursor to the curve coordinates
 	 */
-	void applyCursor(const DrawCursor * cursor) ;
+	void applyCursor(const DrawCursor * cursor);
 
 private:
 	glm::vec2 m_startPoint;
 	glm::vec2 m_startHandle;
 	glm::vec2 m_endHandle;
 	glm::vec2 m_endPoint;
+
+	glm::vec2 m_dimensions;
 
 	/**
 	 Return the nth point on the curve.

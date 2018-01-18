@@ -79,7 +79,7 @@ public:
 	 @param mesh The mesh to render
 	 @param cursor Cursor to the mesh position
 	 */
-	void render(Mesh * mesh, DrawCursor * cursor);
+	void render(const Mesh * mesh, const DrawCursor * cursor);
 
 private:
 

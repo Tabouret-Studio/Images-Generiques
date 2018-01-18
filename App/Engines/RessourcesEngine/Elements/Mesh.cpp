@@ -54,6 +54,11 @@ void Mesh::applyCursor()
 	m_cursor.setMatrix(glm::mat4(1.0f));
 }
 
+void Mesh::render() const
+{
+	App->renderEngine->render(this, &m_cursor);
+}
+
 Mesh::~Mesh()
 {
 	deleteBuffers();

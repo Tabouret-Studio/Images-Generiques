@@ -49,7 +49,8 @@ struct keyboard
 };
 
 struct mouse {
-	int scroll = 0;
+	int scrollY = 0;
+	int scrollX = 0;
 	bool clickLeft = false;
 	bool clickRight = false;
 	int pointerPositionX = 0;

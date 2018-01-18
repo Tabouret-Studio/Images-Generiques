@@ -71,8 +71,6 @@ private:
 	 */
 	GLuint getUniformLocation(const std::string &uniformName);
 	std::map<std::string, GLuint> m_uniformLocations;
-	std::map<GLuint, glm::mat4> m_uniformMat4Values;
-	std::map<GLuint, uint> m_uniformUintValues;
 
 	const std::string getCompileLog() const;
 

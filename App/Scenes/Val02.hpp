@@ -1,13 +1,13 @@
 //
-//  Val01.hpp
-//  Images-Generiques
+//  Val02.hpp
+//  Xcode
 //
-//  Created by Valentin Dufois on 10/12/2017.
-//  Copyright © 2017 Valentin Dufois. All rights reserved.
+//  Created by Valentin Dufois on 17/01/2018.
+//  Copyright © 2018 Valentin Dufois. All rights reserved.
 //
 
-#ifndef Val01_hpp
-#define Val01_hpp
+#ifndef Val02_hpp
+#define Val02_hpp
 
 //////////////////////
 //Forward declarations
@@ -15,11 +15,11 @@ class Mesh;
 class VectorImage;
 
 #include "Scene.hpp"
-#include "Utils/Selector/Selector.hpp"
+#include "Utils/MeshGroup.hpp"
 
 namespace Scenes
 {
-	class Val01: public Scene
+	class Val02: public Scene
 	{
 	public:
 		/**
@@ -45,16 +45,17 @@ namespace Scenes
 		/**
 		 Destructor, used to properly free all the memory used by the scene
 		 */
-		~Val01() {};
+		~Val02() {};
 
 	private:
 
 		//Elements
 		VectorImage * m_svg;
-		Mesh * m_mesh;
+		Mesh * m_fullImage;
+		MeshGroup m_mGroup;
 
-		Selector m_interface;
+		//Selector m_interface;
 	};
 }
 
-#endif /* Val01_hpp */
+#endif /* Val02_hpp */

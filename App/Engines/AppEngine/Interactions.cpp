@@ -13,7 +13,8 @@ void AppEngine::parseEvents()
 {
 	SDL_Event event;
 	
-	m_mouse.scroll = 0;
+	m_mouse.scrollX = 0;
+	m_mouse.scrollY = 0;
 
 	while(SDL_PollEvent(&event))
 	{
@@ -97,5 +98,6 @@ void AppEngine::keyBoardEvents(const SDL_Event &event)
 
 void AppEngine::mouseEvents(const SDL_Event &event)
 {
-	m_mouse.scroll = event.wheel.y;
+	m_mouse.scrollY = event.wheel.y;
+	m_mouse.scrollX = event.wheel.x;
 }
