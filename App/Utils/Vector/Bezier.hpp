@@ -144,6 +144,13 @@ public:
 	 */
 	void applyCursor(const DrawCursor * cursor);
 
+	/**
+	 Move the bezier startPoint to the given position
+
+	 @param dest <#dest description#>
+	 */
+	void move(const glm::vec2 &dest);
+
 private:
 	glm::vec2 m_startPoint;
 	glm::vec2 m_startHandle;

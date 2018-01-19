@@ -46,3 +46,9 @@ void Shape::applyCursor(DrawCursor * cursor)
 		(*it).applyCursor(cursor);
 	}
 }
+
+Shape &Shape::operator<<(const Bezier &path)
+{
+	m_paths.push_back(path);
+	return *this;
+}
