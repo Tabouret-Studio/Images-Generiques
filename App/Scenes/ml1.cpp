@@ -51,7 +51,7 @@ namespace Scenes
 	    App->renderEngine->setProjection2D(); 
 
 	    SVGExporter fExport;
-	    fExport.exportSVG(svg, " ");
+	    fExport.exportSVG(svg, "artist2");
 
 
 		/*m_mesh = new Mesh();
