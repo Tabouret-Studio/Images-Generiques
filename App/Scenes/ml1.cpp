@@ -37,7 +37,7 @@ namespace Scenes
 	{
 		//Load SVG
 		//Utils::NSVG svg = Utils::NSVG("Assets/SVG/ml.svg");
-		rId svgID = App->ressourcesEngine->loadAsset("github.svg", VECTOR);
+		rId svgID = App->ressourcesEngine->loadAsset("artist.svg", VECTOR);
 		VectorImage * svg = *App->ressourcesEngine->getAsset(svgID);
 
 		//m_mesh = svg->getMesh();
@@ -51,7 +51,7 @@ namespace Scenes
 	    App->renderEngine->setProjection2D(); 
 
 	    SVGExporter fExport;
-	    fExport.exportSVG(svg, " ");
+	    fExport.exportSVG(svg, "artist2");
 
 
 		/*m_mesh = new Mesh();
