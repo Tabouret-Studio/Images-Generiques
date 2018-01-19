@@ -43,8 +43,6 @@ Asset * SVGImporter::getAsset(const std::string &path)
 		shapePos = glm::vec2(shape->bounds[0], shape->bounds[1]);
 		shapeDim = glm::vec2(shape->bounds[2] - shape->bounds[0], shape->bounds[3] - shape->bounds[1]);
 
-		std::cout << "(" << glm::to_string(shapePos) << " - " << glm::to_string(shapeDim) << ")" << std::endl;
-
 		//Parse the shape's paths
 		for (NSVGpath * path = shape->paths; path != NULL; path = path->next)
 		{

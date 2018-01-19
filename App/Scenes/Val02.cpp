@@ -15,7 +15,6 @@
 #include "Engines/RessourcesEngine/Elements/Font.hpp"
 #include "Engines/RenderEngine/RenderEngine.hpp"
 #include "Engines/AppEngine/AppEngine.hpp"
-#include "Utils/Selector/Item.hpp"
 
 namespace Scenes
 {
@@ -85,13 +84,6 @@ namespace Scenes
 			for(Bezier path : paths)
 			{
 				path.getCursor()->reset();
-
-				dimensions = path.getDimensions();
-
-				if(dimensions.x > dimensions.y)
-					factor = 50.0 / dimensions.x;
-				else
-					factor = 50.0 / dimensions.y;
 
 				posX = 25 + (100 * (i % 5));
 				posY = roofLine + 25 + 100 * (i/5);

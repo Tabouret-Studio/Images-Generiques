@@ -37,7 +37,7 @@ namespace Scenes
 	{
 		//Load SVG
 		//Utils::NSVG svg = Utils::NSVG("Assets/SVG/ml.svg");
-		rId svgID = App->ressourcesEngine->loadAsset("github.svg", VECTOR);
+		rId svgID = App->ressourcesEngine->loadAsset("handComputer.svg", VECTOR);
 		VectorImage * svg = *App->ressourcesEngine->getAsset(svgID);
 
 		//m_mesh = svg->getMesh();
