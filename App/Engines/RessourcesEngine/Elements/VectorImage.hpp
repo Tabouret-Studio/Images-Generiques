@@ -26,8 +26,10 @@ public:
 
 	//Constructors
 	VectorImage();
+	VectorImage(const Shape &shape);
 	VectorImage(const std::vector<Shape> &shapes);
 	VectorImage(const float &width, const float &height);
+	VectorImage(const float &width, const float &height, const Shape &shape);
 	VectorImage(const float &width, const float &height, const std::vector<Shape> &shapes);
 
 

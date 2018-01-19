@@ -13,6 +13,11 @@
 #include "Engines/RenderEngine/RenderEngine.hpp"
 #include "Engines/AppEngine/AppEngine.hpp"
 
+#include "Engines/RessourcesEngine/Exporters/SVGExporter.hpp"
+
+#include "Engines/GeneratorEngine/GeneratorEngine.hpp"
+#include "Engines/GeneratorEngine/InstructionsGroup/InstructionsGroup.hpp"
+
 namespace Scenes
 {
 	void Gen01::load()
@@ -28,16 +33,29 @@ namespace Scenes
 	///////////
 	void Gen01::init()
 	{
-		//Load SVG
-		rId svgID = App->ressourcesEngine->loadAsset("handComputer.svg", VECTOR);
+		//Loading
+		rId svgID = App->ressourcesEngine->loadAsset("ml.svg", VECTOR);
 		m_svg = *App->ressourcesEngine->getAsset(svgID);
 
-		m_mesh = m_svg->getMesh();
+		//Instructions
+		InstructionsGroup group({
+			INSTRUCTION_PATHS_ORDER_RANDOMIZER,
+			INSTRUCTION_PATHS_CHAINING
+		});
+
+		VectorImage * imageTransformed = group.execute(m_svg);
+
+		//Export
+		SVGExporter exporter;
+		exporter.exportSVG(imageTransformed, "testInstruction");
+
+		//Generate and display Mesh
+		m_mesh = imageTransformed->getMesh();
+
 		m_mesh->generate();
+		m_mesh->setRenderFormat(GL_POINTS);
 		m_mesh->getCursor()
 			->translate(App->getWidth()/2, App->getHeight()/2, 0);
-
-		App->renderEngine->setProjection2D();
 	}
 
 
