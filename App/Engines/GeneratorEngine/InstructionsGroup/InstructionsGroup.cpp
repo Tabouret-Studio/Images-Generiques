@@ -20,9 +20,9 @@ InstructionsGroup::InstructionsGroup(const std::vector<InstructionName> &instruc
 	addInstructions(instructionNames);
 }
 
-VectorImage * InstructionsGroup::execute(VectorImage * vectorImage)
+std::vector<VectorImage *> InstructionsGroup::execute(std::vector<VectorImage *> vectorImages)
 {
-	VectorImage * newVector = vectorImage;
+	std::vector<VectorImage *> newVector = vectorImages;
 
 	//Call each instruction in the group
 	for(InstructionObject * instruction : m_instructions)

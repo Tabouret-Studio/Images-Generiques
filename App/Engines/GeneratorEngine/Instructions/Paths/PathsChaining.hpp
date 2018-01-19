@@ -17,7 +17,7 @@ public:
 
 	static Instruction * get();
 	
-	VectorImage * execute(VectorImage * vectorImage);
+	std::vector<VectorImage *> execute(std::vector<VectorImage *> vectorImages);
 
 private:
 

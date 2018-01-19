@@ -11,6 +11,8 @@
 
 #include "Engines/RessourcesEngine/Elements/VectorImage.hpp"
 
+#include <vector>
+
 class InstructionObject
 {
 public:
@@ -20,7 +22,7 @@ public:
 	 @param vectorImage The vector image to use for the instruction
 	 @return A new vector image with the instruction applied on
 	 */
-	virtual VectorImage * execute(VectorImage * vectorImage) = 0;
+	virtual std::vector<VectorImage *> execute(std::vector<VectorImage *> vectorImages) = 0;
 };
 
 #endif /* InstructionObject_h */

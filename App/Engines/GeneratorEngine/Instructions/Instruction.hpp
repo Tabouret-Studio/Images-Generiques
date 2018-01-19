@@ -25,10 +25,10 @@ public:
 	/**
 	 Execute the instruction with the given VectorImage
 
-	 @param vectorImage The VectorImage to use
+	 @param vectorImages The VectorImage to use
 	 @return A new, transformed VectorImage
 	 */
-	virtual VectorImage * execute(VectorImage * vectorImage) = 0;
+	virtual std::vector<VectorImage *> execute(std::vector<VectorImage *> vectorImages) = 0;
 
 	/**
 	 Set the parameters to use when executing

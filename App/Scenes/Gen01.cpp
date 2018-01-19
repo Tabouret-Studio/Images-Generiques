@@ -43,7 +43,7 @@ namespace Scenes
 			INSTRUCTION_PATHS_CHAINING
 		});
 
-		VectorImage * imageTransformed = group.execute(m_svg);
+		VectorImage * imageTransformed = group.execute({m_svg})[0];
 
 		//Export
 		SVGExporter exporter;

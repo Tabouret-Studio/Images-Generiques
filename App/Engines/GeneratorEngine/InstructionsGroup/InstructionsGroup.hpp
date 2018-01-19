@@ -26,10 +26,10 @@ public:
 	/**
 	 Call the execute function of all the instructions in the group
 
-	 @param vectorImage The starting VectorImage
+	 @param vectorImages The starting VectorImage
 	 @return A new vectorImage with all the instruction applied on
 	 */
-	VectorImage * execute(VectorImage * vectorImage);
+	std::vector<VectorImage *> execute(std::vector<VectorImage *> vectorImages);
 
 	/**
 	 Add a new instruction to the group

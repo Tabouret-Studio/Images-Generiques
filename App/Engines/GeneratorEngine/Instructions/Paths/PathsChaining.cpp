@@ -13,9 +13,9 @@ Instruction * PathsChaining::get()
 	return new PathsChaining();
 }
 
-VectorImage * PathsChaining::execute(VectorImage * vectorImage)
+std::vector<VectorImage *> PathsChaining::execute(std::vector<VectorImage *> vectorImages)
 {
-	std::vector<Bezier> paths = vectorImage->getBeziers();
+	std::vector<Bezier> paths = vectorImages[0]->getBeziers();
 
 	glm::vec2 lastPos(0, 0);
 	Shape shape;
@@ -29,5 +29,5 @@ VectorImage * PathsChaining::execute(VectorImage * vectorImage)
 		shape << path;
 	}
 
-	return new VectorImage(vectorImage->getWidth(), vectorImage->getHeight(), shape);
+	return {new VectorImage(vectorImages[0]->getWidth(), vectorImages[0]->getHeight(), shape)};
 }
