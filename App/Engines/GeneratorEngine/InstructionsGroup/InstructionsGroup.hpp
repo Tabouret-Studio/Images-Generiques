@@ -11,6 +11,7 @@
 
 //////////////////////
 //Forward declarations
+class InstructionParameters;
 
 #include "../GeneratorEngine.hpp"
 #include "../InstructionObject.hpp"
@@ -51,6 +52,21 @@ public:
 	 @return All the instruction in a pointer
 	 */
 	inline std::vector<InstructionObject *> getInstructions() const { return m_instructions; };
+
+	/**
+	 Set the given parameter for the instruction.s
+
+	 @param params InstructionParameters object
+	 */
+	void setParameters(InstructionParameters * params);
+
+	/**
+	 Set the given parameters to all the instructions in the group
+	 The number of given params must match the number of instructions in the group
+
+	 @param params An array of parameters object
+	 */
+	void setParameters(const std::vector<InstructionParameters *> &params);
 
 private:
 	std::vector<InstructionObject *> m_instructions;

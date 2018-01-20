@@ -41,3 +41,17 @@ void InstructionsGroup::addInstructions(const std::vector<InstructionName> &inst
 	for(InstructionName instructionName : instructionNames)
 		addInstruction(instructionName);
 }
+
+void InstructionsGroup::setParameters(InstructionParameters * params)
+{
+	for(InstructionObject * instructionObject : m_instructions)
+		instructionObject->setParameters(params);
+}
+
+void InstructionsGroup::setParameters(const std::vector<InstructionParameters *> &params)
+{
+	if(params.size() != m_instructions.size())
+		throw new std::runtime_error("Could not set parameters.\nNumber of given parameters must match the number of Instructions in the group.");
+
+
+}

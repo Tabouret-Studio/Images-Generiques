@@ -23,6 +23,13 @@ public:
 	 @return A new vector image with the instruction applied on
 	 */
 	virtual std::vector<VectorImage *> execute(std::vector<VectorImage *> vectorImages) = 0;
+
+	/**
+	 Set the given parameter for the instruction.s
+
+	 @param params InstructionParameters object
+	 */
+	virtual void setParameters(InstructionParameters * params) = 0;
 };
 
 #endif /* InstructionObject_h */
