@@ -14,6 +14,7 @@
 #include "Engines/RessourcesEngine/Elements/Font.hpp"
 #include "Engines/RessourcesEngine/Elements/Image.hpp"
 #include "Core/AppObject.hpp"
+#include "Utils/DrawCursor.hpp"
 
 #include <functional>
 
@@ -59,7 +60,7 @@ void Item::setTextures(const GLuint &idleTexture, const GLuint &activeTexture)
 void Item::setTextures(const rId &idleTexture, const rId &activeTexture)
 {
 	m_idleTexture = ((Image*)(App->ressourcesEngine->getAsset(idleTexture)))->getTextureID();
-	m_activeTexture = ((Image*)(App->ressourcesEngine->getAsset(activeTexture)))->getTextureID();;
+	m_activeTexture = ((Image*)(App->ressourcesEngine->getAsset(activeTexture)))->getTextureID();
 }
 
 void Item::setFont(Font * font, const std::string &caption)
@@ -78,7 +79,6 @@ void Item::setCaption(const std::string &caption)
 	m_caption = caption;
 
 	m_tile = m_font->genCaption(m_caption);
-	m_tile->setProgram(App->getDefaultProgram());
 	m_tile->getCursor()->translate(m_posX, m_posY, 0);
 	m_tile->generate();
 }
@@ -149,8 +149,8 @@ void Item::print()
 	}
 
 	//Display item
-	DrawCursor pos = m_tile->getCursor()->getMatrix();
-	App->renderEngine->render(m_tile, pos.translate(0, 0, m_zIndex));
+	DrawCursor cursor;
+	App->renderEngine->render(m_tile, cursor.translate(m_posX, m_posY, 0));
 }
 
 void Item::action()

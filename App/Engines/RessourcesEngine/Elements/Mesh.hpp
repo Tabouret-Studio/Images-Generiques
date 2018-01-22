@@ -33,10 +33,11 @@ public:
 
 	/**
 	 Return the number of vertex in the mesh
+	 Shortcut for *getVertexList().size()*
 
 	 @return Number of vertex
 	 */
-	GLsizei getVertexCount() const { return m_vertexCount; }
+	unsigned long getVertexCount() const { return m_vertexList.size(); }
 
 	/**
 	 Return the texture ID used by the mesh
@@ -68,20 +69,6 @@ public:
 	 @param vertexList A vector of Vertex
 	 */
 	inline void fillVertex(const std::vector<Vertex> &vertexList) { m_vertexList = vertexList; };
-	
-	/**
-	 Append new vertex to the existing ones
-
-	 @param vertexList A vector of vertex
-	 */
-	void appendVertex(const std::vector<Vertex> &vertexList);
-
-	/**
-	 Append a new vertex to the existing one
-
-	 @param vertex A vertex
-	 */
-	void appendVertex(const Vertex &vertex);
 
 	/**
 	 Set the texture ID for the mesh
@@ -108,6 +95,7 @@ public:
 	 @return Pointer to the vbo
 	 */
 	inline GLuint * getVBO() { return &m_vbo; };
+	inline const GLuint * getVBO() const { return &m_vbo; };
 
 	/**
 	 Get a pointer to the mesh VAO ID
@@ -115,6 +103,7 @@ public:
 	 @return Pointer to the vao
 	 */
 	inline GLuint * getVAO() { return &m_vao; };
+	inline const GLuint * getVAO() const { return &m_vao; };
 
 	/**
 	 Return the drawing cursor of the object
@@ -145,7 +134,33 @@ public:
 	 */
 	inline GLenum getRenderFormat() const { return m_renderFormat; };
 
+	void render() const;
+
 	~Mesh();
+
+	///////////
+	//Operators
+
+	/**
+	 Append new vertex to the existing ones
+
+	 @param vertexList A vector of vertex
+	 */
+	Mesh &operator <<(const std::vector<Vertex> &vertexList);
+
+	/**
+	 Append a new vertex to the existing one
+
+	 @param vertex A vertex
+	 */
+	Mesh &operator <<(const Vertex &vertex);
+
+	/**
+	 Append a new vertex to the existing one
+
+	 @param mesh A vertex
+	 */
+	Mesh &operator <<(const Mesh * mesh);
 
 private:
 	//Vertex
@@ -154,6 +169,7 @@ private:
 
 	GLuint m_vbo;
 	GLuint m_vao;
+	bool m_generated;
 
 	//Position
 	DrawCursor m_cursor;
@@ -166,6 +182,8 @@ private:
 
 	//Render type
 	GLenum m_renderFormat;
+
+	void deleteBuffers();
 };
 
 #endif /* Mesh_hpp */

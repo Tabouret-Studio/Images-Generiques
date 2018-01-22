@@ -15,6 +15,9 @@ class Asset;
 
 #include <iostream>
 
+/**
+ Mother class for all importers of the app
+ */
 class Importer
 {
 public:

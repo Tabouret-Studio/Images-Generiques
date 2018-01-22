@@ -2,6 +2,9 @@
 
 #include <string>
 
+/**
+ GLIIMAC class for file path manipulation
+ */
 class FilePath
 {
 public:

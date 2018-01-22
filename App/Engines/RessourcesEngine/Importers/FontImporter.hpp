@@ -15,6 +15,9 @@ class Asset;
 
 #include "Importer.hpp"
 
+/**
+ Import font file (TTF, OTF)
+ */
 class FontImporter: public Importer
 {
 public:

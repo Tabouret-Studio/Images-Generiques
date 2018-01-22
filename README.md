@@ -12,6 +12,6 @@ The following libraries need to be installed on you machine
 * FreeType2
 
 
-The following libraries need to be installed in the _libs_ folder in order for IMACMAN to compile.
+The following libraries need to be installed on your machine or at the root of the _libs_ folder in order for ImagesGeneriques to compile.
 * boost : libs/boost
 * glm : libs/glm

@@ -8,12 +8,13 @@
 
 #include "Val01.hpp"
 
-#include "Utils/Bezier.hpp"
-#include "Utils/Vertex.hpp"
+#include "Utils/Vector/Bezier.hpp"
 
 #include "Engines/RessourcesEngine/Elements/VectorImage.hpp"
+#include "Engines/RessourcesEngine/Elements/Font.hpp"
 #include "Engines/RessourcesEngine/Elements/Mesh.hpp"
 #include "Engines/RenderEngine/RenderEngine.hpp"
+#include "Engines/AppEngine/AppEngine.hpp"
 #include "Utils/Selector/Item.hpp"
 
 namespace Scenes
@@ -33,14 +34,18 @@ namespace Scenes
 	{
 		//Load SVG
 		//Utils::NSVG svg = Utils::NSVG("Assets/SVG/ml.svg");
-		rId svgID = App->ressourcesEngine->loadAsset("github.svg", VECTOR);
-		VectorImage * svg = *App->ressourcesEngine->getAsset(svgID);
+		rId svgID = App->ressourcesEngine->loadAsset("artist.svg", VECTOR);
+		m_svg = *App->ressourcesEngine->getAsset(svgID);
 
-		m_mesh = svg->getMesh();
+		m_mesh = m_svg->getMesh();
 		m_mesh->generate();
-		m_mesh->setRenderFormat(GL_POINTS);
+//		m_mesh->getCursor()
+//		->translate(App->getWidth()/2, App->getHeight()/2, 0);
 
 		App->renderEngine->setProjection2D();
+
+
+		//std::cout << "Val 01 init" << std::endl;
 	}
 
 
@@ -49,6 +54,7 @@ namespace Scenes
 	///////////
 	void Val01::execute()
 	{
+		//std::cout << "Val 01 executed" << std::endl;
 	}
 
 
@@ -57,6 +63,10 @@ namespace Scenes
 	///////////
 	void Val01::render()
 	{
+		App->renderEngine->setProjection2D();
+
 		App->renderEngine->render(m_mesh, m_mesh->getCursor());
+
+		//std::cout << "Val 01 rendered" << std::endl;
 	}
 }

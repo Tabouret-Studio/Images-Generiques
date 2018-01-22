@@ -8,17 +8,28 @@
 
 #include "Bezier.hpp"
 
+#include "Engines/RessourcesEngine/Elements/Mesh.hpp"
+
 #include <iostream>
 
-std::vector<glm::vec2> Bezier::getPoints(const uint &pointCount) const
+
+void Bezier::setDimensions(const float &width, const float &height)
+{
+	m_dimensions = glm::vec2(width, height);
+}
+
+std::vector<glm::vec2> Bezier::getPoints(const float &precision) const
 {
 	std::vector<glm::vec2> vertices;
 	uint pc;
 
-	if(pointCount == 0)
-		 pc = getLength() * 2.f;
+	if(precision <= 0)
+		return vertices;
+	else if(precision <= 1)
+		 pc = getLength() * 2.f * precision;
 	else
-		pc = pointCount;
+		pc = precision;
+
 
 	float step = 1.f / (float)pc;
 
@@ -64,7 +75,6 @@ float Bezier::getLength() const
 		previous_dot = dot;
 
 		dot = getPoint((float) i * stepsCoef);
-		std::cout << "STEP : " << (float) i * stepsCoef << std::endl;
 
 		if(i == 0)
 			continue;
@@ -73,4 +83,39 @@ float Bezier::getLength() const
 	}
 
 	return length;
+}
+
+Mesh * Bezier::getMesh() const
+{
+	Mesh * mesh = new Mesh();
+
+	std::vector<glm::vec2> points = getPoints();
+
+	for(std::vector<glm::vec2>::const_iterator it = points.begin(); it != points.end(); ++it)
+	{
+		*mesh << Vertex(glm::vec3(*it, 0));
+	}
+
+	mesh->getCursor()->setMatrix(m_cursor);
+
+	return mesh;
+}
+
+void Bezier::applyCursor(const DrawCursor * cursor)
+{
+	Vertex temp;
+
+	m_startPoint = glm::vec2(cursor->getMatrix() * glm::vec4(m_startPoint, 0, 1));
+	m_startHandle = glm::vec2(cursor->getMatrix() * glm::vec4(m_startHandle, 0, 1));
+	m_endHandle = glm::vec2(cursor->getMatrix() * glm::vec4(m_endHandle, 0, 1));
+	m_endPoint = glm::vec2(cursor->getMatrix() * glm::vec4(m_endPoint, 0, 1));
+
+	m_dimensions = glm::vec2(cursor->getMatrix() * glm::vec4(m_dimensions, 0, 0));
+}
+
+void Bezier::move(const glm::vec2 &dest)
+{
+	glm::vec2 distanceVec = dest - m_startPoint;
+	m_cursor.translate(glm::vec3(distanceVec, 0));
+	applyCursor();
 }

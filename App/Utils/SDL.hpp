@@ -12,6 +12,9 @@
 #include "libraries.hpp"
 #include "Core/AppObject.hpp"
 
+/**
+ Collection of shortcuts for SDL functions
+ */
 namespace SDL
 {
 	/**

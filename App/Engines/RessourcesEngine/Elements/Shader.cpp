@@ -13,7 +13,7 @@
 Shader::Shader(std::string shaderPath, GLenum shaderType):
 	Asset(SHADER),
 	m_shaderPath(shaderPath),
-	m_shaderID(glCreateShader(shaderType)) {};
+	m_shaderID(glCreateShader(shaderType)) {}
 
 void Shader::setSource(const char * source)
 {
