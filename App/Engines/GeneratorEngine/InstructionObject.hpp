@@ -9,6 +9,11 @@
 #ifndef InstructionObject_h
 #define InstructionObject_h
 
+//////////////////////
+//Forward declarations
+
+class InstructionParameters;
+
 #include "Engines/RessourcesEngine/Elements/VectorImage.hpp"
 
 #include <vector>
@@ -19,7 +24,7 @@ public:
 	/**
 	 Execute the instruction
 
-	 @param vectorImage The vector image to use for the instruction
+	 @param vectorImages The vector image to use for the instruction
 	 @return A new vector image with the instruction applied on
 	 */
 	virtual std::vector<VectorImage *> execute(std::vector<VectorImage *> vectorImages) = 0;
