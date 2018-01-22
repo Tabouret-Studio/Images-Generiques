@@ -15,6 +15,7 @@
 #include "Engines/RenderEngine/RenderEngine.hpp"
 #include "Engines/GeneratorEngine/GeneratorEngine.hpp"
 
+#include "Utils/ShaderProgram.hpp"
 #include "Utils/FilePath.hpp"
 
 #include <iostream>
@@ -100,4 +101,15 @@ void Igniter::igniteOpenGL()
 	glEnable(GL_PROGRAM_POINT_SIZE);
 	glPointSize(1);
 	glEnable(GL_MULTISAMPLE_ARB);
+}
+
+void Igniter::igniteEngines()
+{
+	//Init random generator
+	std::srand(std::time(0));
+
+	//Preload default shaderProgram
+	App->setDefaultProgram(new ShaderProgram("main.vs.glsl", "main.fs.glsl"));
+
+	App->renderEngine->initRender();
 }

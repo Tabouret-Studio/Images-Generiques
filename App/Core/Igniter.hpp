@@ -38,6 +38,9 @@ public:
 	 */
 	void igniteOpenGL();
 
+	/**
+	 Ignite engines that need to perform operation after initializing OpenGL
+	 */
 	void igniteEngines();
 };
 
