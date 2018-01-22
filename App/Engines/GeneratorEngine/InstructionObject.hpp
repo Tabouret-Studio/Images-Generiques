@@ -35,6 +35,11 @@ public:
 	 @param params InstructionParameters object
 	 */
 	virtual void setParameters(InstructionParameters * params) = 0;
+
+	/**
+	 Default destructor
+	 */
+	virtual ~InstructionObject() = default;
 };
 
 #endif /* InstructionObject_h */

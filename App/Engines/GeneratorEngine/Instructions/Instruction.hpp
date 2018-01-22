@@ -44,10 +44,20 @@ public:
 	 */
 	inline InstructionParameters *  getParameters() { return m_parameters; };
 
-protected:
-	Instruction() {};
+	/**
+	 Default destructor
+	 Erase the parameters
+	 */
+	virtual ~Instruction()
+	{
+		if(m_parameters != nullptr)
+			delete m_parameters;
+	};
 
-	InstructionParameters * m_parameters = nullptr;
+protected:
+	Instruction(): m_parameters(nullptr) {};
+
+	InstructionParameters * m_parameters;
 };
 
 /////////////////////////////////

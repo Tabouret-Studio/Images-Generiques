@@ -53,5 +53,18 @@ void InstructionsProtocol::setParameters(const std::vector<InstructionParameters
 	if(params.size() != m_instructions.size())
 		throw new std::runtime_error("Could not set parameters.\nNumber of given parameters must match the number of Instructions in the group.");
 
+	int i = 0;
 
+	for(std::vector<InstructionObject *>::iterator it = m_instructions.begin(); it != m_instructions.end(); ++it, ++i)
+	{
+		(*it)->setParameters(params[i]);
+	}
+}
+
+InstructionsProtocol::~InstructionsProtocol()
+{
+	for(std::vector<InstructionObject *>::iterator it = m_instructions.begin(); it != m_instructions.end(); ++it)
+	{
+		delete *it;
+	}
 }
