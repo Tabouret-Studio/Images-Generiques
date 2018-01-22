@@ -12,6 +12,11 @@
 #include <string>
 #include <map>
 
+/**
+ List of float parameters to send to Instructions.
+ @warning This is a sensible class, it will throw exception in case of bad manipulation.
+ */
+
 class InstructionParameters
 {
 public:

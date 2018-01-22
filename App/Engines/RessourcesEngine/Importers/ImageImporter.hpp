@@ -15,6 +15,9 @@ class Asset;
 
 #include "Importer.hpp"
 
+/**
+ Import an image (PNG, JPG)
+ */
 class ImageImporter: public Importer
 {
 public:

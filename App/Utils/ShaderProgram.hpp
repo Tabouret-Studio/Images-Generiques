@@ -16,6 +16,10 @@ class Shader;
 
 #include <map>
 
+/**
+ A shader program holds an OpenGL program composed of 2 shaders (vs & fs).
+ It allow for easy manipulation, activation, and optimize shaders usage by preventing repetitive activation of same program.
+ */
 class ShaderProgram
 {
 public:

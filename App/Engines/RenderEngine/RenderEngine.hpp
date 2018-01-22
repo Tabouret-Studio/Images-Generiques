@@ -17,7 +17,10 @@ class Mesh;
 #include "libraries.hpp"
 #include "Utils/DrawCursor.hpp"
 
-//The engine
+/**
+ All major OpenGL interactions are holds here
+ Allow for easy interactions with OpenGL
+ */
 class RenderEngine
 {
 public:

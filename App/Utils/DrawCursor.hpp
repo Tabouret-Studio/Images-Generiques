@@ -11,6 +11,11 @@
 
 #include "libraries.hpp"
 
+/**
+ A DrawCursor, commonly refered to as cursor, allow for easy manipulation of 4x4 matrix.
+ A DrawCursor holds a 4x4 matrix that can be used for 2D/3D tranformations.
+ DrawCursors implement operator surcharge and can be implicitly casted as a glm::mat4
+ */
 class DrawCursor
 {
 public:

@@ -14,6 +14,9 @@ class Asset;
 
 #include "Importer.hpp"
 
+/**
+ Import an SVG file
+ */
 class SVGImporter: public Importer
 {
 public:

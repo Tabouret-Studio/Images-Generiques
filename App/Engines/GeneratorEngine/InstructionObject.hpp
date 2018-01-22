@@ -18,6 +18,9 @@ class InstructionParameters;
 
 #include <vector>
 
+/**
+ Mother class to allow for same treatement of Instructions and InstructionsProtocols
+ */
 class InstructionObject
 {
 public:

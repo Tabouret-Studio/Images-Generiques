@@ -16,6 +16,9 @@ class Asset;
 
 #include "libraries.hpp"
 
+/**
+ Shader Importer
+ */
 class ShaderImporter: public Importer
 {
 public:

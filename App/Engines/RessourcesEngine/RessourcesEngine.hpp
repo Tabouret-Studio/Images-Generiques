@@ -29,8 +29,17 @@ class Mesh;
 #include <vector>
 #include <map>
 
-
-//The engine
+/**
+ The ressource engine allows for easy importation and storage of external assets used by the app.
+ It optimize ressources by preventing multiple importation of same file
+ It support a wide range of format thanks to its multiple importers.
+ - Images : PNG, JPG
+ - Meshs : Blend, OBJ, etc. (Not activated)
+ - Fonts : TTF, OTF
+ - Shaders : GLSL (file must end with fs.glsl or vs.glsl)
+ - Sounds : Not made yet
+ - Vectors : SVG
+ */
 class RessourcesEngine
 {
 public:

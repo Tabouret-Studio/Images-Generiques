@@ -7,7 +7,9 @@ class VectorImage;
 #include "Utils/Vector/Bezier.hpp"
 #include "Utils/Vector/Shape.hpp"
 
-
+/**
+ Export a VectorImage as an SVG file
+ */
 class SVGExporter
 {
 public:

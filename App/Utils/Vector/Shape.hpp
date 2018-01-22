@@ -18,6 +18,9 @@ class Mesh;
 #include "Utils/DrawCursor.hpp"
 #include "Bezier.hpp"
 
+/**
+ Allow for easy manipulation of 2D shapes composed of bezier curves.
+ */
 class Shape
 {
 public:

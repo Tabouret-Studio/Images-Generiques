@@ -12780,10 +12780,8 @@
 		39D90C141FDAEDDC00282ED1 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		39D90C161FDAEE1400282ED1 /* Makefile */ = {isa = PBXFileReference; explicitFileType = sourcecode.make; path = Makefile; sourceTree = "<group>"; usesTabs = 1; };
 		39D90C181FDAEE8400282ED1 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
-		39D90C191FDAEE8400282ED1 /* main.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = main.hpp; sourceTree = "<group>"; };
 		39D90C2A1FDAEF0F00282ED1 /* AppEngine.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = AppEngine.hpp; sourceTree = "<group>"; };
 		39D90C2C1FDAEF0F00282ED1 /* AppEngine.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AppEngine.cpp; sourceTree = "<group>"; };
-		39D90C3B1FDAF0EB00282ED1 /* thisFileToSyncThisEmptyFolder */ = {isa = PBXFileReference; lastKnownFileType = text; path = thisFileToSyncThisEmptyFolder; sourceTree = "<group>"; };
 		39D90C3E1FDB403E00282ED1 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
 		39D90C401FDB40D300282ED1 /* libglfw3.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libglfw3.a; path = ../../../../../usr/local/lib/libglfw3.a; sourceTree = "<group>"; };
 		39D90C6E1FDB4D3800282ED1 /* libSDL-1.2.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libSDL-1.2.0.dylib"; path = "../../../../../usr/local/Cellar/sdl/1.2.15/lib/libSDL-1.2.0.dylib"; sourceTree = "<group>"; };
@@ -34233,7 +34231,6 @@
 				39D90C351FDAEF6100282ED1 /* Engines */,
 				39D90C3A1FDAF0C400282ED1 /* build */,
 				39D90C181FDAEE8400282ED1 /* main.cpp */,
-				39D90C191FDAEE8400282ED1 /* main.hpp */,
 				392C9E8F200901370006ECB9 /* libraries.hpp */,
 				3952DCAA200BEBCE0098779F /* libraries.cpp */,
 				39D90C161FDAEE1400282ED1 /* Makefile */,
@@ -34267,7 +34264,6 @@
 			children = (
 				390196C91FDDD956000F2113 /* assets */,
 				39AF3CD11FDB541F0089622E /* ImagesGeneriques */,
-				39D90C3B1FDAF0EB00282ED1 /* thisFileToSyncThisEmptyFolder */,
 			);
 			path = build;
 			sourceTree = "<group>";

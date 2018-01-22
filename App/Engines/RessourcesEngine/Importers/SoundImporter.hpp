@@ -14,6 +14,10 @@ class Asset;
 
 #include "Importer.hpp"
 
+/**
+ Sound importer
+ @warning Not implemented yet
+ */
 class SoundImporter: public Importer
 {
 public:

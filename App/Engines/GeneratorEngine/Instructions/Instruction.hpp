@@ -12,6 +12,11 @@
 #include "../InstructionObject.hpp"
 #include "../InstructionParameters.hpp"
 
+/**
+ An Instruction uses one or more VectorImage.
+ It returns a new one based on modifications made with the given ones.
+ Each instruction is independant and can be used in combination with any other.
+ */
 class Instruction: public InstructionObject
 {
 public:
@@ -60,14 +65,10 @@ protected:
 	InstructionParameters * m_parameters;
 };
 
-/////////////////////////////////
-//All the instructions comes here
 
 //Paths
 #include "Paths/PathsOrderRandomizer.hpp"
 #include "Paths/PathsChaining.hpp"
 
-//
-/////////////////////////////////
 
 #endif /* Instruction_h */

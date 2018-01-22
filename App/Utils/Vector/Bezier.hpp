@@ -17,6 +17,10 @@ class Mesh;
 
 #include "Utils/DrawCursor.hpp"
 
+/**
+ Allow for easy manipulation of bezier curves.
+ A bezier curve is composed of 4 points and defines a curve.
+ */
 class Bezier
 {
 public:

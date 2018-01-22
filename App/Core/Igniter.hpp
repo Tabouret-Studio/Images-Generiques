@@ -11,7 +11,10 @@
 
 #include "libraries.hpp"
 
-
+/**
+ Instanciate the AppObject, engines, and start the window context.
+ All initializations that should be performs only once in the app life must be called from here.
+ */
 class Igniter
 {
 public:

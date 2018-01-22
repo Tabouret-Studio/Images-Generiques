@@ -16,6 +16,11 @@ class Mesh;
 
 #include <vector>
 
+/**
+ Group of mesh for easier manipulation.
+ Provide a unfied Render method for easier rendering and lighter code
+ as well as Cursor for whole group transformation.
+ */
 class MeshGroup
 {
 public:

@@ -7,6 +7,10 @@
 
 #define VERTEX_DEFAULT_COLOR glm::vec4(0, 0, 0, 1)
 
+/**
+ Strucure use to communicate vertex information to the GC
+ Its main goal is to provide a unified interface to communicate with the GC no matter the type of the element being sent
+*/
 struct Vertex
 {
 	glm::vec3 position;

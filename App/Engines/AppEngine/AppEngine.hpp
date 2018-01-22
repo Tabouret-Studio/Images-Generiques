@@ -57,7 +57,9 @@ struct mouse {
 	int pointerPositionY = 0;
 };
 
-//The engine
+/**
+ Holds key features of the apps such as events, scene execution and rendering, etc.
+ */
 class AppEngine
 {
 public:

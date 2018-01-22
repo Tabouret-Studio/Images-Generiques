@@ -16,6 +16,9 @@ class InstructionParameters;
 #include "../GeneratorEngine.hpp"
 #include "../InstructionObject.hpp"
 
+/**
+ Holds a list of instructions to be executed in the given order
+*/
 class InstructionsProtocol: public InstructionObject
 {
 public:

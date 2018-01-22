@@ -20,6 +20,10 @@ class ShaderProgram;
 
 #include "libraries.hpp"
 
+/**
+ The AppObject, accessible globally as App, holds all the vital informations of the apps.
+ It contains access to the engines, the scenes, the window, and other usefull informations.
+ */
 class AppObject
 {
 public:
@@ -36,15 +40,13 @@ public:
 	 */
 	inline std::string getAppPath() const { return m_appPath; }
 
-	/////////
-	//Engines
+	/// Engines
 	AppEngine * appEngine;
 	RessourcesEngine * ressourcesEngine;
 	RenderEngine * renderEngine;
 	GeneratorEngine * generatorEngine;
 
-	////////////
-	//SDL Window
+	/// SDL Window
 	SDL_Window * mainWindow;
 
 	/**
