@@ -48,7 +48,7 @@
 		3967C59420122948006E31AB /* PathsOrderRandomizer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3967C59220122948006E31AB /* PathsOrderRandomizer.cpp */; };
 		3967C59720122C51006E31AB /* PathsChaining.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3967C59520122C51006E31AB /* PathsChaining.cpp */; };
 		3967C59E20122EF8006E31AB /* SVGExporter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3967C59B20122EF8006E31AB /* SVGExporter.cpp */; };
-		3967C5A02012308F006E31AB /* InstructionsGroup.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3967C59F2012308F006E31AB /* InstructionsGroup.cpp */; };
+		3967C5A02012308F006E31AB /* InstructionsProtocol.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3967C59F2012308F006E31AB /* InstructionsProtocol.cpp */; };
 		3967C5A320123687006E31AB /* GeneratorEngine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3967C5A120123687006E31AB /* GeneratorEngine.cpp */; };
 		39AF3CCC1FDB4FE10089622E /* SDL2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39AF3CCB1FDB4FE10089622E /* SDL2.framework */; };
 		39AF3CD01FDB51AD0089622E /* RenderEngine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39AF3CCE1FDB51AD0089622E /* RenderEngine.cpp */; };
@@ -12762,14 +12762,14 @@
 		3967C58120121F2A006E31AB /* InstructionParameters.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = InstructionParameters.cpp; sourceTree = "<group>"; };
 		3967C58220121F2A006E31AB /* InstructionParameters.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = InstructionParameters.hpp; sourceTree = "<group>"; };
 		3967C58E201225E8006E31AB /* InstructionObject.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = InstructionObject.hpp; sourceTree = "<group>"; };
-		3967C59020122666006E31AB /* InstructionsGroup.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = InstructionsGroup.hpp; sourceTree = "<group>"; };
+		3967C59020122666006E31AB /* InstructionsProtocol.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = InstructionsProtocol.hpp; sourceTree = "<group>"; };
 		3967C59220122948006E31AB /* PathsOrderRandomizer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = PathsOrderRandomizer.cpp; sourceTree = "<group>"; };
 		3967C59320122948006E31AB /* PathsOrderRandomizer.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = PathsOrderRandomizer.hpp; sourceTree = "<group>"; };
 		3967C59520122C51006E31AB /* PathsChaining.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = PathsChaining.cpp; sourceTree = "<group>"; };
 		3967C59620122C51006E31AB /* PathsChaining.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = PathsChaining.hpp; sourceTree = "<group>"; };
 		3967C59B20122EF8006E31AB /* SVGExporter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SVGExporter.cpp; sourceTree = "<group>"; };
 		3967C59C20122EF8006E31AB /* SVGExporter.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = SVGExporter.hpp; sourceTree = "<group>"; };
-		3967C59F2012308F006E31AB /* InstructionsGroup.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = InstructionsGroup.cpp; sourceTree = "<group>"; };
+		3967C59F2012308F006E31AB /* InstructionsProtocol.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = InstructionsProtocol.cpp; sourceTree = "<group>"; };
 		3967C5A120123687006E31AB /* GeneratorEngine.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = GeneratorEngine.cpp; sourceTree = "<group>"; };
 		3967C5A220123687006E31AB /* GeneratorEngine.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = GeneratorEngine.hpp; sourceTree = "<group>"; };
 		397BE0D01FDAED60006254F0 /* ImagesGeneriques */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = ImagesGeneriques; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -34148,7 +34148,7 @@
 			isa = PBXGroup;
 			children = (
 				3967C57D20120BD4006E31AB /* Instructions */,
-				3967C57C20120BCB006E31AB /* InstructionsGroup */,
+				3967C57C20120BCB006E31AB /* InstructionsProtocol */,
 				3967C58120121F2A006E31AB /* InstructionParameters.cpp */,
 				3967C58220121F2A006E31AB /* InstructionParameters.hpp */,
 				3967C58E201225E8006E31AB /* InstructionObject.hpp */,
@@ -34158,13 +34158,13 @@
 			path = GeneratorEngine;
 			sourceTree = "<group>";
 		};
-		3967C57C20120BCB006E31AB /* InstructionsGroup */ = {
+		3967C57C20120BCB006E31AB /* InstructionsProtocol */ = {
 			isa = PBXGroup;
 			children = (
-				3967C59020122666006E31AB /* InstructionsGroup.hpp */,
-				3967C59F2012308F006E31AB /* InstructionsGroup.cpp */,
+				3967C59020122666006E31AB /* InstructionsProtocol.hpp */,
+				3967C59F2012308F006E31AB /* InstructionsProtocol.cpp */,
 			);
-			path = InstructionsGroup;
+			path = InstructionsProtocol;
 			sourceTree = "<group>";
 		};
 		3967C57D20120BD4006E31AB /* Instructions */ = {
@@ -34403,7 +34403,7 @@
 				3967C577201117BA006E31AB /* ml2.cpp in Sources */,
 				392C9EB2200902E70006ECB9 /* Item.cpp in Sources */,
 				3952DCB1200BFC600098779F /* VectorImage.cpp in Sources */,
-				3967C5A02012308F006E31AB /* InstructionsGroup.cpp in Sources */,
+				3967C5A02012308F006E31AB /* InstructionsProtocol.cpp in Sources */,
 				392C9EB7200902E70006ECB9 /* SDL.cpp in Sources */,
 				3967C57A2011F94D006E31AB /* Gen01.cpp in Sources */,
 				3952DCBA200E4BB50098779F /* Shape.cpp in Sources */,

@@ -16,7 +16,7 @@
 #include "Engines/RessourcesEngine/Exporters/SVGExporter.hpp"
 
 #include "Engines/GeneratorEngine/GeneratorEngine.hpp"
-#include "Engines/GeneratorEngine/InstructionsGroup/InstructionsGroup.hpp"
+#include "Engines/GeneratorEngine/InstructionsProtocol/InstructionsProtocol.hpp"
 
 namespace Scenes
 {
@@ -38,12 +38,12 @@ namespace Scenes
 		m_svg = *App->ressourcesEngine->getAsset(svgID);
 
 		//Instructions
-		InstructionsGroup group({
+		InstructionsProtocol protocol({
 			INSTRUCTION_PATHS_ORDER_RANDOMIZER,
 			INSTRUCTION_PATHS_CHAINING
 		});
 
-		VectorImage * imageTransformed = group.execute({m_svg})[0];
+		VectorImage * imageTransformed = protocol.execute({m_svg})[0];
 
 		//Export
 		SVGExporter exporter;
