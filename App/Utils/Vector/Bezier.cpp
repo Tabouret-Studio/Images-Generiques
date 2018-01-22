@@ -112,3 +112,10 @@ void Bezier::applyCursor(const DrawCursor * cursor)
 
 	m_dimensions = glm::vec2(cursor->getMatrix() * glm::vec4(m_dimensions, 0, 0));
 }
+
+void Bezier::move(const glm::vec2 &dest)
+{
+	glm::vec2 distanceVec = dest - m_startPoint;
+	m_cursor.translate(glm::vec3(distanceVec, 0));
+	applyCursor();
+}

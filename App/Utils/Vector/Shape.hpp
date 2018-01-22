@@ -21,10 +21,13 @@ class Mesh;
 class Shape
 {
 public:
-	Shape();
+	Shape() {};
+
+	Shape(const Bezier &path):
+		m_paths({path}) {};
 
 	Shape(const std::vector<Bezier> &paths):
-	m_paths(paths) {};
+		m_paths(paths) {};
 
 	/**
 	 Return all the paths in the shape
@@ -54,6 +57,11 @@ public:
 	 @return A Mesh
 	 */
 	Mesh * getMesh() const;
+
+	///////////
+	//Insertion
+
+	Shape &operator << (const Bezier &path);
 
 	/////////////////
 	//Transformations
