@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		39131671200F6FE700F691B5 /* Val02.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3913166F200F6FE700F691B5 /* Val02.cpp */; };
 		39131674200F99A200F691B5 /* ml1.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39131672200F99A000F691B5 /* ml1.cpp */; };
+		391CFE472016409D00780A4C /* PythonInstruction.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 391CFE452016409D00780A4C /* PythonInstruction.cpp */; };
 		392360122009066D00400C45 /* Val01.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3923600E2009066D00400C45 /* Val01.cpp */; };
 		3923601A20090F6000400C45 /* Interactions.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3923601920090F6000400C45 /* Interactions.cpp */; };
 		3923604B2009105600400C45 /* SoundImporter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3923601D2009105500400C45 /* SoundImporter.cpp */; };
@@ -37,6 +38,8 @@
 		392C9EB7200902E70006ECB9 /* SDL.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 392C9EA8200902E70006ECB9 /* SDL.cpp */; };
 		392C9EB8200902E70006ECB9 /* ShaderProgram.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 392C9EAC200902E70006ECB9 /* ShaderProgram.cpp */; };
 		392C9EB9200902E70006ECB9 /* DrawCursor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 392C9EAE200902E70006ECB9 /* DrawCursor.cpp */; };
+		394F942C20161C350065CE25 /* Python.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 394F942B20161C340065CE25 /* Python.framework */; };
+		394F942F2016209C0065CE25 /* Python.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 394F942D2016209C0065CE25 /* Python.cpp */; };
 		3952DCAB200BEBCE0098779F /* libraries.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3952DCAA200BEBCE0098779F /* libraries.cpp */; };
 		3952DCAE200BFA820098779F /* SVGImporter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3952DCAC200BFA820098779F /* SVGImporter.cpp */; };
 		3952DCB1200BFC600098779F /* VectorImage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3952DCAF200BFC600098779F /* VectorImage.cpp */; };
@@ -77,6 +80,8 @@
 		39131670200F6FE700F691B5 /* Val02.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Val02.hpp; sourceTree = "<group>"; };
 		39131672200F99A000F691B5 /* ml1.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ml1.cpp; sourceTree = "<group>"; };
 		39131673200F99A100F691B5 /* ml1.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ml1.hpp; sourceTree = "<group>"; };
+		391CFE452016409D00780A4C /* PythonInstruction.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = PythonInstruction.cpp; path = App/Engines/GeneratorEngine/Instructions/PythonInstruction.cpp; sourceTree = SOURCE_ROOT; };
+		391CFE462016409D00780A4C /* PythonInstruction.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; name = PythonInstruction.hpp; path = App/Engines/GeneratorEngine/Instructions/PythonInstruction.hpp; sourceTree = SOURCE_ROOT; };
 		3923600B2009066D00400C45 /* Val01.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Val01.hpp; sourceTree = "<group>"; };
 		3923600E2009066D00400C45 /* Val01.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Val01.cpp; sourceTree = "<group>"; };
 		3923600F2009066D00400C45 /* Scene.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Scene.hpp; sourceTree = "<group>"; };
@@ -12737,6 +12742,10 @@
 		392C9EAC200902E70006ECB9 /* ShaderProgram.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ShaderProgram.cpp; sourceTree = "<group>"; };
 		392C9EAD200902E70006ECB9 /* FilePath.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = FilePath.hpp; sourceTree = "<group>"; };
 		392C9EAE200902E70006ECB9 /* DrawCursor.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DrawCursor.cpp; sourceTree = "<group>"; };
+		394F942B20161C340065CE25 /* Python.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Python.framework; path = System/Library/Frameworks/Python.framework; sourceTree = SDKROOT; };
+		394F942D2016209C0065CE25 /* Python.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Python.cpp; sourceTree = "<group>"; };
+		394F942E2016209C0065CE25 /* Python.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Python.hpp; sourceTree = "<group>"; };
+		394F94312016212A0065CE25 /* TEST_TEST_TEST.py */ = {isa = PBXFileReference; explicitFileType = text.script.python; path = TEST_TEST_TEST.py; sourceTree = "<group>"; };
 		3952DCAA200BEBCE0098779F /* libraries.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = libraries.cpp; sourceTree = "<group>"; };
 		3952DCAC200BFA820098779F /* SVGImporter.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = SVGImporter.cpp; sourceTree = "<group>"; };
 		3952DCAD200BFA820098779F /* SVGImporter.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = SVGImporter.hpp; sourceTree = "<group>"; };
@@ -12798,6 +12807,7 @@
 				39AF3CCC1FDB4FE10089622E /* SDL2.framework in Frameworks */,
 				392395DA200A30EF00400C45 /* SDL2_image.framework in Frameworks */,
 				39D90C3F1FDB403E00282ED1 /* OpenGL.framework in Frameworks */,
+				394F942C20161C350065CE25 /* Python.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -12807,6 +12817,7 @@
 		390196C91FDDD956000F2113 /* assets */ = {
 			isa = PBXGroup;
 			children = (
+				394F9430201620D40065CE25 /* instructions */,
 				390196D71FDE7E29000F2113 /* SVG */,
 				390196CA1FDDD95C000F2113 /* Shaders */,
 			);
@@ -34116,6 +34127,8 @@
 				392C9E9F200902E70006ECB9 /* Vertex.hpp */,
 				3967C56F20108C2A006E31AB /* MeshGroup.cpp */,
 				3967C57020108C2A006E31AB /* MeshGroup.hpp */,
+				394F942D2016209C0065CE25 /* Python.cpp */,
+				394F942E2016209C0065CE25 /* Python.hpp */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -34129,6 +34142,14 @@
 				392C9E9B200902E70006ECB9 /* Selector.hpp */,
 			);
 			path = Selector;
+			sourceTree = "<group>";
+		};
+		394F9430201620D40065CE25 /* instructions */ = {
+			isa = PBXGroup;
+			children = (
+				394F94312016212A0065CE25 /* TEST_TEST_TEST.py */,
+			);
+			path = instructions;
 			sourceTree = "<group>";
 		};
 		3952DCB7200E4B980098779F /* Vector */ = {
@@ -34145,7 +34166,7 @@
 		3967C57B20120BAC006E31AB /* GeneratorEngine */ = {
 			isa = PBXGroup;
 			children = (
-				3967C57D20120BD4006E31AB /* Instructions */,
+				3967C57D20120BD4006E31AB /* instructions */,
 				3967C57C20120BCB006E31AB /* InstructionsProtocol */,
 				3967C5A120123687006E31AB /* GeneratorEngine.cpp */,
 				3967C5A220123687006E31AB /* GeneratorEngine.hpp */,
@@ -34165,13 +34186,15 @@
 			path = InstructionsProtocol;
 			sourceTree = "<group>";
 		};
-		3967C57D20120BD4006E31AB /* Instructions */ = {
+		3967C57D20120BD4006E31AB /* instructions */ = {
 			isa = PBXGroup;
 			children = (
 				3967C59820122DF5006E31AB /* Paths */,
 				3967C57E20120BEC006E31AB /* Instruction.hpp */,
+				391CFE452016409D00780A4C /* PythonInstruction.cpp */,
+				391CFE462016409D00780A4C /* PythonInstruction.hpp */,
 			);
-			path = Instructions;
+			path = instructions;
 			sourceTree = "<group>";
 		};
 		3967C59820122DF5006E31AB /* Paths */ = {
@@ -34271,6 +34294,7 @@
 		39D90C3D1FDB403E00282ED1 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				394F942B20161C340065CE25 /* Python.framework */,
 				392360172009092900400C45 /* SDL2_image.framework */,
 				392360152009090C00400C45 /* libassimp.4.0.1.dylib */,
 				39236013200908F600400C45 /* libfreetype.6.dylib */,
@@ -34298,7 +34322,7 @@
 /* Begin PBXLegacyTarget section */
 		39D90C361FDAF04500282ED1 /* Makefile */ = {
 			isa = PBXLegacyTarget;
-			buildArgumentsString = "$(ACTION)";
+			buildArgumentsString = "$(ACTION) -j10";
 			buildConfigurationList = 39D90C371FDAF04500282ED1 /* Build configuration list for PBXLegacyTarget "Makefile" */;
 			buildPhases = (
 			);
@@ -34376,6 +34400,7 @@
 				392C9EB9200902E70006ECB9 /* DrawCursor.cpp in Sources */,
 				392395D8200A2D8400400C45 /* glm.cpp in Sources */,
 				3952DCAE200BFA820098779F /* SVGImporter.cpp in Sources */,
+				391CFE472016409D00780A4C /* PythonInstruction.cpp in Sources */,
 				3967C59420122948006E31AB /* PathsOrderRandomizer.cpp in Sources */,
 				39131674200F99A200F691B5 /* ml1.cpp in Sources */,
 				392360522009105600400C45 /* MeshImporter.cpp in Sources */,
@@ -34402,6 +34427,7 @@
 				3967C5A02012308F006E31AB /* InstructionsProtocol.cpp in Sources */,
 				392C9EB7200902E70006ECB9 /* SDL.cpp in Sources */,
 				3967C57A2011F94D006E31AB /* Gen01.cpp in Sources */,
+				394F942F2016209C0065CE25 /* Python.cpp in Sources */,
 				3952DCBA200E4BB50098779F /* Shape.cpp in Sources */,
 				3967C59720122C51006E31AB /* PathsChaining.cpp in Sources */,
 				392C9EB1200902E70006ECB9 /* AppObject.cpp in Sources */,
@@ -34544,6 +34570,7 @@
 					/usr/local/Cellar/freetype/2.8/include/freetype2,
 					"$(SRCROOT)/App/",
 					"$(SRCROOT)/App/libs/",
+					/System/Library/Frameworks/Python.framework/Versions/2.7/include/python2.7,
 				);
 				LIBRARY_SEARCH_PATHS = (
 					/usr/local/lib,
@@ -34573,6 +34600,7 @@
 					/usr/local/Cellar/freetype/2.8/include/freetype2,
 					"$(SRCROOT)/App/",
 					"$(SRCROOT)/App/libs/",
+					/System/Library/Frameworks/Python.framework/Versions/2.7/include/python2.7,
 				);
 				LIBRARY_SEARCH_PATHS = (
 					/usr/local/lib,
