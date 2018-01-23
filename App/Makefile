@@ -50,9 +50,10 @@ PYTHONFLAGS = -I/System/Library/Frameworks/Python.framework/Versions/2.7/include
 
 # Linux (default)
 else
-LDLIBS += -lGLEW -lGL -lSDL2 -lSDL2_image
-PYTHONLIBS = `python-config --libs`
-PYTHONFLAGS = `python-config --cflags`
+LDLIBS +=-lGLEW -lGL -lSDL2 -lSDL2_image
+LDFLAGS +=
+PYTHONLIBS =-lpython2.7 -lpthread -ldl  -lutil -lm
+PYTHONFLAGS =-I/usr/include/python2.7
 
 endif
 

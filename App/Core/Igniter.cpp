@@ -106,7 +106,7 @@ void Igniter::igniteOpenGL()
 void Igniter::igniteEngines()
 {
 	//Init random generator
-	std::srand(std::time(0));
+	std::srand(unsigned(std::time(0)));
 
 	//Preload default shaderProgram
 	App->setDefaultProgram(new ShaderProgram("main.vs.glsl", "main.fs.glsl"));

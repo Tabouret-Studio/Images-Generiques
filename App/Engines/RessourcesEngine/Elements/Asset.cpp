@@ -24,7 +24,7 @@ bool Asset::isRenderable()
 		default:
 			return false;
 	}
-};
+}
 
 Asset::operator Font*()
 {

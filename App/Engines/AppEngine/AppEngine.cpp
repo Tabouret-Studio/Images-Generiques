@@ -29,7 +29,7 @@ void AppEngine::instanciate()
     m_instanciated = true;
 }
 
-AppEngine::AppEngine() {};
+AppEngine::AppEngine() {}
 
 void AppEngine::executeScenes()
 {
