@@ -33,7 +33,7 @@ void SVGExporter::exportSVG(VectorImage * vectorImg, const std::string &fileName
 
 std::string SVGExporter::shapeToPath(const Shape &shape)
 {
-	glm::vec2 lastPoint = shape.getPaths()[0].getStartPoint() + glm::vec2(1,1);
+	glm::vec3 lastPoint = shape.getPaths()[0].getStartPoint() + glm::vec3(1);
 
 	std::string path = "<path d=\"";
 

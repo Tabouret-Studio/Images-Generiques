@@ -39,12 +39,13 @@ void VectorImagesToJSONExporter::exportJSON(std::vector<VectorImage *> vectorIma
 				nlohmann::json bezierj;
 				bezierj["width"] = bezier.getDimensions().x;
 				bezierj["height"] = bezier.getDimensions().y;
+				bezierj["depth"] = bezier.getDimensions().z;
 
 				bezierj["points"] = {
-					{{"x", bezier.getStartPoint().x}, {"y", bezier.getStartPoint().y}},
-					{{"x", bezier.getStartHandle().x}, {"y", bezier.getStartHandle().y}},
-					{{"x", bezier.getEndHandle().x}, {"y", bezier.getEndHandle().y}},
-					{{"x", bezier.getEndPoint().x}, {"y", bezier.getEndPoint().y}}};
+					{{"x", bezier.getStartPoint().x}, {"y", bezier.getStartPoint().y}, {"z", bezier.getStartPoint().z}},
+					{{"x", bezier.getStartHandle().x}, {"y", bezier.getStartHandle().y}, {"z", bezier.getStartHandle().z}},
+					{{"x", bezier.getEndHandle().x}, {"y", bezier.getEndHandle().y}, {"z", bezier.getStartHandle().z}},
+					{{"x", bezier.getEndPoint().x}, {"y", bezier.getEndPoint().y}, {"z", bezier.getEndPoint().z}}};
 
 				bezierj["cursor"] = cursorToJson(bezier.getCursor());
 

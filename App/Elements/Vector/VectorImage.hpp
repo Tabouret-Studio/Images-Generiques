@@ -75,14 +75,14 @@ public:
 
 	 @return All the points in the image
 	 */
-	inline std::vector<glm::vec2> getPoints() const { return getPoints(1); };
+	inline std::vector<glm::vec3> getPoints() const { return getPoints(1); };
 
 	/**
 	 Return all the points in the image for the given precision
 
 	 @return All the points in the image
 	 */
-	std::vector<glm::vec2> getPoints(const float &precision) const;
+	std::vector<glm::vec3> getPoints(const float &precision) const;
 
 	/**
 	 Return a Mesh object build with the current image

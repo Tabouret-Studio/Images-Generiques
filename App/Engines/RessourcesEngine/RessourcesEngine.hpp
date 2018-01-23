@@ -84,7 +84,7 @@ public:
  	 @param size Width of each edge
  	 @return The cube in a Mesh object
  	 */
- 	Mesh * genCube(const uint &size, glm::vec4 baseColor = glm::vec4(255, 255, 255, 1));
+ 	Mesh * genCube(const uint &size, glm::vec4 baseColor = glm::vec4(0, 0, 0, 1));
 
 	/**
 	 Generate a Sphere as a mesh

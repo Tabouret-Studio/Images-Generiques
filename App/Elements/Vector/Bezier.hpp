@@ -34,16 +34,41 @@ public:
 	 @param endHX X position of the ending point handle
 	 @param endHY Y position of the ending point handle
 	 @param endX X position of the ending point
-	 @param endY Y position of the ending point handle
+	 @param endY Y position of the ending point
 	 */
 	Bezier(const float &startX, const float &startY,
 		   const float &startHX, const float &startHY,
 		   const float &endHX, const float &endHY,
 		   const float &endX, const float &endY):
-	m_startPoint(glm::vec2(startX, startY)),
-	m_startHandle(glm::vec2(startHX, startHY)),
-	m_endHandle(glm::vec2(endHX, endHY)),
-	m_endPoint(glm::vec2(endX, endY)) {};
+	m_startPoint(glm::vec3(startX, startY, 0)),
+	m_startHandle(glm::vec3(startHX, startHY, 0)),
+	m_endHandle(glm::vec3(endHX, endHY, 0)),
+	m_endPoint(glm::vec3(endX, endY, 0)) {};
+
+	/**
+	 Build a Bezier curve
+
+	 @param startX X position of the starting point
+	 @param startY Y position of the starting point
+	 @param startZ Z position of the starting point
+	 @param startHX X position of the starting point handle
+	 @param startHY Y position of the starting point handle
+	 @param startHZ Z position of the starting point handle
+	 @param endHX X position of the ending point handle
+	 @param endHY Y position of the ending point handle
+	 @param endHZ Z position of the ending point handle
+	 @param endX X position of the ending point
+	 @param endY Y position of the ending point
+	 @param endZ Z position of the ending point
+	 */
+	Bezier(const float &startX, const float &startY, const float &startZ,
+		   const float &startHX, const float &startHY, const float &startHZ,
+		   const float &endHX, const float &endHY, const float &endHZ,
+		   const float &endX, const float &endY, const float &endZ):
+	m_startPoint(glm::vec3(startX, startY, startZ)),
+	m_startHandle(glm::vec3(startHX, startHY, startHZ)),
+	m_endHandle(glm::vec3(endHX, endHY, endHZ)),
+	m_endPoint(glm::vec3(endX, endY, endZ)) {};
 
 	/**
 	 Build a Bezier curve
@@ -55,6 +80,21 @@ public:
 	 */
 	Bezier(const glm::vec2 &startPoint, const glm::vec2 &startHandle,
 		   const glm::vec2 &endHandle, const glm::vec2 &endPoint):
+	m_startPoint(glm::vec3(startPoint, 0)),
+	m_startHandle(glm::vec3(startHandle, 0)),
+	m_endHandle(glm::vec3(endHandle, 0)),
+	m_endPoint(glm::vec3(endPoint, 0)) {};
+
+	/**
+	 Build a Bezier curve
+
+	 @param startPoint Postion of the starting point
+	 @param startHandle Postion of the starting point handle
+	 @param endHandle Postion of the ending point handle
+	 @param endPoint Postion of the ending
+	 */
+	Bezier(const glm::vec3 &startPoint, const glm::vec3 &startHandle,
+		   const glm::vec3 &endHandle, const glm::vec3 &endPoint):
 	m_startPoint(startPoint),
 	m_startHandle(startHandle),
 	m_endHandle(endHandle),
@@ -69,14 +109,14 @@ public:
 	 @param width Width of the curve
 	 @param height Height of the curve
 	 */
-	void setDimensions(const float &width, const float &height);
+	void setDimensions(const float &width, const float &height, const float &depth);
 
 	/////////
 	//Getters
-	inline glm::vec2 getStartPoint() const { return m_startPoint; };
-	inline glm::vec2 getStartHandle() const { return m_startHandle; };
-	inline glm::vec2 getEndPoint() const { return m_endPoint; };
-	inline glm::vec2 getEndHandle() const { return m_endHandle; };
+	inline glm::vec3 getStartPoint() const { return m_startPoint; };
+	inline glm::vec3 getStartHandle() const { return m_startHandle; };
+	inline glm::vec3 getEndPoint() const { return m_endPoint; };
+	inline glm::vec3 getEndHandle() const { return m_endHandle; };
 
 	/**
 	 Interpolate the curve and return it composed of number of points based on its length
@@ -84,7 +124,7 @@ public:
 
 	 @return A vector containing the points
 	 */
-	inline std::vector<glm::vec2> getPoints() const { return getPoints(1); };
+	inline std::vector<glm::vec3> getPoints() const { return getPoints(1); };
 
 	/**
 	 Interpolate the curve and return it composed of *pointCount* points
@@ -92,7 +132,7 @@ public:
 	 @param precision In how many points the curve must be decomposed;
 	 @return A vector containing the points
 	 */
-	std::vector<glm::vec2> getPoints(const float &precision) const;
+	std::vector<glm::vec3> getPoints(const float &precision) const;
 
 	/**
 	 Return a specific point on the curve
@@ -100,7 +140,7 @@ public:
 	 @param percentage The percentage location of the point (middle point : .5)
 	 @return The coordinates of the point
 	 */
-	glm::vec2 getPoint(const float &percentage) const;
+	glm::vec3 getPoint(const float &percentage) const;
 
 	/**
 	 Calculate the approximate length of the curve
@@ -121,7 +161,7 @@ public:
 
 	 @return Width and height
 	 */
-	inline glm::vec2 getDimensions() const { return m_dimensions; };
+	inline glm::vec3 getDimensions() const { return m_dimensions; };
 
 	/////////////////
 	//Transformations
@@ -153,15 +193,15 @@ public:
 
 	 @param dest Desitination point
 	 */
-	void move(const glm::vec2 &dest);
+	void move(const glm::vec3 &dest);
 
 private:
-	glm::vec2 m_startPoint;
-	glm::vec2 m_startHandle;
-	glm::vec2 m_endHandle;
-	glm::vec2 m_endPoint;
+	glm::vec3 m_startPoint;
+	glm::vec3 m_startHandle;
+	glm::vec3 m_endHandle;
+	glm::vec3 m_endPoint;
 
-	glm::vec2 m_dimensions;
+	glm::vec3 m_dimensions;
 
 	/**
 	 Return the nth point on the curve.
@@ -173,7 +213,7 @@ private:
 	 @param coef Point to return in percentage
 	 @return The coordinates of the point
 	 */
-	glm::vec2 getIPointBetween(glm::vec2 A, glm::vec2 B, float coef) const;
+	glm::vec3 getIPointBetween(glm::vec3 A, glm::vec3 B, float coef) const;
 
 	DrawCursor m_cursor;
 };

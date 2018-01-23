@@ -68,9 +68,9 @@ std::vector<Bezier> VectorImage::getBeziers() const
 }
 
 
-std::vector<glm::vec2> VectorImage::getPoints(const float &precision) const
+std::vector<glm::vec3> VectorImage::getPoints(const float &precision) const
 {
-	std::vector<glm::vec2> vertices, pathVertices;
+	std::vector<glm::vec3> vertices, pathVertices;
 
 	// Parse SVG
 	for(std::vector<Shape>::const_iterator it = m_shapes.begin(); it != m_shapes.end(); ++it)

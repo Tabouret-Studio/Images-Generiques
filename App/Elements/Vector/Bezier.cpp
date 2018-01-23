@@ -13,14 +13,14 @@
 #include <iostream>
 
 
-void Bezier::setDimensions(const float &width, const float &height)
+void Bezier::setDimensions(const float &width, const float &height, const float &depth)
 {
-	m_dimensions = glm::vec2(width, height);
+	m_dimensions = glm::vec3(width, height, depth);
 }
 
-std::vector<glm::vec2> Bezier::getPoints(const float &precision) const
+std::vector<glm::vec3> Bezier::getPoints(const float &precision) const
 {
-	std::vector<glm::vec2> vertices;
+	std::vector<glm::vec3> vertices;
 	uint pc;
 
 	if(precision <= 0)
@@ -42,29 +42,29 @@ std::vector<glm::vec2> Bezier::getPoints(const float &precision) const
 	return vertices;
 }
 
-glm::vec2 Bezier::getPoint(const float &percentage) const
+glm::vec3 Bezier::getPoint(const float &percentage) const
 {
-	glm::vec2 refA = getIPointBetween(m_startPoint, m_startHandle, percentage);
-	glm::vec2 refB = getIPointBetween(m_startHandle, m_endHandle, percentage);
-	glm::vec2 refC = getIPointBetween(m_endHandle, m_endPoint, percentage);
+	glm::vec3 refA = getIPointBetween(m_startPoint, m_startHandle, percentage);
+	glm::vec3 refB = getIPointBetween(m_startHandle, m_endHandle, percentage);
+	glm::vec3 refC = getIPointBetween(m_endHandle, m_endPoint, percentage);
 
 	//Internal references-
-	glm::vec2 internA = getIPointBetween(refA, refB, percentage);
-	glm::vec2 internB = getIPointBetween(refB, refC, percentage);
+	glm::vec3 internA = getIPointBetween(refA, refB, percentage);
+	glm::vec3 internB = getIPointBetween(refB, refC, percentage);
 
 	//Interpolated point
 	return  getIPointBetween(internA, internB, percentage);
 }
 
-glm::vec2 Bezier::getIPointBetween(glm::vec2 A, glm::vec2 B, float coef) const
+glm::vec3 Bezier::getIPointBetween(glm::vec3 A, glm::vec3 B, float coef) const
 {
 	return A + ((B - A) * coef);
 }
 
 float Bezier::getLength() const
 {
-	glm::vec2 dot;
-	glm::vec2 previous_dot;
+	glm::vec3 dot;
+	glm::vec3 previous_dot;
 	double length = 0.0;
 
 	uint steps = 150;
@@ -89,11 +89,11 @@ Mesh * Bezier::getMesh() const
 {
 	Mesh * mesh = new Mesh();
 
-	std::vector<glm::vec2> points = getPoints();
+	std::vector<glm::vec3> points = getPoints();
 
-	for(std::vector<glm::vec2>::const_iterator it = points.begin(); it != points.end(); ++it)
+	for(std::vector<glm::vec3>::const_iterator it = points.begin(); it != points.end(); ++it)
 	{
-		*mesh << Vertex(glm::vec3(*it, 0));
+		*mesh << Vertex(*it);
 	}
 
 	mesh->getCursor()->setMatrix(m_cursor);
@@ -105,17 +105,17 @@ void Bezier::applyCursor(const DrawCursor * cursor)
 {
 	Vertex temp;
 
-	m_startPoint = glm::vec2(cursor->getMatrix() * glm::vec4(m_startPoint, 0, 1));
-	m_startHandle = glm::vec2(cursor->getMatrix() * glm::vec4(m_startHandle, 0, 1));
-	m_endHandle = glm::vec2(cursor->getMatrix() * glm::vec4(m_endHandle, 0, 1));
-	m_endPoint = glm::vec2(cursor->getMatrix() * glm::vec4(m_endPoint, 0, 1));
+	m_startPoint = glm::vec3(cursor->getMatrix() * glm::vec4(m_startPoint, 1));
+	m_startHandle = glm::vec3(cursor->getMatrix() * glm::vec4(m_startHandle, 1));
+	m_endHandle = glm::vec3(cursor->getMatrix() * glm::vec4(m_endHandle, 1));
+	m_endPoint = glm::vec3(cursor->getMatrix() * glm::vec4(m_endPoint, 1));
 
-	m_dimensions = glm::vec2(cursor->getMatrix() * glm::vec4(m_dimensions, 0, 0));
+	m_dimensions = glm::vec3(cursor->getMatrix() * glm::vec4(m_dimensions, 0));
 }
 
-void Bezier::move(const glm::vec2 &dest)
+void Bezier::move(const glm::vec3 &dest)
 {
-	glm::vec2 distanceVec = dest - m_startPoint;
-	m_cursor.translate(glm::vec3(distanceVec, 0));
+	glm::vec3 distanceVec = dest - m_startPoint;
+	m_cursor.translate(distanceVec);
 	applyCursor();
 }
