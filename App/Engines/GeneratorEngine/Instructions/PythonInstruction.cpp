@@ -10,6 +10,7 @@
 
 #include "Core/AppObject.hpp"
 #include "Engines/RessourcesEngine/Exporters/VectorImagesToJSONExporter.hpp"
+#include "Engines/RessourcesEngine/Importers/JSONToVectorImagesImporter.hpp"
 
 #include <Python.h>
 #include <fstream>
@@ -34,14 +35,27 @@ std::vector<VectorImage *> PythonInstruction::execute(std::vector<VectorImage *>
 	//Export input
 	exportInput(vectorImages);
 
-	std::vector<Bezier> paths = vectorImages[0]->getBeziers();
+	//Export vector images
+	exportInput(vectorImages);
+
+	//Execute instruction
+	runInstruction();
+
+	//Import vector images
+	vectorImages = importOutput();
+
+	//Erase bridge files
+	cleanup();
+
+	return vectorImages;
+}
+
+void PythonInstruction::runInstruction()
+{
+	//Build paths
 	std::string scriptFileName = m_scriptName + ".py";
 	std::string scriptPath = App->getAppPath() + "assets/instructions/" + scriptFileName;
 
-	//Export vector images
-	//TODO
-
-	//Import script
 	char *cstr = new char[scriptPath.length() + 1];
 	char *cstr2 = new char[2];
 	strcpy(cstr, scriptPath.c_str());
@@ -49,7 +63,7 @@ std::vector<VectorImage *> PythonInstruction::execute(std::vector<VectorImage *>
 
 	Py_Initialize();
 
-	//Execute script
+	//Execute instruction
 	std::cout << scriptPath << std::endl;
 	PyObject* PyFileObject = PyFile_FromString(cstr, cstr2);
 	PyRun_SimpleFileEx(PyFile_AsFile(PyFileObject), cstr, 1);
@@ -58,20 +72,21 @@ std::vector<VectorImage *> PythonInstruction::execute(std::vector<VectorImage *>
 
 	delete[] cstr;
 	delete[] cstr2;
-
-	//Import vector images
-	//TODO
-
-	//Erase bridge files
-	cleanup();
-
-	return vectorImages;
 }
 
 void PythonInstruction::exportInput(std::vector<VectorImage *> vectorImages)
 {
 	VectorImagesToJSONExporter exporter;
 	exporter.exportJSON(vectorImages, "assets/instructions/input");
+
+	//Create both input & output file to allow for pass-through content if needed
+	exporter.exportJSON(vectorImages, "assets/instructions/output");
+}
+
+std::vector<VectorImage *> PythonInstruction::importOutput()
+{
+	JSONToVectorImagesImporter importer;
+	return importer.import("assets/instructions/output");
 }
 
 void PythonInstruction::cleanup()

@@ -39,6 +39,8 @@ namespace Scenes
 		rId svgID = App->ressourcesEngine->loadAsset("handComputer.svg", VECTOR);
 		m_svg = *App->ressourcesEngine->getAsset(svgID);
 
+		SDL_Delay(500);
+
 		//Instructions
 		InstructionsProtocol protocol({
 			"PATHS_ORDER_RANDOMIZER",
@@ -51,14 +53,6 @@ namespace Scenes
 		//Export
 		SVGExporter exporter;
 		exporter.exportSVG(imageTransformed, "testInstruction");
-
-		VectorImagesToJSONExporter exporterJSON;
-		exporterJSON.exportJSON({m_svg, imageTransformed}, "testExport");
-
-		JSONToVectorImagesImporter importer;
-		VectorImage * testImport = importer.import("testExport")[0];
-
-		exporter.exportSVG(testImport, "testPythonPipe");
 
 		//Generate and display Mesh
 		m_mesh = imageTransformed->getMesh();

@@ -26,6 +26,8 @@ private:
 
 	std::string m_scriptName;
 
+	void runInstruction();
+
 	void exportInput(std::vector<VectorImage *> vectorImages);
 	std::vector<VectorImage *> importOutput();
 
