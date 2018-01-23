@@ -19,6 +19,8 @@ void SVGExporter::exportSVG(VectorImage * vectorImg, const std::string &fileName
 
 	for(Shape shape : vectorImg->getShapes())
 	{
+		shape.getCursor()->translate(vectorImg->getWidth()/2, vectorImg->getHeight()/2, 0);
+		shape.applyCursor();
 		f << shapeToPath(shape);
 	}
 
