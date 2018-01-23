@@ -9,7 +9,10 @@
 /* Begin PBXBuildFile section */
 		39131671200F6FE700F691B5 /* Val02.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3913166F200F6FE700F691B5 /* Val02.cpp */; };
 		39131674200F99A200F691B5 /* ml1.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39131672200F99A000F691B5 /* ml1.cpp */; };
+		391C9042201695A80003E2B7 /* libboost_system.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 391C9041201695A80003E2B7 /* libboost_system.dylib */; };
+		391C9044201695E80003E2B7 /* libboost_filesystem.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 391C9043201695E80003E2B7 /* libboost_filesystem.dylib */; };
 		391CFE472016409D00780A4C /* PythonInstruction.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 391CFE452016409D00780A4C /* PythonInstruction.cpp */; };
+		391CFE4A2016657700780A4C /* Utils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 391CFE482016657700780A4C /* Utils.cpp */; };
 		392360122009066D00400C45 /* Val01.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3923600E2009066D00400C45 /* Val01.cpp */; };
 		3923601A20090F6000400C45 /* Interactions.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3923601920090F6000400C45 /* Interactions.cpp */; };
 		3923604B2009105600400C45 /* SoundImporter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3923601D2009105500400C45 /* SoundImporter.cpp */; };
@@ -80,8 +83,12 @@
 		39131670200F6FE700F691B5 /* Val02.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Val02.hpp; sourceTree = "<group>"; };
 		39131672200F99A000F691B5 /* ml1.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ml1.cpp; sourceTree = "<group>"; };
 		39131673200F99A100F691B5 /* ml1.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ml1.hpp; sourceTree = "<group>"; };
+		391C9041201695A80003E2B7 /* libboost_system.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libboost_system.dylib; path = ../../../../../usr/local/Cellar/boost/1.66.0/lib/libboost_system.dylib; sourceTree = "<group>"; };
+		391C9043201695E80003E2B7 /* libboost_filesystem.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libboost_filesystem.dylib; path = ../../../../../usr/local/Cellar/boost/1.66.0/lib/libboost_filesystem.dylib; sourceTree = "<group>"; };
 		391CFE452016409D00780A4C /* PythonInstruction.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = PythonInstruction.cpp; path = App/Engines/GeneratorEngine/Instructions/PythonInstruction.cpp; sourceTree = SOURCE_ROOT; };
 		391CFE462016409D00780A4C /* PythonInstruction.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; name = PythonInstruction.hpp; path = App/Engines/GeneratorEngine/Instructions/PythonInstruction.hpp; sourceTree = SOURCE_ROOT; };
+		391CFE482016657700780A4C /* Utils.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Utils.cpp; sourceTree = "<group>"; };
+		391CFE492016657700780A4C /* Utils.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Utils.hpp; sourceTree = "<group>"; };
 		3923600B2009066D00400C45 /* Val01.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Val01.hpp; sourceTree = "<group>"; };
 		3923600E2009066D00400C45 /* Val01.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Val01.cpp; sourceTree = "<group>"; };
 		3923600F2009066D00400C45 /* Scene.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Scene.hpp; sourceTree = "<group>"; };
@@ -12802,6 +12809,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				391C9044201695E80003E2B7 /* libboost_filesystem.dylib in Frameworks */,
+				391C9042201695A80003E2B7 /* libboost_system.dylib in Frameworks */,
 				392395D9200A30DD00400C45 /* libfreetype.6.dylib in Frameworks */,
 				39D90C711FDB4DBD00282ED1 /* libGLEW.2.1.0.dylib in Frameworks */,
 				39AF3CCC1FDB4FE10089622E /* SDL2.framework in Frameworks */,
@@ -34129,6 +34138,8 @@
 				3967C57020108C2A006E31AB /* MeshGroup.hpp */,
 				394F942D2016209C0065CE25 /* Python.cpp */,
 				394F942E2016209C0065CE25 /* Python.hpp */,
+				391CFE482016657700780A4C /* Utils.cpp */,
+				391CFE492016657700780A4C /* Utils.hpp */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -34294,6 +34305,8 @@
 		39D90C3D1FDB403E00282ED1 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				391C9043201695E80003E2B7 /* libboost_filesystem.dylib */,
+				391C9041201695A80003E2B7 /* libboost_system.dylib */,
 				394F942B20161C340065CE25 /* Python.framework */,
 				392360172009092900400C45 /* SDL2_image.framework */,
 				392360152009090C00400C45 /* libassimp.4.0.1.dylib */,
@@ -34438,6 +34451,7 @@
 				3923605E2009105600400C45 /* Font.cpp in Sources */,
 				392C9EAF200902E70006ECB9 /* Igniter.cpp in Sources */,
 				39D90C341FDAEF0F00282ED1 /* AppEngine.cpp in Sources */,
+				391CFE4A2016657700780A4C /* Utils.cpp in Sources */,
 				3923605C2009105600400C45 /* Image.cpp in Sources */,
 				3923604B2009105600400C45 /* SoundImporter.cpp in Sources */,
 				3923605A2009105600400C45 /* Asset.cpp in Sources */,
@@ -34578,6 +34592,7 @@
 					"$(SRC_ROOT)",
 					/usr/local/Cellar/freetype/2.8/lib,
 					/usr/local/Cellar/assimp/4.0.1/lib,
+					/usr/local/Cellar/boost/1.66.0/lib,
 				);
 				PRODUCT_NAME = ImagesGeneriques;
 				SYMROOT = App/build;
@@ -34608,6 +34623,7 @@
 					"$(SRC_ROOT)",
 					/usr/local/Cellar/freetype/2.8/lib,
 					/usr/local/Cellar/assimp/4.0.1/lib,
+					/usr/local/Cellar/boost/1.66.0/lib,
 				);
 				PRODUCT_NAME = ImagesGeneriques;
 				SYMROOT = App/build;

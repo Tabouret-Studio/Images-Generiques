@@ -13,7 +13,11 @@
 #include "InstructionObject.hpp"
 
 #include <boost/filesystem.hpp>
-#include <boost/filesystem/fstream.hpp>
+#include <boost/range/iterator_range.hpp>
+
+#include <iostream>
+#include <iterator>
+#include <vector>
 
 bool GeneratorEngine::m_instanciated = false;
 
@@ -32,12 +36,15 @@ void GeneratorEngine::instanciate()
 
 GeneratorEngine::GeneratorEngine()
 {
-	//Avoiding const_cast
-	std::vector<char> nonConstpath(App->getAppPath().begin(), App->getAppPath().end());
-	nonConstpath.push_back('\0');
+	//Ugly conversion because Py_SetProgramName is not marked as const despite not modifying the var (thx c89)
+	char *cstr = new char[App->getAppPath().length() + 1];
+	strcpy(cstr, App->getAppPath().c_str());
 
 	//init Python
-	Py_SetProgramName(&nonConstpath[0]);
+	Py_SetProgramName(cstr);
+
+	//The cstr is keeped because Py needs it later --'
+	//delete cstr;
 
 	registerCPPInstructions();
 	registerPythonInstructions();
@@ -71,15 +78,19 @@ void GeneratorEngine::registerCPPInstructions()
 void GeneratorEngine::registerPythonInstructions()
 {
 	boost::filesystem::path instructionsFolder = App->getAppPath() + "assets/instructions/";
+
 	boost::filesystem::path scriptPath;
 	std::string scriptName;
 
 	if(!boost::filesystem::exists(instructionsFolder))
 		return; //No folder, nothing to iterate
 
-	for(boost::filesystem::directory_entry entry : boost::filesystem::directory_iterator(instructionsFolder))
+	std::vector<boost::filesystem::directory_entry> entries;
+	std::copy(boost::filesystem::directory_iterator(instructionsFolder), boost::filesystem::directory_iterator(), std::back_inserter(entries));
+
+	for(std::vector<boost::filesystem::directory_entry>::const_iterator entry = entries.begin(); entry != entries.end(); ++entry)
 	{
-		scriptPath = entry.path();
+		scriptPath = (*entry).path();
 
 		if(boost::filesystem::is_directory(scriptPath))
 		   continue; //Ignore sub-directories (for now ?)
