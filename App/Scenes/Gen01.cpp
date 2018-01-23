@@ -14,6 +14,7 @@
 #include "Engines/AppEngine/AppEngine.hpp"
 
 #include "Engines/RessourcesEngine/Exporters/SVGExporter.hpp"
+#include "Engines/RessourcesEngine/Exporters/VectorImagesToJSONExporter.hpp"
 
 #include "Engines/GeneratorEngine/GeneratorEngine.hpp"
 #include "Engines/GeneratorEngine/InstructionsProtocol/InstructionsProtocol.hpp"
@@ -34,7 +35,7 @@ namespace Scenes
 	void Gen01::init()
 	{
 		//Loading
-		rId svgID = App->ressourcesEngine->loadAsset("ml.svg", VECTOR);
+		rId svgID = App->ressourcesEngine->loadAsset("github.svg", VECTOR);
 		m_svg = *App->ressourcesEngine->getAsset(svgID);
 
 		//Instructions
@@ -50,11 +51,16 @@ namespace Scenes
 		SVGExporter exporter;
 		exporter.exportSVG(imageTransformed, "testInstruction");
 
+		VectorImagesToJSONExporter exporterJSON;
+		exporterJSON.exportJSON({m_svg, imageTransformed}, "testExport");
+
 		//Generate and display Mesh
 		m_mesh = imageTransformed->getMesh();
 
 		m_mesh->generate();
 		m_mesh->setRenderFormat(GL_POINTS);
+
+
 	}
 
 

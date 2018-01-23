@@ -26,6 +26,10 @@ private:
 
 	std::string m_scriptName;
 
+	void exportInput(std::vector<VectorImage *> vectorImages);
+	std::vector<VectorImage *> importOutput();
+
+	void cleanup();
 };
 
 #endif /* PythonInstruction_hpp */

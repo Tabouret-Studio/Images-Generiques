@@ -16,6 +16,7 @@ class Mesh;
 class Shader;
 class Image;
 class VectorImage;
+class jsonObject;
 
 #include "../RessourcesEngine.hpp"
 

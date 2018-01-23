@@ -127,6 +127,7 @@ std::string RessourcesEngine::buildPath(std::string &file, ressourceType &type)
 		case MESH: prefix = "assets/meshs/"; break;
 		case FONT: prefix = "assets/fonts/"; break;
 		case VECTOR: prefix = "assets/SVG/"; break;
+		case JSON: prefix = ""; break;
 	}
 
 	return App->getAppPath() + prefix + file;
