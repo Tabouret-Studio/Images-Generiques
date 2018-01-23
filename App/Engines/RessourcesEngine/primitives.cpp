@@ -112,12 +112,12 @@ Mesh * RessourcesEngine::genSphere(const float &radius, const uint &precisionLat
 	std::vector<Vertex> vertices;
 
 	// Construit l'ensemble des vertex
-	for(GLsizei j = 0; j <= precisionLong; ++j)
+	for(uint j = 0; j <= precisionLong; ++j)
 	{
 		GLfloat cosTheta = cos(-glm::pi<float>() / 2 + j * dTheta);
 		GLfloat sinTheta = sin(-glm::pi<float>() / 2 + j * dTheta);
 
-		for(GLsizei i = 0; i <= precisionLat; ++i)
+		for(uint i = 0; i <= precisionLat; ++i)
 		{
 			Vertex vertex;
 
@@ -140,11 +140,11 @@ Mesh * RessourcesEngine::genSphere(const float &radius, const uint &precisionLat
 	// Pour une longitude donnée, les deux triangles formant une face sont de la forme:
 	// (i, i + 1, i + precisionLat + 1), (i, i + precisionLat + 1, i + precisionLat)
 	// avec i sur la bande correspondant à la longitude
-	for(GLsizei j = 0; j < precisionLong; ++j)
+	for(uint j = 0; j < precisionLong; ++j)
 	{
 		GLsizei offset = j * (precisionLat + 1);
 
-		for(GLsizei i = 0; i < precisionLat; ++i)
+		for(uint i = 0; i < precisionLat; ++i)
 		{
 			vertices.push_back(data[offset + i]);
 			vertices.push_back(data[offset + (i + 1)]);

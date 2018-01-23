@@ -142,8 +142,6 @@ public:
 	//SCENE UUID
 	inline boost::uuids::uuid genUUID() { return m_uuidGenerator(); };
 
-	static inline int rand(const int &i) { return std::rand() % i; };
-
 private:
 	//Singleton
 	AppObject(const std::string &appPath):

@@ -12,7 +12,6 @@
 #include "Igniter.hpp"
 #include "Scenes/Scene.hpp"
 
-#include "Utils/ShaderProgram.hpp"
 #include "Engines/RenderEngine/RenderEngine.hpp"
 #include "Engines/AppEngine/AppEngine.hpp"
 
@@ -26,15 +25,7 @@ void Core::ignite(std::string appPath)
 	igniter.igniteAppObject(appPath);
 	igniter.igniteSDL(800, 600);
 	igniter.igniteOpenGL();
-
-	//Init random generator
-	srand((uint)time(NULL));
-
-	//Init render engine
-	App->renderEngine->initRender();
-
-	//Preload default shaderProgram
-	App->setDefaultProgram(new ShaderProgram("main.vs.glsl", "main.fs.glsl"));
+	igniter.igniteEngines();
 }
 
 //The main loop

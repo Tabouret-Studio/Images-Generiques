@@ -39,8 +39,9 @@ namespace Scenes
 
 		//Instructions
 		InstructionsProtocol protocol({
-			INSTRUCTION_PATHS_ORDER_RANDOMIZER,
-			INSTRUCTION_PATHS_CHAINING
+			"PATHS_ORDER_RANDOMIZER",
+			"PATHS_CHAINING",
+			"TEST_TEST_TEST"
 		});
 
 		VectorImage * imageTransformed = protocol.execute({m_svg})[0];
@@ -54,8 +55,6 @@ namespace Scenes
 
 		m_mesh->generate();
 		m_mesh->setRenderFormat(GL_POINTS);
-		m_mesh->getCursor()
-			->translate(App->getWidth()/2, App->getHeight()/2, 0);
 	}
 
 
@@ -64,6 +63,9 @@ namespace Scenes
 	///////////
 	void Gen01::execute()
 	{
+		m_mesh->getCursor()
+		->reset()->translate(App->getWidth()/2, App->getHeight()/2, 0);
+
 		float scrollAmount = App->appEngine->getMouse().scrollY/10.0f;
 		m_mesh->getCursor()->scale(1+scrollAmount, 1+scrollAmount, 1);
 
