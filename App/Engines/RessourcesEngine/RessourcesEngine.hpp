@@ -17,7 +17,8 @@ enum ressourceType
 	SOUND,
 	MESH,
 	FONT,
-	VECTOR
+	VECTOR,
+	JSON
 };
 
 class Importer;

@@ -17,6 +17,7 @@
 #include "Engines/AppEngine/AppEngine.hpp"
 #include "Utils/Selector/Item.hpp"
 #include "Engines/RessourcesEngine/Exporters/SVGExporter.hpp"
+#include "Engines/RessourcesEngine/Importers/jsonImporter.hpp"
 
 #include <iostream>
 
@@ -37,10 +38,8 @@ namespace Scenes
 	{
 		//Load SVG
 		//Utils::NSVG svg = Utils::NSVG("Assets/SVG/ml.svg");
-		rId svgID = App->ressourcesEngine->loadAsset("handComputer.svg", VECTOR);
+		rId svgID = App->ressourcesEngine->loadAsset("ml.svg", VECTOR);
 		VectorImage * svg = *App->ressourcesEngine->getAsset(svgID);
-
-		//m_mesh = svg->getMesh();
 
 		 m_mesh = svg->getMesh();
 
@@ -51,7 +50,9 @@ namespace Scenes
 	    App->renderEngine->setProjection2D(); 
 
 	    SVGExporter fExport;
-	    fExport.exportSVG(svg, "artist2");
+	    fExport.exportSVG(svg, "ml2");
+
+	    
 
 
 		/*m_mesh = new Mesh();

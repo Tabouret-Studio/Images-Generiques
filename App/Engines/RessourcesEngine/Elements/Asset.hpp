@@ -16,6 +16,7 @@ class Mesh;
 class Shader;
 class Image;
 class VectorImage;
+class jsonObject;
 
 #include "../RessourcesEngine.hpp"
 
@@ -80,6 +81,13 @@ public:
 	 @return Return the asset as a VectorImage, nullptr if the asset is not a VectorImage
 	 */
 	operator VectorImage*();
+
+	/**
+	 Casting operator for json assets
+
+	 @return Return the asset as a json, nullptr if the asset is not a json
+	 */
+	operator jsonObject*();
 
 	virtual ~Asset() {};
 
