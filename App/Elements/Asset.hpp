@@ -18,7 +18,7 @@ class Image;
 class VectorImage;
 class jsonObject;
 
-#include "../RessourcesEngine.hpp"
+#include "Engines/RessourcesEngine/RessourcesEngine.hpp"
 
 class Asset
 {

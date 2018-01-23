@@ -1,5 +1,5 @@
 #include "SVGExporter.hpp"
-#include "Engines/RessourcesEngine/Elements/VectorImage.hpp"
+#include "Elements/Vector/VectorImage.hpp"
 #include <fstream>
 #include <string>
 #include "Core/AppObject.hpp"

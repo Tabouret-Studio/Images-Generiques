@@ -8,8 +8,8 @@
 
 #include "Gen01.hpp"
 
-#include "Engines/RessourcesEngine/Elements/VectorImage.hpp"
-#include "Engines/RessourcesEngine/Elements/Mesh.hpp"
+#include "Elements/Vector/VectorImage.hpp"
+#include "Elements/Mesh.hpp"
 #include "Engines/RenderEngine/RenderEngine.hpp"
 #include "Engines/AppEngine/AppEngine.hpp"
 

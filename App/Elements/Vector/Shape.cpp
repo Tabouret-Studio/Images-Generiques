@@ -8,7 +8,7 @@
 
 #include "Shape.hpp"
 
-#include "Engines/RessourcesEngine/Elements/Mesh.hpp"
+#include "Elements/Mesh.hpp"
 
 std::vector<glm::vec2> Shape::getPoints(const float &precision) const
 {

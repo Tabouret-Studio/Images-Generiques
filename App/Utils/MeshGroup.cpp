@@ -7,7 +7,7 @@
 //
 
 #include "MeshGroup.hpp"
-#include "Engines/RessourcesEngine/Elements/Mesh.hpp"
+#include "Elements/Mesh.hpp"
 #include "Engines/RenderEngine/RenderEngine.hpp"
 #include "Core/AppObject.hpp"
 

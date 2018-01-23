@@ -11,7 +11,7 @@
 #include "Utils/Vertex.hpp"
 #include "Utils/ShaderProgram.hpp"
 #include "Core/AppObject.hpp"
-#include "Engines/RessourcesEngine/Elements/Mesh.hpp"
+#include "Elements/Mesh.hpp"
 
 bool RenderEngine::m_instanciated = false;
 

@@ -8,7 +8,7 @@
 
 #include "Bezier.hpp"
 
-#include "Engines/RessourcesEngine/Elements/Mesh.hpp"
+#include "Elements/Mesh.hpp"
 
 #include <iostream>
 

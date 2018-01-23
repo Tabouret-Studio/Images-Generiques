@@ -8,11 +8,11 @@
 
 #include "Val02.hpp"
 
-#include "Utils/Vector/Bezier.hpp"
+#include "Elements/Vector/Bezier.hpp"
 
-#include "Engines/RessourcesEngine/Elements/VectorImage.hpp"
-#include "Engines/RessourcesEngine/Elements/Mesh.hpp"
-#include "Engines/RessourcesEngine/Elements/Font.hpp"
+#include "Elements/Vector/VectorImage.hpp"
+#include "Elements/Mesh.hpp"
+#include "Elements/Font.hpp"
 #include "Engines/RenderEngine/RenderEngine.hpp"
 #include "Engines/AppEngine/AppEngine.hpp"
 

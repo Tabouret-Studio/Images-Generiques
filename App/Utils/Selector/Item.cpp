@@ -10,9 +10,9 @@
 
 #include "Engines/RessourcesEngine/RessourcesEngine.hpp"
 #include "Engines/RenderEngine/RenderEngine.hpp"
-#include "Engines/RessourcesEngine/Elements/Mesh.hpp"
-#include "Engines/RessourcesEngine/Elements/Font.hpp"
-#include "Engines/RessourcesEngine/Elements/Image.hpp"
+#include "Elements/Mesh.hpp"
+#include "Elements/Font.hpp"
+#include "Elements/Image.hpp"
 #include "Core/AppObject.hpp"
 #include "Utils/DrawCursor.hpp"
 

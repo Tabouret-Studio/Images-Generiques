@@ -14,8 +14,8 @@
 class Mesh;
 
 #include "Asset.hpp"
-#include "Utils/Vector/Bezier.hpp"
-#include "Utils/Vector/Shape.hpp"
+#include "Elements/Vector/Bezier.hpp"
+#include "Elements/Vector/Shape.hpp"
 
 #include <iostream>
 #include <vector>
