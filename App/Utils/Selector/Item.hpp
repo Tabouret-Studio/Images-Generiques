@@ -83,14 +83,6 @@ public:
 	void setCaption(const std::string &caption);
 
 	/**
-	 Set the Zindex of the item
-	 A higher z-index means the item is farther
-
-	 @param zIndex the new z-index
-	 */
-	inline void setZIndex(const uint &zIndex) { m_zIndex = zIndex; };
-
-	/**
 	 Return the top neighboor
 
 	 @return Top neighboor
@@ -170,7 +162,6 @@ private:
 	//Positionning
 	uint m_posX;
 	uint m_posY;
-	uint m_zIndex = 0;
 
 	//Dimensions
 	uint m_width;

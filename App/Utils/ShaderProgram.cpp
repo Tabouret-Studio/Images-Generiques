@@ -70,6 +70,7 @@ void ShaderProgram::setUniformUint(const std::string &uniformName, const uint &v
 	//Get location
 	GLuint uniLoc = getUniformLocation(uniformName);
 
+
 	//Pass uniform
 	glUniform1i(uniLoc, value);
 }

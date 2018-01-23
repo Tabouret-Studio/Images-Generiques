@@ -48,7 +48,18 @@ struct keyboard
 	bool ENTER = false;
 };
 
-//The engine
+struct mouse {
+	int scrollY = 0;
+	int scrollX = 0;
+	bool clickLeft = false;
+	bool clickRight = false;
+	int pointerPositionX = 0;
+	int pointerPositionY = 0;
+};
+
+/**
+ Holds key features of the apps such as events, scene execution and rendering, etc.
+ */
 class AppEngine
 {
 public:
@@ -74,6 +85,12 @@ public:
 	inline keyboard getKeys() const { return m_keys; };
 
 	/**
+	 Return the mouse struct
+	 @return The mouse structure
+	 */
+	inline mouse getMouse() const { return m_mouse; };
+
+	/**
 	 Set all keys an not pressed
 	 */
 	inline void flushKeys() { m_keys = {}; };
@@ -86,9 +103,11 @@ private:
 	////////
 	//Events
 	keyboard m_keys;
+	mouse m_mouse;
 	void parseEvents();
 	void windowEvents(const SDL_Event &event);
 	void keyBoardEvents(const SDL_Event &event);
+	void mouseEvents(const SDL_Event &event);
 };
 
 #endif /* AppEngine_hpp */

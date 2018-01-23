@@ -12,6 +12,8 @@
 #include "Core/AppObject.hpp"
 #include "Scenes/Scene.hpp"
 
+#include "Engines/RenderEngine/RenderEngine.hpp"
+
 bool AppEngine::m_instanciated = false;
 
 /**

@@ -5,6 +5,12 @@
 #include <vector>
 #include <glm/glm.hpp>
 
+#define VERTEX_DEFAULT_COLOR glm::vec4(0, 0, 0, 1)
+
+/**
+ Strucure use to communicate vertex information to the GC
+ Its main goal is to provide a unified interface to communicate with the GC no matter the type of the element being sent
+*/
 struct Vertex
 {
 	glm::vec3 position;
@@ -19,16 +25,16 @@ struct Vertex
 
 	Vertex(glm::vec3 pos):
 		position(pos),
-		color(glm::vec4(1, 1, 1, 1)) {};
+		color(VERTEX_DEFAULT_COLOR) {};
 
 	Vertex(glm::vec3 pos, glm::vec3 aNormal):
 		position(pos),
 		normal(aNormal),
-		color(glm::vec4(1, 1, 1, 1)) {};
+		color(VERTEX_DEFAULT_COLOR) {};
 
 	Vertex(glm::vec3 pos, glm::vec2 aUV):
 		position(pos),
-		color(glm::vec4(1, 1, 1, 1)),
+		color(VERTEX_DEFAULT_COLOR),
 		UV(aUV) {};
 
 	Vertex(glm::vec3 pos, glm::vec3 aNormal, glm::vec4 aColor):

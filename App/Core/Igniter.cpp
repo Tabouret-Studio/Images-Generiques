@@ -13,6 +13,7 @@
 #include "Engines/AppEngine/AppEngine.hpp"
 #include "Engines/RessourcesEngine/RessourcesEngine.hpp"
 #include "Engines/RenderEngine/RenderEngine.hpp"
+#include "Engines/GeneratorEngine/GeneratorEngine.hpp"
 
 #include "Utils/FilePath.hpp"
 
@@ -30,6 +31,7 @@ void Igniter::igniteAppObject(const std::string &appPath)
 	AppEngine::instanciate();
 	RessourcesEngine::instanciate();
 	RenderEngine::instanciate();
+	GeneratorEngine::instanciate();
 }
 
 void Igniter::igniteSDL(const uint &width, const uint &height)
@@ -90,10 +92,12 @@ void Igniter::igniteOpenGL()
 	//std::cout << "OpenGL Version : " << glGetString(GL_VERSION) << std::endl;
 	//std::cout << "GLEW Version : " << glewGetString(GLEW_VERSION) << std::endl;
 
-	glClearColor(0.0,0.0,0.0,0.0);
+	glClearColor(1.0,1.0,1.0,1.0);
 
 	glEnable(GL_DEPTH_TEST);
 	glDepthFunc(GL_LESS);
 
 	glEnable(GL_PROGRAM_POINT_SIZE);
+	glPointSize(1);
+	glEnable(GL_MULTISAMPLE_ARB);
 }

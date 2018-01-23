@@ -21,6 +21,10 @@ class ShaderProgram;
 
 #include "libraries.hpp"
 
+/**
+ The AppObject, accessible globally as App, holds all the vital informations of the apps.
+ It contains access to the engines, the scenes, the window, and other usefull informations.
+ */
 class AppObject
 {
 public:
@@ -37,16 +41,14 @@ public:
 	 */
 	inline std::string getAppPath() const { return m_appPath; }
 
-	/////////
-	//Engines
+	/// Engines
 	AppEngine * appEngine;
 	RessourcesEngine * ressourcesEngine;
 	RenderEngine * renderEngine;
 	GeneratorEngine * generatorEngine;
 	IndexEngine * indexEngine;
 
-	////////////
-	//SDL Window
+	/// SDL Window
 	SDL_Window * mainWindow;
 
 	/**
@@ -139,6 +141,8 @@ public:
 	////////////
 	//SCENE UUID
 	inline boost::uuids::uuid genUUID() { return m_uuidGenerator(); };
+
+	static inline int rand(const int &i) { return std::rand() % i; };
 
 private:
 	//Singleton

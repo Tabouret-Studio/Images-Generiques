@@ -17,6 +17,9 @@
 
 #include <chrono>
 
+/**
+ Center of the App, the core holds the main loop, frame cadencing, and call the ignitions scripts.
+ */
 class Core
 {
 public:

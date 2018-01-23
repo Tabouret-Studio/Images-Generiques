@@ -15,6 +15,10 @@ class Asset;
 
 #include "Importer.hpp"
 
+/**
+ Import a 3D element (Blend, OBJ, etc.)
+ @warning importation not activated, will return empty mesh
+ */
 class MeshImporter: public Importer
 {
 public:
