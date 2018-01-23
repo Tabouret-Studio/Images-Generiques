@@ -13,6 +13,9 @@
 #include "Shader.hpp"
 #include "Image.hpp"
 #include "VectorImage.hpp"
+#include "jsonObject.hpp"
+#include "libraries.hpp"
+
 
 bool Asset::isRenderable()
 {
@@ -66,3 +69,10 @@ Asset::operator VectorImage*()
 	return dynamic_cast<VectorImage *>(this);
 }
 
+Asset::operator jsonObject*()
+{
+	if(getType() != JSON)
+		throw std::runtime_error("Invalid conversion.\nInvalid conversion from Asset * to json * : Given Asset * is not a json.");
+
+	return dynamic_cast<jsonObject *>(this);
+}

@@ -109,7 +109,8 @@ Importer * RessourcesEngine::getImporter(ressourceType &type)
 		case  SOUND: return new ImageImporter();  break;
 		case   MESH: return new MeshImporter();   break;
 		case   FONT: return new FontImporter();   break;
-		case   VECTOR: return new SVGImporter();   break;
+		case VECTOR: return new SVGImporter();    break;
+		case   JSON: return new jsonImporter();	  break;
 		default: throw std::runtime_error("No Importer Found !"); break;
 	}
 }
@@ -127,6 +128,7 @@ std::string RessourcesEngine::buildPath(std::string &file, ressourceType &type)
 		case MESH: prefix = "assets/meshs/"; break;
 		case FONT: prefix = "assets/fonts/"; break;
 		case VECTOR: prefix = "assets/SVG/"; break;
+		case JSON: prefix ="assets/JSON/"; break;
 	}
 
 	return App->getAppPath() + prefix + file;
