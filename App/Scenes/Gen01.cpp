@@ -15,6 +15,7 @@
 
 #include "Engines/RessourcesEngine/Exporters/SVGExporter.hpp"
 #include "Engines/RessourcesEngine/Exporters/VectorImagesToJSONExporter.hpp"
+#include "Engines/RessourcesEngine/Importers/JSONToVectorImagesImporter.hpp"
 
 #include "Engines/GeneratorEngine/GeneratorEngine.hpp"
 #include "Engines/GeneratorEngine/InstructionsProtocol/InstructionsProtocol.hpp"
@@ -35,7 +36,7 @@ namespace Scenes
 	void Gen01::init()
 	{
 		//Loading
-		rId svgID = App->ressourcesEngine->loadAsset("github.svg", VECTOR);
+		rId svgID = App->ressourcesEngine->loadAsset("handComputer.svg", VECTOR);
 		m_svg = *App->ressourcesEngine->getAsset(svgID);
 
 		//Instructions
@@ -54,12 +55,19 @@ namespace Scenes
 		VectorImagesToJSONExporter exporterJSON;
 		exporterJSON.exportJSON({m_svg, imageTransformed}, "testExport");
 
+		JSONToVectorImagesImporter importer;
+		VectorImage * testImport = importer.import("testExport")[0];
+
+		exporter.exportSVG(testImport, "testPythonPipe");
+
 		//Generate and display Mesh
 		m_mesh = imageTransformed->getMesh();
 
 		m_mesh->generate();
 		m_mesh->setRenderFormat(GL_POINTS);
 
+		m_mesh->getCursor()
+			->reset()->translate(App->getWidth()/2, App->getHeight()/2, 0);
 
 	}
 
@@ -69,8 +77,8 @@ namespace Scenes
 	///////////
 	void Gen01::execute()
 	{
-		m_mesh->getCursor()
-		->reset()->translate(App->getWidth()/2, App->getHeight()/2, 0);
+		//m_mesh->getCursor()
+			//->reset()->translate(App->getWidth()/2, App->getHeight()/2, 0);
 
 		float scrollAmount = App->appEngine->getMouse().scrollY/10.0f;
 		m_mesh->getCursor()->scale(1+scrollAmount, 1+scrollAmount, 1);

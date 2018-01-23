@@ -151,7 +151,7 @@ public:
 	/**
 	 Move the bezier startPoint to the given position
 
-	 @param dest <#dest description#>
+	 @param dest Desitination point
 	 */
 	void move(const glm::vec2 &dest);
 

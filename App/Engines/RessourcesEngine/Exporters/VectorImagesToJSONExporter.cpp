@@ -26,8 +26,6 @@ void VectorImagesToJSONExporter::exportJSON(std::vector<VectorImage *> vectorIma
 	{
 		nlohmann::json vectorJson;
 
-		std::vector<nlohmann::json> shapes;
-
 		vectorJson["width"] = vectorImage->getWidth();
 		vectorJson["height"] = vectorImage->getHeight();
 
@@ -42,20 +40,19 @@ void VectorImagesToJSONExporter::exportJSON(std::vector<VectorImage *> vectorIma
 				bezierj["width"] = bezier.getDimensions().x;
 				bezierj["height"] = bezier.getDimensions().y;
 
-				bezierj["points"][0] = {{"x", bezier.getStartPoint().x}, {"y", bezier.getStartPoint().y}};
-				bezierj["points"][1] = {{"x", bezier.getStartHandle().x}, {"y", bezier.getStartHandle().y}};
-				bezierj["points"][2] = {{"x", bezier.getEndPoint().x}, {"y", bezier.getEndPoint().y}};
-				bezierj["points"][3] = {{"x", bezier.getEndHandle().x}, {"y", bezier.getEndHandle().y}};
+				bezierj["points"] = {
+					{{"x", bezier.getStartPoint().x}, {"y", bezier.getStartPoint().y}},
+					{{"x", bezier.getStartHandle().x}, {"y", bezier.getStartHandle().y}},
+					{{"x", bezier.getEndHandle().x}, {"y", bezier.getEndHandle().y}},
+					{{"x", bezier.getEndPoint().x}, {"y", bezier.getEndPoint().y}}};
 
 				bezierj["cursor"] = cursorToJson(bezier.getCursor());
 
 				shapeJ["paths"].push_back(bezierj);
 			}
 
-			shapes.push_back(shapeJ);
+			vectorJson["shapes"].push_back(shapeJ);
 		}
-
-		vectorJson["shapes"].push_back(shapes);
 
 		jsonObj.push_back(vectorJson);
 	}
@@ -78,10 +75,10 @@ nlohmann::json VectorImagesToJSONExporter::cursorToJson(DrawCursor * cursor)
 	{
 		line.clear();
 
-		line.push_back(cursor->getMatrix()[0][0]);
-		line.push_back(cursor->getMatrix()[0][1]);
-		line.push_back(cursor->getMatrix()[0][2]);
-		line.push_back(cursor->getMatrix()[0][3]);
+		line.push_back(cursor->getMatrix()[i][0]);
+		line.push_back(cursor->getMatrix()[i][1]);
+		line.push_back(cursor->getMatrix()[i][2]);
+		line.push_back(cursor->getMatrix()[i][3]);
 
 		j[i] = line;
 	}

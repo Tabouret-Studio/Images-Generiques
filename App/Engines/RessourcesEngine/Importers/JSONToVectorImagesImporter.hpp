@@ -9,11 +9,20 @@
 #ifndef JSONToVectorImagesImporter_hpp
 #define JSONToVectorImagesImporter_hpp
 
+//////////////////////
+//Forward declarations
+class VectorImage;
+
 #include "libraries.hpp"
 
 class JSONToVectorImagesImporter
 {
-	//std::vector<VectorImage *>
+public:
+	std::vector<VectorImage *> import(const std::string &path);
+
+private:
+
+	glm::mat4 convertMatrix(const nlohmann::json &jsonMat);
 };
 
 

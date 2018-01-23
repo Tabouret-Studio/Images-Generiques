@@ -101,6 +101,8 @@ public:
 	 */
 	Mesh * getMesh(const uint &precision) const;
 
+	inline VectorImage &operator <<(const Shape &shape) { m_shapes.push_back(shape); return *this; }
+
 private:
 
 	float m_width;
