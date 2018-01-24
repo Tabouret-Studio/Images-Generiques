@@ -24,35 +24,54 @@ endif
 OBJECTS := $(SOURCES:.$(SRCEXT)=.o)
 
 # COMPILER FLAGS
-CXXFLAGS := -g -std=c++11 -Wall -pedantic -I$(LIBDIR) -I.
-LDLIBS := `pkg-config --libs freetype2` #`pkg-config --libs assimp`
-LDFLAGS := `pkg-config --cflags freetype2` #`pkg-config --cflags assimp`
+GCCOPTIONS = -g -std=c++11 -Wall -pedantic #-O2 -pipe -fno-common -fno-strict-aliasing
+CXXFLAGS := $(GCCOPTIONS) -I$(LIBDIR) -I.
+LDLIBS = `pkg-config --libs freetype2` #`pkg-config --libs assimp`
+LDFLAGS = `pkg-config --cflags freetype2` #`pkg-config --cflags assimp`
+BOOSTLIBS = -lboost_filesystem -lboost_system
 
 # OS-DEPENDANT COMPILER FLAGS
-# Windows (cygwin)
 ifeq ($(OS),Windows_NT)
-LDLIBS +=  -lGLEW -lGL -lSDL2 -lSDL2_image
+
+# Windows (cygwin)
+LDLIBS +=  -lGLEW -lGL -lSDL2 -lSDL2_image `python-config --cflags`
+LDFLAGS +=
+PYTHONLIBS = `python-config --libs`
+PYTHONFLAGS = `python-config --cflags`
+
+else ifeq ($(UNAME_S),Darwin)
 
 # OS X
-else ifeq ($(UNAME_S),Darwin)
 LDLIBS += -framework OpenGL -framework SDL2 -framework SDL2_image -lGLEW
+LDFLAGS +=
+PYTHONLIBS = `python-config --libs`
+PYTHONFLAGS = -I/System/Library/Frameworks/Python.framework/Versions/2.7/include/python2.7 -fno-strict-aliasing -fno-common -dynamic -arch x86_64 -DENABLE_DTRACE -DMACOSX -DNDEBUG #-Wstrict-prototypes -Wshorten-64-to-32
+
 
 # Linux (default)
 else
-LDLIBS += -lGLEW -lGL -lSDL2 -lSDL2_image
+LDLIBS +=-lGLEW -lGL -lSDL2 -lSDL2_image
+LDFLAGS +=
+PYTHONLIBS = `python-config --libs`
+PYTHONFLAGS = `python-config --includes`
+
 endif
 
+LDLIBS += $(BOOSTLIBS) $(PYTHONLIBS)
+LDFLAGS += $(PYTHONFLAGS)
 CXXFLAGS += $(LDFLAGS)
 
 
 # BUILD THE PROGRAM
-$(TARGET): hello linker
+$(TARGET): linker
+
+$(info )
+$(info ========================================)
+$(info    COMPILING $(TARGETNAME) on $(UNAME_S))
+$(info ========================================)
 
 #SAY HELLO
-hello:
-	@echo "\n========================================"
-	@echo "   COMPILING $(TARGETNAME) on $(UNAME_S)"
-	@echo "========================================\n"
+#hello:
 
 #LINK EVERYTHING
 linker: $(OBJECTS)

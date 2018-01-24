@@ -12,7 +12,7 @@ DrawCursor * DrawCursor::setMatrix(const glm::mat4 &mat)
 {
 	m_cursor = mat;
 	return this;
-};
+}
 
 DrawCursor * DrawCursor::translate(const glm::vec3 &vector)
 {

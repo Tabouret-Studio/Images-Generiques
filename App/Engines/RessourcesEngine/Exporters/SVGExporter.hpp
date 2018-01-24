@@ -4,8 +4,8 @@
 //Forward declaration
 class VectorImage;
 
-#include "Utils/Vector/Bezier.hpp"
-#include "Utils/Vector/Shape.hpp"
+#include "Elements/Vector/Bezier.hpp"
+#include "Elements/Vector/Shape.hpp"
 
 /**
  Export a VectorImage as an SVG file

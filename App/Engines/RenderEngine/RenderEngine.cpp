@@ -11,7 +11,7 @@
 #include "Utils/Vertex.hpp"
 #include "Utils/ShaderProgram.hpp"
 #include "Core/AppObject.hpp"
-#include "Engines/RessourcesEngine/Elements/Mesh.hpp"
+#include "Elements/Mesh.hpp"
 
 bool RenderEngine::m_instanciated = false;
 
@@ -50,7 +50,7 @@ void RenderEngine::setProjection3D()
 	float screenRatio = (float) App->getWidth() / App->getHeight();
 
 	m_ProjectionMatrix.setMatrix(glm::mat4(1.0))
-		->perspective(70.f, screenRatio, 0.1f, 100.f);
+		->perspective(70.f, screenRatio, 0.1f, 1500.f);
 	glViewport(0, 0, App->getWidth(), App->getHeight());
 
 	if(m_stored)

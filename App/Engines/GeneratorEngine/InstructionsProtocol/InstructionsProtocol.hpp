@@ -25,8 +25,7 @@ public:
 
 	//Constructors
 	InstructionsProtocol() {};
-	InstructionsProtocol(const InstructionName &instructionName);
-	InstructionsProtocol(const std::vector<InstructionName> &instructionNames);
+	InstructionsProtocol(const std::vector<std::string> &instructionNames);
 
 	/**
 	 Call the execute function of all the instructions in the protocol
@@ -41,14 +40,14 @@ public:
 
 	 @param instructionName THe instruction to add
 	 */
-	void addInstruction(const InstructionName &instructionName);
+	void addInstruction(const std::string &instructionName);
 
 	/**
 	 Add new instructions at the end of the protocol
 
 	 @param instructionNames The instructions to add
 	 */
-	void addInstructions(const std::vector<InstructionName> &instructionNames);
+	void addInstructions(const std::vector<std::string> &instructionNames);
 
 	/**
 	 Return all the instruction in the protocol

@@ -48,6 +48,10 @@
 #define NANOSVG_ALL_COLOR_KEYWORDS
 #include <NanoSVG/nanosvg.h>
 
+//////////
+//JSON
+#include "JSON/json.hpp"
+
 /////////////////
 //UUID generation
 #include <boost/uuid/uuid.hpp>
