@@ -49,7 +49,7 @@ Mesh * Font::genCaption(const std::string &caption)
 {
 	//Gather informations for rendering
 	uint textureWidth = 0;
-	uint textureHeight = m_fontFace.size;
+	uint textureHeight = m_fontFace.size * 2;
 
 	for(char c : caption)
 	{
@@ -155,6 +155,9 @@ FontCharacter Font::genFontCharacter(char charID)
 
 	/*Set texture options*/
 	glBindTexture(GL_TEXTURE_2D, 0); /*Leave the texture*/
+
+	FT_BBox bbox;
+	//FT_Glyph_Get_CBox(m_face->glyph, ft_glyph_bbox_pixels, &bbox);
 
 	character.texture = texture;
 

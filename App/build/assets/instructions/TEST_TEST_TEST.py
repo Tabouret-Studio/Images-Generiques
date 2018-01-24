@@ -1,2 +1,1 @@
-from time import time,ctime
-print 'Today is', ctime(time())
+from IO import *

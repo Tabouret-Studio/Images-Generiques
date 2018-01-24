@@ -8,12 +8,11 @@
 
 #include "ml1.hpp"
 
-#include "Utils/Vector/Bezier.hpp"
+#include "Elements/Vector/Bezier.hpp"
 #include "Utils/Vertex.hpp"
 
-#include "Engines/RessourcesEngine/Elements/VectorImage.hpp"
-#include "Engines/RessourcesEngine/Elements/Mesh.hpp"
-#include "Engines/RessourcesEngine/Elements/jsonObject.hpp"
+#include "Elements/Vector/VectorImage.hpp"
+#include "Elements/Mesh.hpp"
 #include "Engines/RenderEngine/RenderEngine.hpp"
 #include "Engines/IndexEngine/IndexEngine.hpp"
 #include "Engines/AppEngine/AppEngine.hpp"

@@ -37,8 +37,11 @@ void GeneratorEngine::instanciate()
 GeneratorEngine::GeneratorEngine()
 {
 	//Ugly conversion because Py_SetProgramName is not marked as const despite not modifying the var (thx c89)
-	char *cstr = new char[App->getAppPath().length() + 1];
-	strcpy(cstr, App->getAppPath().c_str());
+	std::string pathToInstruction = App->getAppPath() + "assets/instructions/";
+	char *cstr = new char[pathToInstruction.length() + 1];
+	strcpy(cstr, pathToInstruction.c_str());
+
+	std::cout << pathToInstruction << std::endl;
 
 	//init Python
 	Py_SetProgramName(cstr);

@@ -8,12 +8,12 @@
 
 #include "Shape.hpp"
 
-#include "Engines/RessourcesEngine/Elements/Mesh.hpp"
+#include "Elements/Mesh.hpp"
 
-std::vector<glm::vec2> Shape::getPoints(const float &precision) const
+std::vector<glm::vec3> Shape::getPoints(const float &precision) const
 {
-	std::vector<glm::vec2> points;
-	std::vector<glm::vec2> pathPoints;
+	std::vector<glm::vec3> points;
+	std::vector<glm::vec3> pathPoints;
 
 	for(std::vector<Bezier>::const_iterator it = m_paths.begin(); it != m_paths.end(); ++it)
 	{
