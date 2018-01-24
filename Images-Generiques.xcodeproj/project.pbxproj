@@ -95,6 +95,10 @@
 		391C904B20174D530003E2B7 /* VectorImagesToJSONExporter.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = VectorImagesToJSONExporter.hpp; sourceTree = "<group>"; };
 		391C904D201783E10003E2B7 /* JSONToVectorImagesImporter.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = JSONToVectorImagesImporter.cpp; sourceTree = "<group>"; };
 		391C904E201783E10003E2B7 /* JSONToVectorImagesImporter.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = JSONToVectorImagesImporter.hpp; sourceTree = "<group>"; };
+		391C9055201879480003E2B7 /* Bezier.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = Bezier.py; sourceTree = "<group>"; };
+		391C9056201879480003E2B7 /* __init__.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = __init__.py; sourceTree = "<group>"; };
+		391C905B201899010003E2B7 /* GENERATE_PRIMITIVE_CUBE.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = GENERATE_PRIMITIVE_CUBE.py; sourceTree = "<group>"; };
+		391C905C20189CDC0003E2B7 /* testExport.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = testExport.json; sourceTree = "<group>"; };
 		391CFE452016409D00780A4C /* PythonInstruction.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = PythonInstruction.cpp; path = App/Engines/GeneratorEngine/Instructions/PythonInstruction.cpp; sourceTree = SOURCE_ROOT; };
 		391CFE462016409D00780A4C /* PythonInstruction.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; name = PythonInstruction.hpp; path = App/Engines/GeneratorEngine/Instructions/PythonInstruction.hpp; sourceTree = SOURCE_ROOT; };
 		391CFE482016657700780A4C /* Utils.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Utils.cpp; sourceTree = "<group>"; };
@@ -536,6 +540,15 @@
 			path = JSON;
 			sourceTree = "<group>";
 		};
+		391C9054201879480003E2B7 /* IO */ = {
+			isa = PBXGroup;
+			children = (
+				391C9055201879480003E2B7 /* Bezier.py */,
+				391C9056201879480003E2B7 /* __init__.py */,
+			);
+			path = IO;
+			sourceTree = "<group>";
+		};
 		392360092009066D00400C45 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
@@ -956,7 +969,9 @@
 		394F9430201620D40065CE25 /* instructions */ = {
 			isa = PBXGroup;
 			children = (
+				391C9054201879480003E2B7 /* IO */,
 				394F94312016212A0065CE25 /* TEST_TEST_TEST.py */,
+				391C905B201899010003E2B7 /* GENERATE_PRIMITIVE_CUBE.py */,
 			);
 			path = instructions;
 			sourceTree = "<group>";
@@ -1099,6 +1114,7 @@
 		39D90C3A1FDAF0C400282ED1 /* build */ = {
 			isa = PBXGroup;
 			children = (
+				391C905C20189CDC0003E2B7 /* testExport.json */,
 				390196C91FDDD956000F2113 /* assets */,
 				39AF3CD11FDB541F0089622E /* ImagesGeneriques */,
 			);

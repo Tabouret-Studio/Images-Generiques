@@ -63,7 +63,6 @@ std::string SVGExporter::getHeader(const int &width, const int &height)
 	std::string svgWidth = std::to_string(width);
 	std::string svgHeight = std::to_string(height);
 	std::string svgHeader = "<svg height=\""+svgHeight+"\" width=\""+svgWidth+"\" xmlns=\"http://www.w3.org/2000/svg\">";
-	//std::cout << svgHeader << std::endl;
 
 	return svgHeader;
 }

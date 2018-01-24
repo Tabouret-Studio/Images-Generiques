@@ -43,9 +43,6 @@ namespace Scenes
 //		->translate(App->getWidth()/2, App->getHeight()/2, 0);
 
 		App->renderEngine->setProjection2D();
-
-
-		//std::cout << "Val 01 init" << std::endl;
 	}
 
 
@@ -54,7 +51,6 @@ namespace Scenes
 	///////////
 	void Val01::execute()
 	{
-		//std::cout << "Val 01 executed" << std::endl;
 	}
 
 
@@ -66,7 +62,5 @@ namespace Scenes
 		App->renderEngine->setProjection2D();
 
 		App->renderEngine->render(m_mesh, m_mesh->getCursor());
-
-		//std::cout << "Val 01 rendered" << std::endl;
 	}
 }

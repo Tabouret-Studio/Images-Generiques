@@ -37,8 +37,6 @@ void Core::main()
 	//Load the first scene
 	Scenes::Gen01::load();
 
-	std::cout << "loaded" << std::endl;
-
 	while(App->isRunning())
 	{
 		////////////////////////////////

@@ -63,9 +63,10 @@ void PythonInstruction::runInstruction()
 
 	Py_Initialize();
 
-	//Execute instruction
-	std::cout << scriptPath << std::endl;
 	PyObject* PyFileObject = PyFile_FromString(cstr, cstr2);
+
+	//Execute instruction
+	PyRun_SimpleString("import sys\nsys.path.append(\"assets/instructions/\")\n" );
 	PyRun_SimpleFileEx(PyFile_AsFile(PyFileObject), cstr, 1);
 
 	Py_Finalize();
