@@ -1,5 +1,5 @@
 #include "SVGExporter.hpp"
-#include "Engines/RessourcesEngine/Elements/VectorImage.hpp"
+#include "Elements/Vector/VectorImage.hpp"
 #include <fstream>
 #include <string>
 #include "Core/AppObject.hpp"
@@ -19,6 +19,8 @@ void SVGExporter::exportSVG(VectorImage * vectorImg, const std::string &fileName
 
 	for(Shape shape : vectorImg->getShapes())
 	{
+		shape.getCursor()->translate(vectorImg->getWidth()/2, vectorImg->getHeight()/2, 0);
+		shape.applyCursor();
 		f << shapeToPath(shape);
 	}
 
@@ -31,7 +33,7 @@ void SVGExporter::exportSVG(VectorImage * vectorImg, const std::string &fileName
 
 std::string SVGExporter::shapeToPath(const Shape &shape)
 {
-	glm::vec2 lastPoint = shape.getPaths()[0].getStartPoint() + glm::vec2(1,1);
+	glm::vec3 lastPoint = shape.getPaths()[0].getStartPoint() + glm::vec3(1);
 
 	std::string path = "<path d=\"";
 
@@ -61,7 +63,6 @@ std::string SVGExporter::getHeader(const int &width, const int &height)
 	std::string svgWidth = std::to_string(width);
 	std::string svgHeight = std::to_string(height);
 	std::string svgHeader = "<svg height=\""+svgHeight+"\" width=\""+svgWidth+"\" xmlns=\"http://www.w3.org/2000/svg\">";
-	//std::cout << svgHeader << std::endl;
 
 	return svgHeader;
 }

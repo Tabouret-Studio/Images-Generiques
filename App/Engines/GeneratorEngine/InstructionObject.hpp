@@ -14,7 +14,7 @@
 
 class InstructionParameters;
 
-#include "Engines/RessourcesEngine/Elements/VectorImage.hpp"
+#include "Elements/Vector/VectorImage.hpp"
 
 #include <vector>
 

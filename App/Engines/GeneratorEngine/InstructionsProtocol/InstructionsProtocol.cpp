@@ -10,12 +10,7 @@
 
 #include "Core/AppObject.hpp"
 
-InstructionsProtocol::InstructionsProtocol(const InstructionName &instructionName)
-{
-	addInstruction(instructionName);
-}
-
-InstructionsProtocol::InstructionsProtocol(const std::vector<InstructionName> &instructionNames)
+InstructionsProtocol::InstructionsProtocol(const std::vector<std::string> &instructionNames)
 {
 	addInstructions(instructionNames);
 }
@@ -31,14 +26,14 @@ std::vector<VectorImage *> InstructionsProtocol::execute(std::vector<VectorImage
 	return newVector;
 }
 
-void InstructionsProtocol::addInstruction(const InstructionName &instructionName)
+void InstructionsProtocol::addInstruction(const std::string &instructionName)
 {
 	m_instructions.push_back((InstructionObject *)App->generatorEngine->getInstruction(instructionName));
 }
 
-void InstructionsProtocol::addInstructions(const std::vector<InstructionName> &instructionNames)
+void InstructionsProtocol::addInstructions(const std::vector<std::string> &instructionNames)
 {
-	for(InstructionName instructionName : instructionNames)
+	for(const std::string &instructionName : instructionNames)
 		addInstruction(instructionName);
 }
 

@@ -44,7 +44,7 @@ public:
 
 	 @return Vector of 2D points
 	 */
-	inline std::vector<glm::vec2> getPoints() const { return getPoints(1); };
+	inline std::vector<glm::vec3> getPoints() const { return getPoints(1); };
 
 	/**
 	 Return all the points in the shape
@@ -52,7 +52,7 @@ public:
 
 	 @return Vector of 2D points
 	 */
-	std::vector<glm::vec2> getPoints(const float &precision) const;
+	std::vector<glm::vec3> getPoints(const float &precision) const;
 
 	/**
 	 Return the shape as a Mesh

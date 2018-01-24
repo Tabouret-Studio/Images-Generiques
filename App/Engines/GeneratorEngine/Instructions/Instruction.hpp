@@ -65,6 +65,7 @@ protected:
 	InstructionParameters * m_parameters;
 };
 
+#include "PythonInstruction.hpp"
 
 //Paths
 #include "Paths/PathsOrderRandomizer.hpp"
