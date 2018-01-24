@@ -13,7 +13,9 @@
 
 #include "Engines/RessourcesEngine/Elements/VectorImage.hpp"
 #include "Engines/RessourcesEngine/Elements/Mesh.hpp"
+#include "Engines/RessourcesEngine/Elements/jsonObject.hpp"
 #include "Engines/RenderEngine/RenderEngine.hpp"
+#include "Engines/IndexEngine/IndexEngine.hpp"
 #include "Engines/AppEngine/AppEngine.hpp"
 #include "Utils/Selector/Item.hpp"
 #include "Engines/RessourcesEngine/Exporters/SVGExporter.hpp"
@@ -46,9 +48,13 @@ namespace Scenes
 		 m_mesh->generate();
 		 m_mesh->getCursor()->translate(App->getWidth()/2, App->getHeight()/2, 0); 
  
-	 
-	    App->renderEngine->setProjection2D(); 
+	 	jsonImporter jImport;
+		jsonObject * jsonFile = *jImport.getAsset("jsonExample2.json");
 
+		App->indexEngine->getImagesIdsPaths(jsonFile);
+
+
+	    App->renderEngine->setProjection2D(); 
 	    SVGExporter fExport;
 	    fExport.exportSVG(svg, "ml2");
 

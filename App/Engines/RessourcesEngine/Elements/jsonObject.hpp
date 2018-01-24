@@ -4,7 +4,7 @@
 //////////////////////
 //Forward declarations
 
-
+#include "Engines/RessourcesEngine/RessourcesEngine.hpp"
 #include "Asset.hpp"
 
 #include <iostream>
