@@ -39,7 +39,7 @@ namespace Scenes
 		rId fontID = App->ressourcesEngine->loadAsset("Karla-Bold.ttf", FONT);
 		m_font = *App->ressourcesEngine->getAsset(fontID);
 
-		m_font->setHeight(50.0);
+		m_font->setHeight(100.0);
 		m_font->generate();
 	}
 
@@ -49,8 +49,7 @@ namespace Scenes
 	///////////
 	void txt::execute()
 	{
-		m_mesh = m_font->genCaption("aAbBcCdDeEfFgGhHiIjJkKlLmMnNoOpPqQrRsStTuUvVwWxXyYzZ");
-		//m_mesh = m_font->genCaption(std::to_string(SDL::getWindowDPI()));
+		m_mesh = m_font->genCaption("PROTOCOLE");
 		m_mesh->generate();
 		m_mesh->getCursor()->translate(App->getWidth() / 2, App->getHeight() / 2, 0);
 
