@@ -80,6 +80,7 @@ void GeneratorEngine::registerCPPInstructions()
 	//Paths
 	registerInstruction(INSTRUCTION_CPP, "PATHS_ORDER_RANDOMIZER", PathsOrderRandomizer::get);
 	registerInstruction(INSTRUCTION_CPP, "PATHS_CHAINING", PathsChaining::get);
+	registerInstruction(INSTRUCTION_CPP, "BEZIERS_LINEAR_ALIZER", BezierLinearAlizer::get);
 }
 
 void GeneratorEngine::registerPythonInstructions()

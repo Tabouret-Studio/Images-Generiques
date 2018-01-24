@@ -15,18 +15,26 @@ Instruction * PathsChaining::get()
 
 std::vector<VectorImage *> PathsChaining::execute(std::vector<VectorImage *> vectorImages)
 {
-	std::vector<Bezier> paths = vectorImages[0]->getBeziers();
+	std::vector<std::vector<Bezier>> imagesPaths;
 
-	glm::vec3 lastPos(0, 0, 0);
-	Shape shape;
-
-	for(Bezier path : paths)
+	for(unsigned int i=0; i<vectorImages.size(); ++i)
 	{
-		path.applyCursor();
-		path.move(lastPos);
-		lastPos = path.getEndPoint();
+		imagesPaths.push_back(vectorImages[i]->getBeziers());
+	}
 
-		shape << path;
+	glm::vec2 lastPos(0, 0);
+	Shape shape;	
+
+	for(std::vector<Bezier> paths : imagesPaths)
+	{
+		for(Bezier path : paths)
+		{
+			path.applyCursor();
+			path.move(lastPos);
+			lastPos = path.getEndPoint();
+
+			shape << path;
+		}
 	}
 
 	return {new VectorImage(vectorImages[0]->getWidth(), vectorImages[0]->getHeight(), shape)};

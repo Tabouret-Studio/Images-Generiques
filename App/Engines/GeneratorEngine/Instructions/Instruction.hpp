@@ -70,6 +70,7 @@ protected:
 //Paths
 #include "Paths/PathsOrderRandomizer.hpp"
 #include "Paths/PathsChaining.hpp"
+#include "Beziers/BeziersLinearAlizer.hpp"
 
 
 #endif /* Instruction_h */
