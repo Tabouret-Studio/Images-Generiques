@@ -4,8 +4,14 @@
 	boost::filesystem::path scriptPath;
 	std::string scriptName;
 
-	if(!boost::filesystem::exists(instructionsFolder))
-		return; //No folder, nothing to iterate
+#include <boost/filesystem.hpp>
+#include <boost/range/iterator_range.hpp>
+
+#include <iostream>
+#include <iterator>
+#include <vector>
+
+bool GeneratorEngine::m_instanciated = false;
 
 	std::vector<boost::filesystem::directory_entry> entries;
 	std::copy(boost::filesystem::directory_iterator(instructionsFolder), boost::filesystem::directory_iterator(), std::back_inserter(entries));
@@ -32,15 +38,6 @@
 
 void GeneratorEngine::registerInstruction(const instructionFormat &format, const std::string &instructionName, std::function<Instruction *(void)> loader)
 {
-	m_instructionsIndex.insert(std::pair<std::string, std::function<Instruction *(void)>>(instructionName, loader));
-	m_instructionsFormats.insert(std::pair<std::string, instructionFormat>(instructionName, format));
-}
-
-Instruction * GeneratorEngine::getPythonInstruction(const std::string &scriptName)
-{
-	return PythonInstruction::get(scriptName);
-}
-
 	//Ugly conversion because Py_SetProgramName is not marked as const despite not modifying the var (thx c89)
 	std::string pathToInstruction = App->getAppPath() + "assets/instructions/";
 	char *cstr = new char[pathToInstruction.length() + 1];
@@ -56,6 +53,37 @@ Instruction * GeneratorEngine::getPythonInstruction(const std::string &scriptNam
 
 	registerCPPInstructions();
 	registerPythonInstructions();
+}
+
+
+
+Instruction * GeneratorEngine::getInstruction(const std::string &instruction)
+{
+	if(m_instructionsIndex.find(instruction) == m_instructionsIndex.end())
+		throw std::runtime_error("Could not run instruction "+instruction+".\nThe instruction "+instruction+" could not be found.");
+
+	if(m_instructionsFormats[instruction] == INSTRUCTION_CPP)
+		return m_instructionsIndex[instruction]();
+
+	return getPythonInstruction(instruction);
+}
+
+
+
+
+void GeneratorEngine::registerCPPInstructions()
+{
+	m_instructionsIndex.insert(std::pair<std::string, std::function<Instruction *(void)>>(instructionName, loader));
+	m_instructionsFormats.insert(std::pair<std::string, instructionFormat>(instructionName, format));
+}
+
+	//Paths
+	registerInstruction(INSTRUCTION_CPP, "PATHS_ORDER_RANDOMIZER", PathsOrderRandomizer::get);
+	registerInstruction(INSTRUCTION_CPP, "PATHS_CHAINING", PathsChaining::get);
+}
+
+void GeneratorEngine::registerPythonInstructions()
+{
 	boost::filesystem::path instructionsFolder = App->getAppPath() + "assets/instructions/";
 
 	boost::filesystem::path scriptPath;

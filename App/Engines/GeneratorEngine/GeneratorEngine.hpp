@@ -17,6 +17,12 @@ class Instruction;
 #include <functional>
 #include <map>
 
+enum instructionFormat
+{
+	INSTRUCTION_CPP,
+	INSTRUCTION_PYTHON
+};
+
 /**
  The Generator Engine holds methods and classes to manipulate and generate vector images. It goals is to allow for unified, simplified access to VectorImage manipulations (Instructions)
  */
