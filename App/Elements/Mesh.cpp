@@ -35,7 +35,6 @@ void Mesh::generate()
 	deleteBuffers();
 
 	App->renderEngine->initVBO(this);
-
 	App->renderEngine->initVAO(this);
 
 	m_generated = true;
@@ -59,6 +58,11 @@ void Mesh::render() const
 	App->renderEngine->render(this, &m_cursor);
 }
 
+void Mesh::freeTexture()
+{
+	glDeleteTextures(1, &m_textureID);
+}
+
 Mesh::~Mesh()
 {
 	deleteBuffers();
@@ -69,7 +73,7 @@ void Mesh::deleteBuffers()
 	if(m_generated)
 	{
 		glDeleteBuffers(1, &m_vbo);
-		glDeleteBuffers(2, &m_vao);
+		glDeleteVertexArrays(1, &m_vao);
 		m_generated = false;
 	}
 }

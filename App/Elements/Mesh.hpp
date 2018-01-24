@@ -136,6 +136,7 @@ public:
 
 	void render() const;
 
+	void freeTexture();
 	~Mesh();
 
 	///////////

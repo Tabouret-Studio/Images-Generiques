@@ -86,11 +86,14 @@ std::vector<glm::vec3> VectorImage::getPoints(const float &precision) const
 Mesh * VectorImage::getMesh(const uint &precision) const
 {
 	Mesh * mesh = new Mesh();
+	Mesh * shapeMesh;
 
 	// Parse SVG
 	for(std::vector<Shape>::const_iterator it = m_shapes.begin(); it != m_shapes.end(); ++it)
 	{
-		*mesh << (*it).getMesh();
+		shapeMesh = (*it).getMesh();
+		*mesh << shapeMesh;
+		delete shapeMesh;
 	}
 
 	mesh->setRenderFormat(GL_POINTS);

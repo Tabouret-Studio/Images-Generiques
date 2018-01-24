@@ -41,8 +41,6 @@ GeneratorEngine::GeneratorEngine()
 	char *cstr = new char[pathToInstruction.length() + 1];
 	strcpy(cstr, pathToInstruction.c_str());
 
-	std::cout << pathToInstruction << std::endl;
-
 	//init Python
 	Py_SetProgramName(cstr);
 
