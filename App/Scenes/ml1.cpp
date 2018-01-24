@@ -13,6 +13,8 @@
 
 #include "Elements/Vector/VectorImage.hpp"
 #include "Elements/Mesh.hpp"
+#include "Elements/jsonObject.hpp"
+#include "Elements/Asset.hpp"
 #include "Engines/RenderEngine/RenderEngine.hpp"
 #include "Engines/IndexEngine/IndexEngine.hpp"
 #include "Engines/AppEngine/AppEngine.hpp"
@@ -42,13 +44,15 @@ namespace Scenes
 		rId svgID = App->ressourcesEngine->loadAsset("ml.svg", VECTOR);
 		VectorImage * svg = *App->ressourcesEngine->getAsset(svgID);
 
+		jsonImporter jImport;
+		jsonObject * jsonFile = *jImport.getAsset("jsonExample2.json");
+
 		 m_mesh = svg->getMesh();
 
 		 m_mesh->generate();
 		 m_mesh->getCursor()->translate(App->getWidth()/2, App->getHeight()/2, 0); 
  
-	 	jsonImporter jImport;
-		jsonObject * jsonFile = *jImport.getAsset("jsonExample2.json");
+	 	
 
 		App->indexEngine->getImagesIdsPaths(jsonFile);
 
