@@ -12,7 +12,7 @@
 #include "Mesh.hpp"
 #include "Shader.hpp"
 #include "Image.hpp"
-#include "VectorImage.hpp"
+#include "Vector/VectorImage.hpp"
 
 bool Asset::isRenderable()
 {

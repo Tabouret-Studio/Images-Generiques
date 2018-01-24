@@ -51,7 +51,7 @@ namespace Scenes
 			->scale(factor, factor, 0);
 
 		//Load font
-		rId fontID = App->ressourcesEngine->loadAsset("Joystix.ttf", FONT);
+		rId fontID = App->ressourcesEngine->loadAsset("Karla-Bold.ttf", FONT);
 		Font * font = *App->ressourcesEngine->getAsset(fontID);
 		font->setHeight(20);
 		font->generate();
@@ -72,7 +72,7 @@ namespace Scenes
 			int i = 0;
 
 			//Gen Shape text
-			textMesh = font->genCaption("Shape " + std::to_string(j+1));
+			textMesh = font->genCaption("SHAPE " + std::to_string(j+1));
 			textMesh->getCursor()->translate(175, roofLine, 0);
 			textMesh->generate();
 
