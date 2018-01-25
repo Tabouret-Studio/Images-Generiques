@@ -31,6 +31,6 @@ public:
 #include "ShaderImporter.hpp"
 #include "FontImporter.hpp"
 #include "SVGImporter.hpp"
-#include "jsonImporter.hpp"
+#include "JSONImporter.hpp"
 
 #endif /* Importer_hpp */

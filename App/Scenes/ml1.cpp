@@ -20,7 +20,7 @@
 #include "Engines/AppEngine/AppEngine.hpp"
 #include "Utils/Selector/Item.hpp"
 #include "Engines/RessourcesEngine/Exporters/SVGExporter.hpp"
-#include "Engines/RessourcesEngine/Importers/jsonImporter.hpp"
+#include "Engines/RessourcesEngine/Importers/JSONImporter.hpp"
 
 #include <iostream>
 
@@ -44,7 +44,7 @@ namespace Scenes
 		rId svgID = App->ressourcesEngine->loadAsset("ml.svg", VECTOR);
 		VectorImage * svg = *App->ressourcesEngine->getAsset(svgID);
 
-		jsonImporter jImport;
+		JSONImporter jImport;
 		rId jsonId = App->ressourcesEngine->loadAsset("indexExample.json", JSON);
 		jsonObject * jsonFile = *App->ressourcesEngine->getAsset(jsonId);
 

@@ -1,6 +1,6 @@
 #include "libraries.hpp"
 
-#include "jsonImporter.hpp"
+#include "JSONImporter.hpp"
 
 #include "../Elements/jsonObject.hpp"
 #include "Core/AppObject.hpp"
@@ -8,7 +8,7 @@
 #include <vector>
 #include <fstream>
 
-Asset * jsonImporter::getAsset(const std::string &path)
+Asset * JSONImporter::getAsset(const std::string &path)
 {
 	//Check if file exists
 	if(!App->ressourcesEngine->fileExist(path)) {

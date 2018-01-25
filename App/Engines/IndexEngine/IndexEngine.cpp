@@ -5,7 +5,10 @@
 
 #include "Core/AppObject.hpp"
 #include "Engines/RessourcesEngine/Exporters/SVGExporter.hpp"
+#include "Engines/RessourcesEngine/Importers/JSONImporter.hpp"
 #include "Engines/RessourcesEngine/Exporters/JSONExporter.hpp"
+
+#include <fstream>
 
 bool IndexEngine::m_instanciated = false;
 
@@ -31,11 +34,11 @@ IndexEngine::IndexEngine() {
 
 
 void IndexEngine::loadLibrary() {
-	rId jsonId = App->ressourcesEngine->loadAsset("indexLibrary.json", JSON);
-	jsonObject * jsonFile = *App->ressourcesEngine->getAsset(jsonId);
-
+	JSONImporter jsonImport;
+	jsonObject * jsonFile = *jsonImport.getAsset(App->getAppPath()+"/indexLibrary/indexLibrary.json");
 	
-	nlohmann::json * j = jsonFile->get();
+	nlohmann::json * j = jsonFile->get(); 
+	
 	nlohmann::json imagesList = (*j)["images"];
 
 	for(const nlohmann::json &jsonImage : imagesList)

@@ -110,7 +110,7 @@ Importer * RessourcesEngine::getImporter(ressourceType &type)
 		case   MESH: return new MeshImporter();   break;
 		case   FONT: return new FontImporter();   break;
 		case VECTOR: return new SVGImporter();    break;
-		case   JSON: return new jsonImporter();	  break;
+		case   JSON: return new JSONImporter();	  break;
 		default: throw std::runtime_error("No Importer Found !"); break;
 	}
 }

@@ -6,7 +6,7 @@
 
 #include "Importer.hpp"
 
-class jsonImporter: public Importer
+class JSONImporter: public Importer
 {
 public:
 		Asset * getAsset(const std::string &path);
