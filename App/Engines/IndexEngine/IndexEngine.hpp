@@ -22,26 +22,17 @@ public:
 	//Singleton
 	static void instanciate();
 
-	void loadJSON();
-	void readJSON();
-	void writeJSON();
-
 	/**
 	 * Browse a jsonObject to get each image path
-	 * Fill a map which linking an image unique_ID to its path
-	 * 
-	 * @param the json jsonObject used for indexation
+	 * Fill a map which linking an image unique_ID to its path 
 	 */
-	void setImagesIdsPaths(jsonObject * jsonObj);
+	void loadLibrary();
 
-	/**
-	 * Browse a jsonObject to get each image tags
-	 * Fill a map which linking an image unique_ID to a vector of tags
-	 * 
-	 * @param the json jsonObject used for indexation
-	 */
-	void setImagesIdsTages(jsonObject &jsonObj);
-
+	std::vector<srcId> * getImagesIds() const;
+	VectorImage * getVectorImage(const srcId &imgId) const;
+	std::vector<std::string> getImageTags(const srcId &imgId) const;
+	void insertVectorIMage(const VectorImage * image, const std::vector<std::string> &tags);
+	void exportIndexToJSON() const;
 	///////
 	//Utils
 
@@ -53,6 +44,9 @@ private:
 	//Constructor
 	IndexEngine();
 	~IndexEngine();
+
+
+	bool imageIdIsValid(const srcId &imgId) const;
 
 	//Fields
 	std::map<srcId, std::string> m_ImagesIdsPaths;

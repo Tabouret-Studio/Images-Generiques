@@ -39,7 +39,8 @@
                 "${workspaceRoot}/App",
                 "${workspaceRoot}App/libs",
                 "/usr/include/freetype2",
-                "${workspaceRoot}/App/libs"
+                "${workspaceRoot}/App/libs",
+                "/usr/include/python2.7"
             ],
             "defines": [],
             "intelliSenseMode": "clang-x64",

@@ -53,6 +53,7 @@ namespace Scenes
 		 m_mesh->generate();
 		 m_mesh->getCursor()->translate(App->getWidth()/2, App->getHeight()/2, 0); 
  
+		
 	 	
 
 		//App->indexEngine->setImagesIdsPaths(jsonFile);
