@@ -10,10 +10,18 @@
 
 Asset * jsonImporter::getAsset(const std::string &path)
 {
+	//Check if file exists
+	if(!App->ressourcesEngine->fileExist(path)) {
+		throw std::runtime_error("The file "+path+".json could not be loaded");
+	}
+
 	// read a JSON file
-	std::ifstream jsonFile("file.json");
+	std::ifstream jsonFile;
+	jsonFile.open(path);
+	
+	std::string content((std::istreambuf_iterator<char>(jsonFile)), (std::istreambuf_iterator<char>()));
 	nlohmann::json * j = new nlohmann::json();
-	jsonFile >> *j;
+	*j = nlohmann::json::parse(content);
 
 	return new jsonObject(j);
 }

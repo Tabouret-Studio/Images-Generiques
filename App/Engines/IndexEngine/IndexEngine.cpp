@@ -23,7 +23,7 @@ void IndexEngine::instanciate()
 IndexEngine::IndexEngine() {}
 
 
-void IndexEngine::getImagesIdsPaths(jsonObject * jsonObj) {
+void IndexEngine::setImagesIdsPaths(jsonObject * jsonObj) {
 
 	nlohmann::json * j = jsonObj->get();
 
@@ -38,6 +38,6 @@ void IndexEngine::getImagesIdsPaths(jsonObject * jsonObj) {
 	}
 }
 
-void IndexEngine::getImagesIdsTages(jsonObject &jsonObj) {
+void IndexEngine::setImagesIdsTages(jsonObject &jsonObj) {
 
 }

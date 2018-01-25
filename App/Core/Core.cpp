@@ -35,7 +35,7 @@ void Core::main()
 
 	//////////////////////
 	//Load the first scene
-	Scenes::txt::load();
+	Scenes::ml1::load();
 
 	while(App->isRunning())
 	{

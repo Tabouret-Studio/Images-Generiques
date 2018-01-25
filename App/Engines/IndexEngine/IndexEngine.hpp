@@ -1,3 +1,6 @@
+//  Created by Marie-Lou Barbier on 19/01/2018.
+
+
 #ifndef IndexEngine_hpp
 #define IndexEngine_hpp
 
@@ -29,7 +32,7 @@ public:
 	 * 
 	 * @param the json jsonObject used for indexation
 	 */
-	void getImagesIdsPaths(jsonObject * jsonObj);
+	void setImagesIdsPaths(jsonObject * jsonObj);
 
 	/**
 	 * Browse a jsonObject to get each image tags
@@ -37,7 +40,7 @@ public:
 	 * 
 	 * @param the json jsonObject used for indexation
 	 */
-	void getImagesIdsTages(jsonObject &jsonObj);
+	void setImagesIdsTages(jsonObject &jsonObj);
 
 	///////
 	//Utils

@@ -38,7 +38,8 @@
                 "${workspaceRoot}",
                 "${workspaceRoot}/App",
                 "${workspaceRoot}App/libs",
-                "/usr/include/freetype2"
+                "/usr/include/freetype2",
+                "${workspaceRoot}/App/libs"
             ],
             "defines": [],
             "intelliSenseMode": "clang-x64",

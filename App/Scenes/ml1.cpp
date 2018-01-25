@@ -45,7 +45,8 @@ namespace Scenes
 		VectorImage * svg = *App->ressourcesEngine->getAsset(svgID);
 
 		jsonImporter jImport;
-		jsonObject * jsonFile = *jImport.getAsset("jsonExample2.json");
+		rId jsonId = App->ressourcesEngine->loadAsset("indexExample.json", JSON);
+		jsonObject * jsonFile = *App->ressourcesEngine->getAsset(jsonId);
 
 		 m_mesh = svg->getMesh();
 
@@ -54,7 +55,7 @@ namespace Scenes
  
 	 	
 
-		App->indexEngine->getImagesIdsPaths(jsonFile);
+		//App->indexEngine->setImagesIdsPaths(jsonFile);
 
 
 	    App->renderEngine->setProjection2D(); 
