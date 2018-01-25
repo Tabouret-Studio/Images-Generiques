@@ -61,14 +61,13 @@ void Igniter::igniteSDL(const uint &width, const uint &height)
 	App->setWidth(width);
 	App->setHeigth(height);
 
-	App->mainWindow = SDL_CreateWindow("Images Génériques", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, width, height, SDL_WINDOW_OPENGL | SDL_WINDOW_RESIZABLE);
+	App->mainWindow = SDL_CreateWindow("Images Génériques", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, width, height, SDL_WINDOW_OPENGL | SDL_WINDOW_RESIZABLE/* | SDL_WINDOW_ALLOW_HIGHDPI*/);
 
 	//Confirm window creations
 	if(!App->mainWindow) {
 		std::cerr << SDL_GetError() << std::endl;
 		return;
 	}
-
 	//Set SDL to useOpenGL
 	SDL_GLContext glContext = SDL_GL_CreateContext(App->mainWindow);
 	SDL_GL_MakeCurrent(App->mainWindow, glContext);

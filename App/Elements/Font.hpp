@@ -11,6 +11,7 @@
 
 //Forward Declaration
 class Asset;
+class ShaderProgram;
 
 #include "libraries.hpp"
 #include "Asset.hpp"
@@ -27,6 +28,9 @@ struct FontCharacter
 	glm::vec2 size;
 	glm::vec2 bearing;
 	GLuint advance;
+
+	glm::vec2 bboxMin;
+	glm::vec2 bboxMax;
 };
 
 struct FontFace
@@ -97,6 +101,9 @@ private:
 	GLuint genTile(const GLuint &textureID);
 
 	void cleanFontFace();
+
+	//The shaderProgram
+	static ShaderProgram * m_program;
 };
 
 #endif /* Font_hpp */

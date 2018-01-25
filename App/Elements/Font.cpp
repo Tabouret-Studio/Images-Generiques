@@ -14,7 +14,11 @@
 
 #include "Mesh.hpp"
 
-Font::Font(FT_Face &face): Asset(FONT), m_face(face) {}
+Font::Font(FT_Face &face): Asset(FONT), m_face(face)
+{
+	if(Font::m_program == nullptr)
+		m_program = new ShaderProgram("main.vs.glsl", "textRenderer.fs.glsl");
+}
 
 void Font::setHeight(const float &newSize)
 {
@@ -51,17 +55,13 @@ Mesh * Font::genCaption(const std::string &caption)
 	uint textureWidth = 0;
 	uint textureHeight = m_fontFace.size * 2;
 
+	//Get texture width
 	for(char c : caption)
-	{
 		textureWidth += m_fontFace.chars[c].advance;
-	}
 
-	FontCharacter * lastChar = &m_fontFace.chars[caption[caption.size()-1]];
-	textureWidth -= lastChar->advance;
-	textureWidth += lastChar->bearing.x + lastChar->size.x;
-
-	//Load shader program
-	ShaderProgram program("main.vs.glsl", "textRenderer.fs.glsl");
+	FontCharacter lastChar = m_fontFace.chars[caption[caption.size()-1]];
+	textureWidth -= lastChar.advance;
+	textureWidth += lastChar.bearing.x + lastChar.size.x;
 
 	//generate the frameBuffer & texture
 	GLuint frameBuffer;
@@ -79,31 +79,23 @@ Mesh * Font::genCaption(const std::string &caption)
 	uint advanceX = 0;
 	FontCharacter fChar;
 
-	for(char c : caption)
+	for(const char &c : caption)
 	{
 		fChar = m_fontFace.chars[c];
 
-		charMesh = App->ressourcesEngine->gen2DTile(
-			advanceX + fChar.bearing.x + fChar.size.x / 2.0,
-			fChar.size.y,
-			fChar.size.x,
-			fChar.size.y);
+		charMesh = App->ressourcesEngine->gen2DTile(0, 0, fChar.size.x, fChar.size.y);
 
-		charMesh->setProgram(&program);
+		charMesh->getCursor()->reset();
+		charMesh->getCursor()->translate(advanceX + fChar.bearing.x + fChar.size.x / 2.0,			//X
+										 m_fontFace.size - fChar.size.y / 2 - fChar.bboxMin.y,	//Y
+										 0)->scale(fChar.size.x, fChar.size.y, 1);					//Scale
+
+		charMesh->setProgram(m_program);
 		charMesh->setTexture(fChar.texture);
 		charMesh->generate();
-		charMesh->getCursor()->scale(1, -1, 1);
-
-		/////////////////
-		check_gl_error();
-		/////////////////
 
 		//Render char
-		App->renderEngine->render(charMesh, charMesh->getCursor());
-
-		/////////////////
-		check_gl_error();
-		/////////////////
+		charMesh->render();
 
 		//advance
 		advanceX += fChar.advance;
@@ -112,14 +104,13 @@ Mesh * Font::genCaption(const std::string &caption)
 	}
 
 	glBindFramebuffer(GL_FRAMEBUFFER, 0);
-
-	//reset projection
-	App->renderEngine->setProjection3D();
+	glDeleteFramebuffers(1, &frameBuffer);
 
 	///////////////
 	
 	Mesh * mesh = App->ressourcesEngine->gen2DTile(0, 0, textureWidth, textureHeight);
 	mesh->setTexture(texture);
+	mesh->getCursor()->scale(1, -1, 1);
 	mesh->applyCursor();
 	mesh->setProgram(App->getDefaultProgram());
 
@@ -157,17 +148,26 @@ FontCharacter Font::genFontCharacter(char charID)
 	glBindTexture(GL_TEXTURE_2D, 0); /*Leave the texture*/
 
 	FT_BBox bbox;
-	//FT_Glyph_Get_CBox(m_face->glyph, ft_glyph_bbox_pixels, &bbox);
+	FT_Glyph glyph;
+
+	FT_Get_Glyph(m_face->glyph, &glyph);
+	FT_Glyph_Get_CBox(glyph, FT_GLYPH_BBOX_PIXELS, &bbox);
+
 
 	character.texture = texture;
 
 	character.size.x = m_face->glyph->bitmap.width;
 	character.size.y = m_face->glyph->bitmap.rows;
 
-	character.bearing.x = m_face->glyph->bitmap_left / 64.f;
-	character.bearing.y = m_face->glyph->bitmap_top / 64.f;
+	character.bearing.x = m_face->glyph->bitmap_left;
+	character.bearing.y = m_face->glyph->bitmap_top;
 
-	character.advance = m_face->glyph->advance.x / 64.f;
+	character.advance = (uint)m_face->glyph->advance.x >> 6;
+
+	character.bboxMin = glm::vec2(bbox.xMin, bbox.yMin);
+	character.bboxMax = glm::vec2(bbox.xMax, bbox.yMax);
+
+	FT_Done_Glyph(glyph);
 
 	return character;
 }
@@ -223,3 +223,6 @@ Font::~Font()
 {
 	FT_Done_Face(m_face);
 }
+
+//Load shader program
+ShaderProgram * Font::m_program = nullptr;

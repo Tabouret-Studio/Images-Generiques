@@ -33,6 +33,7 @@ Mesh * Shape::getMesh() const
 	{
 		bezMesh = (*it).getMesh();
 		*mesh << bezMesh;
+		delete bezMesh;
 	}
 
 	mesh->getCursor()->setMatrix(m_cursor);

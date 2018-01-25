@@ -29,6 +29,7 @@
 //FreeType 2
 #include <ft2build.h>
 #include FT_FREETYPE_H
+#include FT_GLYPH_H
 
 //Assimp
 //#include <assimp/Importer.hpp>

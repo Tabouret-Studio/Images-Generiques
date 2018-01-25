@@ -14,6 +14,7 @@
 		391C9048201744A60003E2B7 /* jsonObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 391C9047201744A60003E2B7 /* jsonObject.cpp */; };
 		391C904C20174D530003E2B7 /* VectorImagesToJSONExporter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 391C904A20174D530003E2B7 /* VectorImagesToJSONExporter.cpp */; };
 		391C904F201783E10003E2B7 /* JSONToVectorImagesImporter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 391C904D201783E10003E2B7 /* JSONToVectorImagesImporter.cpp */; };
+		391C905F201907B30003E2B7 /* txt.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 391C905D201907B30003E2B7 /* txt.cpp */; };
 		391CFE472016409D00780A4C /* PythonInstruction.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 391CFE452016409D00780A4C /* PythonInstruction.cpp */; };
 		391CFE4A2016657700780A4C /* Utils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 391CFE482016657700780A4C /* Utils.cpp */; };
 		392360122009066D00400C45 /* Val01.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3923600E2009066D00400C45 /* Val01.cpp */; };
@@ -98,6 +99,8 @@
 		391C9055201879480003E2B7 /* Bezier.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = Bezier.py; sourceTree = "<group>"; };
 		391C9056201879480003E2B7 /* __init__.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = __init__.py; sourceTree = "<group>"; };
 		391C905B201899010003E2B7 /* GENERATE_PRIMITIVE_CUBE.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = GENERATE_PRIMITIVE_CUBE.py; sourceTree = "<group>"; };
+		391C905D201907B30003E2B7 /* txt.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = txt.cpp; sourceTree = "<group>"; };
+		391C905E201907B30003E2B7 /* txt.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = txt.hpp; sourceTree = "<group>"; };
 		391CFE452016409D00780A4C /* PythonInstruction.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = PythonInstruction.cpp; path = App/Engines/GeneratorEngine/Instructions/PythonInstruction.cpp; sourceTree = SOURCE_ROOT; };
 		391CFE462016409D00780A4C /* PythonInstruction.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; name = PythonInstruction.hpp; path = App/Engines/GeneratorEngine/Instructions/PythonInstruction.hpp; sourceTree = SOURCE_ROOT; };
 		391CFE482016657700780A4C /* Utils.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Utils.cpp; sourceTree = "<group>"; };
@@ -562,6 +565,8 @@
 				39131670200F6FE700F691B5 /* Val02.hpp */,
 				3967C5782011F94D006E31AB /* Gen01.cpp */,
 				3967C5792011F94D006E31AB /* Gen01.hpp */,
+				391C905D201907B30003E2B7 /* txt.cpp */,
+				391C905E201907B30003E2B7 /* txt.hpp */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";
@@ -1274,6 +1279,7 @@
 				391CFE4A2016657700780A4C /* Utils.cpp in Sources */,
 				3923605C2009105600400C45 /* Image.cpp in Sources */,
 				3923604B2009105600400C45 /* SoundImporter.cpp in Sources */,
+				391C905F201907B30003E2B7 /* txt.cpp in Sources */,
 				3923605A2009105600400C45 /* Asset.cpp in Sources */,
 				3967C59E20122EF8006E31AB /* SVGExporter.cpp in Sources */,
 			);
