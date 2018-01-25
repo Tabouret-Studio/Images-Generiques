@@ -13,6 +13,9 @@
 #include "Engines/RenderEngine/RenderEngine.hpp"
 #include "Engines/AppEngine/AppEngine.hpp"
 
+#include "Utils/Interface/Interface.hpp"
+#include "Utils/Interface/UI/UIButton.hpp"
+
 #include "Engines/RessourcesEngine/Exporters/SVGExporter.hpp"
 #include "Engines/RessourcesEngine/Exporters/VectorImagesToJSONExporter.hpp"
 #include "Engines/RessourcesEngine/Importers/JSONToVectorImagesImporter.hpp"
@@ -39,8 +42,25 @@ namespace Scenes
 		rId fontID = App->ressourcesEngine->loadAsset("Karla-Bold.ttf", FONT);
 		m_font = *App->ressourcesEngine->getAsset(fontID);
 
-		m_font->setHeight(100.0);
-		m_font->generate();
+		m_fontSize = 100;
+
+		m_font->loadSize(m_fontSize);
+
+		m_interface = new Interface();
+
+		UIButton * button = new UIButton(UI_BUTTON_TEXT, App->getWidth()/2 - 200, App->getHeight()/2 - 75, 410, 100);
+		button->setFont(m_font, 100);
+		button->setCaption("IMAGES");
+
+		UIButton * button2 = new UIButton(UI_BUTTON_TEXT, App->getWidth()/2, App->getHeight()/2 + 75, 400, 50);
+		button2->setFont(m_font, 50);
+		button2->setCaption("GENERIQUES");
+
+		button->setNeighboors(nullptr, nullptr, button2, nullptr);
+		button2->setNeighboors(button, nullptr, nullptr, nullptr);
+
+		m_interface->addItem(button);
+		m_interface->addItem(button2);
 	}
 
 
@@ -49,14 +69,7 @@ namespace Scenes
 	///////////
 	void txt::execute()
 	{
-		m_mesh = m_font->genCaption("PROTOCOLE");
-		m_mesh->generate();
-		m_mesh->getCursor()->translate(App->getWidth() / 2, App->getHeight() / 2, 0);
-
-
-		m_line = VectorImage(Shape(Bezier(0, App->getHeight()/2, 0, App->getHeight()/2, App->getWidth(), App->getHeight()/2, App->getWidth(), App->getHeight()/2))).getMesh();
-
-		//m_line->generate();
+		m_interface->execute();
 	}
 
 
@@ -66,12 +79,8 @@ namespace Scenes
 	void txt::render()
 	{
 		App->renderEngine->setProjection2D();
-		m_mesh->render();
-		//m_line->render();
 
-		m_mesh->freeTexture();
-		delete m_mesh;
-		delete m_line;
+		m_interface->render();
 	}
 }
 

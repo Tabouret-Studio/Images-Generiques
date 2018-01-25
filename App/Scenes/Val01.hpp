@@ -15,7 +15,7 @@ class Mesh;
 class VectorImage;
 
 #include "Scene.hpp"
-#include "Utils/Selector/Selector.hpp"
+#include "Utils/Interface/Interface.hpp"
 
 namespace Scenes
 {
@@ -53,7 +53,7 @@ namespace Scenes
 		VectorImage * m_svg;
 		Mesh * m_mesh;
 
-		Selector m_interface;
+		Interface m_interface;
 	};
 }
 
