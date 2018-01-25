@@ -20,6 +20,8 @@ class ShaderProgram;
 
 #include "libraries.hpp"
 
+#include <iostream>
+
 /**
  The AppObject, accessible globally as App, holds all the vital informations of the apps.
  It contains access to the engines, the scenes, the window, and other usefull informations.

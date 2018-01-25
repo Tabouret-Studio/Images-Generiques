@@ -14,7 +14,7 @@
 class Mesh;
 
 #include "Scene.hpp"
-#include "Utils/Selector/Selector.hpp"
+#include "Utils/Interface/Interface.hpp"
 
 namespace Scenes
 {

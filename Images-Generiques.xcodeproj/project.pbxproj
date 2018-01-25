@@ -9,11 +9,13 @@
 /* Begin PBXBuildFile section */
 		39131671200F6FE700F691B5 /* Val02.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3913166F200F6FE700F691B5 /* Val02.cpp */; };
 		39131674200F99A200F691B5 /* ml1.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39131672200F99A000F691B5 /* ml1.cpp */; };
+		3915234F2019E25A002AF97A /* UIButton.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3915234D2019E25A002AF97A /* UIButton.cpp */; };
 		391C9042201695A80003E2B7 /* libboost_system.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 391C9041201695A80003E2B7 /* libboost_system.dylib */; };
 		391C9044201695E80003E2B7 /* libboost_filesystem.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 391C9043201695E80003E2B7 /* libboost_filesystem.dylib */; };
 		391C9048201744A60003E2B7 /* jsonObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 391C9047201744A60003E2B7 /* jsonObject.cpp */; };
 		391C904C20174D530003E2B7 /* VectorImagesToJSONExporter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 391C904A20174D530003E2B7 /* VectorImagesToJSONExporter.cpp */; };
 		391C904F201783E10003E2B7 /* JSONToVectorImagesImporter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 391C904D201783E10003E2B7 /* JSONToVectorImagesImporter.cpp */; };
+		391C905F201907B30003E2B7 /* txt.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 391C905D201907B30003E2B7 /* txt.cpp */; };
 		391CFE472016409D00780A4C /* PythonInstruction.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 391CFE452016409D00780A4C /* PythonInstruction.cpp */; };
 		391CFE4A2016657700780A4C /* Utils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 391CFE482016657700780A4C /* Utils.cpp */; };
 		392360122009066D00400C45 /* Val01.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3923600E2009066D00400C45 /* Val01.cpp */; };
@@ -38,8 +40,7 @@
 		392C9EAF200902E70006ECB9 /* Igniter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 392C9E93200902E70006ECB9 /* Igniter.cpp */; };
 		392C9EB0200902E70006ECB9 /* Core.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 392C9E94200902E70006ECB9 /* Core.cpp */; };
 		392C9EB1200902E70006ECB9 /* AppObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 392C9E95200902E70006ECB9 /* AppObject.cpp */; };
-		392C9EB2200902E70006ECB9 /* Item.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 392C9E9C200902E70006ECB9 /* Item.cpp */; };
-		392C9EB3200902E70006ECB9 /* Selector.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 392C9E9E200902E70006ECB9 /* Selector.cpp */; };
+		392C9EB3200902E70006ECB9 /* Interface.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 392C9E9E200902E70006ECB9 /* Interface.cpp */; };
 		392C9EB4200902E70006ECB9 /* Bezier.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 392C9EA3200902E70006ECB9 /* Bezier.cpp */; };
 		392C9EB7200902E70006ECB9 /* SDL.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 392C9EA8200902E70006ECB9 /* SDL.cpp */; };
 		392C9EB8200902E70006ECB9 /* ShaderProgram.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 392C9EAC200902E70006ECB9 /* ShaderProgram.cpp */; };
@@ -86,6 +87,9 @@
 		39131670200F6FE700F691B5 /* Val02.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Val02.hpp; sourceTree = "<group>"; };
 		39131672200F99A000F691B5 /* ml1.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ml1.cpp; sourceTree = "<group>"; };
 		39131673200F99A100F691B5 /* ml1.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ml1.hpp; sourceTree = "<group>"; };
+		3915234D2019E25A002AF97A /* UIButton.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = UIButton.cpp; sourceTree = "<group>"; };
+		3915234E2019E25A002AF97A /* UIButton.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = UIButton.hpp; sourceTree = "<group>"; };
+		391523502019F038002AF97A /* textPrinter.fs.glsl */ = {isa = PBXFileReference; lastKnownFileType = text; name = textPrinter.fs.glsl; path = App/build/assets/shaders/textPrinter.fs.glsl; sourceTree = SOURCE_ROOT; };
 		391C9041201695A80003E2B7 /* libboost_system.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libboost_system.dylib; path = ../../../../../usr/local/Cellar/boost/1.66.0/lib/libboost_system.dylib; sourceTree = "<group>"; };
 		391C9043201695E80003E2B7 /* libboost_filesystem.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libboost_filesystem.dylib; path = ../../../../../usr/local/Cellar/boost/1.66.0/lib/libboost_filesystem.dylib; sourceTree = "<group>"; };
 		391C9046201744760003E2B7 /* json.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = json.hpp; sourceTree = "<group>"; };
@@ -98,7 +102,8 @@
 		391C9055201879480003E2B7 /* Bezier.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = Bezier.py; sourceTree = "<group>"; };
 		391C9056201879480003E2B7 /* __init__.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = __init__.py; sourceTree = "<group>"; };
 		391C905B201899010003E2B7 /* GENERATE_PRIMITIVE_CUBE.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = GENERATE_PRIMITIVE_CUBE.py; sourceTree = "<group>"; };
-		391C905C20189CDC0003E2B7 /* testExport.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = testExport.json; sourceTree = "<group>"; };
+		391C905D201907B30003E2B7 /* txt.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = txt.cpp; sourceTree = "<group>"; };
+		391C905E201907B30003E2B7 /* txt.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = txt.hpp; sourceTree = "<group>"; };
 		391CFE452016409D00780A4C /* PythonInstruction.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = PythonInstruction.cpp; path = App/Engines/GeneratorEngine/Instructions/PythonInstruction.cpp; sourceTree = SOURCE_ROOT; };
 		391CFE462016409D00780A4C /* PythonInstruction.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; name = PythonInstruction.hpp; path = App/Engines/GeneratorEngine/Instructions/PythonInstruction.hpp; sourceTree = SOURCE_ROOT; };
 		391CFE482016657700780A4C /* Utils.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Utils.cpp; sourceTree = "<group>"; };
@@ -402,10 +407,9 @@
 		392C9E96200902E70006ECB9 /* AppObject.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = AppObject.hpp; sourceTree = "<group>"; };
 		392C9E97200902E70006ECB9 /* Igniter.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Igniter.hpp; sourceTree = "<group>"; };
 		392C9E98200902E70006ECB9 /* Core.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Core.hpp; sourceTree = "<group>"; };
-		392C9E9B200902E70006ECB9 /* Selector.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Selector.hpp; sourceTree = "<group>"; };
-		392C9E9C200902E70006ECB9 /* Item.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Item.cpp; sourceTree = "<group>"; };
-		392C9E9D200902E70006ECB9 /* Item.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Item.hpp; sourceTree = "<group>"; };
-		392C9E9E200902E70006ECB9 /* Selector.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Selector.cpp; sourceTree = "<group>"; };
+		392C9E9B200902E70006ECB9 /* Interface.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Interface.hpp; sourceTree = "<group>"; };
+		392C9E9D200902E70006ECB9 /* UIElement.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = UIElement.hpp; sourceTree = "<group>"; };
+		392C9E9E200902E70006ECB9 /* Interface.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Interface.cpp; sourceTree = "<group>"; };
 		392C9E9F200902E70006ECB9 /* Vertex.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Vertex.hpp; sourceTree = "<group>"; };
 		392C9EA0200902E70006ECB9 /* DrawCursor.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = DrawCursor.hpp; sourceTree = "<group>"; };
 		392C9EA1200902E70006ECB9 /* SDL.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = SDL.hpp; sourceTree = "<group>"; };
@@ -426,7 +430,6 @@
 		3952DCAF200BFC600098779F /* VectorImage.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = VectorImage.cpp; sourceTree = "<group>"; };
 		3952DCB0200BFC600098779F /* VectorImage.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = VectorImage.hpp; sourceTree = "<group>"; };
 		3952DCB2200C16700098779F /* main.vs.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = main.vs.glsl; path = App/build/assets/shaders/main.vs.glsl; sourceTree = SOURCE_ROOT; };
-		3952DCB3200C16700098779F /* textRenderer.vs.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = textRenderer.vs.glsl; path = App/build/assets/shaders/textRenderer.vs.glsl; sourceTree = SOURCE_ROOT; };
 		3952DCB4200C16710098779F /* textRenderer.fs.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = textRenderer.fs.glsl; path = App/build/assets/shaders/textRenderer.fs.glsl; sourceTree = SOURCE_ROOT; };
 		3952DCB5200C16710098779F /* main.fs.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = main.fs.glsl; path = App/build/assets/shaders/main.fs.glsl; sourceTree = SOURCE_ROOT; };
 		3952DCB6200E16830098779F /* handComputer.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = handComputer.svg; sourceTree = "<group>"; };
@@ -506,7 +509,7 @@
 				3952DCB5200C16710098779F /* main.fs.glsl */,
 				3952DCB2200C16700098779F /* main.vs.glsl */,
 				3952DCB4200C16710098779F /* textRenderer.fs.glsl */,
-				3952DCB3200C16700098779F /* textRenderer.vs.glsl */,
+				391523502019F038002AF97A /* textPrinter.fs.glsl */,
 			);
 			path = Shaders;
 			sourceTree = "<group>";
@@ -530,6 +533,15 @@
 				390196DA1FDE7E34000F2113 /* nanosvg.h */,
 			);
 			path = NanoSVG;
+			sourceTree = "<group>";
+		};
+		3915234C2019DE51002AF97A /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				3915234D2019E25A002AF97A /* UIButton.cpp */,
+				3915234E2019E25A002AF97A /* UIButton.hpp */,
+			);
+			path = UI;
 			sourceTree = "<group>";
 		};
 		391C9045201744760003E2B7 /* JSON */ = {
@@ -563,6 +575,8 @@
 				39131670200F6FE700F691B5 /* Val02.hpp */,
 				3967C5782011F94D006E31AB /* Gen01.cpp */,
 				3967C5792011F94D006E31AB /* Gen01.hpp */,
+				391C905D201907B30003E2B7 /* txt.cpp */,
+				391C905E201907B30003E2B7 /* txt.hpp */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";
@@ -936,7 +950,7 @@
 		392C9E99200902E70006ECB9 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
-				392C9E9A200902E70006ECB9 /* Selector */,
+				392C9E9A200902E70006ECB9 /* Interface */,
 				392C9EAE200902E70006ECB9 /* DrawCursor.cpp */,
 				392C9EA0200902E70006ECB9 /* DrawCursor.hpp */,
 				392C9EAD200902E70006ECB9 /* FilePath.hpp */,
@@ -955,15 +969,15 @@
 			path = Utils;
 			sourceTree = "<group>";
 		};
-		392C9E9A200902E70006ECB9 /* Selector */ = {
+		392C9E9A200902E70006ECB9 /* Interface */ = {
 			isa = PBXGroup;
 			children = (
-				392C9E9C200902E70006ECB9 /* Item.cpp */,
-				392C9E9D200902E70006ECB9 /* Item.hpp */,
-				392C9E9E200902E70006ECB9 /* Selector.cpp */,
-				392C9E9B200902E70006ECB9 /* Selector.hpp */,
+				3915234C2019DE51002AF97A /* UI */,
+				392C9E9D200902E70006ECB9 /* UIElement.hpp */,
+				392C9E9E200902E70006ECB9 /* Interface.cpp */,
+				392C9E9B200902E70006ECB9 /* Interface.hpp */,
 			);
-			path = Selector;
+			path = Interface;
 			sourceTree = "<group>";
 		};
 		394F9430201620D40065CE25 /* instructions */ = {
@@ -1114,7 +1128,6 @@
 		39D90C3A1FDAF0C400282ED1 /* build */ = {
 			isa = PBXGroup;
 			children = (
-				391C905C20189CDC0003E2B7 /* testExport.json */,
 				390196C91FDDD956000F2113 /* assets */,
 				39AF3CD11FDB541F0089622E /* ImagesGeneriques */,
 			);
@@ -1250,12 +1263,11 @@
 				392360122009066D00400C45 /* Val01.cpp in Sources */,
 				392360622009105600400C45 /* Sound.cpp in Sources */,
 				3952DCAB200BEBCE0098779F /* libraries.cpp in Sources */,
-				392C9EB3200902E70006ECB9 /* Selector.cpp in Sources */,
+				392C9EB3200902E70006ECB9 /* Interface.cpp in Sources */,
 				392C9EB8200902E70006ECB9 /* ShaderProgram.cpp in Sources */,
 				3967C57120108C2A006E31AB /* MeshGroup.cpp in Sources */,
 				391C904F201783E10003E2B7 /* JSONToVectorImagesImporter.cpp in Sources */,
 				3967C577201117BA006E31AB /* ml2.cpp in Sources */,
-				392C9EB2200902E70006ECB9 /* Item.cpp in Sources */,
 				3952DCB1200BFC600098779F /* VectorImage.cpp in Sources */,
 				3967C5A02012308F006E31AB /* InstructionsProtocol.cpp in Sources */,
 				392C9EB7200902E70006ECB9 /* SDL.cpp in Sources */,
@@ -1275,7 +1287,9 @@
 				39D90C341FDAEF0F00282ED1 /* AppEngine.cpp in Sources */,
 				391CFE4A2016657700780A4C /* Utils.cpp in Sources */,
 				3923605C2009105600400C45 /* Image.cpp in Sources */,
+				3915234F2019E25A002AF97A /* UIButton.cpp in Sources */,
 				3923604B2009105600400C45 /* SoundImporter.cpp in Sources */,
+				391C905F201907B30003E2B7 /* txt.cpp in Sources */,
 				3923605A2009105600400C45 /* Asset.cpp in Sources */,
 				3967C59E20122EF8006E31AB /* SVGExporter.cpp in Sources */,
 			);
@@ -1290,7 +1304,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
@@ -1345,7 +1359,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
@@ -1390,6 +1404,7 @@
 		397BE0D81FDAED60006254F0 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "c++17";
 				CODE_SIGN_STYLE = Automatic;
 				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/";
 				EXCLUDED_SOURCE_FILE_NAMES = "App/libs/*";
@@ -1424,6 +1439,7 @@
 		397BE0D91FDAED60006254F0 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "c++17";
 				CODE_SIGN_STYLE = Automatic;
 				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/";
 				EXCLUDED_SOURCE_FILE_NAMES = "App/libs/*";
@@ -1455,7 +1471,7 @@
 		39D90C381FDAF04500282ED1 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LANGUAGE_STANDARD = "c++1z";
 				CLANG_CXX_LIBRARY = "libc++";
 				CODE_SIGN_STYLE = Automatic;
 				DEBUGGING_SYMBOLS = YES;
@@ -1472,7 +1488,7 @@
 		39D90C391FDAF04500282ED1 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LANGUAGE_STANDARD = "c++1z";
 				CLANG_CXX_LIBRARY = "libc++";
 				CODE_SIGN_STYLE = Automatic;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";

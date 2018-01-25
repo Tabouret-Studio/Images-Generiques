@@ -1,24 +1,24 @@
 //
-//  Val01.hpp
-//  Images-Generiques
+//  txt.hpp
+//  Xcode
 //
-//  Created by Valentin Dufois on 10/12/2017.
-//  Copyright © 2017 Valentin Dufois. All rights reserved.
+//  Created by Valentin Dufois on 24/01/2018.
+//  Copyright © 2018 Valentin Dufois. All rights reserved.
 //
 
-#ifndef ml1_hpp
-#define ml1_hpp
+#ifndef txt_hpp
+#define txt_hpp
 
 //////////////////////
 //Forward declarations
+class Font;
 class Mesh;
+class Interface;
 
 #include "Scene.hpp"
-#include "Utils/Interface/Interface.hpp"
-
 namespace Scenes
 {
-	class ml1: public Scene
+	class txt: public Scene
 	{
 	public:
 		/**
@@ -44,13 +44,19 @@ namespace Scenes
 		/**
 		 Destructor, used to properly free all the memory used by the scene
 		 */
-		~ml1() {};
+		~txt() {};
 
 	private:
 
 		//Elements
+		Font * m_font;
 		Mesh * m_mesh;
+		Mesh * m_caption;
+
+		Interface * m_interface;
+
+		float m_fontSize;
 	};
 }
 
-#endif /* Val01_hpp */
+#endif /* txt_hpp */

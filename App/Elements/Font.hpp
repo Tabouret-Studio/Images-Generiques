@@ -11,12 +11,14 @@
 
 //Forward Declaration
 class Asset;
+class ShaderProgram;
 
 #include "libraries.hpp"
 #include "Asset.hpp"
 
 #include <iostream>
 #include <vector>
+#include <map>
 
 //////////////////
 //Font structures
@@ -27,6 +29,9 @@ struct FontCharacter
 	glm::vec2 size;
 	glm::vec2 bearing;
 	GLuint advance;
+
+	glm::vec2 bboxMin;
+	glm::vec2 bboxMax;
 };
 
 struct FontFace
@@ -43,36 +48,36 @@ public:
 	Font(FT_Face &face);
 
 	/**
-	 Set the font height.
-	 Takes the screen DPI in account
+	 Tell if the given fontSize is already loaded
 
-	 @param newSize The font new size
+	 @param fontSize The font size to check
+	 @return True if loaded, false otherwise
 	 */
-	void setHeight(const float &newSize);
-
-	/**
-	 Return the height of the font
-
-	 @return the font height
-	 */
-	inline float getHeight() const { return m_size; };
+	bool sizeIsLoaded(const float &fontSize);
 
 
 	/**
-	 Generate and return the FontFace
-
-	 @return The FontFace
+	 Generate the font for a specified size
 	 */
-	FontFace generate();
+	void loadSize(const float &fontSize);
 
 	/**
 	 Generate a 2D tile with the caption as its texture
-	 THe return Mesh is raw, it as not been generated and as no program attached
+	 The return Mesh has not been generated
+	 If the font has not been loaded for the given size, it will be loaded
 
 	 @param caption The text to display
+	 @param fontSize The size to render the text
 	 @return The tile in a mesh
 	 */
-	Mesh * genCaption(const std::string &caption);
+	Mesh * genCaption(const std::string &caption, const float &fontSize);
+
+	/**
+	 Liberate the font for the given size if it has been generated
+
+	 @param fontSize The font size to free
+	 */
+	void freeFontSize(const float &fontSize);
 
 	~Font();
 
@@ -82,7 +87,22 @@ private:
 	FT_Face m_face;
 	float m_size;
 
-	FontFace m_fontFace;
+	//All loaded sized faces
+	std::map<float, FontFace> m_sizedFaces;
+
+	/**
+	 Store glyphs and metrics for a specific size
+	 */
+	void storeSizedFont(FontFace &sizedFace);
+
+	/**
+	 Return a pointer to sized face for the given size
+	 The font face is loaded if not available
+
+	 @param fontSize The size to get
+	 @return Pointer to the sized face
+	 */
+	FontFace * getSizedFace(const float &fontSize);
 
 	/**
 	 Generate and store in OpenGL the specified character
@@ -92,11 +112,23 @@ private:
 	 */
 	FontCharacter genFontCharacter(char charID);
 
+	/**
+	 Prepare a texture to hold up caption generation
+
+	 @param width Width of the texture
+	 @param height Height of the texture
+	 @param frameBuffer Framebuffer to attach the texture to
+	 @param texture TextureID generated
+	 @return True on success, false otherwise
+	 */
 	bool prepareTexture(const uint &width, const uint &height, GLuint &frameBuffer, GLuint &texture);
 
-	GLuint genTile(const GLuint &textureID);
-
-	void cleanFontFace();
+	/**
+	 The font shaderPrograms
+	 Static because they're shared by all font elements
+	 */
+	static ShaderProgram * m_program;
+	static ShaderProgram * m_textDisplayProgram;
 };
 
 #endif /* Font_hpp */
