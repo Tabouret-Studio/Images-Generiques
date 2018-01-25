@@ -1,25 +1,25 @@
 //
-//  Selector.cpp
+//  Interface.cpp
 //  IMACMAN
 //
 //  Created by Valentin Dufois on 24/11/2017.
 //  Copyright © 2017 Valentin Dufois. All rights reserved.
 //
 
-#include "Selector.hpp"
+#include "Interface.hpp"
 
-#include "Item.hpp"
+#include "UIElement.hpp"
 
 #include "Core/AppObject.hpp"
 #include "Engines/AppEngine/AppEngine.hpp"
 #include "Engines/RenderEngine/RenderEngine.hpp"
 
-Selector::Selector():
+Interface::Interface():
 	m_currentItem(nullptr),
 	m_lastAction(0)
 {}
 
-void Selector::addItem(Item * newItem)
+void Interface::addItem(UIElement * newItem)
 {
 	m_items.push_back(newItem);
 
@@ -34,7 +34,7 @@ void Selector::addItem(Item * newItem)
 	}
 }
 
-void Selector::execute()
+void Interface::execute()
 {
 	if(m_waitBeforeExecute > 0)
 	{
@@ -68,15 +68,15 @@ void Selector::execute()
 	}
 }
 
-void Selector::render()
+void Interface::render()
 {
 	App->renderEngine->setProjection2D();
 
-	for(std::vector<Item *>::iterator it = m_items.begin(); it != m_items.end(); ++it)
+	for(std::vector<UIElement *>::iterator it = m_items.begin(); it != m_items.end(); ++it)
         (*it)->print();
 }
 
-void Selector::moveCursor(Item * item)
+void Interface::moveCursor(UIElement * item)
 {
 	if(item == nullptr)
 		return;
@@ -92,8 +92,8 @@ void Selector::moveCursor(Item * item)
 	m_currentItem = item;
 }
 
-Selector::~Selector()
+Interface::~Interface()
 {
-	for(std::vector<Item *>::iterator it = m_items.begin(); it != m_items.end(); ++it)
+	for(std::vector<UIElement *>::iterator it = m_items.begin(); it != m_items.end(); ++it)
         delete (*it);
 }

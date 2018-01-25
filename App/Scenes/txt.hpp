@@ -13,6 +13,7 @@
 //Forward declarations
 class Font;
 class Mesh;
+class Interface;
 
 #include "Scene.hpp"
 namespace Scenes
@@ -50,7 +51,11 @@ namespace Scenes
 		//Elements
 		Font * m_font;
 		Mesh * m_mesh;
-		Mesh * m_line;
+		Mesh * m_caption;
+
+		Interface * m_interface;
+
+		float m_fontSize;
 	};
 }
 

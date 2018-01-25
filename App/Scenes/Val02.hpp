@@ -54,7 +54,7 @@ namespace Scenes
 		Mesh * m_fullImage;
 		MeshGroup m_mGroup;
 
-		//Selector m_interface;
+		//Interface m_interface;
 	};
 }
 

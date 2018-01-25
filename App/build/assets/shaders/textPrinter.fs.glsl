@@ -12,5 +12,15 @@ uniform sampler2D uTexture;
 
 void main()
 {
-	fFragColor = vec4(1.0, 1.0, 1.0, texture(uTexture, vUV_vs).r);
+	vec4 sampled = texture(uTexture, vUV_vs);
+
+	if(sampled.a < 0.05)
+		discard;
+
+	fFragColor = vec4(vec3(vColor_vs.xyz), 1.0) * sampled;
+
+	/*fFragColor = vec4(vColor_vs.xyz, 1.0) * sampled;*/
+
+
+	return;
 }

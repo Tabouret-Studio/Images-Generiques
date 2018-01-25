@@ -1,42 +1,42 @@
 //
-//  Selector.hpp
+//  Interface.hpp
 //  IMACMAN
 //
 //  Created by Valentin Dufois on 24/11/2017.
 //  Copyright © 2017 Valentin Dufois. All rights reserved.
 //
 
-#ifndef Selector_hpp
-#define Selector_hpp
+#ifndef Interface_hpp
+#define Interface_hpp
 
 //////////////////////
 //Forward declarations
-class Item;
+class UIElement;
 
 #include <iostream>
 #include <vector>
 #include <cstdint>
 
-class Selector
+class Interface
 {
 public:
 
-	Selector();
+	Interface();
 
 	/**
-	 Add an item to the selector
+	 Add an item to the Interface
 
-	 @param newItem Add a new item to the selector
+	 @param newItem Add a new item to the Interface
 	 */
-	void addItem(Item * newItem);
+	void addItem(UIElement * newItem);
 
 	/**
-	 Execute interactions in the selector
+	 Execute interactions in the Interface
 	 */
 	void execute();
 
     /**
-     Render the selector (its items)
+     Render the Interface (its items)
      */
     void render();
 
@@ -45,14 +45,14 @@ public:
 
 	 @param item Item to select
 	 */
-	void moveCursor(Item * item);
+	void moveCursor(UIElement * item);
 
-	~Selector();
+	~Interface();
 
 private:
 
-	std::vector<Item *> m_items;
-	Item * m_currentItem;
+	std::vector<UIElement *> m_items;
+	UIElement * m_currentItem;
 
 	//Tempo moves to prevent sliding
 	uint32_t m_lastAction;
@@ -60,4 +60,4 @@ private:
 	int m_waitBeforeExecute = 3;
 };
 
-#endif /* Selector_hpp */
+#endif /* Interface_hpp */
