@@ -44,6 +44,11 @@ public:
 		m_leftItem = left;
 	};
 
+	inline void setTopNeighboor(UIElement * neighboor) { m_topItem = neighboor; };
+	inline void setRightNeighboor(UIElement * neighboor) { m_rightItem = neighboor; };
+	inline void setBottomNeighboor(UIElement * neighboor) { m_bottomItem = neighboor; };
+	inline void setLeftNeighboor(UIElement * neighboor) { m_leftItem = neighboor; };
+
 	/**
 	 Set action to execute when enter is pressed on this element
 

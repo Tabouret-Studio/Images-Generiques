@@ -6,7 +6,7 @@
 //  Copyright © 2017 Valentin Dufois. All rights reserved.
 //
 
-#include "AppObject.hpp"
+#include "Core/AppObject.hpp"
 
 #include "Utils/ShaderProgram.hpp"
 #include "Scenes/Scene.hpp"
@@ -31,11 +31,11 @@ void AppObject::removeScene(Scene * scene)
 {
 	for(std::vector<Scene *>::iterator it = m_scenes.begin(); it != m_scenes.end(); ++it)
 	{
-		if((*it) == scene)
-		{
-			delete (*it);
-			m_scenes.erase(it);
-			return;
-		}
+		if((*it) != scene)
+			continue;
+
+		delete (*it);
+		m_scenes.erase(it);
+		return;
 	}
 }

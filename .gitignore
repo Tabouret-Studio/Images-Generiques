@@ -50,3 +50,8 @@ App/build/assets/SVG/my_svg\.svg
 App/build/exports/artist2\.svg
 
 App/artist2\.svg
+.vscode/c_cpp_properties.json
+.vscode/c_cpp_properties.json
+.vscode/launch.json
+
+\.vscode/

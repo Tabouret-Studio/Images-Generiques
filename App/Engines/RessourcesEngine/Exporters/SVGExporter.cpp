@@ -4,7 +4,7 @@
 #include <string>
 #include "Core/AppObject.hpp"
 
-void SVGExporter::exportSVG(VectorImage * vectorImg, const std::string &fileName)
+void SVGExporter::exportSVG(const VectorImage * vectorImg, const std::string &fileName)
 {
 	std::ofstream f;
 	std::string filePath = App->getAppPath()+"exports/"+fileName+".svg";

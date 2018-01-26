@@ -14,6 +14,8 @@
 #include "Engines/RessourcesEngine/RessourcesEngine.hpp"
 #include "Engines/RenderEngine/RenderEngine.hpp"
 #include "Engines/GeneratorEngine/GeneratorEngine.hpp"
+#include "Engines/IndexEngine/IndexEngine.hpp"
+
 
 #include "Utils/ShaderProgram.hpp"
 #include "Utils/FilePath.hpp"
@@ -33,6 +35,7 @@ void Igniter::igniteAppObject(const std::string &appPath)
 	RessourcesEngine::instanciate();
 	RenderEngine::instanciate();
 	GeneratorEngine::instanciate();
+	IndexEngine::instanciate();
 }
 
 void Igniter::igniteSDL(const uint &width, const uint &height)
@@ -112,5 +115,9 @@ void Igniter::igniteEngines()
 	//Preload default shaderProgram
 	App->setDefaultProgram(new ShaderProgram("main.vs.glsl", "main.fs.glsl"));
 
+	//Init render engine matrixs
 	App->renderEngine->initRender();
+
+	//register predefined protocoles
+	App->generatorEngine->registerProtocols();
 }

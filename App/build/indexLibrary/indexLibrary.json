@@ -1,0 +1,17 @@
+{
+	"images" :
+	[
+		{
+			"path" : "artist.svg",
+			"tags" : ["line", "text"]
+		},
+		{
+			"path" : "handComputer.svg",
+			"tags" : ["line", "computer", "humain"]
+		},
+		{
+			"path" : "github.svg",
+			"tags" : ["line", "logo", "animal"]
+		}
+	]
+}

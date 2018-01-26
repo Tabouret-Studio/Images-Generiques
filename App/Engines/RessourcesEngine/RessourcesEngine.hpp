@@ -69,6 +69,14 @@ public:
 	Asset * getAsset(rId assetID);
 
 	/**
+	 Tell if the given file exist
+
+	 @param filePath Path to the file
+	 @return True if it exists, false otherwise
+	 */
+	bool fileExist(std::string filePath);
+
+	/**
 	 Return the handle to FreeType
 
 	 @return The FreeType Library
@@ -126,14 +134,6 @@ private:
 	 @return The full path to the asset
 	 */
 	std::string buildPath(std::string &file, ressourceType &type);
-
-	/**
-	 Tell if the given file exist
-
-	 @param filePath Path to the file
-	 @return True if it exists, false otherwise
-	 */
-	bool fileExist(std::string filePath);
 
 	//FreeType handle
 	FT_Library m_FTLibrary;
