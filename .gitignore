@@ -55,3 +55,7 @@ App/artist2\.svg
 .vscode/launch.json
 
 \.vscode/
+
+App/build/indexLibrary/exports/
+
+App/build/indexLibrary/indexLibrary\.json

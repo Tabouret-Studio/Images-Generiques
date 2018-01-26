@@ -99,7 +99,6 @@
 		3915234D2019E25A002AF97A /* UIButton.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = UIButton.cpp; sourceTree = "<group>"; };
 		3915234E2019E25A002AF97A /* UIButton.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = UIButton.hpp; sourceTree = "<group>"; };
 		391523502019F038002AF97A /* textPrinter.fs.glsl */ = {isa = PBXFileReference; lastKnownFileType = text; name = textPrinter.fs.glsl; path = App/build/assets/shaders/textPrinter.fs.glsl; sourceTree = SOURCE_ROOT; };
-		39152352201A8636002AF97A /* MAP_GENERATOR.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = MAP_GENERATOR.json; sourceTree = "<group>"; };
 		39152353201AA398002AF97A /* STEPPER.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = STEPPER.json; sourceTree = "<group>"; };
 		39152354201B1541002AF97A /* ProtocolRenderer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ProtocolRenderer.cpp; sourceTree = "<group>"; };
 		39152355201B1541002AF97A /* ProtocolRenderer.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = ProtocolRenderer.hpp; sourceTree = "<group>"; };
@@ -488,6 +487,11 @@
 		397A72D4201B3C510025058C /* PathsSquarify.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = PathsSquarify.cpp; path = App/Engines/GeneratorEngine/Instructions/Paths/PathsSquarify.cpp; sourceTree = SOURCE_ROOT; };
 		397A72D5201B3C510025058C /* PathsNoise.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = PathsNoise.cpp; path = App/Engines/GeneratorEngine/Instructions/Paths/PathsNoise.cpp; sourceTree = SOURCE_ROOT; };
 		397A72DB201B44940025058C /* indexLibrary.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = indexLibrary.json; path = indexLibrary/indexLibrary.json; sourceTree = "<group>"; };
+		397A72E1201B45DE0025058C /* ORIENT_RANDOMIZER_CHAINER_SQUARIFIER.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ORIENT_RANDOMIZER_CHAINER_SQUARIFIER.json; sourceTree = "<group>"; };
+		397A72E2201B45DE0025058C /* CHAINER_INVERTER.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = CHAINER_INVERTER.json; sourceTree = "<group>"; };
+		397A72E3201B45DE0025058C /* ORIENT_RANDOMIZER_CHAINER.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ORIENT_RANDOMIZER_CHAINER.json; sourceTree = "<group>"; };
+		397A72E4201B45DE0025058C /* INVERTER_SQUARIFIER.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = INVERTER_SQUARIFIER.json; sourceTree = "<group>"; };
+		397A72E5201B45DF0025058C /* LINEARIZER.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = LINEARIZER.json; sourceTree = "<group>"; };
 		397BE0D01FDAED60006254F0 /* ImagesGeneriques */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = ImagesGeneriques; sourceTree = BUILT_PRODUCTS_DIR; };
 		39AF3CCB1FDB4FE10089622E /* SDL2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2.framework; path = ../../../../../Library/Frameworks/SDL2.framework; sourceTree = "<group>"; };
 		39AF3CCE1FDB51AD0089622E /* RenderEngine.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = RenderEngine.cpp; sourceTree = "<group>"; };
@@ -578,7 +582,11 @@
 		39152351201A8606002AF97A /* protocols */ = {
 			isa = PBXGroup;
 			children = (
-				39152352201A8636002AF97A /* MAP_GENERATOR.json */,
+				397A72E2201B45DE0025058C /* CHAINER_INVERTER.json */,
+				397A72E4201B45DE0025058C /* INVERTER_SQUARIFIER.json */,
+				397A72E5201B45DF0025058C /* LINEARIZER.json */,
+				397A72E1201B45DE0025058C /* ORIENT_RANDOMIZER_CHAINER_SQUARIFIER.json */,
+				397A72E3201B45DE0025058C /* ORIENT_RANDOMIZER_CHAINER.json */,
 				39152353201AA398002AF97A /* STEPPER.json */,
 			);
 			path = protocols;

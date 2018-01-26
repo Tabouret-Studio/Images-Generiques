@@ -7,6 +7,7 @@
 //
 
 #include "PathsOrientRandomizer.hpp"
+#include "Utils/Utils.hpp"
 
 Instruction * PathsOrientRandomizer::get()
 {
@@ -23,7 +24,7 @@ std::vector<VectorImage *> PathsOrientRandomizer::execute(std::vector<VectorImag
 	for(Bezier path : paths)
 	{
 		
-		path.getCursor()->rotate(rand()%360,0,0,1);
+		path.getCursor()->rotate(Utils::rand(360),0,0,1);
 		path.applyCursor();
 
 		shape << path;
