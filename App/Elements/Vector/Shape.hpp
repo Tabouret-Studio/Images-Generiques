@@ -84,6 +84,10 @@ private:
 	std::vector<Bezier> m_paths;
 
 	DrawCursor m_cursor;
+
+	void calculateBounds();
+
+	
 };
 
 #endif /* Shape_hpp */

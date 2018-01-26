@@ -46,8 +46,6 @@ namespace Scenes
 
 		m_protocol = App->generatorEngine->getProtocol(m_protocolName);
 
-		m_svg = App->indexEngine->getRandomVectorImage();
-
 		executeProtocol();
 
 		m_zoomLevel = 1;
@@ -89,22 +87,28 @@ namespace Scenes
 		App->renderEngine->setProjection2D();
 
 		m_displayMesh->getCursor()->reset()
-			->translate(App->getWidth()/2, App->getHeight()/2, 0)
-			->scale(m_zoomLevel, m_zoomLevel, 0);
+			->translate(App->getWidth()/2, App->getHeight()/2, 0)->scale(m_zoomLevel, m_zoomLevel, 0);
 		
 		m_displayMesh->render();
+
+		m_protocolCaption->render();
 	}
 
 	void ProtocolRenderer::updateInterfaceDimensions() {}
 
 	void ProtocolRenderer::executeProtocol()
 	{
+		m_svg = App->indexEngine->getRandomVectorImage();
 		VectorImage * svgTransform = m_protocol->execute({m_svg})[0];
 
 		m_displayMesh = svgTransform->getMesh();
 		m_displayMesh->generate();
-		m_displayMesh->getCursor()->translate(App->getWidth()/2, App->getHeight()/2, 0);
+		/*m_displayMesh->getCursor()->translate(App->getWidth()/2, App->getHeight()/2, 0);*/
 
-		App->indexEngine->insertVectorIMage(svgTransform, {"export"});
+		std::string generatedName = App->indexEngine->insertVectorIMage(svgTransform, {"export"});
+
+		m_protocolCaption = m_font->genCaption(m_protocolName + " : " + generatedName, 35);
+		m_protocolCaption->generate();
+		m_protocolCaption->getCursor()->translate(App->getWidth()/2, App->getHeight() - 15, 0);
 	}
 }

@@ -67,6 +67,7 @@ namespace Scenes
 		float m_zoomLevel;
 
 		Mesh * m_displayMesh;
+		Mesh * m_protocolCaption;
 
 		std::string m_protocolName;
 		InstructionsProtocol * m_protocol;
