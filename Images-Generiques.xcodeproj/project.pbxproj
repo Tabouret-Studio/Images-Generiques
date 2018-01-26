@@ -11,6 +11,9 @@
 		39131674200F99A200F691B5 /* ml1.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39131672200F99A000F691B5 /* ml1.cpp */; };
 		3915234F2019E25A002AF97A /* UIButton.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3915234D2019E25A002AF97A /* UIButton.cpp */; };
 		39152356201B1541002AF97A /* ProtocolRenderer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39152354201B1541002AF97A /* ProtocolRenderer.cpp */; };
+		3915235A201B2DCF002AF97A /* IndexEngine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39152358201B2DCF002AF97A /* IndexEngine.cpp */; };
+		3915235D201B2EE2002AF97A /* JSONExporter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3915235C201B2EE2002AF97A /* JSONExporter.cpp */; };
+		39152360201B2EF5002AF97A /* JSONImporter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3915235E201B2EF4002AF97A /* JSONImporter.cpp */; };
 		391C9042201695A80003E2B7 /* libboost_system.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 391C9041201695A80003E2B7 /* libboost_system.dylib */; };
 		391C9044201695E80003E2B7 /* libboost_filesystem.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 391C9043201695E80003E2B7 /* libboost_filesystem.dylib */; };
 		391C9048201744A60003E2B7 /* jsonObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 391C9047201744A60003E2B7 /* jsonObject.cpp */; };
@@ -95,6 +98,12 @@
 		39152353201AA398002AF97A /* STEPPER.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = STEPPER.json; sourceTree = "<group>"; };
 		39152354201B1541002AF97A /* ProtocolRenderer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ProtocolRenderer.cpp; sourceTree = "<group>"; };
 		39152355201B1541002AF97A /* ProtocolRenderer.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = ProtocolRenderer.hpp; sourceTree = "<group>"; };
+		39152358201B2DCF002AF97A /* IndexEngine.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = IndexEngine.cpp; sourceTree = "<group>"; };
+		39152359201B2DCF002AF97A /* IndexEngine.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = IndexEngine.hpp; sourceTree = "<group>"; };
+		3915235B201B2EE1002AF97A /* JSONExporter.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = JSONExporter.hpp; sourceTree = "<group>"; };
+		3915235C201B2EE2002AF97A /* JSONExporter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = JSONExporter.cpp; sourceTree = "<group>"; };
+		3915235E201B2EF4002AF97A /* JSONImporter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = JSONImporter.cpp; sourceTree = "<group>"; };
+		3915235F201B2EF5002AF97A /* JSONImporter.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = JSONImporter.hpp; sourceTree = "<group>"; };
 		391C9041201695A80003E2B7 /* libboost_system.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libboost_system.dylib; path = ../../../../../usr/local/Cellar/boost/1.66.0/lib/libboost_system.dylib; sourceTree = "<group>"; };
 		391C9043201695E80003E2B7 /* libboost_filesystem.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libboost_filesystem.dylib; path = ../../../../../usr/local/Cellar/boost/1.66.0/lib/libboost_filesystem.dylib; sourceTree = "<group>"; };
 		391C9046201744760003E2B7 /* json.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = json.hpp; sourceTree = "<group>"; };
@@ -559,6 +568,15 @@
 			path = protocols;
 			sourceTree = "<group>";
 		};
+		39152357201B2DCF002AF97A /* IndexEngine */ = {
+			isa = PBXGroup;
+			children = (
+				39152358201B2DCF002AF97A /* IndexEngine.cpp */,
+				39152359201B2DCF002AF97A /* IndexEngine.hpp */,
+			);
+			path = IndexEngine;
+			sourceTree = "<group>";
+		};
 		391C9045201744760003E2B7 /* JSON */ = {
 			isa = PBXGroup;
 			children = (
@@ -613,6 +631,8 @@
 		3923601C2009105500400C45 /* Importers */ = {
 			isa = PBXGroup;
 			children = (
+				3915235E201B2EF4002AF97A /* JSONImporter.cpp */,
+				3915235F201B2EF5002AF97A /* JSONImporter.hpp */,
 				3923602F2009105500400C45 /* FontImporter.cpp */,
 				3923601F2009105500400C45 /* FontImporter.hpp */,
 				3923602B2009105500400C45 /* ImageImporter.cpp */,
@@ -1068,6 +1088,8 @@
 		3967C59920122EF8006E31AB /* Exporters */ = {
 			isa = PBXGroup;
 			children = (
+				3915235C201B2EE2002AF97A /* JSONExporter.cpp */,
+				3915235B201B2EE1002AF97A /* JSONExporter.hpp */,
 				3967C59B20122EF8006E31AB /* SVGExporter.cpp */,
 				3967C59C20122EF8006E31AB /* SVGExporter.hpp */,
 				391C904A20174D530003E2B7 /* VectorImagesToJSONExporter.cpp */,
@@ -1134,6 +1156,7 @@
 		39D90C351FDAEF6100282ED1 /* Engines */ = {
 			isa = PBXGroup;
 			children = (
+				39152357201B2DCF002AF97A /* IndexEngine */,
 				3967C57B20120BAC006E31AB /* GeneratorEngine */,
 				39D90C221FDAEF0F00282ED1 /* AppEngine */,
 				39AF3CCD1FDB519F0089622E /* RenderEngine */,
@@ -1280,12 +1303,14 @@
 				39D90C1A1FDAEE8400282ED1 /* main.cpp in Sources */,
 				392360122009066D00400C45 /* Val01.cpp in Sources */,
 				392360622009105600400C45 /* Sound.cpp in Sources */,
+				3915235D201B2EE2002AF97A /* JSONExporter.cpp in Sources */,
 				3952DCAB200BEBCE0098779F /* libraries.cpp in Sources */,
 				392C9EB3200902E70006ECB9 /* Interface.cpp in Sources */,
 				392C9EB8200902E70006ECB9 /* ShaderProgram.cpp in Sources */,
 				3967C57120108C2A006E31AB /* MeshGroup.cpp in Sources */,
 				391C904F201783E10003E2B7 /* JSONToVectorImagesImporter.cpp in Sources */,
 				3967C577201117BA006E31AB /* ml2.cpp in Sources */,
+				39152360201B2EF5002AF97A /* JSONImporter.cpp in Sources */,
 				3952DCB1200BFC600098779F /* VectorImage.cpp in Sources */,
 				3967C5A02012308F006E31AB /* InstructionsProtocol.cpp in Sources */,
 				392C9EB7200902E70006ECB9 /* SDL.cpp in Sources */,
@@ -1302,6 +1327,7 @@
 				392C9EB0200902E70006ECB9 /* Core.cpp in Sources */,
 				3923605E2009105600400C45 /* Font.cpp in Sources */,
 				392C9EAF200902E70006ECB9 /* Igniter.cpp in Sources */,
+				3915235A201B2DCF002AF97A /* IndexEngine.cpp in Sources */,
 				39D90C341FDAEF0F00282ED1 /* AppEngine.cpp in Sources */,
 				391CFE4A2016657700780A4C /* Utils.cpp in Sources */,
 				3923605C2009105600400C45 /* Image.cpp in Sources */,

@@ -24,6 +24,8 @@
 #include "Engines/GeneratorEngine/InstructionsProtocol/InstructionsProtocol.hpp"
 #include "Utils/SDL.hpp"
 
+#include "Engines/IndexEngine/IndexEngine.hpp"
+
 namespace Scenes
 {
 	void ProtocolRenderer::load()
@@ -44,8 +46,8 @@ namespace Scenes
 
 		m_protocol = App->generatorEngine->getProtocol(m_protocolName);
 
-		rId svgID = App->ressourcesEngine->loadAsset("github.svg", VECTOR);
-		m_svg = *App->ressourcesEngine->getAsset(svgID);
+		std::vector<srcId> * imageIds = App->indexEngine->getImagesIds();
+		m_svg = App->indexEngine->getVectorImage((*imageIds)[0]);
 
 		executeProtocol();
 
@@ -74,6 +76,8 @@ namespace Scenes
 		}
 		
 		m_zoomLevel += App->appEngine->getMouse().scrollY / 50.f;
+		if(m_zoomLevel < 0)
+			m_zoomLevel = 0;
 
 	}
 

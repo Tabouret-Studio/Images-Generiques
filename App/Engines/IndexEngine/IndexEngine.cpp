@@ -118,8 +118,3 @@ void IndexEngine::exportIndexToJSON() const
 	jExporter.exportJSON(index, "indexLibrary");
 
 }
-
-
-VectorImage * getRandomVectorImage() const {
-	
-}
