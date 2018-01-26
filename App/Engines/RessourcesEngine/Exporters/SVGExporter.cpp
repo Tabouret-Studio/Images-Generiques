@@ -7,7 +7,7 @@
 void SVGExporter::exportSVG(const VectorImage * vectorImg, const std::string &fileName)
 {
 	std::ofstream f;
-	std::string filePath = App->getAppPath()+"exports/"+fileName+".svg";
+	std::string filePath = App->getAppPath()+fileName+".svg";
 	f.open(filePath);
 
 	if(!f.is_open())

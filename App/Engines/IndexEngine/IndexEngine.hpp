@@ -59,6 +59,7 @@ private:
 	std::map<srcId, std::string> m_ImagesIdsPaths;
 	std::map<srcId, std::vector<std::string>> m_ImagesIdsTags;
 
+	std::string buildPath(const std::string &imgPath) const;
 	
 };
 

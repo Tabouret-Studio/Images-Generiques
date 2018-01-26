@@ -99,8 +99,12 @@ namespace Scenes
 
 	void ProtocolRenderer::executeProtocol()
 	{
-		m_displayMesh = m_protocol->execute({m_svg})[0]->getMesh();
+		VectorImage * svgTransform = m_protocol->execute({m_svg})[0];
+
+		m_displayMesh = svgTransform->getMesh();
 		m_displayMesh->generate();
 		m_displayMesh->getCursor()->translate(App->getWidth()/2, App->getHeight()/2, 0);
+
+		App->indexEngine->insertVectorIMage(svgTransform, {"export"});
 	}
 }

@@ -92,12 +92,17 @@ void IndexEngine::insertVectorIMage(const VectorImage * image, const std::vector
 {
 	SVGExporter exporter;
 	std::string title = std::to_string(SDL_GetTicks());
-	exporter.exportSVG(image, title);
+	std::string exportPath = buildPath(title);
+
+
+	exporter.exportSVG(image, exportPath);
 
 	srcId imgId = App->genUUID();
 
-	m_ImagesIdsPaths.insert(std::pair<srcId, std::string>(imgId, "indexLibrary/"+title+".svg"));
+	m_ImagesIdsPaths.insert(std::pair<srcId, std::string>(imgId, exportPath+".svg"));
 	m_ImagesIdsTags.insert(std::pair<srcId, std::vector<std::string>>(imgId, tags));
+
+	exportIndexToJSON();
 }
 
 void IndexEngine::exportIndexToJSON() const
@@ -117,8 +122,11 @@ void IndexEngine::exportIndexToJSON() const
 	nlohmann::json index;
 	index["images"] = imagesToJSON;
 
+	std::string exportPath = buildPath("indexLibrary");
+
 	JSONExporter jExporter;
-	jExporter.exportJSON(index, "indexLibrary");
+	std::cout << index << std::endl;
+	jExporter.exportJSON(index, exportPath);
 
 }
 
@@ -130,4 +138,9 @@ VectorImage * IndexEngine::getRandomVectorImage() {
 	srcId imgId = (*imagesIds)[0];
 
 	return getVectorImage(imgId);
+}
+
+
+std::string IndexEngine::buildPath(const std::string &imgPath) const{
+	return "indexLibrary/"+imgPath;
 }
