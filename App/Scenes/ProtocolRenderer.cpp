@@ -46,8 +46,7 @@ namespace Scenes
 
 		m_protocol = App->generatorEngine->getProtocol(m_protocolName);
 
-		std::vector<srcId> * imageIds = App->indexEngine->getImagesIds();
-		m_svg = App->indexEngine->getVectorImage((*imageIds)[0]);
+		m_svg = App->indexEngine->getRandomVectorImage();
 
 		executeProtocol();
 
