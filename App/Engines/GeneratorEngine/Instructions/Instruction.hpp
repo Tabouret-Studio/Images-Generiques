@@ -70,6 +70,12 @@ protected:
 //Paths
 #include "Paths/PathsOrderRandomizer.hpp"
 #include "Paths/PathsChaining.hpp"
+#include "Paths/PathsInvert.hpp"
+#include "Paths/PathsLinearAlizer.hpp"
+#include "Paths/PathsNoise.hpp"
+#include "Paths/PathsOrientRandomizer.hpp"
+#include "Paths/PathsSquarify.hpp"
+
 
 
 #endif /* Instruction_h */
