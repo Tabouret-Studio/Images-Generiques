@@ -487,6 +487,7 @@
 		397A72D3201B3C510025058C /* PathsInvert.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = PathsInvert.cpp; path = App/Engines/GeneratorEngine/Instructions/Paths/PathsInvert.cpp; sourceTree = SOURCE_ROOT; };
 		397A72D4201B3C510025058C /* PathsSquarify.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = PathsSquarify.cpp; path = App/Engines/GeneratorEngine/Instructions/Paths/PathsSquarify.cpp; sourceTree = SOURCE_ROOT; };
 		397A72D5201B3C510025058C /* PathsNoise.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = PathsNoise.cpp; path = App/Engines/GeneratorEngine/Instructions/Paths/PathsNoise.cpp; sourceTree = SOURCE_ROOT; };
+		397A72DB201B44940025058C /* indexLibrary.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = indexLibrary.json; path = indexLibrary/indexLibrary.json; sourceTree = "<group>"; };
 		397BE0D01FDAED60006254F0 /* ImagesGeneriques */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = ImagesGeneriques; sourceTree = BUILT_PRODUCTS_DIR; };
 		39AF3CCB1FDB4FE10089622E /* SDL2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2.framework; path = ../../../../../Library/Frameworks/SDL2.framework; sourceTree = "<group>"; };
 		39AF3CCE1FDB51AD0089622E /* RenderEngine.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = RenderEngine.cpp; sourceTree = "<group>"; };
@@ -1193,6 +1194,7 @@
 		39D90C3A1FDAF0C400282ED1 /* build */ = {
 			isa = PBXGroup;
 			children = (
+				397A72DB201B44940025058C /* indexLibrary.json */,
 				390196C91FDDD956000F2113 /* assets */,
 				39AF3CD11FDB541F0089622E /* ImagesGeneriques */,
 			);
