@@ -94,6 +94,7 @@ private:
 #include "ml1.hpp"
 #include "ml2.hpp"
 #include "Gen01.hpp"
-#include "txt.hpp"
+#include "ProtocolsMenu.hpp"
+#include "ProtocolRenderer.hpp"
 
 #endif /* Scene_h */

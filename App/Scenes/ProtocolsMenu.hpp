@@ -1,23 +1,25 @@
 //
-//  txt.hpp
+//  ProtocolsMenu.hpp
 //  Xcode
 //
 //  Created by Valentin Dufois on 24/01/2018.
 //  Copyright © 2018 Valentin Dufois. All rights reserved.
 //
 
-#ifndef txt_hpp
-#define txt_hpp
+#ifndef ProtocolsMenu_hpp
+#define ProtocolsMenu_hpp
 
 //////////////////////
 //Forward declarations
 class Font;
 class Mesh;
+class Interface;
+class UIButton;
 
 #include "Scene.hpp"
 namespace Scenes
 {
-	class txt: public Scene
+	class ProtocolsMenu: public Scene
 	{
 	public:
 		/**
@@ -43,15 +45,21 @@ namespace Scenes
 		/**
 		 Destructor, used to properly free all the memory used by the scene
 		 */
-		~txt() {};
+		~ProtocolsMenu() {};
 
 	private:
 
 		//Elements
 		Font * m_font;
-		Mesh * m_mesh;
-		Mesh * m_line;
+		Interface * m_interface;
+
+		std::vector<UIButton *> m_buttons;
+
+		float m_fontSize;
+
+		//Methods
+		void updateInterfaceDimensions();
 	};
 }
 
-#endif /* txt_hpp */
+#endif /* ProtocolsMenu_hpp */

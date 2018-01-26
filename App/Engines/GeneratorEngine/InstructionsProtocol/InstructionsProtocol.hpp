@@ -26,6 +26,7 @@ public:
 	//Constructors
 	InstructionsProtocol() {};
 	InstructionsProtocol(const std::vector<std::string> &instructionNames);
+	InstructionsProtocol(const std::vector<std::string> &instructionNames, const std::string &name);
 
 	/**
 	 Call the execute function of all the instructions in the protocol
@@ -52,9 +53,16 @@ public:
 	/**
 	 Return all the instruction in the protocol
 
-	 @return All the instruction in a pointer
+	 @return All the instruction in a vector
 	 */
-	inline std::vector<InstructionObject *> getInstructions() const { return m_instructions; };
+	std::vector<InstructionObject *> getInstructions() const;
+
+	/**
+	 Return all the instruction names in the protocol
+
+	 @return All the instruction names in a vector
+	 */
+	std::vector<std::string> getInstructionsNames() const;
 
 	/**
 	 Set the given parameter for the instruction.s
@@ -72,13 +80,31 @@ public:
 	void setParameters(const std::vector<InstructionParameters *> &params);
 
 	/**
+	 Set the protocol name if it has any
+
+	 @param name The name
+	 */
+	void setName(const std::string &name) { m_name = name; };
+
+	/**
+	 Get the protocole name, might be an empty string
+
+	 @return The name
+	 */
+	inline std::string getName() const { return m_name; };
+
+	/**
 	 Protocol destructor
 	 Delete all instructions in the group
 	 */
 	virtual ~InstructionsProtocol();
 
 private:
-	std::vector<InstructionObject *> m_instructions;
+
+	std::map<std::string, InstructionObject *> m_instructions;
+	std::vector<std::string> m_instructionsOrder;
+
+	std::string m_name;
 };
 
 #endif /* InstructionsProtocol_hpp */
