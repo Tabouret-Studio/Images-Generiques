@@ -38,7 +38,7 @@ public:
 	
 	void exportIndexToJSON() const;
 	
-	VectorImage * getRandomVectorImage() const;
+	VectorImage * getRandomVectorImage();
 
 	///////
 	//Utils
@@ -58,6 +58,8 @@ private:
 	//Fields
 	std::map<srcId, std::string> m_ImagesIdsPaths;
 	std::map<srcId, std::vector<std::string>> m_ImagesIdsTags;
+
+	
 };
 
 #endif /* IndexEngine_hpp */

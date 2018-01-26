@@ -7,8 +7,11 @@
 #include "Engines/RessourcesEngine/Exporters/SVGExporter.hpp"
 #include "Engines/RessourcesEngine/Importers/JSONImporter.hpp"
 #include "Engines/RessourcesEngine/Exporters/JSONExporter.hpp"
+#include "Utils/Utils.hpp"
 
 #include <fstream>
+#include <algorithm>
+
 
 bool IndexEngine::m_instanciated = false;
 
@@ -117,4 +120,14 @@ void IndexEngine::exportIndexToJSON() const
 	JSONExporter jExporter;
 	jExporter.exportJSON(index, "indexLibrary");
 
+}
+
+
+VectorImage * IndexEngine::getRandomVectorImage() {
+	std::vector<srcId> * imagesIds = getImagesIds();
+	std::random_shuffle(imagesIds->begin(), imagesIds->end(), Utils::rand);
+	
+	srcId imgId = (*imagesIds)[0];
+
+	return getVectorImage(imgId);
 }
