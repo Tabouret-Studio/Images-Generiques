@@ -13,7 +13,7 @@
 //Forward declarations
 class Mesh;
 
-#include "Asset.hpp"
+#include "../Asset.hpp"
 #include "Elements/Vector/Bezier.hpp"
 #include "Elements/Vector/Shape.hpp"
 

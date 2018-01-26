@@ -8,7 +8,7 @@
 
 #include "VectorImage.hpp"
 
-#include "Mesh.hpp"
+#include "../Mesh.hpp"
 
 VectorImage::VectorImage():
 	Asset(VECTOR),

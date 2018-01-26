@@ -1,8 +1,16 @@
+//
+//  GeneratorEngine.cpp
+//  Xcode
+//
+//  Created by Valentin Dufois on 19/01/2018.
+//  Copyright © 2018 Valentin Dufois. All rights reserved.
+//
 
-	boost::filesystem::path instructionsFolder = App->getAppPath() + "assets/instructions/";
+#include "GeneratorEngine.hpp"
 
-	boost::filesystem::path scriptPath;
-	std::string scriptName;
+#include "Core/AppObject.hpp"
+#include "Instructions/Instruction.hpp"
+#include "InstructionObject.hpp"
 
 #include <boost/filesystem.hpp>
 #include <boost/range/iterator_range.hpp>
@@ -13,30 +21,20 @@
 
 bool GeneratorEngine::m_instanciated = false;
 
-	std::vector<boost::filesystem::directory_entry> entries;
-	std::copy(boost::filesystem::directory_iterator(instructionsFolder), boost::filesystem::directory_iterator(), std::back_inserter(entries));
+/**
+ * Instanciate the engine as a Singleton
+ */
+void GeneratorEngine::instanciate()
+{
+	if(m_instanciated)
+		return;
 
-	for(std::vector<boost::filesystem::directory_entry>::const_iterator entry = entries.begin(); entry != entries.end(); ++entry)
-	{
-		scriptPath = (*entry).path();
+	App->generatorEngine = new GeneratorEngine();
 
-		if(boost::filesystem::is_directory(scriptPath))
-		   continue; //Ignore sub-directories (for now ?)
-
-		if(scriptPath.filename_is_dot() || scriptPath.filename_is_dot_dot() || scriptPath.empty())
-			continue; //Ignore useless entries
-
-		if(scriptPath.extension() != ".py")
-			continue; //Ignore non python script
-
-		scriptName = scriptPath.filename().generic_string();
-		scriptName = scriptName.substr(0, scriptName.length() - 3);
-
-		registerInstruction(INSTRUCTION_PYTHON, scriptName, nullptr);
-	}
+	m_instanciated = true;
 }
 
-void GeneratorEngine::registerInstruction(const instructionFormat &format, const std::string &instructionName, std::function<Instruction *(void)> loader)
+GeneratorEngine::GeneratorEngine()
 {
 	//Ugly conversion because Py_SetProgramName is not marked as const despite not modifying the var (thx c89)
 	std::string pathToInstruction = App->getAppPath() + "assets/instructions/";
@@ -73,14 +71,13 @@ Instruction * GeneratorEngine::getInstruction(const std::string &instruction)
 
 void GeneratorEngine::registerCPPInstructions()
 {
-	m_instructionsIndex.insert(std::pair<std::string, std::function<Instruction *(void)>>(instructionName, loader));
-	m_instructionsFormats.insert(std::pair<std::string, instructionFormat>(instructionName, format));
-}
+	//Register all instructions
 
 	//Paths
 	registerInstruction(INSTRUCTION_CPP, "PATHS_ORDER_RANDOMIZER", PathsOrderRandomizer::get);
 	registerInstruction(INSTRUCTION_CPP, "PATHS_CHAINING", PathsChaining::get);
-	registerInstruction(INSTRUCTION_CPP, "BEZIERS_LINEAR_ALIZER", BezierLinearAlizer::get);
+	registerInstruction(INSTRUCTION_CPP, "BEZIERS_LINEAR_ALIZER", BeziersLinearAlizer::get);
+	registerInstruction(INSTRUCTION_CPP, "BEZIERS_AMPLITUDE", BeziersAmplitude::get);
 }
 
 void GeneratorEngine::registerPythonInstructions()
@@ -126,3 +123,4 @@ Instruction * GeneratorEngine::getPythonInstruction(const std::string &scriptNam
 {
 	return PythonInstruction::get(scriptName);
 }
+	

@@ -35,7 +35,7 @@ void Core::main()
 
 	//////////////////////
 	//Load the first scene
-	Scenes::Gen01::load();
+	Scenes::AlexGen01::load();
 
 	while(App->isRunning())
 	{

@@ -120,10 +120,10 @@ public:
 
 	/////////
 	//Setters
-	inline void setStartPoint(const glm::vec2 &startPoint) { m_startPoint = startPoint; };
-	inline void setStartHandle(const glm::vec2 &startHandle) { m_startHandle = startHandle; };
-	inline void setEndPoint(const glm::vec2 &endPoint) { m_endPoint = endPoint; };
-	inline void setEndHandle(const glm::vec2 &endHandle) { m_endHandle = endHandle; };
+	inline void setStartPoint(const glm::vec3 &startPoint) { m_startPoint = startPoint; };
+	inline void setStartHandle(const glm::vec3 &startHandle) { m_startHandle = startHandle; };
+	inline void setEndPoint(const glm::vec3 &endPoint) { m_endPoint = endPoint; };
+	inline void setEndHandle(const glm::vec3 &endHandle) { m_endHandle = endHandle; };
 
 	/**
 	 Interpolate the curve and return it composed of number of points based on its length

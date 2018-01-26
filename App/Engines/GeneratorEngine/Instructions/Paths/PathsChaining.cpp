@@ -22,7 +22,7 @@ std::vector<VectorImage *> PathsChaining::execute(std::vector<VectorImage *> vec
 		imagesPaths.push_back(vectorImages[i]->getBeziers());
 	}
 
-	glm::vec2 lastPos(0, 0);
+	glm::vec3 lastPos(0, 0, 0);
 	Shape shape;	
 
 	for(std::vector<Bezier> paths : imagesPaths)

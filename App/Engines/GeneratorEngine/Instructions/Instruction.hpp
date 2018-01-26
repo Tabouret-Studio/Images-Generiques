@@ -71,6 +71,6 @@ protected:
 #include "Paths/PathsOrderRandomizer.hpp"
 #include "Paths/PathsChaining.hpp"
 #include "Beziers/BeziersLinearAlizer.hpp"
-
+#include "Beziers/BeziersAmplitude.hpp"
 
 #endif /* Instruction_h */
