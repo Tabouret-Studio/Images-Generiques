@@ -43,7 +43,9 @@ public:
 	m_startPoint(glm::vec3(startX, startY, 0)),
 	m_startHandle(glm::vec3(startHX, startHY, 0)),
 	m_endHandle(glm::vec3(endHX, endHY, 0)),
-	m_endPoint(glm::vec3(endX, endY, 0)) {};
+	m_endPoint(glm::vec3(endX, endY, 0)) {
+		calculateBounds();
+	};
 
 	/**
 	 Build a Bezier curve
@@ -68,7 +70,9 @@ public:
 	m_startPoint(glm::vec3(startX, startY, startZ)),
 	m_startHandle(glm::vec3(startHX, startHY, startHZ)),
 	m_endHandle(glm::vec3(endHX, endHY, endHZ)),
-	m_endPoint(glm::vec3(endX, endY, endZ)) {};
+	m_endPoint(glm::vec3(endX, endY, endZ)) {
+		calculateBounds();
+	};
 
 	/**
 	 Build a Bezier curve
@@ -83,7 +87,9 @@ public:
 	m_startPoint(glm::vec3(startPoint, 0)),
 	m_startHandle(glm::vec3(startHandle, 0)),
 	m_endHandle(glm::vec3(endHandle, 0)),
-	m_endPoint(glm::vec3(endPoint, 0)) {};
+	m_endPoint(glm::vec3(endPoint, 0)) {
+		calculateBounds();
+	};
 
 	/**
 	 Build a Bezier curve
@@ -98,9 +104,11 @@ public:
 	m_startPoint(startPoint),
 	m_startHandle(startHandle),
 	m_endHandle(endHandle),
-	m_endPoint(endPoint) {};
+	m_endPoint(endPoint) {
+		calculateBounds();
+	};
 
-	Bezier() {};
+	Bezier():m_dimensions(glm::vec3(0)) {};
 
 	/**
 	 Set the path dimensions
@@ -157,11 +165,18 @@ public:
 	Mesh * getMesh() const;
 
 	/**
-	 Return the dimensions of the bezier if defined with setBounds();
+	 Return the dimensions
 
 	 @return Width and height
 	 */
 	inline glm::vec3 getDimensions() const { return m_dimensions; };
+
+	/**
+	 Return the position of the bezier (min XYZ coordinates)
+
+	 @return Width and height
+	 */
+	inline glm::vec3 getPosition() const { return m_position; };
 
 	/////////////////
 	//Transformations
@@ -202,6 +217,7 @@ private:
 	glm::vec3 m_endPoint;
 
 	glm::vec3 m_dimensions;
+	glm::vec3 m_position;
 
 	/**
 	 Return the nth point on the curve.
@@ -214,6 +230,11 @@ private:
 	 @return The coordinates of the point
 	 */
 	glm::vec3 getIPointBetween(glm::vec3 A, glm::vec3 B, float coef) const;
+
+	/**
+	 Calculate the mesh boundaries
+	 */
+	void calculateBounds();
 
 	DrawCursor m_cursor;
 };

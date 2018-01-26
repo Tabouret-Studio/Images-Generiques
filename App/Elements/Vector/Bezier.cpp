@@ -119,3 +119,26 @@ void Bezier::move(const glm::vec3 &dest)
 	m_cursor.translate(distanceVec);
 	applyCursor();
 }
+
+void Bezier::calculateBounds()
+{
+	float pathMinX, pathMinY, pathMaxX, pathMaxY;
+	glm::vec2 pathPos, pathDim;
+
+	//Calculate bezier coordinates
+	std::vector<glm::vec3> points = getPoints();
+
+	pathMinX = points[0].x; pathMaxX = points[0].x;
+	pathMinY = points[0].y; pathMaxY = points[0].y;
+
+	for(std::vector<glm::vec3>::const_iterator it = points.begin()+1; it != points.end(); ++it)
+	{
+		if((*it).x < pathMinX) pathMinX = (*it).x;
+		if((*it).x > pathMaxX) pathMaxX = (*it).x;
+		if((*it).y < pathMinY) pathMinY = (*it).y;
+		if((*it).y > pathMaxY) pathMaxY = (*it).y;
+	}
+
+	m_position = glm::vec3(pathMinX, pathMinY, 0);
+	m_dimensions = glm::vec3(pathMaxX - pathMinX, pathMaxY - pathMinY, 0);
+}
