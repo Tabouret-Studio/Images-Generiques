@@ -5,8 +5,16 @@
 
 #include <fstream>
 
-void JSONExporter::exportJSON(const nlohmann::json &j, const std::string &fileName) {
-    std::ofstream indexExport(App->getAppPath()+"/indexLibrary"+fileName+".json");
+void JSONExporter::exportJSON(const nlohmann::json &j, const std::string &fileName)
+{
+	std::string filepath = App->getAppPath() + fileName + ".json";
+    std::ofstream indexExport(filepath);
+
+	if(!indexExport)
+	{
+		std::cout << "Could not export library index." << std::endl;
+	}
+
     indexExport << j;
     indexExport.close();
 }
