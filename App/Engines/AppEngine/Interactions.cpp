@@ -15,6 +15,7 @@ void AppEngine::parseEvents()
 	
 	m_mouse.scrollX = 0;
 	m_mouse.scrollY = 0;
+	m_window.resized = false;
 
 	while(SDL_PollEvent(&event))
 	{
@@ -45,6 +46,7 @@ void AppEngine::windowEvents(const SDL_Event &event)
 		case SDL_WINDOWEVENT_SIZE_CHANGED:
 			App->setWidth(event.window.data1);
 			App->setHeigth(event.window.data2);
+			m_window.resized = true;
 			break;
 	}
 }

@@ -86,12 +86,10 @@ void UIButton::setCaption(const std::string &caption)
 
 	switch(m_textAlign)
 	{
-		case UI_TEXT_LEFT: posX += m_tile->getDimensions().x / 2; break;
+		case UI_TEXT_LEFT: posX += m_tile->getDimensions().x / 2.f + m_width * 0.01f; break;
 		case UI_TEXT_CENTER: posX += m_width / 2; break;
 		case UI_TEXT_RIGHT: posX += m_width - m_tile->getDimensions().x / 2; break;
 	}
-
-	std::cout << glm::to_string(m_tile->getDimensions()) << std::endl;
 
 	m_tile->getCursor()->reset()->translate(posX, posY, 0);
 	refreshTextColor();

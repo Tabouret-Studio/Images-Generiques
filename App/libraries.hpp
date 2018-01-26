@@ -70,5 +70,6 @@ void _check_gl_error(const char *file, int line);
 //////////
 //Typedefs
 using rId = boost::uuids::uuid;
+using srcId = boost::uuids::uuid;
 
 #endif /* libraries_h */

@@ -13,10 +13,14 @@
 
 #include "Elements/Vector/VectorImage.hpp"
 #include "Elements/Mesh.hpp"
+#include "Elements/jsonObject.hpp"
+#include "Elements/Asset.hpp"
 #include "Engines/RenderEngine/RenderEngine.hpp"
+#include "Engines/IndexEngine/IndexEngine.hpp"
 #include "Engines/AppEngine/AppEngine.hpp"
 #include "Utils/Interface/UIElement.hpp"
 #include "Engines/RessourcesEngine/Exporters/SVGExporter.hpp"
+#include "Engines/RessourcesEngine/Importers/JSONImporter.hpp"
 
 #include <iostream>
 
@@ -37,21 +41,29 @@ namespace Scenes
 	{
 		//Load SVG
 		//Utils::NSVG svg = Utils::NSVG("Assets/SVG/ml.svg");
-		rId svgID = App->ressourcesEngine->loadAsset("handComputer.svg", VECTOR);
+		rId svgID = App->ressourcesEngine->loadAsset("ml.svg", VECTOR);
 		VectorImage * svg = *App->ressourcesEngine->getAsset(svgID);
 
-		//m_mesh = svg->getMesh();
+		JSONImporter jImport;
+		rId jsonId = App->ressourcesEngine->loadAsset("indexExample.json", JSON);
+		jsonObject * jsonFile = *App->ressourcesEngine->getAsset(jsonId);
 
 		 m_mesh = svg->getMesh();
 
 		 m_mesh->generate();
 		 m_mesh->getCursor()->translate(App->getWidth()/2, App->getHeight()/2, 0); 
  
-	 
-	    App->renderEngine->setProjection2D(); 
+		
+	 	
 
+		//App->indexEngine->setImagesIdsPaths(jsonFile);
+
+
+	    App->renderEngine->setProjection2D(); 
 	    SVGExporter fExport;
-	    fExport.exportSVG(svg, "artist2");
+	    fExport.exportSVG(svg, "ml2");
+
+	    
 
 
 		/*m_mesh = new Mesh();
