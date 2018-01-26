@@ -2,15 +2,15 @@
 	"images" :
 	[
 		{
-			"path" : "imageLib/artist.svg",
+			"path" : "artist.svg",
 			"tags" : ["line", "text"]
 		},
 		{
-			"path" : "imageLib/handComputer.svg",
+			"path" : "handComputer.svg",
 			"tags" : ["line", "computer", "humain"]
 		},
 		{
-			"path" : "imageLib/github.svg",
+			"path" : "github.svg",
 			"tags" : ["line", "logo", "animal"]
 		}
 	]

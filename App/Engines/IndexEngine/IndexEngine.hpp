@@ -29,10 +29,17 @@ public:
 	void loadLibrary();
 
 	std::vector<srcId> * getImagesIds() const;
+	
 	VectorImage * getVectorImage(const srcId &imgId) const;
+	
 	std::vector<std::string> getImageTags(const srcId &imgId) const;
+	
 	void insertVectorIMage(const VectorImage * image, const std::vector<std::string> &tags);
+	
 	void exportIndexToJSON() const;
+	
+	VectorImage * getRandomVectorImage() const;
+
 	///////
 	//Utils
 
