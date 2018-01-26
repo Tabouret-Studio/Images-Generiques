@@ -64,6 +64,11 @@
 		3967C59E20122EF8006E31AB /* SVGExporter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3967C59B20122EF8006E31AB /* SVGExporter.cpp */; };
 		3967C5A02012308F006E31AB /* InstructionsProtocol.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3967C59F2012308F006E31AB /* InstructionsProtocol.cpp */; };
 		3967C5A320123687006E31AB /* GeneratorEngine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3967C5A120123687006E31AB /* GeneratorEngine.cpp */; };
+		397A72D6201B3C510025058C /* PathsLinearAlizer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 397A72CD201B3C500025058C /* PathsLinearAlizer.cpp */; };
+		397A72D7201B3C510025058C /* PathsOrientRandomizer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 397A72CF201B3C510025058C /* PathsOrientRandomizer.cpp */; };
+		397A72D8201B3C510025058C /* PathsInvert.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 397A72D3201B3C510025058C /* PathsInvert.cpp */; };
+		397A72D9201B3C510025058C /* PathsSquarify.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 397A72D4201B3C510025058C /* PathsSquarify.cpp */; };
+		397A72DA201B3C510025058C /* PathsNoise.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 397A72D5201B3C510025058C /* PathsNoise.cpp */; };
 		39AF3CCC1FDB4FE10089622E /* SDL2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39AF3CCB1FDB4FE10089622E /* SDL2.framework */; };
 		39AF3CD01FDB51AD0089622E /* RenderEngine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39AF3CCE1FDB51AD0089622E /* RenderEngine.cpp */; };
 		39D90C1A1FDAEE8400282ED1 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39D90C181FDAEE8400282ED1 /* main.cpp */; };
@@ -472,6 +477,16 @@
 		3967C59F2012308F006E31AB /* InstructionsProtocol.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = InstructionsProtocol.cpp; sourceTree = "<group>"; };
 		3967C5A120123687006E31AB /* GeneratorEngine.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = GeneratorEngine.cpp; sourceTree = "<group>"; };
 		3967C5A220123687006E31AB /* GeneratorEngine.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = GeneratorEngine.hpp; sourceTree = "<group>"; };
+		397A72CC201B3C500025058C /* PathsInvert.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = PathsInvert.hpp; path = App/Engines/GeneratorEngine/Instructions/Paths/PathsInvert.hpp; sourceTree = SOURCE_ROOT; };
+		397A72CD201B3C500025058C /* PathsLinearAlizer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = PathsLinearAlizer.cpp; path = App/Engines/GeneratorEngine/Instructions/Paths/PathsLinearAlizer.cpp; sourceTree = SOURCE_ROOT; };
+		397A72CE201B3C500025058C /* PathsLinearAlizer.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = PathsLinearAlizer.hpp; path = App/Engines/GeneratorEngine/Instructions/Paths/PathsLinearAlizer.hpp; sourceTree = SOURCE_ROOT; };
+		397A72CF201B3C510025058C /* PathsOrientRandomizer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = PathsOrientRandomizer.cpp; path = App/Engines/GeneratorEngine/Instructions/Paths/PathsOrientRandomizer.cpp; sourceTree = SOURCE_ROOT; };
+		397A72D0201B3C510025058C /* PathsNoise.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = PathsNoise.hpp; path = App/Engines/GeneratorEngine/Instructions/Paths/PathsNoise.hpp; sourceTree = SOURCE_ROOT; };
+		397A72D1201B3C510025058C /* PathsOrientRandomizer.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = PathsOrientRandomizer.hpp; path = App/Engines/GeneratorEngine/Instructions/Paths/PathsOrientRandomizer.hpp; sourceTree = SOURCE_ROOT; };
+		397A72D2201B3C510025058C /* PathsSquarify.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = PathsSquarify.hpp; path = App/Engines/GeneratorEngine/Instructions/Paths/PathsSquarify.hpp; sourceTree = SOURCE_ROOT; };
+		397A72D3201B3C510025058C /* PathsInvert.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = PathsInvert.cpp; path = App/Engines/GeneratorEngine/Instructions/Paths/PathsInvert.cpp; sourceTree = SOURCE_ROOT; };
+		397A72D4201B3C510025058C /* PathsSquarify.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = PathsSquarify.cpp; path = App/Engines/GeneratorEngine/Instructions/Paths/PathsSquarify.cpp; sourceTree = SOURCE_ROOT; };
+		397A72D5201B3C510025058C /* PathsNoise.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = PathsNoise.cpp; path = App/Engines/GeneratorEngine/Instructions/Paths/PathsNoise.cpp; sourceTree = SOURCE_ROOT; };
 		397BE0D01FDAED60006254F0 /* ImagesGeneriques */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = ImagesGeneriques; sourceTree = BUILT_PRODUCTS_DIR; };
 		39AF3CCB1FDB4FE10089622E /* SDL2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2.framework; path = ../../../../../Library/Frameworks/SDL2.framework; sourceTree = "<group>"; };
 		39AF3CCE1FDB51AD0089622E /* RenderEngine.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = RenderEngine.cpp; sourceTree = "<group>"; };
@@ -1077,10 +1092,20 @@
 		3967C59820122DF5006E31AB /* Paths */ = {
 			isa = PBXGroup;
 			children = (
-				3967C59220122948006E31AB /* PathsOrderRandomizer.cpp */,
-				3967C59320122948006E31AB /* PathsOrderRandomizer.hpp */,
 				3967C59520122C51006E31AB /* PathsChaining.cpp */,
 				3967C59620122C51006E31AB /* PathsChaining.hpp */,
+				397A72D3201B3C510025058C /* PathsInvert.cpp */,
+				397A72CC201B3C500025058C /* PathsInvert.hpp */,
+				397A72CD201B3C500025058C /* PathsLinearAlizer.cpp */,
+				397A72CE201B3C500025058C /* PathsLinearAlizer.hpp */,
+				397A72D5201B3C510025058C /* PathsNoise.cpp */,
+				397A72D0201B3C510025058C /* PathsNoise.hpp */,
+				3967C59220122948006E31AB /* PathsOrderRandomizer.cpp */,
+				3967C59320122948006E31AB /* PathsOrderRandomizer.hpp */,
+				397A72CF201B3C510025058C /* PathsOrientRandomizer.cpp */,
+				397A72D1201B3C510025058C /* PathsOrientRandomizer.hpp */,
+				397A72D4201B3C510025058C /* PathsSquarify.cpp */,
+				397A72D2201B3C510025058C /* PathsSquarify.hpp */,
 			);
 			path = Paths;
 			sourceTree = "<group>";
@@ -1281,6 +1306,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				397A72D7201B3C510025058C /* PathsOrientRandomizer.cpp in Sources */,
 				392395D7200A2D8400400C45 /* dummy.cpp in Sources */,
 				392C9EB9200902E70006ECB9 /* DrawCursor.cpp in Sources */,
 				392395D8200A2D8400400C45 /* glm.cpp in Sources */,
@@ -1293,6 +1319,7 @@
 				39AF3CD01FDB51AD0089622E /* RenderEngine.cpp in Sources */,
 				39152356201B1541002AF97A /* ProtocolRenderer.cpp in Sources */,
 				3967C5A320123687006E31AB /* GeneratorEngine.cpp in Sources */,
+				397A72DA201B3C510025058C /* PathsNoise.cpp in Sources */,
 				392360562009105600400C45 /* FontImporter.cpp in Sources */,
 				3923604C2009105600400C45 /* ShaderImporter.cpp in Sources */,
 				392360602009105600400C45 /* Shader.cpp in Sources */,
@@ -1310,10 +1337,12 @@
 				3967C57120108C2A006E31AB /* MeshGroup.cpp in Sources */,
 				391C904F201783E10003E2B7 /* JSONToVectorImagesImporter.cpp in Sources */,
 				3967C577201117BA006E31AB /* ml2.cpp in Sources */,
+				397A72D8201B3C510025058C /* PathsInvert.cpp in Sources */,
 				39152360201B2EF5002AF97A /* JSONImporter.cpp in Sources */,
 				3952DCB1200BFC600098779F /* VectorImage.cpp in Sources */,
 				3967C5A02012308F006E31AB /* InstructionsProtocol.cpp in Sources */,
 				392C9EB7200902E70006ECB9 /* SDL.cpp in Sources */,
+				397A72D9201B3C510025058C /* PathsSquarify.cpp in Sources */,
 				3967C57A2011F94D006E31AB /* Gen01.cpp in Sources */,
 				394F942F2016209C0065CE25 /* Python.cpp in Sources */,
 				3952DCBA200E4BB50098779F /* Shape.cpp in Sources */,
@@ -1321,6 +1350,7 @@
 				3967C59720122C51006E31AB /* PathsChaining.cpp in Sources */,
 				392C9EB1200902E70006ECB9 /* AppObject.cpp in Sources */,
 				391C9048201744A60003E2B7 /* jsonObject.cpp in Sources */,
+				397A72D6201B3C510025058C /* PathsLinearAlizer.cpp in Sources */,
 				392360572009105600400C45 /* RessourcesEngine.cpp in Sources */,
 				392360592009105600400C45 /* Mesh.cpp in Sources */,
 				392360552009105600400C45 /* ImageImporter.cpp in Sources */,

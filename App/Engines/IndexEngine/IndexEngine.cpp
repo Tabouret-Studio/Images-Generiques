@@ -6,6 +6,7 @@
 #include "Core/AppObject.hpp"
 #include "Engines/RessourcesEngine/Exporters/SVGExporter.hpp"
 #include "Engines/RessourcesEngine/Importers/JSONImporter.hpp"
+#include "Engines/RessourcesEngine/Importers/SVGImporter.hpp"
 #include "Engines/RessourcesEngine/Exporters/JSONExporter.hpp"
 #include "Utils/Utils.hpp"
 
@@ -75,8 +76,8 @@ std::vector<srcId> * IndexEngine::getImagesIds() const
 
 VectorImage * IndexEngine::getVectorImage(const srcId &imgId) const
 {
-	rId vecId = App->ressourcesEngine->loadAsset(m_ImagesIdsPaths.at(imgId), VECTOR);
-	return *App->ressourcesEngine->getAsset(vecId);
+	SVGImporter svgImporter;
+	return *svgImporter.getAsset(App->getAppPath() + "/indexLibrary/" + m_ImagesIdsPaths.at(imgId));
 }
 
 std::vector<std::string> IndexEngine::getImageTags(const srcId &imgId) const
