@@ -12,9 +12,11 @@
 //////////////////////
 //Forward declarations
 class Instruction;
+class InstructionsProtocol;
 
 #include <Python.h>
 #include <functional>
+#include <vector>
 #include <map>
 
 enum instructionFormat
@@ -43,6 +45,34 @@ public:
 	 */
 	Instruction * getInstruction(const std::string &instruction);
 
+	/**
+	 Tell if the instruction exist for the given name
+
+	 @param instruction Instruction name
+	 @return True if it exists, false otherwise
+	 */
+	bool instructionExist(const std::string &instruction) const;
+
+	/**
+	 Get all registered protocols
+
+	 @return Vector of protocols
+	 */
+	std::vector<InstructionsProtocol *> getProtocols() const;
+
+	/**
+	 Return the named protocol
+
+	 @param protocolName Protocol name
+	 @return The protocol
+	 */
+	InstructionsProtocol * getProtocol(const std::string &protocolName) const;
+
+	/**
+	 Register all predefined protocols
+	 */
+	void registerProtocols();
+
 private:
 
 	//Singleton
@@ -52,6 +82,9 @@ private:
 	//Maps with all the instructions and instructions getters
 	std::map<std::string, std::function<Instruction *(void)>> m_instructionsIndex;
 	std::map<std::string, instructionFormat> m_instructionsFormats;
+
+	//Maps with all the registered protocols
+	std::map<std::string, InstructionsProtocol *> m_protocols;
 
 	/**
 	 Register all CPP instructions
@@ -73,6 +106,13 @@ private:
 	void registerInstruction(const instructionFormat &format, const std::string &instructionName, std::function<Instruction *(void)> loader);
 
 	Instruction * getPythonInstruction(const std::string &scriptName);
+
+	/**
+	 Parse and register protocoles
+
+	 @param filename Protocol file name without extension
+	 */
+	void registerProtocol(const std::string &filename);
 };
 
 #endif /* GeneratorEngine_hpp */

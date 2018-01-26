@@ -112,5 +112,9 @@ void Igniter::igniteEngines()
 	//Preload default shaderProgram
 	App->setDefaultProgram(new ShaderProgram("main.vs.glsl", "main.fs.glsl"));
 
+	//Init render engine matrixs
 	App->renderEngine->initRender();
+
+	//register predefined protocoles
+	App->generatorEngine->registerProtocols();
 }

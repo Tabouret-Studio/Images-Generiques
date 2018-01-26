@@ -1,12 +1,12 @@
 //
-//  txt.cpp
+//  ProtocolRenderer.cpp
 //  Xcode
 //
-//  Created by Valentin Dufois on 24/01/2018.
+//  Created by Valentin Dufois on 26/01/2018.
 //  Copyright © 2018 Valentin Dufois. All rights reserved.
 //
 
-#include "txt.hpp"
+#include "ProtocolRenderer.hpp"
 
 #include "Elements/Font.hpp"
 #include "Elements/Mesh.hpp"
@@ -26,9 +26,9 @@
 
 namespace Scenes
 {
-	void txt::load()
+	void ProtocolRenderer::load()
 	{
-		Scene * scene = new txt();
+		Scene * scene = new ProtocolRenderer();
 		scene->init();
 
 		App->addScene(scene);
@@ -37,50 +37,58 @@ namespace Scenes
 	//////////////
 	// This is executed only one time at start up
 	///////////
-	void txt::init()
+	void ProtocolRenderer::init()
 	{
 		rId fontID = App->ressourcesEngine->loadAsset("Karla-Bold.ttf", FONT);
 		m_font = *App->ressourcesEngine->getAsset(fontID);
 
-		m_fontSize = 100;
+		m_protocol = App->generatorEngine->getProtocol(m_protocolName);
 
-		m_font->loadSize(m_fontSize);
+		rId svgID = App->ressourcesEngine->loadAsset("github.svg", VECTOR);
+		VectorImage * m_svg = *App->ressourcesEngine->getAsset(svgID);
 
-		m_interface = new Interface();
+		m_displayMesh = m_protocol->execute({m_svg})[0]->getMesh();
+		m_displayMesh->generate();
+		m_displayMesh->getCursor()->translate(App->getWidth()/2, App->getHeight()/2, 0);
 
-		UIButton * button = new UIButton(UI_BUTTON_TEXT, App->getWidth()/2 - 200, App->getHeight()/2 - 75, 410, 100);
-		button->setFont(m_font, 100);
-		button->setCaption("IMAGES");
-
-		UIButton * button2 = new UIButton(UI_BUTTON_TEXT, App->getWidth()/2, App->getHeight()/2 + 75, 400, 50);
-		button2->setFont(m_font, 50);
-		button2->setCaption("GENERIQUES");
-
-		button->setNeighboors(nullptr, nullptr, button2, nullptr);
-		button2->setNeighboors(button, nullptr, nullptr, nullptr);
-
-		m_interface->addItem(button);
-		m_interface->addItem(button2);
+		m_zoomLevel = 1;
 	}
 
 
 	//////////////
 	// This is executed every frame before render
 	///////////
-	void txt::execute()
+	void ProtocolRenderer::execute()
 	{
-		m_interface->execute();
+		if(App->appEngine->getWindow().resized == true)
+			updateInterfaceDimensions();
+
+		if(App->appEngine->getKeys().ESC)
+		{
+			ProtocolsMenu::load();
+			App->removeScene(this);
+		}
+
+		m_zoomLevel += App->appEngine->getMouse().scrollY / 50.f;
+
 	}
 
 
 	//////////////
 	// This is executed every frame at render
 	///////////
-	void txt::render()
+	void ProtocolRenderer::render()
 	{
 		App->renderEngine->setProjection2D();
 
-		m_interface->render();
+		m_displayMesh->getCursor()->reset()
+			->translate(App->getWidth()/2, App->getHeight()/2, 0)
+			->scale(m_zoomLevel, m_zoomLevel, 0);
+		
+		m_displayMesh->render();
+	}
+
+	void ProtocolRenderer::updateInterfaceDimensions()
+	{
 	}
 }
-
