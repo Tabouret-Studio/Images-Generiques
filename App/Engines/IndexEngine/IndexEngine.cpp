@@ -50,7 +50,6 @@ void IndexEngine::loadLibrary() {
 		srcId imgId = App->genUUID();
 		m_ImagesIdsPaths.insert(std::pair<srcId, std::string>(imgId, jsonImage["path"].get<std::string>()));
 		m_ImagesIdsTags.insert(std::pair<srcId, std::vector<std::string>>(imgId, jsonImage["tags"].get<std::vector<std::string>>()));
-
 	}
 }
 
@@ -92,13 +91,10 @@ std::vector<std::string> IndexEngine::getImageTags(const srcId &imgId) const
 void IndexEngine::insertVectorIMage(const VectorImage * image, const std::vector<std::string> &tags)
 {
 	SVGExporter exporter;
-	std::string title = std::to_string(SDL_GetTicks());
-	std::string exportPath = buildPath(title);
-
-
-	exporter.exportSVG(image, exportPath);
-
 	srcId imgId = App->genUUID();
+	std::string exportPath = "exports/" + boost::uuids::to_string(imgId);
+
+	exporter.exportSVG(image, buildPath(exportPath));
 
 	m_ImagesIdsPaths.insert(std::pair<srcId, std::string>(imgId, exportPath+".svg"));
 	m_ImagesIdsTags.insert(std::pair<srcId, std::vector<std::string>>(imgId, tags));
@@ -126,9 +122,7 @@ void IndexEngine::exportIndexToJSON() const
 	std::string exportPath = buildPath("indexLibrary");
 
 	JSONExporter jExporter;
-	std::cout << index << std::endl;
 	jExporter.exportJSON(index, exportPath);
-
 }
 
 
