@@ -93,7 +93,7 @@ void IndexEngine::insertVectorIMage(const VectorImage * image, const std::vector
 
 	srcId imgId = App->genUUID();
 
-	m_ImagesIdsPaths.insert(std::pair<srcId, std::string>(imgId, "imageLib/"+title+".svg"));
+	m_ImagesIdsPaths.insert(std::pair<srcId, std::string>(imgId, "indexLibrary/"+title+".svg"));
 	m_ImagesIdsTags.insert(std::pair<srcId, std::vector<std::string>>(imgId, tags));
 }
 
@@ -117,4 +117,9 @@ void IndexEngine::exportIndexToJSON() const
 	JSONExporter jExporter;
 	jExporter.exportJSON(index, "indexLibrary");
 
+}
+
+
+VectorImage * getRandomVectorImage() const {
+	
 }
