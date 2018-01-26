@@ -62,6 +62,7 @@ namespace Scenes
 		std::vector<UIButton *> m_buttons;
 
 		VectorImage * m_svg;
+		VectorImage * m_transformedSVG;
 		Font * m_font;
 		float m_zoomLevel;
 
@@ -74,6 +75,8 @@ namespace Scenes
 
 		//Methods
 		void updateInterfaceDimensions();
+
+		void executeProtocol();
 	};
 }
 

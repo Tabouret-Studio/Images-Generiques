@@ -1,0 +1,21 @@
+{
+	"images" :
+	[
+		{
+			"path" : "artist.svg",
+			"tags" : ["line", "text"]
+		},
+		{
+			"path" : "handComputer.svg",
+			"tags" : ["line", "computer", "humain"]
+		},
+		{
+			"path" : "github.svg",
+			"tags" : ["line", "logo", "animal"]
+		},
+		{
+			"path" : "IMG_20180126_0001-02.svg",
+			"tags" : ["education", "texte", "manual"]
+		}
+	]
+}

@@ -24,6 +24,8 @@
 #include "Engines/GeneratorEngine/InstructionsProtocol/InstructionsProtocol.hpp"
 #include "Utils/SDL.hpp"
 
+#include "Engines/IndexEngine/IndexEngine.hpp"
+
 namespace Scenes
 {
 	void ProtocolRenderer::load()
@@ -44,12 +46,9 @@ namespace Scenes
 
 		m_protocol = App->generatorEngine->getProtocol(m_protocolName);
 
-		rId svgID = App->ressourcesEngine->loadAsset("github.svg", VECTOR);
-		VectorImage * m_svg = *App->ressourcesEngine->getAsset(svgID);
+		m_svg = App->indexEngine->getRandomVectorImage();
 
-		m_displayMesh = m_protocol->execute({m_svg})[0]->getMesh();
-		m_displayMesh->generate();
-		m_displayMesh->getCursor()->translate(App->getWidth()/2, App->getHeight()/2, 0);
+		executeProtocol();
 
 		m_zoomLevel = 1;
 	}
@@ -69,7 +68,15 @@ namespace Scenes
 			App->removeScene(this);
 		}
 
+		if(App->appEngine->getKeys().ENTER)
+		{
+			executeProtocol();
+			App->appEngine->flushKeys();
+		}
+		
 		m_zoomLevel += App->appEngine->getMouse().scrollY / 50.f;
+		if(m_zoomLevel < 0)
+			m_zoomLevel = 0;
 
 	}
 
@@ -88,7 +95,16 @@ namespace Scenes
 		m_displayMesh->render();
 	}
 
-	void ProtocolRenderer::updateInterfaceDimensions()
+	void ProtocolRenderer::updateInterfaceDimensions() {}
+
+	void ProtocolRenderer::executeProtocol()
 	{
+		VectorImage * svgTransform = m_protocol->execute({m_svg})[0];
+
+		m_displayMesh = svgTransform->getMesh();
+		m_displayMesh->generate();
+		m_displayMesh->getCursor()->translate(App->getWidth()/2, App->getHeight()/2, 0);
+
+		App->indexEngine->insertVectorIMage(svgTransform, {"export"});
 	}
 }
