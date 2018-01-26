@@ -92,9 +92,9 @@ void IndexEngine::insertVectorIMage(const VectorImage * image, const std::vector
 {
 	SVGExporter exporter;
 	srcId imgId = App->genUUID();
-	std::string exportPath = buildPath(boost::uuids::to_string(imgId));
+	std::string exportPath = "exports/" + boost::uuids::to_string(imgId);
 
-	exporter.exportSVG(image, exportPath);
+	exporter.exportSVG(image, buildPath(exportPath));
 
 	m_ImagesIdsPaths.insert(std::pair<srcId, std::string>(imgId, exportPath+".svg"));
 	m_ImagesIdsTags.insert(std::pair<srcId, std::vector<std::string>>(imgId, tags));
@@ -122,7 +122,6 @@ void IndexEngine::exportIndexToJSON() const
 	std::string exportPath = buildPath("indexLibrary");
 
 	JSONExporter jExporter;
-	std::cout << index << std::endl;
 	jExporter.exportJSON(index, exportPath);
 }
 
