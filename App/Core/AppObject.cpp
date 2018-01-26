@@ -6,7 +6,7 @@
 //  Copyright © 2017 Valentin Dufois. All rights reserved.
 //
 
-#include "AppObject.hpp"
+#include "Core/AppObject.hpp"
 
 #include "Utils/ShaderProgram.hpp"
 #include "Scenes/Scene.hpp"

@@ -13,7 +13,7 @@ class VectorImage;
 class SVGExporter
 {
 public:
-	void exportSVG(VectorImage * vectorImg, const std::string &fileName);
+	void exportSVG(const VectorImage * vectorImg, const std::string &fileName);
 
 
 private:
