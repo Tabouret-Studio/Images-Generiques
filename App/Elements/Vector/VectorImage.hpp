@@ -13,9 +13,13 @@
 //Forward declarations
 class Mesh;
 
+#include "libraries.hpp"
+
 #include "../Asset.hpp"
 #include "Elements/Vector/Bezier.hpp"
 #include "Elements/Vector/Shape.hpp"
+
+#include "Utils/DrawCursor.hpp"
 
 #include <iostream>
 #include <vector>
@@ -91,7 +95,7 @@ public:
 
 	 @return The VectorImage as a renderable Mesh
 	 */
-	inline Mesh * getMesh() const { return getMesh(0); };
+	inline Mesh * getMesh() const { return getMesh(1); };
 
 	/**
 	 Return a Mesh object build with the current image for the given precision
@@ -101,7 +105,45 @@ public:
 	 */
 	Mesh * getMesh(const uint &precision) const;
 
-	inline VectorImage &operator <<(const Shape &shape) { m_shapes.push_back(shape); return *this; }
+	/**
+	 Get vectorImage cursor
+
+	 @return The cursor
+	 */
+	inline DrawCursor * getCursor() { return &m_cursor; };
+
+	/**
+	 Apply the cursor
+	 */
+	void applyCursor();
+
+	/**
+	 Tell shape position (min XYZ coordinates)
+
+	 @return The position
+	 */
+	inline glm::vec3 getPosition() const { return m_boundsMin; };
+
+	/**
+	 Tell the dimensions of the shape
+
+	 @return XYZ dimensions
+	 */
+	inline glm::vec3 getDimensions() const { return m_boundsMax - m_boundsMin; };
+
+	/**
+	 Tell the shape max XYZ coordinates
+
+	 @return XYZ coordinates
+	 */
+	inline glm::vec3 getBoundsMax() const { return m_boundsMax; };
+
+	/**
+	 Insert shape in the VectorImage
+
+	 @param shape Shape to add
+	 */
+	VectorImage &operator <<(const Shape &shape);
 
 private:
 
@@ -109,6 +151,15 @@ private:
 	float m_height;
 
 	std::vector<Shape> m_shapes;
+
+	DrawCursor m_cursor;
+
+	glm::vec3 m_boundsMin;
+	glm::vec3 m_boundsMax;
+
+	void calculateBounds();
+	void updateBounds(const std::vector<Shape> &shapes);
+	void compareAndUpdateBounds(const Shape &shape);
 };
 
 #endif /* VectorImage_hpp */

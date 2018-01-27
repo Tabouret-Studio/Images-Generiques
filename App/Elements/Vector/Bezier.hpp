@@ -108,16 +108,7 @@ public:
 		calculateBounds();
 	};
 
-	Bezier():m_dimensions(glm::vec3(0)) {};
-
-	/**
-	 Set the path dimensions
-	 Dimensions are automatically calculated on import
-
-	 @param width Width of the curve
-	 @param height Height of the curve
-	 */
-	void setDimensions(const float &width, const float &height, const float &depth);
+	Bezier() {};
 
 	/////////
 	//Getters
@@ -157,26 +148,35 @@ public:
 	 */
 	float getLength() const;
 
+	inline Mesh * getMesh() const { return getMesh(1); };
+
 	/**
 	 Generate a mesh with the interpolated curve
 
 	 @return A Mesh Object
 	 */
-	Mesh * getMesh() const;
-
-	/**
-	 Return the dimensions
-
-	 @return Width and height
-	 */
-	inline glm::vec3 getDimensions() const { return m_dimensions; };
+	Mesh * getMesh(const float &precision) const;
 
 	/**
 	 Return the position of the bezier (min XYZ coordinates)
 
 	 @return Width and height
 	 */
-	inline glm::vec3 getPosition() const { return m_position; };
+	inline glm::vec3 getPosition() const { return m_boundsMin; };
+
+	/**
+	 Return the dimensions
+
+	 @return Width and height
+	 */
+	inline glm::vec3 getDimensions() const { return m_boundsMax - m_boundsMin; };
+
+	/**
+	 Return the position of the bezier (min XYZ coordinates)
+
+	 @return Width and height
+	 */
+	inline glm::vec3 getBoundsMax() const { return m_boundsMax; };
 
 	/////////////////
 	//Transformations
@@ -192,16 +192,12 @@ public:
 	 Apply the current cursor to the curve coordinates
 	 then reset the cursor
 	 */
-	inline void applyCursor()
-	{
-		applyCursor(&m_cursor);
-		m_cursor.setMatrix(glm::mat4(1.0));
-	};
+	inline void applyCursor() { applyCursor(glm::mat4(1.0)); };
 
 	/**
 	 Apply the given cursor to the curve coordinates
 	 */
-	void applyCursor(const DrawCursor * cursor);
+	void applyCursor(const glm::mat4 &shapeCursor);
 
 	/**
 	 Move the bezier startPoint to the given position
@@ -216,8 +212,8 @@ private:
 	glm::vec3 m_endHandle;
 	glm::vec3 m_endPoint;
 
-	glm::vec3 m_dimensions;
-	glm::vec3 m_position;
+	glm::vec3 m_boundsMin;
+	glm::vec3 m_boundsMax;
 
 	/**
 	 Return the nth point on the curve.

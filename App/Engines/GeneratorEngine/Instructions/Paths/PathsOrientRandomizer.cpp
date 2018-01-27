@@ -30,5 +30,5 @@ std::vector<VectorImage *> PathsOrientRandomizer::execute(std::vector<VectorImag
 		shape << path;
 	}
 
-	return {new VectorImage(vectorImages[0]->getWidth(), vectorImages[0]->getHeight(), shape)};
+	return {new VectorImage(shape)};
 }

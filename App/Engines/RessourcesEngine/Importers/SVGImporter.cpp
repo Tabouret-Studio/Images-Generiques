@@ -26,6 +26,7 @@ Asset * SVGImporter::getAsset(const std::string &path)
 	float * p;
 
 	glm::vec3 shapePos, shapeDim, shapeDemiDim;
+	glm::vec3 bezierPos, bezierDim;
 
 	std::vector<Bezier> paths;
 	std::vector<Shape> shapes;
@@ -57,13 +58,16 @@ Asset * SVGImporter::getAsset(const std::string &path)
 				//Create curve
 				curve = Bezier(startP, startH, endH, endP);
 
+				bezierPos = curve.getPosition();
+				bezierDim = curve.getDimensions();
+
 				//Move bezier to origin
 				curve.getCursor()
-					->translate(-(curve.getPosition().x + curve.getDimensions().x / 2.0), -(curve.getPosition().y + curve.getDimensions().y / 2.0), 0);
+					->translate(-(bezierPos.x + bezierDim.x / 2.0), -(bezierPos.y + bezierDim.y / 2.0), 0);
 				curve.applyCursor();
 
 				curve.getCursor()
-					->translate(curve.getPosition().x + curve.getDimensions().x / 2.0, curve.getPosition().y + curve.getDimensions().y / 2.0, 0);
+					->translate(bezierPos.x + bezierDim.x / 2.0, bezierPos.y + bezierDim.y / 2.0, 0);
 
 				paths.push_back(curve);
 			}

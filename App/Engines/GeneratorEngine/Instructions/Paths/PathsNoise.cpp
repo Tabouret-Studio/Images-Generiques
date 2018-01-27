@@ -29,5 +29,5 @@ std::vector<VectorImage *> PathsNoise::execute(std::vector<VectorImage *> vector
 		shape << path;
 	}
 
-	return {new VectorImage(vectorImages[0]->getWidth(), vectorImages[0]->getHeight(), shape)};
+	return {new VectorImage(shape)};
 }

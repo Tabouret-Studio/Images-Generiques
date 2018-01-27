@@ -50,5 +50,5 @@ std::vector<VectorImage *> PathsInvert::execute(std::vector<VectorImage *> vecto
 		shape << path;
 	}
 
-	return {new VectorImage(vectorImages[0]->getWidth(), vectorImages[0]->getHeight(), shape)};
+	return {new VectorImage(shape)};
 }

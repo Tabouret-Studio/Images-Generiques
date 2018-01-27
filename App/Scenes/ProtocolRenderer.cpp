@@ -88,9 +88,10 @@ namespace Scenes
 
 		m_displayMesh->getCursor()->reset()
 			->translate(App->getWidth()/2, App->getHeight()/2, 0)->scale(m_zoomLevel, m_zoomLevel, 0);
-		
+
 		m_displayMesh->render();
 
+		m_protocolCaption->getCursor()->reset()->translate(App->getWidth()/2, App->getHeight() - 15, 0);
 		m_protocolCaption->render();
 	}
 
@@ -99,16 +100,16 @@ namespace Scenes
 	void ProtocolRenderer::executeProtocol()
 	{
 		m_svg = App->indexEngine->getRandomVectorImage();
+		m_svg->applyCursor();
+
 		VectorImage * svgTransform = m_protocol->execute({m_svg})[0];
+
+		//svgTransform->getCursor()->translate(-(svgTransform->getPosition().x + svgTransform->getDimensions().x / 2.0), -(svgTransform->getPosition().y + svgTransform->getDimensions().y / 2.0), -(svgTransform->getPosition().z + svgTransform->getDimensions().z / 2.0));
 
 		m_displayMesh = svgTransform->getMesh();
 		m_displayMesh->generate();
-		/*m_displayMesh->getCursor()->translate(App->getWidth()/2, App->getHeight()/2, 0);*/
 
-		std::string generatedName = App->indexEngine->insertVectorIMage(svgTransform, {"export"});
-
-		m_protocolCaption = m_font->genCaption(m_protocolName + " : " + generatedName, 35);
+		m_protocolCaption = m_font->genCaption(m_protocolName, 35);
 		m_protocolCaption->generate();
-		m_protocolCaption->getCursor()->translate(App->getWidth()/2, App->getHeight() - 15, 0);
 	}
 }

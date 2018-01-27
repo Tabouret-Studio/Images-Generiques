@@ -492,6 +492,14 @@
 		397A72E3201B45DE0025058C /* ORIENT_RANDOMIZER_CHAINER.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ORIENT_RANDOMIZER_CHAINER.json; sourceTree = "<group>"; };
 		397A72E4201B45DE0025058C /* INVERTER_SQUARIFIER.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = INVERTER_SQUARIFIER.json; sourceTree = "<group>"; };
 		397A72E5201B45DF0025058C /* LINEARIZER.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = LINEARIZER.json; sourceTree = "<group>"; };
+		397A72E6201CF9690025058C /* NOISER_SQUARIFIER.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = NOISER_SQUARIFIER.json; sourceTree = "<group>"; };
+		397A72E7201CF9690025058C /* INVERTER.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = INVERTER.json; sourceTree = "<group>"; };
+		397A72E8201CF9690025058C /* DO_NOTHING.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = DO_NOTHING.json; sourceTree = "<group>"; };
+		397A72E9201CF96A0025058C /* NOISER.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = NOISER.json; sourceTree = "<group>"; };
+		397A72EA201CF96A0025058C /* MAP_GENERATOR.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = MAP_GENERATOR.json; sourceTree = "<group>"; };
+		397A72EB201CF96A0025058C /* ORDER_RANDOMIZER_NOISER.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ORDER_RANDOMIZER_NOISER.json; sourceTree = "<group>"; };
+		397A72EC201CF96A0025058C /* SQUARIFIER.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = SQUARIFIER.json; sourceTree = "<group>"; };
+		397A72ED201CF96A0025058C /* CHAINER.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = CHAINER.json; sourceTree = "<group>"; };
 		397BE0D01FDAED60006254F0 /* ImagesGeneriques */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = ImagesGeneriques; sourceTree = BUILT_PRODUCTS_DIR; };
 		39AF3CCB1FDB4FE10089622E /* SDL2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2.framework; path = ../../../../../Library/Frameworks/SDL2.framework; sourceTree = "<group>"; };
 		39AF3CCE1FDB51AD0089622E /* RenderEngine.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = RenderEngine.cpp; sourceTree = "<group>"; };
@@ -582,6 +590,14 @@
 		39152351201A8606002AF97A /* protocols */ = {
 			isa = PBXGroup;
 			children = (
+				397A72ED201CF96A0025058C /* CHAINER.json */,
+				397A72E8201CF9690025058C /* DO_NOTHING.json */,
+				397A72E7201CF9690025058C /* INVERTER.json */,
+				397A72EA201CF96A0025058C /* MAP_GENERATOR.json */,
+				397A72E6201CF9690025058C /* NOISER_SQUARIFIER.json */,
+				397A72E9201CF96A0025058C /* NOISER.json */,
+				397A72EB201CF96A0025058C /* ORDER_RANDOMIZER_NOISER.json */,
+				397A72EC201CF96A0025058C /* SQUARIFIER.json */,
 				397A72E2201B45DE0025058C /* CHAINER_INVERTER.json */,
 				397A72E4201B45DE0025058C /* INVERTER_SQUARIFIER.json */,
 				397A72E5201B45DF0025058C /* LINEARIZER.json */,
