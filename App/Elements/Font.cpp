@@ -226,9 +226,6 @@ bool Font::prepareTexture(const uint &width, const uint &height, GLuint &frameBu
 	GLenum DrawBuffers[1] = {GL_COLOR_ATTACHMENT0};
 	glDrawBuffers(1, DrawBuffers);
 
-	////
-	check_gl_error();
-
 	if(glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE)
 		return false;
 

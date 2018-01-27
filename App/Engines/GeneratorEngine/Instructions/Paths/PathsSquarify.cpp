@@ -19,7 +19,7 @@ std::vector<VectorImage *> PathsSquarify::execute(const std::vector<VectorImage 
 	std::vector<Bezier> paths = vectorImages[0]->getBeziers();
 	Shape shape;
 
-	glm::vec2 vec_starthandle, startpoint, endpoint;
+	glm::vec3 vec_starthandle, startpoint, endpoint;
 	Bezier vertical, horizontal;
 
 	for(Bezier path : paths)
@@ -31,22 +31,22 @@ std::vector<VectorImage *> PathsSquarify::execute(const std::vector<VectorImage 
 
 		if(vec_starthandle.x > vec_starthandle.y)
 		{
-			horizontal = Bezier(startpoint, glm::vec2(endpoint.x,startpoint.y),
-								startpoint, glm::vec2(endpoint.x,startpoint.y));
+			horizontal = Bezier(startpoint, glm::vec3(endpoint.x,startpoint.y, 0),
+								startpoint, glm::vec3(endpoint.x,startpoint.y, 0));
 			shape << horizontal;
 
-			vertical = Bezier(glm::vec2(endpoint.x, startpoint.y), endpoint,
-							  glm::vec2(endpoint.x, startpoint.y), endpoint);
+			vertical = Bezier(glm::vec3(endpoint.x, startpoint.y, 0), endpoint,
+							  glm::vec3(endpoint.x, startpoint.y, 0), endpoint);
 			shape << vertical;
 		}
 		else
 		{
-			vertical = Bezier(startpoint, glm::vec2(startpoint.x, endpoint.y),
-							  startpoint, glm::vec2(startpoint.x, endpoint.y));
+			vertical = Bezier(startpoint, glm::vec3(startpoint.x, endpoint.y, 0),
+							  startpoint, glm::vec3(startpoint.x, endpoint.y, 0));
 			shape << vertical;
 
-			horizontal= Bezier(glm::vec2(startpoint.x, endpoint.y), endpoint,
-							   glm::vec2(startpoint.x, endpoint.y), endpoint
+			horizontal= Bezier(glm::vec3(startpoint.x, endpoint.y, 0), endpoint,
+							   glm::vec3(startpoint.x, endpoint.y, 0), endpoint
 			);
 			shape << horizontal;
 		}

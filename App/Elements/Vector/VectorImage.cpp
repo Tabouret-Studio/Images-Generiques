@@ -51,7 +51,7 @@ VectorImage::VectorImage(const VectorImage * vectorImage):
 	m_shapes(vectorImage->m_shapes),
 	m_cursor(vectorImage->m_cursor),
 	m_boundsMin(vectorImage->m_boundsMin),
-	m_boundsMax(vectorImage->m_boundsMax) {};
+	m_boundsMax(vectorImage->m_boundsMax) {}
 
 
 

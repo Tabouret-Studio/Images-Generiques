@@ -92,6 +92,9 @@ void Igniter::igniteOpenGL()
 	  return;
 	}
 
+	//In case we are using GLEW <= 1.13 prevent display of GL_INVALID_ENUM
+	glGetError();
+
 	//std::cout << "OpenGL Version : " << glGetString(GL_VERSION) << std::endl;
 	//std::cout << "GLEW Version : " << glewGetString(GLEW_VERSION) << std::endl;
 

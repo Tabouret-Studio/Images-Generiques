@@ -41,10 +41,10 @@ std::string SVGExporter::shapeToPath(const Shape &shape)
 	{
 		bez.applyCursor();
 
-		std::string startPoint = vec2ToString(bez.getStartPoint());
-		std::string startHandle = vec2ToString(bez.getStartHandle());
-		std::string endHandle = vec2ToString(bez.getEndHandle());
-		std::string endPoint = vec2ToString(bez.getEndPoint());
+		std::string startPoint = vec2ToString(glm::vec2(bez.getStartPoint().x, bez.getStartPoint().y));
+		std::string startHandle = vec2ToString(glm::vec2(bez.getStartHandle().x, bez.getStartHandle().y));
+		std::string endHandle = vec2ToString(glm::vec2(bez.getEndHandle().x, bez.getEndHandle().y));
+		std::string endPoint = vec2ToString(glm::vec2(bez.getEndPoint().x, bez.getEndPoint().y));
 
 		if(lastPoint != bez.getStartPoint())
 			path += "M"+startPoint;
