@@ -215,6 +215,8 @@ private:
 	glm::vec3 m_boundsMin;
 	glm::vec3 m_boundsMax;
 
+	DrawCursor m_cursor;
+
 	/**
 	 Return the nth point on the curve.
 
@@ -231,8 +233,6 @@ private:
 	 Calculate the mesh boundaries
 	 */
 	void calculateBounds();
-
-	DrawCursor m_cursor;
 };
 
 #endif /* Bezier_hpp */

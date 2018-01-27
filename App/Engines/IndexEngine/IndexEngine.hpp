@@ -28,7 +28,7 @@ public:
 	 */
 	void loadLibrary();
 
-	std::vector<srcId> * getImagesIds() const;
+	std::vector<srcId> getImagesIds() const;
 	
 	VectorImage * getVectorImage(const srcId &imgId) const;
 	

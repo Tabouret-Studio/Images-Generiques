@@ -79,6 +79,8 @@ Asset * SVGImporter::getAsset(const std::string &path)
 		shapes.push_back(renderedShape);
 	}
 
+	nsvgDelete(image);
+
 	return new VectorImage(image->width, image->height, shapes);
 }
 

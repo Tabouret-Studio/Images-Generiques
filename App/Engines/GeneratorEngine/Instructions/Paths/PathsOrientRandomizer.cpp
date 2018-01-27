@@ -14,7 +14,7 @@ Instruction * PathsOrientRandomizer::get()
 	return new PathsOrientRandomizer();
 }
 
-std::vector<VectorImage *> PathsOrientRandomizer::execute(std::vector<VectorImage *> vectorImages)
+std::vector<VectorImage *> PathsOrientRandomizer::execute(const std::vector<VectorImage *> &vectorImages)
 {
 	
 	std::vector<Bezier> paths = vectorImages[0]->getBeziers();

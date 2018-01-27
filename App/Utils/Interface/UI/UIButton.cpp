@@ -135,12 +135,16 @@ void UIButton::refreshGeometry()
 	{
 		case UI_BUTTON_GRAPHIC:
 
+			delete m_tile;
+
 			m_tile = App->ressourcesEngine->gen2DTile(m_posX, m_posY, m_width, m_height);
 			m_tile->generate();
 			m_tile->getCursor()->translate(m_posX, m_posY, 0);
 
 			break;
 		case UI_BUTTON_TEXT:
+
+			delete m_backTile;
 
 			m_backTile = App->ressourcesEngine->gen2DTile(m_posX + m_width / 2, m_posY - m_height * 0.31, m_width, m_height * 1.25);
 			m_backTile->setColor(BUTTON_TEXT_IDLE_COLOR);
@@ -161,4 +165,10 @@ void UIButton::refreshTextColor()
 		m_tile->setColor(BUTTON_TEXT_IDLE_COLOR);
 
 	m_tile->generate();
+}
+
+UIButton::~UIButton()
+{
+	delete m_tile;
+	delete m_backTile;
 }

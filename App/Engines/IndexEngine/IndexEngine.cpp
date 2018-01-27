@@ -32,25 +32,30 @@ void IndexEngine::instanciate()
 /**
  * Private constructor
  */
-IndexEngine::IndexEngine() {
+IndexEngine::IndexEngine()
+{
 	loadLibrary();
 }
 
 
-void IndexEngine::loadLibrary() {
+void IndexEngine::loadLibrary()
+{
 	JSONImporter jsonImport;
 	jsonObject * jsonFile = *jsonImport.getAsset(App->getAppPath()+"/indexLibrary/indexLibrary.json");
 	
-	nlohmann::json * j = jsonFile->get(); 
+	nlohmann::json * j = jsonFile->get();
 	
 	nlohmann::json imagesList = (*j)["images"];
 
 	for(const nlohmann::json &jsonImage : imagesList)
 	{
 		srcId imgId = App->genUUID();
+
 		m_ImagesIdsPaths.insert(std::pair<srcId, std::string>(imgId, jsonImage["path"].get<std::string>()));
 		m_ImagesIdsTags.insert(std::pair<srcId, std::vector<std::string>>(imgId, jsonImage["tags"].get<std::vector<std::string>>()));
 	}
+
+	delete jsonFile;
 }
 
 bool IndexEngine::imageIdIsValid(const srcId &imgId) const {
@@ -61,13 +66,13 @@ bool IndexEngine::imageIdIsValid(const srcId &imgId) const {
 }
 
 
-std::vector<srcId> * IndexEngine::getImagesIds() const
+std::vector<srcId> IndexEngine::getImagesIds() const
 {
-	std::vector<srcId> * imagesIds = new std::vector<srcId>();
+	std::vector<srcId> imagesIds;
 
 	for(std::map<srcId, std::string>::const_iterator it = m_ImagesIdsPaths.begin(); it != m_ImagesIdsPaths.end(); ++it)
 	{
-		imagesIds->push_back(it->first);
+		imagesIds.push_back(it->first);
 	}
 
 	return imagesIds;
@@ -129,10 +134,10 @@ void IndexEngine::exportIndexToJSON() const
 
 
 VectorImage * IndexEngine::getRandomVectorImage() {
-	std::vector<srcId> * imagesIds = getImagesIds();
-	std::random_shuffle(imagesIds->begin(), imagesIds->end(), Utils::rand);
+	std::vector<srcId> imagesIds = getImagesIds();
+	std::random_shuffle(imagesIds.begin(), imagesIds.end(), Utils::rand);
 	
-	srcId imgId = (*imagesIds)[0];
+	srcId imgId = imagesIds[0];
 
 	return getVectorImage(imgId);
 }

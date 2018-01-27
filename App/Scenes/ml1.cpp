@@ -45,8 +45,6 @@ namespace Scenes
 		VectorImage * svg = *App->ressourcesEngine->getAsset(svgID);
 
 		JSONImporter jImport;
-		rId jsonId = App->ressourcesEngine->loadAsset("indexExample.json", JSON);
-		jsonObject * jsonFile = *App->ressourcesEngine->getAsset(jsonId);
 
 		 m_mesh = svg->getMesh();
 

@@ -15,7 +15,7 @@ Instruction * PathsOrderRandomizer::get()
 	return new PathsOrderRandomizer();
 }
 
-std::vector<VectorImage *> PathsOrderRandomizer::execute(std::vector<VectorImage *> vectorImages)
+std::vector<VectorImage *> PathsOrderRandomizer::execute(const std::vector<VectorImage *> &vectorImages)
 {
 	std::vector<Bezier> paths = vectorImages[0]->getBeziers();
 	std::random_shuffle(paths.begin(), paths.end(), Utils::rand);

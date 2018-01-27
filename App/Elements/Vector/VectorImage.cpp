@@ -44,6 +44,15 @@ VectorImage::VectorImage(const float &width, const float &height, const std::vec
 	m_height(height),
 	m_shapes(shapes) {}
 
+VectorImage::VectorImage(const VectorImage * vectorImage):
+	Asset(VECTOR),
+	m_width(vectorImage->m_width),
+	m_height(vectorImage->m_height),
+	m_shapes(vectorImage->m_shapes),
+	m_cursor(vectorImage->m_cursor),
+	m_boundsMin(vectorImage->m_boundsMin),
+	m_boundsMax(vectorImage->m_boundsMax) {};
+
 
 
 void VectorImage::setDimensions(const float &width, const float &height)

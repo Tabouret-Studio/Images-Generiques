@@ -215,7 +215,7 @@ void GeneratorEngine::registerProtocol(const std::string &filename)
 	std::string content((std::istreambuf_iterator<char>(file)), (std::istreambuf_iterator<char>()));
 	nlohmann::json protocolJSON = nlohmann::json::parse(content);
 
-	InstructionsProtocol * protocol = new InstructionsProtocol;
+	InstructionsProtocol * protocol = new InstructionsProtocol();
 	protocol->setName(filename);
 
 	for(const std::string &instructionName : protocolJSON)

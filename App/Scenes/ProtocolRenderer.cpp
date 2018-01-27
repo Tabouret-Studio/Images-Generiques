@@ -99,17 +99,40 @@ namespace Scenes
 
 	void ProtocolRenderer::executeProtocol()
 	{
+		delete m_displayMesh;
+		m_displayMesh = nullptr;
+
+		delete m_protocolCaption;
+		m_protocolCaption = nullptr;
+
 		m_svg = App->indexEngine->getRandomVectorImage();
 		m_svg->applyCursor();
 
 		VectorImage * svgTransform = m_protocol->execute({m_svg})[0];
-
-		//svgTransform->getCursor()->translate(-(svgTransform->getPosition().x + svgTransform->getDimensions().x / 2.0), -(svgTransform->getPosition().y + svgTransform->getDimensions().y / 2.0), -(svgTransform->getPosition().z + svgTransform->getDimensions().z / 2.0));
 
 		m_displayMesh = svgTransform->getMesh();
 		m_displayMesh->generate();
 
 		m_protocolCaption = m_font->genCaption(m_protocolName, 35);
 		m_protocolCaption->generate();
+
+		delete m_svg;
+		m_svg = nullptr;
+
+		delete svgTransform;
+		svgTransform = nullptr;
+	}
+
+
+	ProtocolRenderer::~ProtocolRenderer()
+	{
+		delete m_svg;
+		m_svg = nullptr;
+
+		delete m_displayMesh;
+		m_displayMesh = nullptr;
+
+		delete m_protocolCaption;
+		m_protocolCaption = nullptr;
 	}
 }

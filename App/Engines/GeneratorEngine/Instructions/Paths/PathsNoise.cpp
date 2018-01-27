@@ -13,7 +13,7 @@ Instruction * PathsNoise::get()
 	return new PathsNoise();
 }
 
-std::vector<VectorImage *> PathsNoise::execute(std::vector<VectorImage *> vectorImages)
+std::vector<VectorImage *> PathsNoise::execute(const std::vector<VectorImage *> &vectorImages)
 {
 	
 	std::vector<Bezier> paths = vectorImages[0]->getBeziers();

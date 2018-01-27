@@ -46,7 +46,7 @@ namespace Scenes
 		/**
 		 Destructor, used to properly free all the memory used by the scene
 		 */
-		~ProtocolRenderer() {};
+		~ProtocolRenderer();
 
 		/**
 		 Set the protocol to be used by this scene
@@ -58,15 +58,13 @@ namespace Scenes
 	private:
 
 		//Elements
-		Interface * m_interface;
 		std::vector<UIButton *> m_buttons;
 
-		VectorImage * m_svg;
-		VectorImage * m_transformedSVG;
+		VectorImage * m_svg = nullptr;
 		Font * m_font;
 		float m_zoomLevel;
 
-		Mesh * m_displayMesh;
+		Mesh * m_displayMesh = nullptr;
 		Mesh * m_protocolCaption;
 
 		std::string m_protocolName;

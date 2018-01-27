@@ -5,7 +5,7 @@ Instruction * PathsLinearAlizer::get()
 	return new PathsLinearAlizer();
 }
 
-std::vector<VectorImage *> PathsLinearAlizer::execute(std::vector<VectorImage *> vectorImages)
+std::vector<VectorImage *> PathsLinearAlizer::execute(const std::vector<VectorImage *> &vectorImages)
 {
 	std::vector<Bezier> paths = vectorImages[0]->getBeziers();
 	Shape shape;

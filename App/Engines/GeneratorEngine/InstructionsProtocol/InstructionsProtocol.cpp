@@ -20,15 +20,35 @@ InstructionsProtocol::InstructionsProtocol(const std::vector<std::string> &instr
 	addInstructions(instructionNames);
 }
 
-std::vector<VectorImage *> InstructionsProtocol::execute(std::vector<VectorImage *> vectorImages)
+std::vector<VectorImage *> InstructionsProtocol::execute(const std::vector<VectorImage *> &vectorImages)
 {
-	std::vector<VectorImage *> newVector = vectorImages;
+	std::vector<VectorImage *> images, transformedImages;
+
+	//Copy input content to preserve integrity
+	for(VectorImage * vectorImage : vectorImages)
+	{
+		images.push_back(new VectorImage(vectorImage));
+	}
+
 
 	//Call each instruction in the group
-	for(std::vector<std::string>::const_iterator it = m_instructionsOrder.begin(); it != m_instructionsOrder.end(); ++it)
-		newVector = m_instructions[(*it)]->execute(newVector);
+	for(const std::string &instruction : m_instructionsOrder)
+	{
+		//Execute instructions
+		transformedImages = m_instructions[instruction]->execute(images);
 
-	return newVector;
+		//Free input images
+		for(VectorImage * &inputImage : images)
+		{
+			delete inputImage;
+			inputImage = nullptr;
+		}
+		
+		images.clear();
+		images = transformedImages;
+	}
+
+	return images;
 }
 
 void InstructionsProtocol::addInstruction(const std::string &instructionName)

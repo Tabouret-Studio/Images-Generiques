@@ -105,6 +105,8 @@ public:
 	 */
 	void print();
 
+	~UIButton();
+
 private:
 	UIButtonType m_type;
 
@@ -120,8 +122,8 @@ private:
 	uint m_height;
 
 	//The tile
-	Mesh * m_tile;
-	Mesh * m_backTile;
+	Mesh * m_tile = nullptr;
+	Mesh * m_backTile = nullptr;
 
 	//The textures
 	GLuint m_idleTexture;

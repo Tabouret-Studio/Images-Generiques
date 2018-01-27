@@ -13,7 +13,7 @@ Instruction * PathsInvert::get()
 	return new PathsInvert();
 }
 
-std::vector<VectorImage *> PathsInvert::execute(std::vector<VectorImage *> vectorImages)
+std::vector<VectorImage *> PathsInvert::execute(const std::vector<VectorImage *> &vectorImages)
 {
 	
 	std::vector<Bezier> paths = vectorImages[0]->getBeziers();

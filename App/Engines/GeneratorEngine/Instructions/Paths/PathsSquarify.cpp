@@ -13,50 +13,43 @@ Instruction * PathsSquarify::get()
 	return new PathsSquarify();
 }
 
-std::vector<VectorImage *> PathsSquarify::execute(std::vector<VectorImage *> vectorImages)
+std::vector<VectorImage *> PathsSquarify::execute(const std::vector<VectorImage *> &vectorImages)
 {
 	
 	std::vector<Bezier> paths = vectorImages[0]->getBeziers();
 	Shape shape;
 
-	glm::vec2 vec_starthandle,startpoint,endpoint;
-	Bezier vertical,horizontal;
+	glm::vec2 vec_starthandle, startpoint, endpoint;
+	Bezier vertical, horizontal;
 
 	for(Bezier path : paths)
 	{
 		path.applyCursor();
-		startpoint=path.getStartPoint();
-		endpoint=path.getEndPoint();
-		vec_starthandle=path.getStartHandle()-path.getStartPoint();
+		startpoint = path.getStartPoint();
+		endpoint = path.getEndPoint();
+		vec_starthandle = path.getStartHandle() - path.getStartPoint();
 
-
-		if (vec_starthandle.x>vec_starthandle.y)
+		if(vec_starthandle.x > vec_starthandle.y)
 		{
-			horizontal= Bezier(startpoint,glm::vec2(endpoint.x,startpoint.y),
-				startpoint,glm::vec2(endpoint.x,startpoint.y)
-			);
-			horizontal.applyCursor();
+			horizontal = Bezier(startpoint, glm::vec2(endpoint.x,startpoint.y),
+								startpoint, glm::vec2(endpoint.x,startpoint.y));
 			shape << horizontal;
 
-			vertical= Bezier(glm::vec2(endpoint.x,startpoint.y),endpoint,
-				glm::vec2(endpoint.x,startpoint.y),endpoint
-			);
-			vertical.applyCursor();
+			vertical = Bezier(glm::vec2(endpoint.x, startpoint.y), endpoint,
+							  glm::vec2(endpoint.x, startpoint.y), endpoint);
 			shape << vertical;
-		}else{
-			vertical= Bezier(startpoint,glm::vec2(startpoint.x,endpoint.y),
-				startpoint,glm::vec2(startpoint.x,endpoint.y)
-			);
-			vertical.applyCursor();
+		}
+		else
+		{
+			vertical = Bezier(startpoint, glm::vec2(startpoint.x, endpoint.y),
+							  startpoint, glm::vec2(startpoint.x, endpoint.y));
 			shape << vertical;
 
-			horizontal= Bezier(glm::vec2(startpoint.x,endpoint.y),endpoint,
-				glm::vec2(startpoint.x,endpoint.y),endpoint
+			horizontal= Bezier(glm::vec2(startpoint.x, endpoint.y), endpoint,
+							   glm::vec2(startpoint.x, endpoint.y), endpoint
 			);
-			horizontal.applyCursor();
 			shape << horizontal;
 		}
-		
 	}
 
 	return {new VectorImage(shape)};

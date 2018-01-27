@@ -128,5 +128,10 @@ namespace Scenes
 		for(UIButton * button : m_buttons)
 			button->setDimensions(App->getWidth()-40, 30);
 	}
+
+	ProtocolsMenu::~ProtocolsMenu()
+	{
+		delete m_interface;
+	}
 }
 
