@@ -70,8 +70,6 @@ namespace Scenes
 		std::string m_protocolName;
 		InstructionsProtocol * m_protocol;
 
-		float m_fontSize;
-
 		//Methods
 		void updateInterfaceDimensions();
 

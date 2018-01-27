@@ -85,7 +85,6 @@ private:
 
 	//The face
 	FT_Face m_face;
-	float m_size;
 
 	//All loaded sized faces
 	std::map<float, FontFace> m_sizedFaces;

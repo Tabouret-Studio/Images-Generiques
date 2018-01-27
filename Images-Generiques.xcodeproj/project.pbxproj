@@ -14,8 +14,6 @@
 		3915235A201B2DCF002AF97A /* IndexEngine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39152358201B2DCF002AF97A /* IndexEngine.cpp */; };
 		3915235D201B2EE2002AF97A /* JSONExporter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3915235C201B2EE2002AF97A /* JSONExporter.cpp */; };
 		39152360201B2EF5002AF97A /* JSONImporter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3915235E201B2EF4002AF97A /* JSONImporter.cpp */; };
-		391C9042201695A80003E2B7 /* libboost_system.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 391C9041201695A80003E2B7 /* libboost_system.dylib */; };
-		391C9044201695E80003E2B7 /* libboost_filesystem.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 391C9043201695E80003E2B7 /* libboost_filesystem.dylib */; };
 		391C9048201744A60003E2B7 /* jsonObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 391C9047201744A60003E2B7 /* jsonObject.cpp */; };
 		391C904C20174D530003E2B7 /* VectorImagesToJSONExporter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 391C904A20174D530003E2B7 /* VectorImagesToJSONExporter.cpp */; };
 		391C904F201783E10003E2B7 /* JSONToVectorImagesImporter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 391C904D201783E10003E2B7 /* JSONToVectorImagesImporter.cpp */; };
@@ -108,8 +106,6 @@
 		3915235C201B2EE2002AF97A /* JSONExporter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = JSONExporter.cpp; sourceTree = "<group>"; };
 		3915235E201B2EF4002AF97A /* JSONImporter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = JSONImporter.cpp; sourceTree = "<group>"; };
 		3915235F201B2EF5002AF97A /* JSONImporter.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = JSONImporter.hpp; sourceTree = "<group>"; };
-		391C9041201695A80003E2B7 /* libboost_system.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libboost_system.dylib; path = ../../../../../usr/local/Cellar/boost/1.66.0/lib/libboost_system.dylib; sourceTree = "<group>"; };
-		391C9043201695E80003E2B7 /* libboost_filesystem.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libboost_filesystem.dylib; path = ../../../../../usr/local/Cellar/boost/1.66.0/lib/libboost_filesystem.dylib; sourceTree = "<group>"; };
 		391C9046201744760003E2B7 /* json.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = json.hpp; sourceTree = "<group>"; };
 		391C9047201744A60003E2B7 /* jsonObject.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = jsonObject.cpp; sourceTree = "<group>"; };
 		391C9049201744F40003E2B7 /* jsonObject.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = jsonObject.hpp; sourceTree = "<group>"; };
@@ -511,8 +507,6 @@
 		39D90C2A1FDAEF0F00282ED1 /* AppEngine.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = AppEngine.hpp; sourceTree = "<group>"; };
 		39D90C2C1FDAEF0F00282ED1 /* AppEngine.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AppEngine.cpp; sourceTree = "<group>"; };
 		39D90C3E1FDB403E00282ED1 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
-		39D90C401FDB40D300282ED1 /* libglfw3.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libglfw3.a; path = ../../../../../usr/local/lib/libglfw3.a; sourceTree = "<group>"; };
-		39D90C6E1FDB4D3800282ED1 /* libSDL-1.2.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libSDL-1.2.0.dylib"; path = "../../../../../usr/local/Cellar/sdl/1.2.15/lib/libSDL-1.2.0.dylib"; sourceTree = "<group>"; };
 		39D90C701FDB4DBD00282ED1 /* libGLEW.2.1.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libGLEW.2.1.0.dylib; path = ../../../../../usr/local/lib/libGLEW.2.1.0.dylib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -521,8 +515,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				391C9044201695E80003E2B7 /* libboost_filesystem.dylib in Frameworks */,
-				391C9042201695A80003E2B7 /* libboost_system.dylib in Frameworks */,
 				392395D9200A30DD00400C45 /* libfreetype.6.dylib in Frameworks */,
 				39D90C711FDB4DBD00282ED1 /* libGLEW.2.1.0.dylib in Frameworks */,
 				39AF3CCC1FDB4FE10089622E /* SDL2.framework in Frameworks */,
@@ -1228,16 +1220,12 @@
 		39D90C3D1FDB403E00282ED1 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				391C9043201695E80003E2B7 /* libboost_filesystem.dylib */,
-				391C9041201695A80003E2B7 /* libboost_system.dylib */,
 				394F942B20161C340065CE25 /* Python.framework */,
 				392360172009092900400C45 /* SDL2_image.framework */,
 				392360152009090C00400C45 /* libassimp.4.0.1.dylib */,
 				39236013200908F600400C45 /* libfreetype.6.dylib */,
 				39AF3CCB1FDB4FE10089622E /* SDL2.framework */,
 				39D90C701FDB4DBD00282ED1 /* libGLEW.2.1.0.dylib */,
-				39D90C6E1FDB4D3800282ED1 /* libSDL-1.2.0.dylib */,
-				39D90C401FDB40D300282ED1 /* libglfw3.a */,
 				39D90C3E1FDB403E00282ED1 /* OpenGL.framework */,
 			);
 			name = Frameworks;
@@ -1315,6 +1303,7 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				Base,
 			);
 			mainGroup = 397BE0C71FDAED60006254F0;
 			productRefGroup = 397BE0D11FDAED60006254F0 /* Products */;
