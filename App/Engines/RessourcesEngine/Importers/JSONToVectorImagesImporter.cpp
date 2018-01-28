@@ -48,7 +48,6 @@ std::vector<VectorImage *> JSONToVectorImagesImporter::import(const std::string 
 							  jBez["points"][2]["x"], jBez["points"][2]["y"],
 							  jBez["points"][3]["x"], jBez["points"][3]["y"]);
 
-				bezier.setDimensions(jBez["width"], jBez["height"], jBez["depth"]);
 				bezier.getCursor()->setMatrix(convertMatrix(jBez["cursor"].get<nlohmann::json>()));
 
 				shape << bezier;

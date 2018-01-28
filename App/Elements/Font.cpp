@@ -89,9 +89,11 @@ Mesh * Font::genCaption(const std::string &caption, const float &fontSize)
 
 	//Bind framebuffer
 	glBindFramebuffer(GL_FRAMEBUFFER, frameBuffer);
-	glClearColor(0.0, 0.0, 0.0, 0.0);
+
+	glm::vec4 externClearColor = App->renderEngine->getClearColor();
+	App->renderEngine->setClearColor(glm::vec4(0.0, 0.0, 0.0, 0.0));
+
 	glClear(GL_COLOR_BUFFER_BIT);
-	glEnable(GL_BLEND);
 
 	//Set projection to 2D
 	App->renderEngine->setProjection2D(textureWidth, textureHeight);
@@ -126,7 +128,8 @@ Mesh * Font::genCaption(const std::string &caption, const float &fontSize)
 
 	glBindFramebuffer(GL_FRAMEBUFFER, 0);
 	glDeleteFramebuffers(1, &frameBuffer);
-	glClearColor(1.0, 1.0, 1.0, 1.0);
+
+	App->renderEngine->setClearColor(externClearColor);
 	
 	Mesh * mesh = App->ressourcesEngine->gen2DTile(0, 0, textureWidth, textureHeight);
 	mesh->setTexture(texture, true);
@@ -225,9 +228,6 @@ bool Font::prepareTexture(const uint &width, const uint &height, GLuint &frameBu
 
 	GLenum DrawBuffers[1] = {GL_COLOR_ATTACHMENT0};
 	glDrawBuffers(1, DrawBuffers);
-
-	////
-	check_gl_error();
 
 	if(glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE)
 		return false;

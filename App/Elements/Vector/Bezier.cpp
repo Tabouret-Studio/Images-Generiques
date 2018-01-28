@@ -12,12 +12,6 @@
 
 #include <iostream>
 
-
-void Bezier::setDimensions(const float &width, const float &height, const float &depth)
-{
-	m_dimensions = glm::vec3(width, height, depth);
-}
-
 std::vector<glm::vec3> Bezier::getPoints(const float &precision) const
 {
 	std::vector<glm::vec3> vertices;
@@ -85,11 +79,11 @@ float Bezier::getLength() const
 	return length;
 }
 
-Mesh * Bezier::getMesh() const
+Mesh * Bezier::getMesh(const float &precision) const
 {
 	Mesh * mesh = new Mesh();
 
-	std::vector<glm::vec3> points = getPoints();
+	std::vector<glm::vec3> points = getPoints(precision);
 
 	for(std::vector<glm::vec3>::const_iterator it = points.begin(); it != points.end(); ++it)
 	{
@@ -101,16 +95,19 @@ Mesh * Bezier::getMesh() const
 	return mesh;
 }
 
-void Bezier::applyCursor(const DrawCursor * cursor)
+void Bezier::applyCursor(const glm::mat4 &shapeCursor)
 {
 	Vertex temp;
 
-	m_startPoint = glm::vec3(cursor->getMatrix() * glm::vec4(m_startPoint, 1));
-	m_startHandle = glm::vec3(cursor->getMatrix() * glm::vec4(m_startHandle, 1));
-	m_endHandle = glm::vec3(cursor->getMatrix() * glm::vec4(m_endHandle, 1));
-	m_endPoint = glm::vec3(cursor->getMatrix() * glm::vec4(m_endPoint, 1));
+	m_startPoint = glm::vec3(shapeCursor * m_cursor.getMatrix() * glm::vec4(m_startPoint, 1));
+	m_startHandle = glm::vec3(shapeCursor * m_cursor.getMatrix() * glm::vec4(m_startHandle, 1));
+	m_endHandle = glm::vec3(shapeCursor * m_cursor.getMatrix() * glm::vec4(m_endHandle, 1));
+	m_endPoint = glm::vec3(shapeCursor * m_cursor.getMatrix() * glm::vec4(m_endPoint, 1));
 
-	m_dimensions = glm::vec3(cursor->getMatrix() * glm::vec4(m_dimensions, 0));
+	m_boundsMin = glm::vec3(shapeCursor * m_cursor.getMatrix() * glm::vec4(m_boundsMin, 1));
+	m_boundsMax = glm::vec3(shapeCursor * m_cursor.getMatrix() * glm::vec4(m_boundsMax, 1));
+
+	m_cursor.reset();
 }
 
 void Bezier::move(const glm::vec3 &dest)
@@ -118,4 +115,26 @@ void Bezier::move(const glm::vec3 &dest)
 	glm::vec3 distanceVec = dest - m_startPoint;
 	m_cursor.translate(distanceVec);
 	applyCursor();
+}
+
+void Bezier::calculateBounds()
+{
+	//Calculate bezier coordinates
+	std::vector<glm::vec3> points = getPoints();
+
+	m_boundsMin = points[0];
+	m_boundsMax = points[0];
+
+	for(std::vector<glm::vec3>::const_iterator it = points.begin()+1; it != points.end(); ++it)
+	{
+		//Min
+		if(it->x < m_boundsMin.x) m_boundsMax.x = it->x;
+		if(it->y < m_boundsMin.y) m_boundsMax.y = it->y;
+		if(it->z < m_boundsMin.z) m_boundsMax.z = it->z;
+
+		//Max
+		if(it->x > m_boundsMax.x) m_boundsMax.x = it->x;
+		if(it->y > m_boundsMax.y) m_boundsMax.y = it->y;
+		if(it->z > m_boundsMax.z) m_boundsMax.z = it->z;
+	}
 }

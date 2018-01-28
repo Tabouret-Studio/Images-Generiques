@@ -37,6 +37,8 @@
 //#include <assimp/postprocess.h>
 
 //GLM
+#define GLM_SWIZZLE_RGBA
+#define GLM_SWIZZLE_XYZW
 #include <glm/glm.hpp>
 #include <glm/ext.hpp>
 #include <glm/gtc/type_ptr.hpp>
@@ -70,5 +72,6 @@ void _check_gl_error(const char *file, int line);
 //////////
 //Typedefs
 using rId = boost::uuids::uuid;
+using srcId = boost::uuids::uuid;
 
 #endif /* libraries_h */

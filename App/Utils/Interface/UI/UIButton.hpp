@@ -52,6 +52,15 @@ public:
 	void setCaptionAlign(const UIButtonTextAlign &alignment);
 
 	/**
+	 Set the text color
+	 Text background is transparent when idle, and idleColored when selected
+
+	 @param idleColor Text idle color
+	 @param selectedColor Text selected color
+	 */
+	void setTextColors(const glm::vec4 &idleColor, const glm::vec4 &selectedColor);
+
+	/**
 	 Set the caption to display on the button
 
 	 @param caption text to display
@@ -105,6 +114,8 @@ public:
 	 */
 	void print();
 
+	~UIButton();
+
 private:
 	UIButtonType m_type;
 
@@ -120,12 +131,16 @@ private:
 	uint m_height;
 
 	//The tile
-	Mesh * m_tile;
-	Mesh * m_backTile;
+	Mesh * m_tile = nullptr;
+	Mesh * m_backTile = nullptr;
 
 	//The textures
 	GLuint m_idleTexture;
 	GLuint m_activeTexture;
+
+	//The colors
+	glm::vec4 m_idleColor = glm::vec4(0, 0, 0, 1);
+	glm::vec4 m_selectedColor = glm::vec4(1, 1, 1, 1);
 
 	//The text
 	Font * m_font;

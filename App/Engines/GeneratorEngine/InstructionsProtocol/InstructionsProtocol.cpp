@@ -10,25 +10,55 @@
 
 #include "Core/AppObject.hpp"
 
-InstructionsProtocol::InstructionsProtocol(const std::vector<std::string> &instructionNames)
+InstructionsProtocol::InstructionsProtocol(const std::vector<std::string> &instructionNames):m_name("")
 {
 	addInstructions(instructionNames);
 }
 
-std::vector<VectorImage *> InstructionsProtocol::execute(std::vector<VectorImage *> vectorImages)
+InstructionsProtocol::InstructionsProtocol(const std::vector<std::string> &instructionNames, const std::string &name):m_name(name)
 {
-	std::vector<VectorImage *> newVector = vectorImages;
+	addInstructions(instructionNames);
+}
+
+std::vector<VectorImage *> InstructionsProtocol::execute(const std::vector<VectorImage *> &vectorImages)
+{
+	std::vector<VectorImage *> images, transformedImages;
+
+	//Copy input content to preserve integrity
+	for(VectorImage * vectorImage : vectorImages)
+	{
+		images.push_back(new VectorImage(vectorImage));
+	}
+
 
 	//Call each instruction in the group
-	for(InstructionObject * instruction : m_instructions)
-		newVector = instruction->execute(newVector);
+	for(const std::string &instruction : m_instructionsOrder)
+	{
+		//Execute instructions
+		transformedImages = m_instructions[instruction]->execute(images);
 
-	return newVector;
+		//Free input images
+		for(VectorImage * &inputImage : images)
+		{
+			delete inputImage;
+			inputImage = nullptr;
+		}
+		
+		images.clear();
+		images = transformedImages;
+	}
+
+	return images;
 }
 
 void InstructionsProtocol::addInstruction(const std::string &instructionName)
 {
-	m_instructions.push_back((InstructionObject *)App->generatorEngine->getInstruction(instructionName));
+	m_instructionsOrder.push_back(instructionName);
+
+	if(m_instructions.find(instructionName) != m_instructions.end())
+		return; //Instruction already stored, do not store again
+
+	m_instructions.insert(std::pair<std::string, InstructionObject *>(instructionName, (InstructionObject *)App->generatorEngine->getInstruction(instructionName)));
 }
 
 void InstructionsProtocol::addInstructions(const std::vector<std::string> &instructionNames)
@@ -37,10 +67,30 @@ void InstructionsProtocol::addInstructions(const std::vector<std::string> &instr
 		addInstruction(instructionName);
 }
 
+std::vector<InstructionObject *> InstructionsProtocol::getInstructions() const
+{
+	std::vector<InstructionObject *> instructions;
+
+	for(std::map<std::string, InstructionObject *>::const_iterator it = m_instructions.begin(); it != m_instructions.end(); ++it)
+		instructions.push_back(it->second);
+
+	return instructions;
+}
+
+std::vector<std::string> InstructionsProtocol::getInstructionsNames() const
+{
+	std::vector<std::string> instructions;
+
+	for(std::map<std::string, InstructionObject *>::const_iterator it = m_instructions.begin(); it != m_instructions.end(); ++it)
+		instructions.push_back(it->first);
+
+	return instructions;
+}
+
 void InstructionsProtocol::setParameters(InstructionParameters * params)
 {
-	for(InstructionObject * instructionObject : m_instructions)
-		instructionObject->setParameters(params);
+	for(std::map<std::string, InstructionObject *>::const_iterator it = m_instructions.begin(); it != m_instructions.end(); ++it)
+		it->second->setParameters(params);
 }
 
 void InstructionsProtocol::setParameters(const std::vector<InstructionParameters *> &params)
@@ -50,16 +100,14 @@ void InstructionsProtocol::setParameters(const std::vector<InstructionParameters
 
 	int i = 0;
 
-	for(std::vector<InstructionObject *>::iterator it = m_instructions.begin(); it != m_instructions.end(); ++it, ++i)
+	for(std::map<std::string, InstructionObject *>::iterator it = m_instructions.begin(); it != m_instructions.end(); ++it, ++i)
 	{
-		(*it)->setParameters(params[i]);
+		it->second->setParameters(params[i]);
 	}
 }
 
 InstructionsProtocol::~InstructionsProtocol()
 {
-	for(std::vector<InstructionObject *>::iterator it = m_instructions.begin(); it != m_instructions.end(); ++it)
-	{
-		delete *it;
-	}
+	for(std::map<std::string, InstructionObject *>::const_iterator it = m_instructions.begin(); it != m_instructions.end(); ++it)
+		delete it->second;
 }

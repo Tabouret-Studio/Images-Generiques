@@ -82,6 +82,13 @@ public:
 	 */
 	operator VectorImage*();
 
+	/**
+	 Casting operator for json assets
+
+	 @return Return the asset as a json, nullptr if the asset is not a json
+	 */
+	operator jsonObject*();
+
 	virtual ~Asset() {};
 
 protected:

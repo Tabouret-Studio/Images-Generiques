@@ -9,6 +9,8 @@
 #ifndef RenderEngine_hpp
 #define RenderEngine_hpp
 
+#define GL_DEFAULT_CLEAR_COLOR glm::vec4(1.0, 1.0, 1.0, 1.0)
+
 //////////////////////
 //Forward declarations
 class Mesh;
@@ -32,6 +34,9 @@ public:
 	 Init render properties such as matrix
 	 */
 	void initRender();
+
+	///////////
+	//Rendering
 
 	/**
 	 Set up the projection Matrix for 3D render
@@ -58,6 +63,13 @@ public:
 	 @return The camera cursor
 	 */
 	inline DrawCursor * getCameraCursor() { return &m_MVMatrix; };
+
+	//////////////////////
+	//OpenGL Manipulations
+
+	void setClearColor(const glm::vec4 &clearColor);
+
+	inline glm::vec4 getClearColor() const { return m_clearColor; };
 
 	///////
 	//Utils
@@ -105,6 +117,9 @@ private:
 
 	DrawCursor m_storedMVMatrix;
 	bool m_stored;
+
+	//OpenGL properties
+	glm::vec4 m_clearColor;
 
 	//Constructor
 	RenderEngine();

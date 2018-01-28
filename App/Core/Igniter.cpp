@@ -14,6 +14,8 @@
 #include "Engines/RessourcesEngine/RessourcesEngine.hpp"
 #include "Engines/RenderEngine/RenderEngine.hpp"
 #include "Engines/GeneratorEngine/GeneratorEngine.hpp"
+#include "Engines/IndexEngine/IndexEngine.hpp"
+
 
 #include "Utils/ShaderProgram.hpp"
 #include "Utils/FilePath.hpp"
@@ -33,6 +35,7 @@ void Igniter::igniteAppObject(const std::string &appPath)
 	RessourcesEngine::instanciate();
 	RenderEngine::instanciate();
 	GeneratorEngine::instanciate();
+	IndexEngine::instanciate();
 }
 
 void Igniter::igniteSDL(const uint &width, const uint &height)
@@ -89,28 +92,24 @@ void Igniter::igniteOpenGL()
 	  return;
 	}
 
+	//In case we are using GLEW <= 1.13 prevent display of GL_INVALID_ENUM
+	glGetError();
+
 	//std::cout << "OpenGL Version : " << glGetString(GL_VERSION) << std::endl;
 	//std::cout << "GLEW Version : " << glewGetString(GLEW_VERSION) << std::endl;
-
-	glClearColor(1.0, 1.0, 1.0, 1.0);
-
-	glEnable(GL_DEPTH_TEST);
-	glDepthFunc(GL_LESS);
-	glEnable(GL_BLEND);
-	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-
-	glEnable(GL_PROGRAM_POINT_SIZE);
-	glPointSize(1);
-	glEnable(GL_MULTISAMPLE_ARB);
 }
 
 void Igniter::igniteEngines()
 {
+	//Init render engine matrix
+	App->renderEngine->initRender();
+
 	//Init random generator
 	std::srand(unsigned(std::time(0)));
 
 	//Preload default shaderProgram
 	App->setDefaultProgram(new ShaderProgram("main.vs.glsl", "main.fs.glsl"));
 
-	App->renderEngine->initRender();
+	//register predefined protocoles
+	App->generatorEngine->registerProtocols();
 }

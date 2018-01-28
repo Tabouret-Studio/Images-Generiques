@@ -15,6 +15,7 @@ class AppEngine;
 class RessourcesEngine;
 class RenderEngine;
 class GeneratorEngine;
+class IndexEngine;
 class Scene;
 class ShaderProgram;
 
@@ -47,6 +48,7 @@ public:
 	RessourcesEngine * ressourcesEngine;
 	RenderEngine * renderEngine;
 	GeneratorEngine * generatorEngine;
+	IndexEngine * indexEngine;
 
 	/// SDL Window
 	SDL_Window * mainWindow;
