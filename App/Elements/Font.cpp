@@ -12,6 +12,12 @@
 #include "Utils/ShaderProgram.hpp"
 #include "Engines/RenderEngine/RenderEngine.hpp"
 
+#include "Vector/Bezier.hpp"
+#include "Vector/Shape.hpp"
+#include "Vector/VectorImage.hpp"
+
+#include "Utils/FontOutliner.hpp"
+
 #include "Mesh.hpp"
 
 Font::Font(FT_Face &face): Asset(FONT), m_face(face)
@@ -236,6 +242,83 @@ bool Font::prepareTexture(const uint &width, const uint &height, GLuint &frameBu
 	glBindFramebuffer(GL_FRAMEBUFFER, 0);
 
 	return true;
+}
+
+VectorImage * Font::genOutlines(const std::string &caption)
+{
+	VectorImage * captionImage = new VectorImage();
+
+	float advanceX = 0;
+
+	for(const char &c : caption)
+	{
+		FT_Load_Glyph(m_face, FT_Get_Char_Index(m_face, (FT_ULong)c), FT_LOAD_NO_SCALE | FT_LOAD_NO_BITMAP);
+		FT_GlyphSlot slot = m_face->glyph;
+
+		Shape letterShape = genCharacterOutline(c);
+		letterShape.getCursor()->translate(advanceX, 0, 0);
+
+		advanceX += slot->advance.x;
+
+		*captionImage << letterShape;
+	}
+
+	captionImage->applyCursor();
+
+	//Center on origin
+	captionImage->getCursor()->translate(-captionImage->getDimensions().x / 2.0, captionImage->getDimensions().y / 2.0, 0);
+
+	return captionImage;
+}
+
+Shape Font::genCharacterOutline(char charID)
+{
+	//Load glyph
+
+	FT_GlyphSlot slot = m_face->glyph;
+	FT_Outline &outline = slot->outline;
+
+	//Check outline
+	if (slot->format != FT_GLYPH_FORMAT_OUTLINE)
+		return Shape(); // Not outline wtf.
+
+	if (outline.n_contours <= 0 || outline.n_points <= 0)
+		return Shape(); // Empty letter
+
+	if(FT_Outline_Check(&outline) != 0)
+		return Shape(); // FT said no
+
+	//Flip glyph vertically
+	const FT_Fixed multiplier = 65536L;
+	FT_Matrix matrix;
+
+	matrix.xx = 1L * multiplier;
+	matrix.xy = 0L * multiplier;
+	matrix.yx = 0L * multiplier;
+	matrix.yy = -1L * multiplier;
+
+	FT_Outline_Transform(&outline, &matrix);
+
+	FT_Outline_Funcs callbacks;
+
+	callbacks.move_to = FontOutliner::MoveToFunction;
+	callbacks.line_to = FontOutliner::LineToFunction;
+	callbacks.conic_to = FontOutliner::ConicToFunction;
+	callbacks.cubic_to = FontOutliner::CubicToFunction;
+
+	callbacks.shift = 0;
+	callbacks.delta = 0;
+
+	FontOutliner outliner;
+
+	FT_Error error = FT_Outline_Decompose(&outline, &callbacks, &outliner);
+	if(error != 0)
+	{
+		std::cerr << "An error occured while outlining the letter " << charID << "." << std::endl;
+		return Shape(); //Error on outlining, skip this letter
+	}
+
+	return outliner.m_letterShape;
 }
 
 void Font::freeFontSize(const float &fontSize)

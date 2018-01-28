@@ -96,7 +96,7 @@ public:
 
 	 @return The VectorImage as a renderable Mesh
 	 */
-	inline Mesh * getMesh() const { return getMesh(1); };
+	inline Mesh * getMesh() const { return getMesh(1.0); };
 
 	/**
 	 Return a Mesh object build with the current image for the given precision
@@ -104,7 +104,7 @@ public:
 
 	 @return The VectorImage as a renderable Mesh
 	 */
-	Mesh * getMesh(const uint &precision) const;
+	Mesh * getMesh(const float &precision) const;
 
 	/**
 	 Get vectorImage cursor

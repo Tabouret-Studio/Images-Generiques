@@ -218,18 +218,6 @@ private:
 	DrawCursor m_cursor;
 
 	/**
-	 Return the nth point on the curve.
-
-	 - values: 0 = starting point, 1 = end point
-
-	 @param A The starting point coordinated
-	 @param B The end point coordinates
-	 @param coef Point to return in percentage
-	 @return The coordinates of the point
-	 */
-	glm::vec3 getIPointBetween(glm::vec3 A, glm::vec3 B, float coef) const;
-
-	/**
 	 Calculate the mesh boundaries
 	 */
 	void calculateBounds();

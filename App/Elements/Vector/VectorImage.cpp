@@ -107,7 +107,7 @@ std::vector<glm::vec3> VectorImage::getPoints(const float &precision) const
 	return vertices;
 }
 
-Mesh * VectorImage::getMesh(const uint &precision) const
+Mesh * VectorImage::getMesh(const float &precision) const
 {
 	Mesh * mesh = new Mesh();
 	Mesh * shapeMesh;

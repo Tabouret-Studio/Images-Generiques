@@ -32,15 +32,12 @@ namespace Scenes
 	///////////
 	void Val01::init()
 	{
-		//Load SVG
-		//Utils::NSVG svg = Utils::NSVG("Assets/SVG/ml.svg");
-		rId svgID = App->ressourcesEngine->loadAsset("artist.svg", VECTOR);
-		m_svg = *App->ressourcesEngine->getAsset(svgID);
+		rId fontID = App->ressourcesEngine->loadAsset("Karla-Regular.ttf", FONT);
+		Font * font = *App->ressourcesEngine->getAsset(fontID);
 
-		m_mesh = m_svg->getMesh();
+		m_mesh = font->genOutlines("Images Generiques")->getMesh(.5f);
 		m_mesh->generate();
-//		m_mesh->getCursor()
-//		->translate(App->getWidth()/2, App->getHeight()/2, 0);
+		m_mesh->getCursor()->translate(App->getWidth()/2, App->getHeight()/2, 0);
 
 		App->renderEngine->setProjection2D();
 	}
@@ -51,6 +48,7 @@ namespace Scenes
 	///////////
 	void Val01::execute()
 	{
+		m_mesh->getCursor()->scale(1.0 + App->appEngine->getMouse().scrollY/10.0, 1.0 + App->appEngine->getMouse().scrollY/10.0, 0);
 	}
 
 

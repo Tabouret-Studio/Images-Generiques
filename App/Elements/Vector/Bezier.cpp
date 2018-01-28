@@ -9,6 +9,7 @@
 #include "Bezier.hpp"
 
 #include "Elements/Mesh.hpp"
+#include "Utils/Utils.hpp"
 
 #include <iostream>
 
@@ -38,21 +39,16 @@ std::vector<glm::vec3> Bezier::getPoints(const float &precision) const
 
 glm::vec3 Bezier::getPoint(const float &percentage) const
 {
-	glm::vec3 refA = getIPointBetween(m_startPoint, m_startHandle, percentage);
-	glm::vec3 refB = getIPointBetween(m_startHandle, m_endHandle, percentage);
-	glm::vec3 refC = getIPointBetween(m_endHandle, m_endPoint, percentage);
+	glm::vec3 refA = Utils::getIPointBetween(m_startPoint, m_startHandle, percentage);
+	glm::vec3 refB = Utils::getIPointBetween(m_startHandle, m_endHandle, percentage);
+	glm::vec3 refC = Utils::getIPointBetween(m_endHandle, m_endPoint, percentage);
 
 	//Internal references-
-	glm::vec3 internA = getIPointBetween(refA, refB, percentage);
-	glm::vec3 internB = getIPointBetween(refB, refC, percentage);
+	glm::vec3 internA = Utils::getIPointBetween(refA, refB, percentage);
+	glm::vec3 internB = Utils::getIPointBetween(refB, refC, percentage);
 
 	//Interpolated point
-	return  getIPointBetween(internA, internB, percentage);
-}
-
-glm::vec3 Bezier::getIPointBetween(glm::vec3 A, glm::vec3 B, float coef) const
-{
-	return A + ((B - A) * coef);
+	return  Utils::getIPointBetween(internA, internB, percentage);
 }
 
 float Bezier::getLength() const
