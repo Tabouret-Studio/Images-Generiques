@@ -106,9 +106,11 @@ namespace Scenes
 		m_protocolCaption = nullptr;
 
 		m_svg = App->indexEngine->getRandomVectorImage();
-		m_svg->applyCursor();
+		//m_svg->applyCursor();
 
 		VectorImage * svgTransform = m_protocol->execute({m_svg})[0];
+
+		std::cout << glm::to_string(svgTransform->getDimensions()) << std::endl;
 
 		m_displayMesh = svgTransform->getMesh();
 		m_displayMesh->generate();

@@ -19,30 +19,45 @@ VectorImage::VectorImage(const Shape &shape):
 	Asset(VECTOR),
 	m_width(500),
 	m_height(500),
-	m_shapes({shape}) {}
+	m_shapes({shape})
+{
+	calculateBounds();
+}
 
 VectorImage::VectorImage(const std::vector<Shape> &shapes):
 	Asset(VECTOR),
 	m_width(500),
 	m_height(500),
-	m_shapes(shapes) {}
+	m_shapes(shapes)
+{
+	calculateBounds();
+}
 
 VectorImage::VectorImage(const float &width, const float &height):
 	Asset(VECTOR),
 	m_width(width),
-	m_height(height) {}
+	m_height(height)
+{
+	calculateBounds();
+}
 
 VectorImage::VectorImage(const float &width, const float &height, const Shape &shape):
 	Asset(VECTOR),
 	m_width(width),
 	m_height(height),
-	m_shapes({shape}) {}
+	m_shapes({shape})
+{
+	calculateBounds();
+}
 
 VectorImage::VectorImage(const float &width, const float &height, const std::vector<Shape> &shapes):
 	Asset(VECTOR),
 	m_width(width),
 	m_height(height),
-	m_shapes(shapes) {}
+	m_shapes(shapes)
+{
+	calculateBounds();
+}
 
 VectorImage::VectorImage(const VectorImage * vectorImage):
 	Asset(VECTOR),

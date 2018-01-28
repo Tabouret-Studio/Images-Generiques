@@ -7,6 +7,8 @@ Instruction * PathsLinearAlizer::get()
 
 std::vector<VectorImage *> PathsLinearAlizer::execute(const std::vector<VectorImage *> &vectorImages)
 {
+	vectorImages[0]->applyCursor();
+
 	std::vector<Bezier> paths = vectorImages[0]->getBeziers();
 	Shape shape;
 

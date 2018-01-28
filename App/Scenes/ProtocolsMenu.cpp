@@ -56,7 +56,7 @@ namespace Scenes
 		std::vector<InstructionsProtocol *> protocols = App->generatorEngine->getProtocols();
 
 		uint posY = 150;
-		UIButton * lastProtocolBtn = nullptr;
+		UIButton * lastProtocolBtn = nullptr, * firstProtocolBtn = nullptr;
 
 		for(InstructionsProtocol * protocol : protocols)
 		{
@@ -66,6 +66,7 @@ namespace Scenes
 			UIButton * protocolBtn = new UIButton(UI_BUTTON_TEXT, 20, posY, App->getWidth() - 40, 30);
 			protocolBtn->setFont(m_font, 30);
 			protocolBtn->setCaptionAlign(UI_TEXT_LEFT);
+			protocolBtn->setTextColors(glm::vec4(0, 0, 0, 1), glm::vec4(1, 1, 1, 1));
 			protocolBtn->setCaption(protocol->getName());
 			protocolBtn->setAction([protocolName, this] () -> void
 			{
@@ -93,9 +94,15 @@ namespace Scenes
 			//Save for next loop
 			lastProtocolBtn = protocolBtn;
 
+			if(firstProtocolBtn == nullptr)
+				firstProtocolBtn = protocolBtn;
+
 			//Update Y position
 			posY += 37;
 		}
+
+		firstProtocolBtn->setTopNeighboor(lastProtocolBtn);
+		lastProtocolBtn->setBottomNeighboor(firstProtocolBtn);
 
 		m_interface->addItem(title);
 	}

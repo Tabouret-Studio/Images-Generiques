@@ -169,7 +169,7 @@ public:
 
 	 @return Width and height
 	 */
-	inline glm::vec3 getDimensions() const { return m_boundsMax - m_boundsMin; };
+	inline glm::vec3 getDimensions() const { return glm::abs(m_boundsMax - m_boundsMin); };
 
 	/**
 	 Return the position of the bezier (min XYZ coordinates)

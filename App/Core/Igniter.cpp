@@ -97,29 +97,18 @@ void Igniter::igniteOpenGL()
 
 	//std::cout << "OpenGL Version : " << glGetString(GL_VERSION) << std::endl;
 	//std::cout << "GLEW Version : " << glewGetString(GLEW_VERSION) << std::endl;
-
-	glClearColor(1.0, 1.0, 1.0, 1.0);
-
-	glEnable(GL_DEPTH_TEST);
-	glDepthFunc(GL_LESS);
-	glEnable(GL_BLEND);
-	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-
-	glEnable(GL_PROGRAM_POINT_SIZE);
-	glPointSize(1);
-	glEnable(GL_MULTISAMPLE_ARB);
 }
 
 void Igniter::igniteEngines()
 {
+	//Init render engine matrix
+	App->renderEngine->initRender();
+
 	//Init random generator
 	std::srand(unsigned(std::time(0)));
 
 	//Preload default shaderProgram
 	App->setDefaultProgram(new ShaderProgram("main.vs.glsl", "main.fs.glsl"));
-
-	//Init render engine matrixs
-	App->renderEngine->initRender();
 
 	//register predefined protocoles
 	App->generatorEngine->registerProtocols();

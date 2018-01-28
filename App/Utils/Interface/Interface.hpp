@@ -47,6 +47,8 @@ public:
 	 */
 	void moveCursor(UIElement * item);
 
+	std::vector<UIElement *> * getElements() { return &m_items; };
+
 	~Interface();
 
 private:

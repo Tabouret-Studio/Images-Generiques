@@ -15,8 +15,9 @@ Instruction * PathsInvert::get()
 
 std::vector<VectorImage *> PathsInvert::execute(const std::vector<VectorImage *> &vectorImages)
 {
-	
+	vectorImages[0]->applyCursor();
 	std::vector<Bezier> paths = vectorImages[0]->getBeziers();
+
 	Shape shape;
 
 	glm::vec3

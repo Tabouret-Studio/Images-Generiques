@@ -32,14 +32,34 @@ void RenderEngine::instanciate()
 /**
  * Private constructor
  */
-RenderEngine::RenderEngine(): m_stored(false) {}
+RenderEngine::RenderEngine():
+	m_stored(false),
+	m_clearColor(GL_DEFAULT_CLEAR_COLOR) {}
 
 void RenderEngine::initRender()
 {
+	////////////////////
+	//Set OpenGL options
+	setClearColor(GL_DEFAULT_CLEAR_COLOR);
+
+	glEnable(GL_DEPTH_TEST);
+	glDepthFunc(GL_LESS);
+
+	glEnable(GL_BLEND);
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
+	glEnable(GL_PROGRAM_POINT_SIZE);
+	glPointSize(1);
+
+	glEnable(GL_MULTISAMPLE_ARB);
+
+	/////////////
+	//Set matrixs
+
 	//MV Matrix <- The camera in a sort
 	m_MVMatrix.setMatrix(glm::mat4(1.0));
 
-	//Normal
+	//Normals
 	m_NormalMatrix = m_MVMatrix;
 	m_NormalMatrix.inverse()->transpose();
 
@@ -76,6 +96,12 @@ void RenderEngine::setProjection2D(const float &width, const float &height)
 	m_storedMVMatrix = m_MVMatrix;
 	m_MVMatrix.setMatrix(glm::mat4(1.0));
 	m_stored = true;
+}
+
+void RenderEngine::setClearColor(const glm::vec4 &clearColor)
+{
+	m_clearColor = clearColor;
+	glClearColor(m_clearColor.r, m_clearColor.g, m_clearColor.b, m_clearColor.a);
 }
 
 void RenderEngine::initVBO(Mesh * mesh)

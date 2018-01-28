@@ -15,7 +15,8 @@ Instruction * PathsNoise::get()
 
 std::vector<VectorImage *> PathsNoise::execute(const std::vector<VectorImage *> &vectorImages)
 {
-	
+	vectorImages[0]->applyCursor();
+
 	std::vector<Bezier> paths = vectorImages[0]->getBeziers();
 
 	glm::vec2 lastPos(0, 0);

@@ -77,7 +77,7 @@ public:
 
 	 @return XYZ dimensions
 	 */
-	inline glm::vec3 getDimensions() const { return m_boundsMax - m_boundsMin; };
+	inline glm::vec3 getDimensions() const { return glm::abs(m_boundsMax - m_boundsMin); };
 
 	/**
 	 Tell the shape max XYZ coordinates
