@@ -57,6 +57,10 @@ struct mouse {
 	int pointerPositionY = 0;
 };
 
+struct window {
+	bool resized = false;
+};
+
 /**
  Holds key features of the apps such as events, scene execution and rendering, etc.
  */
@@ -79,16 +83,22 @@ public:
 	//Keyboard
 
 	/**
-	 Return the key struct
+	 Return the keyboard events struct
 	 @return The keyboard structure
 	 */
 	inline keyboard getKeys() const { return m_keys; };
 
 	/**
-	 Return the mouse struct
+	 Return the mouse events struct
 	 @return The mouse structure
 	 */
 	inline mouse getMouse() const { return m_mouse; };
+
+	/**
+	 Return the window events struct
+	 @return The mouse structure
+	 */
+	inline window getWindow() const { return m_window; };
 
 	/**
 	 Set all keys an not pressed
@@ -104,6 +114,7 @@ private:
 	//Events
 	keyboard m_keys;
 	mouse m_mouse;
+	window m_window;
 	void parseEvents();
 	void windowEvents(const SDL_Event &event);
 	void keyBoardEvents(const SDL_Event &event);

@@ -13,7 +13,7 @@ Instruction * PathsChaining::get()
 	return new PathsChaining();
 }
 
-std::vector<VectorImage *> PathsChaining::execute(std::vector<VectorImage *> vectorImages)
+std::vector<VectorImage *> PathsChaining::execute(const std::vector<VectorImage *> &vectorImages)
 {
 	std::vector<std::vector<Bezier>> imagesPaths;
 
@@ -37,5 +37,5 @@ std::vector<VectorImage *> PathsChaining::execute(std::vector<VectorImage *> vec
 		}
 	}
 
-	return {new VectorImage(vectorImages[0]->getWidth(), vectorImages[0]->getHeight(), shape)};
+	return {new VectorImage(shape)};
 }

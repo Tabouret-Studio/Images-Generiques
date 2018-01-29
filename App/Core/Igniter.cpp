@@ -14,6 +14,8 @@
 #include "Engines/RessourcesEngine/RessourcesEngine.hpp"
 #include "Engines/RenderEngine/RenderEngine.hpp"
 #include "Engines/GeneratorEngine/GeneratorEngine.hpp"
+#include "Engines/IndexEngine/IndexEngine.hpp"
+
 
 #include "Utils/ShaderProgram.hpp"
 #include "Utils/FilePath.hpp"
@@ -33,6 +35,7 @@ void Igniter::igniteAppObject(const std::string &appPath)
 	RessourcesEngine::instanciate();
 	RenderEngine::instanciate();
 	GeneratorEngine::instanciate();
+	IndexEngine::instanciate();
 }
 
 void Igniter::igniteSDL(const uint &width, const uint &height)
@@ -61,14 +64,13 @@ void Igniter::igniteSDL(const uint &width, const uint &height)
 	App->setWidth(width);
 	App->setHeigth(height);
 
-	App->mainWindow = SDL_CreateWindow("Images Génériques", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, width, height, SDL_WINDOW_OPENGL | SDL_WINDOW_RESIZABLE);
+	App->mainWindow = SDL_CreateWindow("Images Génériques", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, width, height, SDL_WINDOW_OPENGL | SDL_WINDOW_RESIZABLE/* | SDL_WINDOW_ALLOW_HIGHDPI*/);
 
 	//Confirm window creations
 	if(!App->mainWindow) {
 		std::cerr << SDL_GetError() << std::endl;
 		return;
 	}
-
 	//Set SDL to useOpenGL
 	SDL_GLContext glContext = SDL_GL_CreateContext(App->mainWindow);
 	SDL_GL_MakeCurrent(App->mainWindow, glContext);
@@ -90,26 +92,24 @@ void Igniter::igniteOpenGL()
 	  return;
 	}
 
+	//In case we are using GLEW <= 1.13 prevent display of GL_INVALID_ENUM
+	glGetError();
+
 	//std::cout << "OpenGL Version : " << glGetString(GL_VERSION) << std::endl;
 	//std::cout << "GLEW Version : " << glewGetString(GLEW_VERSION) << std::endl;
-
-	glClearColor(1.0,1.0,1.0,1.0);
-
-	glEnable(GL_DEPTH_TEST);
-	glDepthFunc(GL_LESS);
-
-	glEnable(GL_PROGRAM_POINT_SIZE);
-	glPointSize(1);
-	glEnable(GL_MULTISAMPLE_ARB);
 }
 
 void Igniter::igniteEngines()
 {
+	//Init render engine matrix
+	App->renderEngine->initRender();
+
 	//Init random generator
 	std::srand(unsigned(std::time(0)));
 
 	//Preload default shaderProgram
 	App->setDefaultProgram(new ShaderProgram("main.vs.glsl", "main.fs.glsl"));
 
-	App->renderEngine->initRender();
+	//register predefined protocoles
+	App->generatorEngine->registerProtocols();
 }

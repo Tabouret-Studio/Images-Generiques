@@ -12,19 +12,5 @@ uniform sampler2D uTexture;
 
 void main()
 {
-	if(uTexturedMesh)
-	{
-		//texture
-
-		float mRed = texture(uTexture, vUV_vs).r;
-		float diff = 1.0 - mRed;
-
-		fFragColor = vec4(diff, diff, diff, mRed);
-
-		//fFragColor = texture(uTexture, vUV_vs).r * vec4(1, 1, 1, 1);
-
-		return;
-	}
-
-	fFragColor = vec4(0, 0, 0, 0);
+	fFragColor = vec4(1.0, 1.0, 1.0, texture(uTexture, vUV_vs).r);
 }

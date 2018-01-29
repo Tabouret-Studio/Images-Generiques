@@ -10,14 +10,19 @@
 
 #include "Core/AppObject.hpp"
 #include "Instructions/Instruction.hpp"
+#include "InstructionsProtocol/InstructionsProtocol.hpp"
 #include "InstructionObject.hpp"
 
-#include <boost/filesystem.hpp>
-#include <boost/range/iterator_range.hpp>
+#ifdef __WIN32__
+
+#else
+	#include <dirent.h>
+#endif
 
 #include <iostream>
 #include <iterator>
 #include <vector>
+#include <fstream>
 
 bool GeneratorEngine::m_instanciated = false;
 
@@ -34,6 +39,7 @@ void GeneratorEngine::instanciate()
 	m_instanciated = true;
 }
 
+
 GeneratorEngine::GeneratorEngine()
 {
 	//Ugly conversion because Py_SetProgramName is not marked as const despite not modifying the var (thx c89)
@@ -41,23 +47,18 @@ GeneratorEngine::GeneratorEngine()
 	char *cstr = new char[pathToInstruction.length() + 1];
 	strcpy(cstr, pathToInstruction.c_str());
 
-	std::cout << pathToInstruction << std::endl;
-
 	//init Python
 	Py_SetProgramName(cstr);
 
-	//The cstr is keeped because Py needs it later --'
-	//delete cstr;
-
+	//Register instructions
 	registerCPPInstructions();
 	registerPythonInstructions();
 }
 
 
-
 Instruction * GeneratorEngine::getInstruction(const std::string &instruction)
 {
-	if(m_instructionsIndex.find(instruction) == m_instructionsIndex.end())
+	if(!instructionExist(instruction))
 		throw std::runtime_error("Could not run instruction "+instruction+".\nThe instruction "+instruction+" could not be found.");
 
 	if(m_instructionsFormats[instruction] == INSTRUCTION_CPP)
@@ -67,6 +68,32 @@ Instruction * GeneratorEngine::getInstruction(const std::string &instruction)
 }
 
 
+bool GeneratorEngine::instructionExist(const std::string &instruction) const
+{
+	if(m_instructionsIndex.find(instruction) == m_instructionsIndex.end())
+		return false;
+
+	return true;
+}
+
+
+std::vector<InstructionsProtocol *> GeneratorEngine::getProtocols() const
+{
+	std::vector<InstructionsProtocol *> protocols;
+
+	for(std::map<std::string, InstructionsProtocol *>::const_iterator it = m_protocols.begin(); it != m_protocols.end(); ++it)
+		protocols.push_back(it->second);
+
+	return protocols;
+}
+
+InstructionsProtocol * GeneratorEngine::getProtocol(const std::string &protocolName) const
+{
+	if(m_protocols.find(protocolName) == m_protocols.end())
+		throw std::runtime_error("The protocol " + protocolName + "is not a valid protocol name.");
+
+	return m_protocols.at(protocolName);
+}
 
 
 void GeneratorEngine::registerCPPInstructions()
@@ -76,42 +103,55 @@ void GeneratorEngine::registerCPPInstructions()
 	//Paths
 	registerInstruction(INSTRUCTION_CPP, "PATHS_ORDER_RANDOMIZER", PathsOrderRandomizer::get);
 	registerInstruction(INSTRUCTION_CPP, "PATHS_CHAINING", PathsChaining::get);
+	registerInstruction(INSTRUCTION_CPP, "PATHS_INVERT", PathsInvert::get);
+	registerInstruction(INSTRUCTION_CPP, "PATHS_LINEAR_ALIZER", PathsLinearAlizer::get);
+	registerInstruction(INSTRUCTION_CPP, "PATHS_NOISE", PathsNoise::get);
+	registerInstruction(INSTRUCTION_CPP, "PATHS_ORIENT_RANDOMIZER", PathsOrientRandomizer::get);
+	registerInstruction(INSTRUCTION_CPP, "PATHS_SQUARIFY", PathsSquarify::get);
 	registerInstruction(INSTRUCTION_CPP, "BEZIERS_LINEAR_ALIZER", BeziersLinearAlizer::get);
 	registerInstruction(INSTRUCTION_CPP, "BEZIERS_AMPLITUDE", BeziersAmplitude::get);
 }
 
+
 void GeneratorEngine::registerPythonInstructions()
 {
-	boost::filesystem::path instructionsFolder = App->getAppPath() + "assets/instructions/";
+#ifdef __WIN32__
 
-	boost::filesystem::path scriptPath;
-	std::string scriptName;
+	std::cout << "Directory parsing has not been implemented yet for windows.\nPython instructions will not be available." << std::endl;
 
-	if(!boost::filesystem::exists(instructionsFolder))
-		return; //No folder, nothing to iterate
+#else
 
-	std::vector<boost::filesystem::directory_entry> entries;
-	std::copy(boost::filesystem::directory_iterator(instructionsFolder), boost::filesystem::directory_iterator(), std::back_inserter(entries));
+	DIR *dir;
+	struct dirent *ent;
 
-	for(std::vector<boost::filesystem::directory_entry>::const_iterator entry = entries.begin(); entry != entries.end(); ++entry)
+	std::string path = App->getAppPath() + "/assets/instructions/";
+
+	if((dir = opendir(path.c_str())) == NULL)
 	{
-		scriptPath = (*entry).path();
+		std::cout << "Python instructions folder could not be parsed.\nPython instructions will not be available" << std::endl;
+		return;
+	}
 
-		if(boost::filesystem::is_directory(scriptPath))
-		   continue; //Ignore sub-directories (for now ?)
+	while((ent = readdir(dir)) != NULL)
+	{
+		std::string scriptName = ent->d_name;
 
-		if(scriptPath.filename_is_dot() || scriptPath.filename_is_dot_dot() || scriptPath.empty())
-			continue; //Ignore useless entries
+		if(scriptName.size() < 4)
+			continue;
 
-		if(scriptPath.extension() != ".py")
+		if(scriptName.substr(scriptName.length() - 3, std::string::npos) != ".py")
 			continue; //Ignore non python script
 
-		scriptName = scriptPath.filename().generic_string();
 		scriptName = scriptName.substr(0, scriptName.length() - 3);
 
 		registerInstruction(INSTRUCTION_PYTHON, scriptName, nullptr);
 	}
+
+	closedir(dir);
+
+#endif
 }
+
 
 void GeneratorEngine::registerInstruction(const instructionFormat &format, const std::string &instructionName, std::function<Instruction *(void)> loader)
 {
@@ -119,8 +159,77 @@ void GeneratorEngine::registerInstruction(const instructionFormat &format, const
 	m_instructionsFormats.insert(std::pair<std::string, instructionFormat>(instructionName, format));
 }
 
+
 Instruction * GeneratorEngine::getPythonInstruction(const std::string &scriptName)
 {
 	return PythonInstruction::get(scriptName);
 }
-	
+
+
+void GeneratorEngine::registerProtocols()
+{
+#ifdef __WIN32__
+
+	std::cout << "Directory parsing has not been implemented yet for windows.\nPredefined protocols will not be available." << std::endl;
+
+#else
+
+	DIR *dir;
+	struct dirent *ent;
+
+	std::string path = App->getAppPath() + "/assets/protocols/";
+
+	if((dir = opendir(path.c_str())) == NULL)
+	{
+		std::cout << "Protocols folder could not be parsed.\nPredefined protocols will not be available" << std::endl;
+		return;
+	}
+
+	while((ent = readdir(dir)) != NULL)
+	{
+		std::string protocoleFile = ent->d_name;
+
+		if(protocoleFile.size() < 6)
+			continue;
+
+		if(protocoleFile.substr(protocoleFile.length() - 5, std::string::npos) != ".json")
+			continue; //Ignore non jsons script
+
+		protocoleFile = protocoleFile.substr(0, protocoleFile.length() - 5);
+
+		registerProtocol(protocoleFile);
+	}
+
+	closedir(dir);
+
+#endif
+}
+
+
+void GeneratorEngine::registerProtocol(const std::string &filename)
+{
+	//Open file
+	std::ifstream file(App->getAppPath() + "/assets/protocols/" + filename + ".json");
+
+	if(!file)
+		return;
+
+	std::string content((std::istreambuf_iterator<char>(file)), (std::istreambuf_iterator<char>()));
+	nlohmann::json protocolJSON = nlohmann::json::parse(content);
+
+	InstructionsProtocol * protocol = new InstructionsProtocol();
+	protocol->setName(filename);
+
+	for(const std::string &instructionName : protocolJSON)
+	{
+		if(!instructionExist(instructionName))
+		{
+			std::cout << "Protocol " + filename + " has not been registered because the instruction " + instructionName + " could not be found." << std::endl;
+			return;
+		}
+
+		protocol->addInstruction(instructionName);
+	}
+
+	m_protocols.insert(std::pair<std::string, InstructionsProtocol *>(filename, protocol));
+}

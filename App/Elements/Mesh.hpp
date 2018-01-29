@@ -59,6 +59,27 @@ public:
 	 @return True if textured, false otherwise
 	 */
 	inline bool isTextured() const { return m_textureID != 0; };
+
+	/**
+	 Get the min boundaries of the mesh
+
+	 @return XYZ coordinates
+	 */
+	inline glm::vec3 getBoundariesMin() const { return m_boundsMin; };
+
+	/**
+	 Get the max boundaries of the mesh
+
+	 @return XYZ coordinates
+	 */
+	inline glm::vec3 getBoundariesMax() const { return m_boundsMax; };
+
+	/**
+	 Return the dimensions of the mesh
+
+	 @return XYZ dimensions
+	 */
+	glm::vec3 getDimensions() const;
 	 
 
 	//Utils
@@ -68,14 +89,23 @@ public:
 
 	 @param vertexList A vector of Vertex
 	 */
-	inline void fillVertex(const std::vector<Vertex> &vertexList) { m_vertexList = vertexList; };
+	void fillVertex(const std::vector<Vertex> &vertexList);
 
 	/**
 	 Set the texture ID for the mesh
+	 the texture will not be freeed on deletion of the mesh
 
 	 @param textureID The texture ID
 	 */
-	inline void setTexture(GLuint textureID) { m_textureID = textureID; };
+	inline void setTexture(const GLuint &textureID) { setTexture(textureID, false); };
+
+	/**
+	 Set the texture ID for the mesh
+	 Tell if the texture needs to be freeed at the same time as the mesh
+
+	 @param textureID The texture ID
+	 */
+	void setTexture(const GLuint &textureID, const bool &toFree);
 
 	/**
 	 Set the Program ID for the mesh
@@ -134,9 +164,16 @@ public:
 	 */
 	inline GLenum getRenderFormat() const { return m_renderFormat; };
 
-	void render() const;
+	/**
+	 Set the color for all the vertex in the mesh
+	 Mainly used to render text
+	 */
+	void setColor(const glm::vec4 &color);
 
-	~Mesh();
+	/**
+	 Shortcut to render the mesh with its own cursor
+	 */
+	void render() const;
 
 	///////////
 	//Operators
@@ -162,20 +199,45 @@ public:
 	 */
 	Mesh &operator <<(const Mesh * mesh);
 
+	/////////////
+	//Destructors
+
+	/**
+	 Liberate the texture used by the mesh
+	 */
+	void freeTexture();
+
+	~Mesh();
+
 private:
 	//Vertex
 	std::vector<Vertex> m_vertexList;
-	uint m_vertexCount;
 
 	GLuint m_vbo;
 	GLuint m_vao;
 	bool m_generated;
+
+	glm::vec3 m_boundsMin;
+	glm::vec3 m_boundsMax;
+
+	/**
+	 Calculate mesh boundaries
+	 */
+	void calculateBoundaries();
+
+	/**
+	 Update Mesh boundaries with given vertex
+
+	 @param newVertex Vertex to update boundaries with
+	 */
+	void updateBoundaries(const std::vector<Vertex> &newVertex);
 
 	//Position
 	DrawCursor m_cursor;
 
 	//Texture
 	GLuint m_textureID;
+	bool m_freeTexture;
 	
 	//Shader program
 	ShaderProgram * m_program;

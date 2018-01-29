@@ -9,6 +9,7 @@
 #include "RenderEngine.hpp"
 
 #include "Utils/Vertex.hpp"
+#include "Utils/SDL.hpp"
 #include "Utils/ShaderProgram.hpp"
 #include "Core/AppObject.hpp"
 #include "Elements/Mesh.hpp"
@@ -31,14 +32,34 @@ void RenderEngine::instanciate()
 /**
  * Private constructor
  */
-RenderEngine::RenderEngine(): m_stored(false) {}
+RenderEngine::RenderEngine():
+	m_stored(false),
+	m_clearColor(GL_DEFAULT_CLEAR_COLOR) {}
 
 void RenderEngine::initRender()
 {
+	////////////////////
+	//Set OpenGL options
+	setClearColor(GL_DEFAULT_CLEAR_COLOR);
+
+	glEnable(GL_DEPTH_TEST);
+	glDepthFunc(GL_LESS);
+
+	glEnable(GL_BLEND);
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
+	glEnable(GL_PROGRAM_POINT_SIZE);
+	glPointSize(1);
+
+	glEnable(GL_MULTISAMPLE_ARB);
+
+	/////////////
+	//Set matrixs
+
 	//MV Matrix <- The camera in a sort
 	m_MVMatrix.setMatrix(glm::mat4(1.0));
 
-	//Normal
+	//Normals
 	m_NormalMatrix = m_MVMatrix;
 	m_NormalMatrix.inverse()->transpose();
 
@@ -51,6 +72,7 @@ void RenderEngine::setProjection3D()
 
 	m_ProjectionMatrix.setMatrix(glm::mat4(1.0))
 		->perspective(70.f, screenRatio, 0.1f, 1500.f);
+
 	glViewport(0, 0, App->getWidth(), App->getHeight());
 
 	if(m_stored)
@@ -62,17 +84,24 @@ void RenderEngine::setProjection3D()
 
 void RenderEngine::setProjection2D()
 {
-	setProjection2D((float)App->getWidth(), (float)App->getHeight());
+	setProjection2D(App->getWidth(), App->getHeight());
 }
 
 void RenderEngine::setProjection2D(const float &width, const float &height)
 {
 	m_ProjectionMatrix.setMatrix(glm::ortho(0.f, width, height, 0.f));
+
 	glViewport(0, 0, width, height);
 
 	m_storedMVMatrix = m_MVMatrix;
 	m_MVMatrix.setMatrix(glm::mat4(1.0));
 	m_stored = true;
+}
+
+void RenderEngine::setClearColor(const glm::vec4 &clearColor)
+{
+	m_clearColor = clearColor;
+	glClearColor(m_clearColor.r, m_clearColor.g, m_clearColor.b, m_clearColor.a);
 }
 
 void RenderEngine::initVBO(Mesh * mesh)
@@ -107,11 +136,9 @@ void RenderEngine::initVAO(Mesh * mesh)
 
 	glGenVertexArrays(1, mesh->getVAO());
 	glBindVertexArray(*mesh->getVAO());
-	check_gl_error();
 
 	//Bind mesh VBO
 	glBindBuffer(GL_ARRAY_BUFFER, *mesh->getVBO());
-	check_gl_error();
 
 	//Vertex attribs
 	glEnableVertexAttribArray(VERTEX_ATTR_POSITION);
@@ -128,7 +155,6 @@ void RenderEngine::initVAO(Mesh * mesh)
 	//Unbind everything
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 	glBindVertexArray(0);
-	check_gl_error();
 }
 
 void RenderEngine::render(const Mesh * mesh, const DrawCursor * cursor)

@@ -85,4 +85,4 @@ nlohmann::json VectorImagesToJSONExporter::cursorToJson(DrawCursor * cursor)
 	}
 
 	return j;
-};
+}

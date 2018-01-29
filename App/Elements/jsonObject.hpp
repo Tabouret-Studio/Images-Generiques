@@ -18,6 +18,8 @@ public:
 
 	inline nlohmann::json * get() { return m_json; }
 
+	~jsonObject() { delete m_json; };
+
 private:
 	nlohmann::json * m_json;
 

@@ -15,10 +15,13 @@ class AppEngine;
 class RessourcesEngine;
 class RenderEngine;
 class GeneratorEngine;
+class IndexEngine;
 class Scene;
 class ShaderProgram;
 
 #include "libraries.hpp"
+
+#include <iostream>
 
 /**
  The AppObject, accessible globally as App, holds all the vital informations of the apps.
@@ -45,6 +48,7 @@ public:
 	RessourcesEngine * ressourcesEngine;
 	RenderEngine * renderEngine;
 	GeneratorEngine * generatorEngine;
+	IndexEngine * indexEngine;
 
 	/// SDL Window
 	SDL_Window * mainWindow;

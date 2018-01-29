@@ -19,30 +19,54 @@ VectorImage::VectorImage(const Shape &shape):
 	Asset(VECTOR),
 	m_width(500),
 	m_height(500),
-	m_shapes({shape}) {}
+	m_shapes({shape})
+{
+	calculateBounds();
+}
 
 VectorImage::VectorImage(const std::vector<Shape> &shapes):
 	Asset(VECTOR),
 	m_width(500),
 	m_height(500),
-	m_shapes(shapes) {}
+	m_shapes(shapes)
+{
+	calculateBounds();
+}
 
 VectorImage::VectorImage(const float &width, const float &height):
 	Asset(VECTOR),
 	m_width(width),
-	m_height(height) {}
+	m_height(height)
+{
+	calculateBounds();
+}
 
 VectorImage::VectorImage(const float &width, const float &height, const Shape &shape):
 	Asset(VECTOR),
 	m_width(width),
 	m_height(height),
-	m_shapes({shape}) {}
+	m_shapes({shape})
+{
+	calculateBounds();
+}
 
 VectorImage::VectorImage(const float &width, const float &height, const std::vector<Shape> &shapes):
 	Asset(VECTOR),
 	m_width(width),
 	m_height(height),
-	m_shapes(shapes) {}
+	m_shapes(shapes)
+{
+	calculateBounds();
+}
+
+VectorImage::VectorImage(const VectorImage * vectorImage):
+	Asset(VECTOR),
+	m_width(vectorImage->m_width),
+	m_height(vectorImage->m_height),
+	m_shapes(vectorImage->m_shapes),
+	m_cursor(vectorImage->m_cursor),
+	m_boundsMin(vectorImage->m_boundsMin),
+	m_boundsMax(vectorImage->m_boundsMax) {}
 
 
 
@@ -83,17 +107,82 @@ std::vector<glm::vec3> VectorImage::getPoints(const float &precision) const
 	return vertices;
 }
 
-Mesh * VectorImage::getMesh(const uint &precision) const
+Mesh * VectorImage::getMesh(const float &precision) const
 {
 	Mesh * mesh = new Mesh();
+	Mesh * shapeMesh;
 
 	// Parse SVG
-	for(std::vector<Shape>::const_iterator it = m_shapes.begin(); it != m_shapes.end(); ++it)
+	for(std::vector<Shape>::const_iterator shape = m_shapes.begin(); shape != m_shapes.end(); ++shape)
 	{
-		*mesh << (*it).getMesh();
+		shapeMesh = shape->getMesh(precision);
+		*mesh << shapeMesh;
+		delete shapeMesh;
 	}
 
 	mesh->setRenderFormat(GL_POINTS);
+	mesh->getCursor()->setMatrix(m_cursor);
+	mesh->applyCursor();
 
 	return mesh;
+}
+
+void VectorImage::applyCursor()
+{
+	for(std::vector<Shape>::iterator shape = m_shapes.begin(); shape != m_shapes.end(); ++shape)
+	{
+		shape->getCursor()->setMatrix(m_cursor * shape->getCursor()->getMatrix());
+		shape->applyCursor();
+	}
+
+	m_cursor.reset();
+
+	calculateBounds();
+}
+
+VectorImage &VectorImage::operator <<(const Shape &shape)
+{
+	m_shapes.push_back(shape);
+	updateBounds({shape});
+
+	return *this;
+}
+
+void VectorImage::calculateBounds()
+{
+	if(m_shapes.size() == 0)
+		return;
+
+	m_boundsMin = m_shapes[0].getPosition();
+	m_boundsMax = m_shapes[0].getBoundsMax();
+
+	for(std::vector<Shape>::const_iterator it = m_shapes.begin() + 1; it != m_shapes.end(); ++it)
+		compareAndUpdateBounds(*it);
+}
+
+void VectorImage::updateBounds(const std::vector<Shape> &shapes)
+{
+	if(m_shapes.size() == 1)
+	{
+		m_boundsMin = m_shapes[0].getPosition();
+		m_boundsMax = m_shapes[0].getBoundsMax();
+
+		return;
+	}
+
+	for(std::vector<Shape>::const_iterator it = shapes.begin() + 1; it != shapes.end(); ++it)
+		compareAndUpdateBounds(*it);
+}
+
+void VectorImage::compareAndUpdateBounds(const Shape &shape)
+{
+	//Min
+	if(shape.getPosition().x < m_boundsMin.x) m_boundsMax.x = shape.getPosition().x;
+	if(shape.getPosition().y < m_boundsMin.y) m_boundsMax.y = shape.getPosition().y;
+	if(shape.getPosition().z < m_boundsMin.z) m_boundsMax.z = shape.getPosition().z;
+
+	//Max
+	if(shape.getBoundsMax().x > m_boundsMax.x) m_boundsMax.x = shape.getBoundsMax().x;
+	if(shape.getBoundsMax().y > m_boundsMax.y) m_boundsMax.y = shape.getBoundsMax().y;
+	if(shape.getBoundsMax().z > m_boundsMax.z) m_boundsMax.z = shape.getBoundsMax().z;
 }

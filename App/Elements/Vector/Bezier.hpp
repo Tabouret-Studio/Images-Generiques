@@ -43,7 +43,9 @@ public:
 	m_startPoint(glm::vec3(startX, startY, 0)),
 	m_startHandle(glm::vec3(startHX, startHY, 0)),
 	m_endHandle(glm::vec3(endHX, endHY, 0)),
-	m_endPoint(glm::vec3(endX, endY, 0)) {};
+	m_endPoint(glm::vec3(endX, endY, 0)) {
+		calculateBounds();
+	};
 
 	/**
 	 Build a Bezier curve
@@ -68,7 +70,9 @@ public:
 	m_startPoint(glm::vec3(startX, startY, startZ)),
 	m_startHandle(glm::vec3(startHX, startHY, startHZ)),
 	m_endHandle(glm::vec3(endHX, endHY, endHZ)),
-	m_endPoint(glm::vec3(endX, endY, endZ)) {};
+	m_endPoint(glm::vec3(endX, endY, endZ)) {
+		calculateBounds();
+	};
 
 	/**
 	 Build a Bezier curve
@@ -83,7 +87,9 @@ public:
 	m_startPoint(glm::vec3(startPoint, 0)),
 	m_startHandle(glm::vec3(startHandle, 0)),
 	m_endHandle(glm::vec3(endHandle, 0)),
-	m_endPoint(glm::vec3(endPoint, 0)) {};
+	m_endPoint(glm::vec3(endPoint, 0)) {
+		calculateBounds();
+	};
 
 	/**
 	 Build a Bezier curve
@@ -98,18 +104,11 @@ public:
 	m_startPoint(startPoint),
 	m_startHandle(startHandle),
 	m_endHandle(endHandle),
-	m_endPoint(endPoint) {};
+	m_endPoint(endPoint) {
+		calculateBounds();
+	};
 
 	Bezier() {};
-
-	/**
-	 Set the path dimensions
-	 Dimensions are automatically calculated on import
-
-	 @param width Width of the curve
-	 @param height Height of the curve
-	 */
-	void setDimensions(const float &width, const float &height, const float &depth);
 
 	/////////
 	//Getters
@@ -156,19 +155,35 @@ public:
 	 */
 	float getLength() const;
 
+	inline Mesh * getMesh() const { return getMesh(1); };
+
 	/**
 	 Generate a mesh with the interpolated curve
 
 	 @return A Mesh Object
 	 */
-	Mesh * getMesh() const;
+	Mesh * getMesh(const float &precision) const;
 
 	/**
-	 Return the dimensions of the bezier if defined with setBounds();
+	 Return the position of the bezier (min XYZ coordinates)
 
 	 @return Width and height
 	 */
-	inline glm::vec3 getDimensions() const { return m_dimensions; };
+	inline glm::vec3 getPosition() const { return m_boundsMin; };
+
+	/**
+	 Return the dimensions
+
+	 @return Width and height
+	 */
+	inline glm::vec3 getDimensions() const { return glm::abs(m_boundsMax - m_boundsMin); };
+
+	/**
+	 Return the position of the bezier (min XYZ coordinates)
+
+	 @return Width and height
+	 */
+	inline glm::vec3 getBoundsMax() const { return m_boundsMax; };
 
 	/////////////////
 	//Transformations
@@ -184,16 +199,12 @@ public:
 	 Apply the current cursor to the curve coordinates
 	 then reset the cursor
 	 */
-	inline void applyCursor()
-	{
-		applyCursor(&m_cursor);
-		m_cursor.setMatrix(glm::mat4(1.0));
-	};
+	inline void applyCursor() { applyCursor(glm::mat4(1.0)); };
 
 	/**
 	 Apply the given cursor to the curve coordinates
 	 */
-	void applyCursor(const DrawCursor * cursor);
+	void applyCursor(const glm::mat4 &shapeCursor);
 
 	/**
 	 Move the bezier startPoint to the given position
@@ -208,21 +219,15 @@ private:
 	glm::vec3 m_endHandle;
 	glm::vec3 m_endPoint;
 
-	glm::vec3 m_dimensions;
-
-	/**
-	 Return the nth point on the curve.
-
-	 - values: 0 = starting point, 1 = end point
-
-	 @param A The starting point coordinated
-	 @param B The end point coordinates
-	 @param coef Point to return in percentage
-	 @return The coordinates of the point
-	 */
-	glm::vec3 getIPointBetween(glm::vec3 A, glm::vec3 B, float coef) const;
+	glm::vec3 m_boundsMin;
+	glm::vec3 m_boundsMax;
 
 	DrawCursor m_cursor;
+
+	/**
+	 Calculate the mesh boundaries
+	 */
+	void calculateBounds();
 };
 
 #endif /* Bezier_hpp */
