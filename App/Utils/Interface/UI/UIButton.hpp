@@ -121,14 +121,7 @@ private:
 
 	void refreshGeometry();
 	void refreshTextColor();
-
-	//Positionning
-	uint m_posX;
-	uint m_posY;
-
-	//Dimensions
-	uint m_width;
-	uint m_height;
+	void setTextPosition();
 
 	//The tile
 	Mesh * m_tile = nullptr;

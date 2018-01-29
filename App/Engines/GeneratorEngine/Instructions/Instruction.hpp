@@ -59,6 +59,9 @@ public:
 			delete m_parameters;
 	};
 
+	//STATIC
+	static std::vector<std::string> decomposeName(const std::string &instructionName);
+
 protected:
 	Instruction(): m_parameters(nullptr) {};
 

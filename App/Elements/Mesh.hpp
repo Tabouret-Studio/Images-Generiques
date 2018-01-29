@@ -119,6 +119,8 @@ public:
 	 */
 	void generate();
 
+	inline bool isGenerated() const { return m_generated; };
+
 	/**
 	 Get a pointer to the mesh VBO ID
 
@@ -240,7 +242,7 @@ private:
 	bool m_freeTexture;
 	
 	//Shader program
-	ShaderProgram * m_program;
+	ShaderProgram * m_program = nullptr;
 
 	//Render type
 	GLenum m_renderFormat;

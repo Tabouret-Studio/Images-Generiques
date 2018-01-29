@@ -16,6 +16,8 @@ class InstructionParameters;
 #include "../GeneratorEngine.hpp"
 #include "../InstructionObject.hpp"
 
+#include <iostream>
+
 /**
  Holds a list of instructions to be executed in the given order
 */
@@ -55,7 +57,7 @@ public:
 
 	 @return All the instruction in a vector
 	 */
-	std::vector<InstructionObject *> getInstructions() const;
+	std::map<std::string, InstructionObject *> getInstructions() const;
 
 	/**
 	 Return all the instruction names in the protocol
@@ -63,6 +65,13 @@ public:
 	 @return All the instruction names in a vector
 	 */
 	std::vector<std::string> getInstructionsNames() const;
+
+	/**
+	 Return the exact instruction order by name
+
+	 @return All the instructions name in order
+	 */
+	std::vector<std::string> getInstructionsInOrder() const;
 
 	/**
 	 Set the given parameter for the instruction.s
@@ -93,6 +102,16 @@ public:
 	 */
 	inline std::string getName() const { return m_name; };
 
+	/**
+	 Swap to instruction in the execution order
+
+	 @param first First instruction
+	 @param second Second instruction
+	 */
+	void swapInstructions(const uint &first, const uint &second);
+
+	void removeInstruction(const uint &instructionIndex);
+	
 	/**
 	 Protocol destructor
 	 Delete all instructions in the group

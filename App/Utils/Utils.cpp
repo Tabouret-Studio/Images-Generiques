@@ -17,4 +17,21 @@ namespace Utils
 		return std::rand() % i;
 	}
 
+	std::vector<std::string> decomposeByDelimiter(std::string s, const std::string &delimiter)
+	{
+		size_t pos = 0;
+		std::string token;
+		std::vector<std::string> elements;
+
+		while((pos = s.find(delimiter)) != std::string::npos)
+		{
+			token = s.substr(0, pos);
+			elements.push_back(token);
+			s.erase(0, pos + delimiter.length());
+		}
+
+		elements.push_back(s);
+
+		return elements;
+	}
 }

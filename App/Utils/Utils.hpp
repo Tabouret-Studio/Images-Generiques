@@ -9,6 +9,9 @@
 #ifndef Utils_hpp
 #define Utils_hpp
 
+#include <string>
+#include <vector>
+
 namespace Utils
 {
 	int rand(int i);
@@ -28,6 +31,8 @@ namespace Utils
 	{
 		return A + ((B - A) * coef);
 	}
+
+	std::vector<std::string> decomposeByDelimiter(std::string s, const std::string &delimiter);
 }
 
 #endif /* Utils_hpp */

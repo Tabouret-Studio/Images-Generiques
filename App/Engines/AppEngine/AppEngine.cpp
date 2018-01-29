@@ -67,3 +67,10 @@ void AppEngine::renderScenes()
 	//Swap buffers
 	SDL_GL_SwapWindow(App->mainWindow);
 }
+
+void AppEngine::flushMouse()
+{
+	glm::vec2 mousePos = m_mouse.pos;
+	m_mouse = {};
+	m_mouse.pos = mousePos;
+}

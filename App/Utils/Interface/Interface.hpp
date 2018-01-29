@@ -17,6 +17,17 @@ class UIElement;
 #include <vector>
 #include <cstdint>
 
+////////////
+//PARAMETERS
+#define INTERFACE_KEYBOARD_THRESHOLD 80
+#define INTERFACE_MOUSE_THRESHOLD 1000
+
+enum InterfaceInteractionsType
+{
+	INTERFACE_INTERACTIONS_MOUSE,
+	INTERFACE_INTERACTIONS_KEYBOARD
+};
+
 class Interface
 {
 public:
@@ -29,6 +40,8 @@ public:
 	 @param newItem Add a new item to the Interface
 	 */
 	void addItem(UIElement * newItem);
+
+	void setInteractionFormat(const InterfaceInteractionsType &interactionsFormat) { m_interactionsFormat = interactionsFormat; };
 
 	/**
 	 Execute interactions in the Interface
@@ -53,6 +66,8 @@ public:
 
 private:
 
+	InterfaceInteractionsType m_interactionsFormat = INTERFACE_INTERACTIONS_KEYBOARD;
+
 	std::vector<UIElement *> m_items;
 	UIElement * m_currentItem;
 
@@ -60,6 +75,9 @@ private:
 	uint32_t m_lastAction;
 
 	int m_waitBeforeExecute = 3;
+
+	void keyboardInteractions();
+	void mouseInteractions();
 };
 
 #endif /* Interface_hpp */

@@ -30,8 +30,13 @@ void AppEngine::parseEvents()
 				break;
 			case SDL_WINDOWEVENT:
 				windowEvents(event);
+				break;
 			case SDL_MOUSEWHEEL:
+			case SDL_MOUSEMOTION:
+			case SDL_MOUSEBUTTONDOWN:
+			case SDL_MOUSEBUTTONUP:
 				mouseEvents(event);
+				break;
 		}
 
 
@@ -100,6 +105,23 @@ void AppEngine::keyBoardEvents(const SDL_Event &event)
 
 void AppEngine::mouseEvents(const SDL_Event &event)
 {
-	m_mouse.scrollY = event.wheel.y;
-	m_mouse.scrollX = event.wheel.x;
+	switch(event.type)
+	{
+		case SDL_MOUSEWHEEL:
+			m_mouse.scrollY = event.wheel.y;
+			m_mouse.scrollX = event.wheel.x;
+			break;
+		case SDL_MOUSEMOTION:
+			m_mouse.pos.x = event.motion.x;
+			m_mouse.pos.y = event.motion.y;
+			break;
+		case SDL_MOUSEBUTTONDOWN:
+				 if(event.button.button == SDL_BUTTON_LEFT) m_mouse.leftBtn = true;
+			else if(event.button.button == SDL_BUTTON_RIGHT) m_mouse.rightBtn = true;
+			break;
+		case SDL_MOUSEBUTTONUP:
+				 if(event.button.button == SDL_BUTTON_LEFT) m_mouse.leftBtn = false;
+			else if(event.button.button == SDL_BUTTON_RIGHT) m_mouse.rightBtn = false;
+			break;
+	}
 }

@@ -1,18 +1,17 @@
 //
-//  simpleRenderer.hpp
+//  SimpleRenderer.hpp
 //  Xcode
 //
 //  Created by Valentin Dufois on 29/01/2018.
 //  Copyright © 2018 Valentin Dufois. All rights reserved.
 //
 
-#ifndef simpleRenderer_hpp
-#define simpleRenderer_hpp
+#ifndef SimpleRenderer_hpp
+#define SimpleRenderer_hpp
 
 //////////////////////
 //Forward declarations
 class Mesh;
-class VectorImage;
 
 #include "Scene.hpp"
 
@@ -20,7 +19,7 @@ class VectorImage;
 
 namespace Scenes
 {
-	class simpleRenderer: public Scene
+	class SimpleRenderer: public Scene
 	{
 	public:
 		/**
@@ -45,19 +44,21 @@ namespace Scenes
 
 		void setBounds(const uint &marginLeft, const uint &marginTop, const uint &width, const uint &height);
 
-		void set
+		void setMesh(Mesh * mesh);
 
 		/**
 		 Destructor, used to properly free all the memory used by the scene
 		 */
-		~simpleRenderer() {};
+		~SimpleRenderer() {};
 
 	private:
 
 		//Renderwindow positionning
 		glm::vec2 m_renderMargin;
 		glm::vec2 m_renderDimensions;
+
+		Mesh * m_mesh = nullptr;
 	};
 }
 
-#endif /* simpleRenderer_hpp */
+#endif /* SimpleRenderer_hpp */

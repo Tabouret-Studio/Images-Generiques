@@ -52,6 +52,7 @@ namespace Scenes
 		title->setFont(m_font, 100);
 		title->setCaptionAlign(UI_TEXT_LEFT);
 		title->setCaption("IMAGES GENERIQUES");
+		title->setSelectable(false);
 
 		std::vector<InstructionsProtocol *> protocols = App->generatorEngine->getProtocols();
 
@@ -104,6 +105,7 @@ namespace Scenes
 		firstProtocolBtn->setTopNeighboor(lastProtocolBtn);
 		lastProtocolBtn->setBottomNeighboor(firstProtocolBtn);
 
+		m_interface->setInteractionFormat(INTERFACE_INTERACTIONS_MOUSE);
 		m_interface->addItem(title);
 	}
 

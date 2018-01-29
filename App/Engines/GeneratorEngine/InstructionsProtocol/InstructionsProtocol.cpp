@@ -10,6 +10,9 @@
 
 #include "Core/AppObject.hpp"
 
+#include <algorithm>
+#include <vector>
+
 InstructionsProtocol::InstructionsProtocol(const std::vector<std::string> &instructionNames):m_name("")
 {
 	addInstructions(instructionNames);
@@ -67,14 +70,9 @@ void InstructionsProtocol::addInstructions(const std::vector<std::string> &instr
 		addInstruction(instructionName);
 }
 
-std::vector<InstructionObject *> InstructionsProtocol::getInstructions() const
+std::map<std::string, InstructionObject *> InstructionsProtocol::getInstructions() const
 {
-	std::vector<InstructionObject *> instructions;
-
-	for(std::map<std::string, InstructionObject *>::const_iterator it = m_instructions.begin(); it != m_instructions.end(); ++it)
-		instructions.push_back(it->second);
-
-	return instructions;
+	return m_instructions;
 }
 
 std::vector<std::string> InstructionsProtocol::getInstructionsNames() const
@@ -85,6 +83,11 @@ std::vector<std::string> InstructionsProtocol::getInstructionsNames() const
 		instructions.push_back(it->first);
 
 	return instructions;
+}
+
+std::vector<std::string> InstructionsProtocol::getInstructionsInOrder() const
+{
+	return m_instructionsOrder;
 }
 
 void InstructionsProtocol::setParameters(InstructionParameters * params)
@@ -104,6 +107,30 @@ void InstructionsProtocol::setParameters(const std::vector<InstructionParameters
 	{
 		it->second->setParameters(params[i]);
 	}
+}
+
+void InstructionsProtocol::swapInstructions(const uint &first, const uint &second)
+{
+	if(first > m_instructionsOrder.size() - 1 || second > m_instructionsOrder.size() - 1)
+		throw std::runtime_error("Could not swap instructions " + std::to_string(first) + " and " + std::to_string(second) + ".\nInstruction index out of range (" + std::to_string(m_instructionsOrder.size()) + ")");
+
+	std::swap(m_instructionsOrder[first], m_instructionsOrder[second]);
+}
+
+void InstructionsProtocol::removeInstruction(const uint &instructionIndex)
+{
+	if(instructionIndex > m_instructionsOrder.size() - 1)
+		throw std::runtime_error("Could not remove instruction " + std::to_string(instructionIndex) + ".\nInstruction index out of range (" + std::to_string(m_instructionsOrder.size()) + ")");
+
+	std::string instructionName = m_instructionsOrder[instructionIndex];
+
+	m_instructionsOrder.erase(m_instructionsOrder.begin() + instructionIndex);
+
+	if(std::find(m_instructionsOrder.begin(), m_instructionsOrder.end(), instructionName) != m_instructionsOrder.end())
+		return;
+
+	delete m_instructions[instructionName];
+	m_instructions.erase(instructionName);
 }
 
 InstructionsProtocol::~InstructionsProtocol()
