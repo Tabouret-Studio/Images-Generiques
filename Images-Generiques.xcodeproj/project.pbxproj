@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		3909C0DC201E47AC00AF66F6 /* FontOutliner.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3909C0DA201E47AC00AF66F6 /* FontOutliner.cpp */; };
+		3909C0DF201E702800AF66F6 /* Vectorizer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3909C0DD201E702800AF66F6 /* Vectorizer.cpp */; };
 		39131671200F6FE700F691B5 /* Val02.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3913166F200F6FE700F691B5 /* Val02.cpp */; };
 		39131674200F99A200F691B5 /* ml1.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39131672200F99A000F691B5 /* ml1.cpp */; };
 		3915234F2019E25A002AF97A /* UIButton.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3915234D2019E25A002AF97A /* UIButton.cpp */; };
@@ -91,6 +92,8 @@
 		390196DA1FDE7E34000F2113 /* nanosvg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = nanosvg.h; sourceTree = "<group>"; };
 		3909C0DA201E47AC00AF66F6 /* FontOutliner.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = FontOutliner.cpp; sourceTree = "<group>"; };
 		3909C0DB201E47AC00AF66F6 /* FontOutliner.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = FontOutliner.hpp; sourceTree = "<group>"; };
+		3909C0DD201E702800AF66F6 /* Vectorizer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Vectorizer.cpp; sourceTree = "<group>"; };
+		3909C0DE201E702800AF66F6 /* Vectorizer.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Vectorizer.hpp; sourceTree = "<group>"; };
 		3913166F200F6FE700F691B5 /* Val02.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Val02.cpp; sourceTree = "<group>"; };
 		39131670200F6FE700F691B5 /* Val02.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Val02.hpp; sourceTree = "<group>"; };
 		39131672200F99A000F691B5 /* ml1.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ml1.cpp; sourceTree = "<group>"; };
@@ -482,6 +485,8 @@
 				391CFE492016657700780A4C /* Utils.hpp */,
 				3909C0DA201E47AC00AF66F6 /* FontOutliner.cpp */,
 				3909C0DB201E47AC00AF66F6 /* FontOutliner.hpp */,
+				3909C0DD201E702800AF66F6 /* Vectorizer.cpp */,
+				3909C0DE201E702800AF66F6 /* Vectorizer.hpp */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -776,6 +781,7 @@
 				39131674200F99A200F691B5 /* ml1.cpp in Sources */,
 				392360522009105600400C45 /* MeshImporter.cpp in Sources */,
 				39131671200F6FE700F691B5 /* Val02.cpp in Sources */,
+				3909C0DF201E702800AF66F6 /* Vectorizer.cpp in Sources */,
 				39AF3CD01FDB51AD0089622E /* RenderEngine.cpp in Sources */,
 				39152356201B1541002AF97A /* ProtocolRenderer.cpp in Sources */,
 				3967C5A320123687006E31AB /* GeneratorEngine.cpp in Sources */,
@@ -966,6 +972,10 @@
 					/usr/local/Cellar/assimp/4.0.1/lib,
 					/usr/local/Cellar/boost/1.66.0/lib,
 				);
+				OTHER_LDFLAGS = (
+					"-lboost_system",
+					"-lboost_filesystem",
+				);
 				PRODUCT_NAME = ImagesGeneriques;
 				SYMROOT = App/build;
 			};
@@ -997,6 +1007,10 @@
 					/usr/local/Cellar/freetype/2.8/lib,
 					/usr/local/Cellar/assimp/4.0.1/lib,
 					/usr/local/Cellar/boost/1.66.0/lib,
+				);
+				OTHER_LDFLAGS = (
+					"-lboost_system",
+					"-lboost_filesystem",
 				);
 				PRODUCT_NAME = ImagesGeneriques;
 				SYMROOT = App/build;

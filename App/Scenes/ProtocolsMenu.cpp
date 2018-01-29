@@ -24,6 +24,8 @@
 #include "Engines/GeneratorEngine/InstructionsProtocol/InstructionsProtocol.hpp"
 #include "Utils/SDL.hpp"
 
+#include "Utils/Vectorizer.hpp"
+
 namespace Scenes
 {
 	void ProtocolsMenu::load()
@@ -39,6 +41,9 @@ namespace Scenes
 	///////////
 	void ProtocolsMenu::init()
 	{
+		Vectorizer vectorizer("test.png");
+		vectorizer.vectorize();
+
 		rId fontID = App->ressourcesEngine->loadAsset("Karla-Bold.ttf", FONT);
 		m_font = *App->ressourcesEngine->getAsset(fontID);
 
