@@ -5,7 +5,7 @@ Instruction * BeziersHandlesReversing::get()
 	return new BeziersHandlesReversing();
 }
 
-std::vector<VectorImage *> BeziersHandlesReversing::execute(std::vector<VectorImage *> vectorImages)
+std::vector<VectorImage *> BeziersHandlesReversing::execute(const std::vector<VectorImage *> &vectorImages)
 {
 	std::vector<Bezier> paths = vectorImages[0]->getBeziers();
 	Shape shape;

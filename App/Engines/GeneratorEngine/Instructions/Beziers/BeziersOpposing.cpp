@@ -5,7 +5,7 @@ Instruction * BeziersOpposing::get()
 	return new BeziersOpposing();
 }
 
-std::vector<VectorImage *> BeziersOpposing::execute(std::vector<VectorImage *> vectorImages)
+std::vector<VectorImage *> BeziersOpposing::execute(const std::vector<VectorImage *> &vectorImages)
 {
 	std::vector<Bezier> paths = vectorImages[0]->getBeziers();
 	Shape shape;

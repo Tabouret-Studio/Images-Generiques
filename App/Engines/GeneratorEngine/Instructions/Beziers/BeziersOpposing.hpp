@@ -9,7 +9,7 @@ public:
 
 	static Instruction * get();
 	
-	std::vector<VectorImage *> execute(std::vector<VectorImage *> vectorImages);
+	std::vector<VectorImage *> execute(const std::vector<VectorImage *> &vectorImages);
 
 private:
 
