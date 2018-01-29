@@ -12,6 +12,7 @@
 //Forward Declaration
 class Asset;
 class ShaderProgram;
+class Shape;
 
 #include "libraries.hpp"
 #include "Asset.hpp"
@@ -72,6 +73,8 @@ public:
 	 */
 	Mesh * genCaption(const std::string &caption, const float &fontSize);
 
+	VectorImage * genOutlines(const std::string &caption);
+
 	/**
 	 Liberate the font for the given size if it has been generated
 
@@ -110,6 +113,8 @@ private:
 	 @return The character infos
 	 */
 	FontCharacter genFontCharacter(char charID);
+
+	Shape genCharacterOutline(char charID);
 
 	/**
 	 Prepare a texture to hold up caption generation

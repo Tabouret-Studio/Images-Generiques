@@ -105,8 +105,10 @@ namespace Scenes
 		delete m_protocolCaption;
 		m_protocolCaption = nullptr;
 
-		m_svg = App->indexEngine->getRandomVectorImage();
+		//m_svg = App->indexEngine->getRandomVectorImage();
 		//m_svg->applyCursor();
+
+		m_svg = m_font->genOutlines("Images Generiques");
 
 		VectorImage * svgTransform = m_protocol->execute({m_svg})[0];
 

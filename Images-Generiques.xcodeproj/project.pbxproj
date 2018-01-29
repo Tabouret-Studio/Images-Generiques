@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3909C0DC201E47AC00AF66F6 /* FontOutliner.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3909C0DA201E47AC00AF66F6 /* FontOutliner.cpp */; };
 		39131671200F6FE700F691B5 /* Val02.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3913166F200F6FE700F691B5 /* Val02.cpp */; };
 		39131674200F99A200F691B5 /* ml1.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39131672200F99A000F691B5 /* ml1.cpp */; };
 		3915234F2019E25A002AF97A /* UIButton.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3915234D2019E25A002AF97A /* UIButton.cpp */; };
@@ -88,6 +89,8 @@
 /* Begin PBXFileReference section */
 		390196D81FDE7E29000F2113 /* artist.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = artist.svg; sourceTree = "<group>"; };
 		390196DA1FDE7E34000F2113 /* nanosvg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = nanosvg.h; sourceTree = "<group>"; };
+		3909C0DA201E47AC00AF66F6 /* FontOutliner.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = FontOutliner.cpp; sourceTree = "<group>"; };
+		3909C0DB201E47AC00AF66F6 /* FontOutliner.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = FontOutliner.hpp; sourceTree = "<group>"; };
 		3913166F200F6FE700F691B5 /* Val02.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Val02.cpp; sourceTree = "<group>"; };
 		39131670200F6FE700F691B5 /* Val02.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Val02.hpp; sourceTree = "<group>"; };
 		39131672200F99A000F691B5 /* ml1.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ml1.cpp; sourceTree = "<group>"; };
@@ -477,6 +480,8 @@
 				394F942E2016209C0065CE25 /* Python.hpp */,
 				391CFE482016657700780A4C /* Utils.cpp */,
 				391CFE492016657700780A4C /* Utils.hpp */,
+				3909C0DA201E47AC00AF66F6 /* FontOutliner.cpp */,
+				3909C0DB201E47AC00AF66F6 /* FontOutliner.hpp */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -787,6 +792,7 @@
 				392360622009105600400C45 /* Sound.cpp in Sources */,
 				3915235D201B2EE2002AF97A /* JSONExporter.cpp in Sources */,
 				3952DCAB200BEBCE0098779F /* libraries.cpp in Sources */,
+				3909C0DC201E47AC00AF66F6 /* FontOutliner.cpp in Sources */,
 				392C9EB3200902E70006ECB9 /* Interface.cpp in Sources */,
 				392C9EB8200902E70006ECB9 /* ShaderProgram.cpp in Sources */,
 				3967C57120108C2A006E31AB /* MeshGroup.cpp in Sources */,

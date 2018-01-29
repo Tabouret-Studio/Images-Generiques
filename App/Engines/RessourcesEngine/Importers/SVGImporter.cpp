@@ -50,10 +50,10 @@ Asset * SVGImporter::getAsset(const std::string &path)
 				p = &path->pts[i * 2];
 
 				//Path coordinates
-				glm::vec3 startP = glm::vec3(p[0], p[1], 0);
-				glm::vec3 startH = glm::vec3(p[2], p[3], 0);
-				glm::vec3 endH = glm::vec3(p[4], p[5], 0);
-				glm::vec3 endP = glm::vec3(p[6], p[7], 0);
+				glm::vec3 startP(p[0], p[1], 0);
+				glm::vec3 startH(p[2], p[3], 0);
+				glm::vec3   endH(p[4], p[5], 0);
+				glm::vec3   endP(p[6], p[7], 0);
 
 				//Create curve
 				curve = Bezier(startP, startH, endH, endP);
