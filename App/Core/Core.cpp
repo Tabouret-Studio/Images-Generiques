@@ -35,7 +35,7 @@ void Core::main()
 
 	//////////////////////
 	//Load the first scene
-	Scenes::ProtocolsMenu::load();
+	Scenes::ken02::load();
 
 	while(App->isRunning())
 	{
