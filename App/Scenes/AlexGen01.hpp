@@ -42,6 +42,7 @@ namespace Scenes
 		//Elements
 		VectorImage * m_svg;
 		Mesh * m_mesh;
+		float m_zoomLevel;
 	};
 }
 

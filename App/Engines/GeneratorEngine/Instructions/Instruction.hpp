@@ -77,6 +77,11 @@ protected:
 #include "Paths/PathsSquarify.hpp"
 #include "Beziers/BeziersLinearAlizer.hpp"
 #include "Beziers/BeziersAmplitude.hpp"
+#include "Shapes/ShapesOrderRandomizer.hpp"
+#include "Shapes/ShapesChaining.hpp"
+#include "Shapes/ShapesGeometryInvert.hpp"
+#include "Shapes/ShapesOrderInvert.hpp"
+#include "Paths/PathsOrderInvert.hpp"
 
 
 #endif /* Instruction_h */

@@ -7,6 +7,7 @@ Instruction * BeziersAmplitude::get()
 
 std::vector<VectorImage *> BeziersAmplitude::execute(const std::vector<VectorImage *> &vectorImages)
 {
+	vectorImages[0]->applyCursor();
 	std::vector<Bezier> paths = vectorImages[0]->getBeziers();
 	Shape shape;
 

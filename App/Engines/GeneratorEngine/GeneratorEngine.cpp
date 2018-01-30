@@ -110,6 +110,14 @@ void GeneratorEngine::registerCPPInstructions()
 	registerInstruction(INSTRUCTION_CPP, "PATHS_SQUARIFY", PathsSquarify::get);
 	registerInstruction(INSTRUCTION_CPP, "BEZIERS_LINEAR_ALIZER", BeziersLinearAlizer::get);
 	registerInstruction(INSTRUCTION_CPP, "BEZIERS_AMPLITUDE", BeziersAmplitude::get);
+
+	//Shapes
+	registerInstruction(INSTRUCTION_CPP, "SHAPES_ORDER_RANDOMIZER", ShapesOrderRandomizer::get);
+	registerInstruction(INSTRUCTION_CPP, "SHAPES_CHAINING", ShapesChaining::get);
+	registerInstruction(INSTRUCTION_CPP, "SHAPES_GEOMETRY_INVERT", ShapesGeometryInvert::get);
+	registerInstruction(INSTRUCTION_CPP, "SHAPES_ORDER_INVERT", ShapesOrderInvert::get);
+	registerInstruction(INSTRUCTION_CPP, "PATHS_ORDER_INVERT", PathsOrderInvert::get);
+	
 }
 
 
