@@ -3,19 +3,17 @@
 #include "VectorImageExcerpt.hpp"
 #include "Utils/Utils.hpp"
 
-
-void VectorImageExcerpt::getExcerpt(const excerptApplication &application) {
-    
+VectorImage * VectorImageExcerpt::getExcerpt(const excerptApplication &application) {
     switch(application) {
         case EXCERPT_SHAPE :
-            getBezierExcerpt();
-            return;
+            return getBezierExcerpt();
             break;
         case EXCERPT_BEZIER :
-            getShapeExcerpt();
-            return;
+            return getShapeExcerpt();
             break;
     }
+    
+    return nullptr;
 }
     
 VectorImage * VectorImageExcerpt::getBezierExcerpt() {   
@@ -40,10 +38,10 @@ VectorImage * VectorImageExcerpt::getBezierExcerpt() {
         excerptBeziers.push_back(*it);
     }
 
-    Shape * shapeExcerpt = new Shape(excerptBeziers);
-    shapeExcerpt->getCursor()->setMatrix(*m_sourceVectorImage->getShapes()[m_shapeIndex].getCursor());
+    Shape shapeExcerpt(excerptBeziers);
+    shapeExcerpt.getCursor()->setMatrix(*m_sourceVectorImage->getShapes()[m_shapeIndex].getCursor());
     
-    VectorImage * excerptVectorImage = new VectorImage(excerptBeziers);
+    VectorImage * excerptVectorImage = new VectorImage(shapeExcerpt);
     excerptVectorImage->getCursor()->setMatrix(*m_sourceVectorImage->getCursor());
 
     return excerptVectorImage;
@@ -75,4 +73,51 @@ VectorImage * VectorImageExcerpt::getShapeExcerpt() {
     excerptVectorImage->getCursor()->setMatrix(*m_sourceVectorImage->getCursor());
 
     return excerptVectorImage;
+}
+
+
+VectorImage * VectorImageExcerpt::replaceExcerpt(VectorImage * excerptVector, const excerptApplication &application) {
+    switch(application) {
+        case EXCERPT_SHAPE :
+            return replaceExcerptShape(excerptVector);;
+            break;
+        case EXCERPT_BEZIER :
+            return replaceExcerptBezier(excerptVector);;
+            break;
+    }
+
+    return nullptr;
+}
+
+
+VectorImage * VectorImageExcerpt::replaceExcerptBezier(VectorImage * excerpt) {
+    std::vector<Bezier> newBeziers;
+    std::vector<Bezier> srcBeziers = m_sourceVectorImage->getShapes()[m_shapeIndex].getPaths();
+
+    Shape shapeToExcerpt = excerpt->getShapes()[0];
+    
+    newBeziers.insert(newBeziers.end(), srcBeziers.begin(), srcBeziers.begin() + m_excerptBegin);
+    newBeziers.insert(newBeziers.end(), shapeToExcerpt.getPaths().begin(), shapeToExcerpt.getPaths().end());
+    newBeziers.insert(newBeziers.end(), srcBeziers.begin() + m_excerptBegin, srcBeziers.end());
+
+    Shape newShape(newBeziers);
+    newShape.getCursor()->setMatrix(m_sourceVectorImage->getShapes()[m_shapeIndex].getCursor()->getMatrix());
+
+    m_sourceVectorImage->getShapes()[m_shapeIndex] = newShape;
+
+    return m_sourceVectorImage;
+}
+
+VectorImage * VectorImageExcerpt::replaceExcerptShape(VectorImage * excerpt) {
+    std::vector<Shape> newShapes;
+    std::vector<Shape> srcShapes = m_sourceVectorImage->getShapes();
+
+    newShapes.insert(newShapes.end(), srcShapes.begin(), srcShapes.begin() + m_excerptBegin);
+    newShapes.insert(newShapes.end(), excerpt->getShapes().begin(), excerpt->getShapes().end());
+    newShapes.insert(newShapes.end(), srcShapes.begin() + m_excerptBegin, srcShapes.end());
+
+    VectorImage * vectorImageExcerptShape = new VectorImage(newShapes);
+    vectorImageExcerptShape->getCursor()->setMatrix(m_sourceVectorImage->getCursor()->getMatrix());
+
+    return vectorImageExcerptShape;
 }

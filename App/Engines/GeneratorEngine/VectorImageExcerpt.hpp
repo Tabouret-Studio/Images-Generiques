@@ -23,7 +23,7 @@ public:
 
 	 @param entity (Bezier or Shape) enum type on which the function should apply
 	 */
-    void getExcerpt(const excerptApplication &application);
+    VectorImage * getExcerpt(const excerptApplication &application);
 
     /**
 	 Apply Shape transformations on excerpt and return it as a new VectorImage
@@ -40,11 +40,10 @@ public:
 
 	 @param entity (Bezier or Shape) enum type on which the function should apply
 	 */
-    VectorImage * replaceExcerpt(VectorImage * excerptVector);
-    // bosser avec des begin() et end() de vecteurs + append()
+    VectorImage * replaceExcerpt(VectorImage * excerptVector, const excerptApplication &application);
 
-    void replaceExcerptBezier();
-    void replaceExcerptShape();
+    VectorImage * replaceExcerptBezier(VectorImage * excerpt);
+    VectorImage * replaceExcerptShape(VectorImage * excerpt);
 
     VectorImage * getSourceImageWithoutExcerpt();
 
