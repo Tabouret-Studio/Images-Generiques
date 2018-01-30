@@ -35,7 +35,7 @@ void Core::main()
 
 	//////////////////////
 	//Load the first scene
-	Scenes::ken02::load();
+	Scenes::ken03::load();
 
 	while(App->isRunning())
 	{

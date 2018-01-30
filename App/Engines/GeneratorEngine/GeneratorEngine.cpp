@@ -109,6 +109,8 @@ void GeneratorEngine::registerCPPInstructions()
 	registerInstruction(INSTRUCTION_CPP, "PATHS_ORIENT_RANDOMIZER", PathsOrientRandomizer::get);
 	registerInstruction(INSTRUCTION_CPP, "PATHS_SQUARIFY", PathsSquarify::get);
 	registerInstruction(INSTRUCTION_CPP, "PATHS_INDEX", PathsIndex::get);
+	registerInstruction(INSTRUCTION_CPP, "SHAPE_SYMX", ShapeSymX::get);
+	registerInstruction(INSTRUCTION_CPP, "SHAPE_SYMY", ShapeSymY::get);
 }
 
 
