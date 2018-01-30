@@ -33,6 +33,7 @@ std::vector<VectorImage *> PathsIndex::execute(const std::vector<VectorImage *> 
 
 	// A noter: des ajustements le render de la scène sont à prévoir
 	for(VectorImage* svg:vectorImages){
+
 		paths=svg->getBeziers();
 		for(Bezier path : paths)
 		{
@@ -68,10 +69,11 @@ std::vector<VectorImage *> PathsIndex::execute(const std::vector<VectorImage *> 
 		// L'instruction est elle réductrice ?
 		// Le protocole de la scène s'applique sur l'ensemble m_svg, et suivant l'instruction, on peut n'avoir plus qu'une seule image
 		resultat.push_back(new VectorImage(shape));
+		std::cout<<"shape size: "<<shape.getPaths().size()<<std::endl;
 
 		// VIDER LA SHAPE avant d'opérer un nouveau svg
 		// fuites ? getpaths() modifie t'il l'attrib ??
-		shape.getPaths().clear();
+		shape=Shape();
 		
 	}
 	return resultat;
