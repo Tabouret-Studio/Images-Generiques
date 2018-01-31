@@ -162,13 +162,18 @@ void UIButton::print()
 
 	if(m_type == UI_BUTTON_TEXT)
 	{
+		glm::vec4 backTileColor;
+
 		if(isSelected())
-			m_backTile->setColor(m_backSelectedColor);
+			backTileColor = m_backSelectedColor;
 		else
-			m_backTile->setColor(m_backIdleColor);
+			backTileColor = m_backIdleColor;
 
+		if(backTileColor.a == 0)
+			return;
+
+		m_backTile->setColor(backTileColor);
 		m_backTile->generate();
-
 		m_backTile->render();
 	}
 }

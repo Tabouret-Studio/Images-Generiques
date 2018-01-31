@@ -17,6 +17,7 @@ class UIButton;
 class InstructionsProtocol;
 class VectorImage;
 class SimpleRenderer;
+class VectorImageExcerpt;
 
 #include "libraries.hpp"
 #include "Scene.hpp"
@@ -93,19 +94,25 @@ namespace Scenes
 
 		//////////
 		//THE LOOP
+
 		void initLoop();
 		void resetLoop();
 		void protocolLoop();
 
 		void saveWorkingImage();
 
-		void sendToRenderer(VectorImage * vectorImage);
+		void sendToRenderer(VectorImage * vectorImage, const uint &pointSize);
 
 		uint m_nextInstruction = 0;
 		std::chrono::steady_clock::time_point m_lastIter;
 		Mesh * m_loopCursor = nullptr;
 		Mesh * m_workingMesh = nullptr;
 		VectorImage * m_workingImage = nullptr;
+		VectorImage * m_excerpt = nullptr;
+		VectorImage * m_renderingImage = nullptr;
+		
+		VectorImageExcerpt * m_excerpter = nullptr;
+
 		//
 		//////////
 

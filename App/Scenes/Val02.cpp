@@ -59,9 +59,9 @@ namespace Scenes
 		int j = 0;
 		int roofLine = 25;
 
-		for(Shape shape : m_svg->getShapes())
+		for(Shape shape : *m_svg->getShapes())
 		{
-			std::vector<Bezier> paths = shape.getPaths();
+			std::vector<Bezier> paths = *shape.getPaths();
 
 			int i = 0;
 

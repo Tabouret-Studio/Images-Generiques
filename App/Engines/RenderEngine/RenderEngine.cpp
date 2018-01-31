@@ -188,6 +188,9 @@ void RenderEngine::render(const Mesh * mesh, const DrawCursor * cursor)
 	//Bind VAO
 	glBindVertexArray(*mesh->getVAO());
 
+	if(mesh->getRenderFormat() == GL_POINTS)
+		glPointSize(mesh->getPointSize());
+
 	//Draw cube
 	glDrawArrays(mesh->getRenderFormat(), 0, (GLsizei)mesh->getVertexCount());
 	check_gl_error();

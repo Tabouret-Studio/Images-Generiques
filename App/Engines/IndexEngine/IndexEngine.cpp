@@ -93,7 +93,7 @@ std::vector<std::string> IndexEngine::getImageTags(const srcId &imgId) const
 	return m_ImagesIdsTags.at(imgId);
 }
 
-std::string IndexEngine::insertVectorIMage(const VectorImage * image, const std::vector<std::string> &tags)
+std::string IndexEngine::insertVectorImage(VectorImage * image, const std::vector<std::string> &tags)
 {
 	SVGExporter exporter;
 	srcId imgId = App->genUUID();

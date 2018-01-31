@@ -30,7 +30,7 @@ public:
 	 @param vectorImages The vector image to use for the instruction
 	 @return A new vector image with the instruction applied on
 	 */
-	virtual std::vector<VectorImage *> execute(const std::vector<VectorImage *> &vectorImages) = 0;
+	virtual std::vector<VectorImage *> execute(std::vector<VectorImage *> &vectorImages) = 0;
 
 	/**
 	 Set the given parameter for the instruction.s

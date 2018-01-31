@@ -14,22 +14,25 @@ Instruction * PathsOrientRandomizer::get()
 	return new PathsOrientRandomizer();
 }
 
-std::vector<VectorImage *> PathsOrientRandomizer::execute(const std::vector<VectorImage *> &vectorImages)
+/// OK FOR V2
+
+std::vector<VectorImage *> PathsOrientRandomizer::execute(std::vector<VectorImage *> &vectorImages)
 {
-	vectorImages[0]->applyCursor();
+	glm::mat4 tempCursor;
 
-	std::vector<Bezier> paths = vectorImages[0]->getBeziers();
-
-	Shape shape;
-
-	for(Bezier path : paths)
+	for(VectorImage * vImage : vectorImages)
 	{
-		
-		path.getCursor()->rotate(5.0 - Utils::rand(10),0,0,1);
-		path.applyCursor();
-
-		shape << path;
+		for(Shape &shape : *vImage->getShapes())
+		{
+			for(Bezier &path : *shape.getPaths())
+			{
+				tempCursor = path.getCursor()->getMatrix();
+				path.getCursor()->reset()->rotate(5.0 - Utils::rand(11),0,0,1);
+				path.applyCursor();
+				path.getCursor()->setMatrix(tempCursor);
+			}
+		}
 	}
 
-	return {new VectorImage(shape)};
+	return vectorImages;
 }

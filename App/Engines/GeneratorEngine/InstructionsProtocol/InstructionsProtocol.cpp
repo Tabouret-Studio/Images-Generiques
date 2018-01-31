@@ -23,7 +23,7 @@ InstructionsProtocol::InstructionsProtocol(const std::vector<std::string> &instr
 	addInstructions(instructionNames);
 }
 
-std::vector<VectorImage *> InstructionsProtocol::execute(const std::vector<VectorImage *> &vectorImages)
+std::vector<VectorImage *> InstructionsProtocol::execute(std::vector<VectorImage *> &vectorImages)
 {
 	std::vector<VectorImage *> images, transformedImages;
 

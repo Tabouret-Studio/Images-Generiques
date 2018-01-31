@@ -66,15 +66,15 @@ VectorImage::VectorImage(const VectorImage * vectorImage):
 	m_boundsMin(vectorImage->m_boundsMin),
 	m_boundsMax(vectorImage->m_boundsMax) {}
 
-std::vector<Bezier> VectorImage::getBeziers() const
+std::vector<Bezier> VectorImage::getBeziers()
 {
-
 	std::vector<Bezier> curves;
 	std::vector<Bezier> paths;
 
 	// Parse SVG
-	for(Shape shape : m_shapes) {
-		paths = shape.getPaths();
+	for(std::vector<Shape>::iterator shape = m_shapes.begin(); shape != m_shapes.end(); ++shape)
+	{
+		paths = *shape->getPaths();
 		curves.insert(curves.end(), paths.begin(), paths.end());
 	}
 

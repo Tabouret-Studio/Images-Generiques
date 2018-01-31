@@ -39,7 +39,7 @@ public:
 
 	 @return Vector of bezier paths
 	 */
-	inline std::vector<Bezier> getPaths() const { return m_paths; };
+	inline std::vector<Bezier> * getPaths() { return &m_paths; };
 
 	/**
 	 Return all the points in the shape

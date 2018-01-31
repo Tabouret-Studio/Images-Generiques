@@ -173,6 +173,20 @@ public:
 	void setColor(const glm::vec4 &color);
 
 	/**
+	 Tell the point size for this mesh
+
+	 @return The point size
+	 */
+	inline uint getPointSize() const { return m_pointSize; };
+
+	/**
+	 Set the point size for this mesh
+
+	 @param pointSize the point size
+	 */
+	inline void setPointSize(const uint &pointSize) { m_pointSize = pointSize; };
+
+	/**
 	 Shortcut to render the mesh with its own cursor
 	 */
 	void render() const;
@@ -246,6 +260,7 @@ private:
 
 	//Render type
 	GLenum m_renderFormat;
+	uint m_pointSize = 1;
 
 	void deleteBuffers();
 };

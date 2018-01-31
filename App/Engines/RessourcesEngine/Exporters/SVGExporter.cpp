@@ -4,7 +4,7 @@
 #include <string>
 #include "Core/AppObject.hpp"
 
-void SVGExporter::exportSVG(const VectorImage * vectorImg, const std::string &fileName)
+void SVGExporter::exportSVG(VectorImage * vectorImg, const std::string &fileName)
 {
 	std::ofstream f;
 	std::string filePath = App->getAppPath()+fileName+".svg";
@@ -22,7 +22,7 @@ void SVGExporter::exportSVG(const VectorImage * vectorImg, const std::string &fi
 
 	float scaleFactor = std::min(1200 / workingCopy->getDimensions().x, 850 / workingCopy->getDimensions().y) * .8;
 
-	for(Shape shape : vectorImg->getShapes())
+	for(Shape shape : *vectorImg->getShapes())
 	{
 		shape.applyCursor();
 		shape.getCursor()->translate(600, 425, 0)->scale(scaleFactor, scaleFactor, scaleFactor);
@@ -39,13 +39,13 @@ void SVGExporter::exportSVG(const VectorImage * vectorImg, const std::string &fi
 
 
 
-std::string SVGExporter::shapeToPath(const Shape &shape)
+std::string SVGExporter::shapeToPath(Shape &shape)
 {
-	glm::vec3 lastPoint = shape.getPaths()[0].getStartPoint() + glm::vec3(1);
+	glm::vec3 lastPoint = (*shape.getPaths())[0].getStartPoint() + glm::vec3(1);
 
 	std::string path = "<path fill=\"none\" stroke=\"black\" d=\"";
 
-	for(Bezier bez : shape.getPaths())
+	for(Bezier bez : *shape.getPaths())
 	{
 		bez.applyCursor();
 

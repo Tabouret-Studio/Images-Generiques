@@ -110,7 +110,8 @@ namespace Scenes
 
 		m_svg = m_font->genOutlines("Images Generiques");
 
-		VectorImage * svgTransform = m_protocol->execute({m_svg})[0];
+		std::vector<VectorImage *> images = {m_svg};
+		VectorImage * svgTransform = m_protocol->execute(images)[0];
 
 		m_displayMesh = svgTransform->getMesh();
 		m_displayMesh->generate();

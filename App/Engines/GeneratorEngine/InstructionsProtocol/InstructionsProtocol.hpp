@@ -36,7 +36,7 @@ public:
 	 @param vectorImages The starting VectorImage
 	 @return A new vectorImage with all the instruction applied on
 	 */
-	std::vector<VectorImage *> execute(const std::vector<VectorImage *> &vectorImages);
+	std::vector<VectorImage *> execute(std::vector<VectorImage *> &vectorImages);
 
 	/**
 	 Add a new instruction at the end of the protocol

@@ -72,6 +72,7 @@
 		397AE63820212344007B2B04 /* Instruction.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 397AE63720212344007B2B04 /* Instruction.cpp */; };
 		39AF3CCC1FDB4FE10089622E /* SDL2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39AF3CCB1FDB4FE10089622E /* SDL2.framework */; };
 		39AF3CD01FDB51AD0089622E /* RenderEngine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39AF3CCE1FDB51AD0089622E /* RenderEngine.cpp */; };
+		39B3714B2021C581008EACAA /* VectorImageExcerpt.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39B371492021C580008EACAA /* VectorImageExcerpt.cpp */; };
 		39D90C1A1FDAEE8400282ED1 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39D90C181FDAEE8400282ED1 /* main.cpp */; };
 		39D90C341FDAEF0F00282ED1 /* AppEngine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39D90C2C1FDAEF0F00282ED1 /* AppEngine.cpp */; };
 		39D90C3F1FDB403E00282ED1 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39D90C3E1FDB403E00282ED1 /* OpenGL.framework */; };
@@ -261,6 +262,8 @@
 		39AF3CCE1FDB51AD0089622E /* RenderEngine.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = RenderEngine.cpp; sourceTree = "<group>"; };
 		39AF3CCF1FDB51AD0089622E /* RenderEngine.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = RenderEngine.hpp; sourceTree = "<group>"; };
 		39AF3CD11FDB541F0089622E /* ImagesGeneriques */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = ImagesGeneriques; sourceTree = "<group>"; };
+		39B371492021C580008EACAA /* VectorImageExcerpt.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = VectorImageExcerpt.cpp; sourceTree = "<group>"; };
+		39B3714A2021C580008EACAA /* VectorImageExcerpt.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = VectorImageExcerpt.hpp; sourceTree = "<group>"; };
 		39D90C141FDAEDDC00282ED1 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		39D90C161FDAEE1400282ED1 /* Makefile */ = {isa = PBXFileReference; explicitFileType = sourcecode.make; path = Makefile; sourceTree = "<group>"; usesTabs = 1; };
 		39D90C181FDAEE8400282ED1 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
@@ -547,6 +550,8 @@
 		3967C57B20120BAC006E31AB /* GeneratorEngine */ = {
 			isa = PBXGroup;
 			children = (
+				39B371492021C580008EACAA /* VectorImageExcerpt.cpp */,
+				39B3714A2021C580008EACAA /* VectorImageExcerpt.hpp */,
 				3967C57D20120BD4006E31AB /* Instructions */,
 				3967C57C20120BCB006E31AB /* InstructionsProtocol */,
 				3967C5A120123687006E31AB /* GeneratorEngine.cpp */,
@@ -862,6 +867,7 @@
 				39D90C341FDAEF0F00282ED1 /* AppEngine.cpp in Sources */,
 				391CFE4A2016657700780A4C /* Utils.cpp in Sources */,
 				3923605C2009105600400C45 /* Image.cpp in Sources */,
+				39B3714B2021C581008EACAA /* VectorImageExcerpt.cpp in Sources */,
 				397AE6362020E09D007B2B04 /* AddInstructionInterface.cpp in Sources */,
 				3915234F2019E25A002AF97A /* UIButton.cpp in Sources */,
 				3923604B2009105600400C45 /* SoundImporter.cpp in Sources */,

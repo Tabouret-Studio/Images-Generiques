@@ -39,18 +39,18 @@ public:
 	
 
 	/**
-	 Return all shapes in the image
+	 Return a reference to all shapes in the image
 
 	 @return shapes vector
 	 */
-	inline std::vector<Shape> getShapes() const { return m_shapes; };
+	inline std::vector<Shape> * getShapes() { return &m_shapes; };
 
 	/**
 	 Return all the Beziers in the image
 
 	 @return Beziers vector
 	 */
-	std::vector<Bezier> getBeziers() const;
+	std::vector<Bezier> getBeziers();
 
 	/**
 	 Return all the points in the image

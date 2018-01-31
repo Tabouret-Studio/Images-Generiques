@@ -9,11 +9,13 @@
 #include "Utils.hpp"
 
 #include <cstdlib>
+#include <ctime>
 
 namespace Utils
 {
 	int rand(int i)
 	{
+		//std::srand(unsigned(std::time(0)));
 		return std::rand() % i;
 	}
 

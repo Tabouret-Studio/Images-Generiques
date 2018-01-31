@@ -41,7 +41,7 @@ namespace Scenes
 		sceneTitle->setFont(m_font, 50);
 		sceneTitle->setCaptionAlign(UI_TEXT_LEFT);
 		sceneTitle->setTextColors(glm::vec4(0, 0, 0, 1), glm::vec4(0, 0, 0, 1));
-		sceneTitle->setCaption("AJOUTER UNE INSTRUCTION");
+		sceneTitle->setCaption("ajouter une instruction");
 		sceneTitle->setSelectable(false);
 
 		m_baseInterface->addItem(sceneTitle);
@@ -49,7 +49,7 @@ namespace Scenes
 		//Back button
 		m_backButton = new UIButton(UI_BUTTON_TEXT, App->getWidth() - 170, 50, 150, 30);
 		m_backButton->setFont(m_font, 30);
-		m_backButton->setCaption("RETOUR");
+		m_backButton->setCaption("retour");
 		m_backButton->setAction([this] () -> void {
 			m_goback = true;
 		});
@@ -404,7 +404,7 @@ namespace Scenes
 
 		UIButton * addInstruction = new UIButton(UI_BUTTON_TEXT, App->getWidth() / 2 - 125, App->getHeight() - 50, 250, 30);
 		addInstruction->setFont(m_font, 30);
-		addInstruction->setCaption("- AJOUTER -");
+		addInstruction->setCaption("- ajouter -");
 		addInstruction->setAction([this, instructionID] () -> void {
 			addInstructionAndQuit(instructionID);
 		});

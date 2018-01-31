@@ -45,7 +45,7 @@ public:
 	 @param vectorImages The VectorImage to use
 	 @return A new, transformed VectorImage
 	 */
-	virtual std::vector<VectorImage *> execute(const std::vector<VectorImage *> &vectorImages) = 0;
+	virtual std::vector<VectorImage *> execute(std::vector<VectorImage *> &vectorImages) = 0;
 
 	/**
 	 Set the parameters to use when executing

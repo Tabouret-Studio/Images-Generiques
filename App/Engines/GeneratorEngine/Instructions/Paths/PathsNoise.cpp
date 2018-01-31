@@ -13,23 +13,25 @@ Instruction * PathsNoise::get()
 	return new PathsNoise();
 }
 
-std::vector<VectorImage *> PathsNoise::execute(const std::vector<VectorImage *> &vectorImages)
+/// OK FOR V2
+
+std::vector<VectorImage *> PathsNoise::execute(std::vector<VectorImage *> &vectorImages)
 {
-	vectorImages[0]->applyCursor();
+	glm::mat4 tempCursor;
 
-	std::vector<Bezier> paths = vectorImages[0]->getBeziers();
-
-	glm::vec2 lastPos(0, 0);
-	Shape shape;
-
-	for(Bezier path : paths)
+	for(VectorImage * vImage : vectorImages)
 	{
-		path.applyCursor();
-		path.getCursor()->translate(rand()%11 - 5, rand()%11 - 5, 0);
-		path.applyCursor();
-
-		shape << path;
+		for(Shape &shape : *vImage->getShapes())
+		{
+			for(Bezier &path : *shape.getPaths())
+			{
+				tempCursor = path.getCursor()->getMatrix();
+				path.getCursor()->reset()->translate(rand()%11 - 5, rand()%11 - 5, 0);
+				path.applyCursor();
+				path.getCursor()->setMatrix(tempCursor);
+			}
+		}
 	}
 
-	return {new VectorImage(shape)};
+	return vectorImages;
 }

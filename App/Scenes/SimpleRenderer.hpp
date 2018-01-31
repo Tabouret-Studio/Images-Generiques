@@ -17,6 +17,8 @@ class Mesh;
 
 #include "libraries.hpp"
 
+#include <vector>
+
 namespace Scenes
 {
 	class SimpleRenderer: public Scene
@@ -44,7 +46,8 @@ namespace Scenes
 
 		void setBounds(const uint &marginLeft, const uint &marginTop, const uint &width, const uint &height);
 
-		void setMesh(Mesh * mesh);
+		void addMesh(Mesh * mesh);
+		void clear();
 
 		/**
 		 Destructor, used to properly free all the memory used by the scene
@@ -57,7 +60,7 @@ namespace Scenes
 		glm::vec2 m_renderMargin;
 		glm::vec2 m_renderDimensions;
 
-		Mesh * m_mesh = nullptr;
+		std::vector<Mesh *> m_meshs;
 	};
 }
 

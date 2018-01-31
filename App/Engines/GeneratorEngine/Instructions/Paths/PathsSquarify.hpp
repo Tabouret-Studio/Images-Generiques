@@ -20,11 +20,11 @@ public:
 
 	static Instruction * get();
 	
-	std::vector<VectorImage *> execute(const std::vector<VectorImage *> &vectorImages);
+	std::vector<VectorImage *> execute(std::vector<VectorImage *> &vectorImages);
 
 private:
 
-	PathsSquarify(): Instruction(INSTRUCTION_SOURCE_PATHS, INSTRUCTION_PROPERTY_GEOMETRY, "Echelonnage") {};
+	PathsSquarify(): Instruction(INSTRUCTION_SOURCE_PATHS, INSTRUCTION_PROPERTY_GEOMETRY, "echelonner") {};
 };
 
 #endif /* PathsSquarify_hpp */

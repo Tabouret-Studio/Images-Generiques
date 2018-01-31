@@ -34,7 +34,7 @@ public:
 	
 	std::vector<std::string> getImageTags(const srcId &imgId) const;
 	
-	std::string insertVectorIMage(const VectorImage * image, const std::vector<std::string> &tags);
+	std::string insertVectorImage(VectorImage * image, const std::vector<std::string> &tags);
 	
 	void exportIndexToJSON() const;
 	

@@ -3,44 +3,50 @@
 #include "VectorImageExcerpt.hpp"
 #include "Utils/Utils.hpp"
 
-VectorImage * VectorImageExcerpt::getExcerpt(const excerptApplication &application) {
+VectorImage * VectorImageExcerpt::getExcerpt(const excerptApplication &application)
+{
     switch(application) {
         case EXCERPT_SHAPE :
-            return getBezierExcerpt();
+            return getShapeExcerpt();
             break;
         case EXCERPT_BEZIER :
-            return getShapeExcerpt();
+            return getBezierExcerpt();
             break;
     }
     
     return nullptr;
 }
     
-VectorImage * VectorImageExcerpt::getBezierExcerpt() {   
-    // create vector of Bezier for src and new VectorImage
-    std::vector<Bezier> excerptBeziers;
-    std::vector<Bezier> srcBeziers;
+VectorImage * VectorImageExcerpt::getBezierExcerpt()
+{
+	//Select shape
+	m_shapeIndex = Utils::rand((int)m_sourceVectorImage->getShapes()->size());
 
-    m_shapeIndex = Utils::rand(m_sourceVectorImage->getShapes().size());
+	if(m_shapeIndex >= m_sourceVectorImage->getShapes()->size())
+		m_shapeIndex -= 1;
 
-    // determining range of random
-    srcBeziers = m_sourceVectorImage->getShapes()[m_shapeIndex].getPaths();
+	//Get reference to selected shape
+	Shape * selectedShape = &(*m_sourceVectorImage->getShapes())[m_shapeIndex];
 
-    m_excerptBegin = Utils::rand(srcBeziers.size());
+	//Select excerpt range
+    m_excerptBegin = Utils::rand((int)selectedShape->getPaths()->size());
 
-    
-    m_excerptEnd = Utils::rand(srcBeziers.size() - m_excerptBegin);
-    m_excerptEnd += m_excerptBegin;
+	if(m_excerptBegin >= selectedShape->getPaths()->size())
+		m_excerptBegin -= 1;
 
-    for(std::vector<Bezier>::iterator it = srcBeziers.begin() + m_excerptBegin;
-        it != srcBeziers.end() - m_excerptEnd; ++it)
+    m_excerptEnd = m_excerptBegin + Utils::rand((int)selectedShape->getPaths()->size() - m_excerptBegin);
+
+	//Extract beziers according to interval
+	Shape shapeExcerpt;
+	shapeExcerpt.getCursor()->setMatrix(selectedShape->getCursor()->getMatrix());
+
+    for(std::vector<Bezier>::iterator it = selectedShape->getPaths()->begin() + m_excerptBegin;
+        it != (selectedShape->getPaths()->begin() + m_excerptEnd); ++it)
     {
-        excerptBeziers.push_back(*it);
+        shapeExcerpt << *it;
     }
 
-    Shape shapeExcerpt(excerptBeziers);
-    shapeExcerpt.getCursor()->setMatrix(*m_sourceVectorImage->getShapes()[m_shapeIndex].getCursor());
-    
+	//Generate excerpt vector image
     VectorImage * excerptVectorImage = new VectorImage(shapeExcerpt);
     excerptVectorImage->getCursor()->setMatrix(*m_sourceVectorImage->getCursor());
 
@@ -49,34 +55,31 @@ VectorImage * VectorImageExcerpt::getBezierExcerpt() {
 
 
 
-VectorImage * VectorImageExcerpt::getShapeExcerpt() {
-// create vector of Shape for src and new VectorImage
-    std::vector<Shape> excerptShapes;
-    std::vector<Shape> srcShapes = m_sourceVectorImage->getShapes();
-    
-    // determining range of random
-    uint srcShapeNumbers = srcShapes.size();
+VectorImage * VectorImageExcerpt::getShapeExcerpt()
+{
+	//Select excerpt range
+	m_excerptBegin = Utils::rand((int)m_sourceVectorImage->getShapes()->size());
 
-    m_excerptBegin = Utils::rand(srcShapeNumbers);
+	if(m_excerptBegin >= m_sourceVectorImage->getShapes()->size())
+		m_excerptBegin -= 1;
 
-    
-    m_excerptEnd = Utils::rand(srcShapeNumbers - m_excerptBegin);
-    m_excerptEnd += m_excerptBegin;
+    m_excerptEnd = m_excerptBegin + Utils::rand((int)m_sourceVectorImage->getShapes()->size() - m_excerptBegin);
 
-    for(std::vector<Shape>::iterator it = srcShapes.begin() + m_excerptBegin;
-        it != srcShapes.end() - m_excerptEnd; ++it)
+	VectorImage * excerptVectorImage = new VectorImage();
+	excerptVectorImage->getCursor()->setMatrix(*m_sourceVectorImage->getCursor());
+
+    for(std::vector<Shape>::iterator it = m_sourceVectorImage->getShapes()->begin() + m_excerptBegin;
+        it != m_sourceVectorImage->getShapes()->begin() + m_excerptEnd; ++it)
     {
-        excerptShapes.push_back(*it);
+        *excerptVectorImage << *it;
     }
-
-    VectorImage * excerptVectorImage = new VectorImage(excerptShapes);
-    excerptVectorImage->getCursor()->setMatrix(*m_sourceVectorImage->getCursor());
 
     return excerptVectorImage;
 }
 
 
-VectorImage * VectorImageExcerpt::replaceExcerpt(VectorImage * excerptVector, const excerptApplication &application) {
+VectorImage * VectorImageExcerpt::replaceExcerpt(VectorImage * excerptVector, const excerptApplication &application)
+{
     switch(application) {
         case EXCERPT_SHAPE :
             return replaceExcerptShape(excerptVector);;
@@ -90,34 +93,40 @@ VectorImage * VectorImageExcerpt::replaceExcerpt(VectorImage * excerptVector, co
 }
 
 
-VectorImage * VectorImageExcerpt::replaceExcerptBezier(VectorImage * excerpt) {
-    std::vector<Bezier> newBeziers;
-    std::vector<Bezier> srcBeziers = m_sourceVectorImage->getShapes()[m_shapeIndex].getPaths();
+VectorImage * VectorImageExcerpt::replaceExcerptBezier(VectorImage * excerpt)
+{
+	//Gather source & excerpt paths
+    std::vector<Bezier> * srcPaths = (*m_sourceVectorImage->getShapes())[m_shapeIndex].getPaths();
+	std::vector<Bezier> * excerptPaths = (*excerpt->getShapes())[0].getPaths();
 
-    Shape shapeToExcerpt = excerpt->getShapes()[0];
-    
-    newBeziers.insert(newBeziers.end(), srcBeziers.begin(), srcBeziers.begin() + m_excerptBegin);
-    newBeziers.insert(newBeziers.end(), shapeToExcerpt.getPaths().begin(), shapeToExcerpt.getPaths().end());
-    newBeziers.insert(newBeziers.end(), srcBeziers.begin() + m_excerptBegin, srcBeziers.end());
+	//Create empty shape
+	Shape newShape;
+	newShape.getCursor()->setMatrix((*m_sourceVectorImage->getShapes())[m_shapeIndex].getCursor()->getMatrix());
 
-    Shape newShape(newBeziers);
-    newShape.getCursor()->setMatrix(m_sourceVectorImage->getShapes()[m_shapeIndex].getCursor()->getMatrix());
+	//Fill shape with merged beziers from source & excerpt
+    newShape.getPaths()->insert(newShape.getPaths()->end(), srcPaths->begin(), srcPaths->begin() + m_excerptBegin);
+	newShape.getPaths()->insert(newShape.getPaths()->end(), excerptPaths->begin(), excerptPaths->end());
+	newShape.getPaths()->insert(newShape.getPaths()->end(), srcPaths->begin() + m_excerptEnd, srcPaths->end());
 
-    m_sourceVectorImage->getShapes()[m_shapeIndex] = newShape;
+	//Replace shape in source image (and making copy)
+	VectorImage * m_updatedVecorImage = new VectorImage(m_sourceVectorImage);
+    (*m_updatedVecorImage->getShapes())[m_shapeIndex] = newShape;
 
-    return m_sourceVectorImage;
+    return m_updatedVecorImage;
 }
 
-VectorImage * VectorImageExcerpt::replaceExcerptShape(VectorImage * excerpt) {
-    std::vector<Shape> newShapes;
-    std::vector<Shape> srcShapes = m_sourceVectorImage->getShapes();
+VectorImage * VectorImageExcerpt::replaceExcerptShape(VectorImage * excerpt)
+{
+	std::vector<Shape> * srcShapes = m_sourceVectorImage->getShapes();
+	std::vector<Shape> * excerptShapes = excerpt->getShapes();
 
-    newShapes.insert(newShapes.end(), srcShapes.begin(), srcShapes.begin() + m_excerptBegin);
-    newShapes.insert(newShapes.end(), excerpt->getShapes().begin(), excerpt->getShapes().end());
-    newShapes.insert(newShapes.end(), srcShapes.begin() + m_excerptBegin, srcShapes.end());
+	//Create an empty vector image
+	VectorImage * vectorImageMerged = new VectorImage();
+	vectorImageMerged->getCursor()->setMatrix(m_sourceVectorImage->getCursor()->getMatrix());
 
-    VectorImage * vectorImageExcerptShape = new VectorImage(newShapes);
-    vectorImageExcerptShape->getCursor()->setMatrix(m_sourceVectorImage->getCursor()->getMatrix());
+    vectorImageMerged->getShapes()->insert(vectorImageMerged->getShapes()->end(), srcShapes->begin(), srcShapes->begin() + m_excerptBegin);
+    vectorImageMerged->getShapes()->insert(vectorImageMerged->getShapes()->end(), excerptShapes->begin(), excerptShapes->end());
+    vectorImageMerged->getShapes()->insert(vectorImageMerged->getShapes()->end(), srcShapes->begin() + m_excerptEnd, srcShapes->end());
 
-    return vectorImageExcerptShape;
+    return vectorImageMerged;
 }

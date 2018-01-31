@@ -44,7 +44,7 @@ namespace Scenes
 	///////////
 	void SimpleRenderer::render()
 	{
-		if(m_mesh == nullptr)
+		if(m_meshs.size() == 0)
 			return;
 
 		glm::vec2 renderCenter(m_renderMargin);
@@ -63,14 +63,17 @@ namespace Scenes
 
 		renderCenter += workingDimensions / 2.0;
 
-		glm::vec3 meshDims = m_mesh->getDimensions();
+		for(Mesh * mesh : m_meshs)
+		{
+			glm::vec3 meshDims = mesh->getDimensions();
 
-		float scale = std::min(workingDimensions.x / meshDims.x, workingDimensions.y / meshDims.y) * 0.9f;
+			float scale = std::min(workingDimensions.x / meshDims.x, workingDimensions.y / meshDims.y) * 0.9f;
 
-		m_mesh->getCursor()->reset()->translate(glm::vec3(renderCenter, 0))->scale(scale, scale, 0);
+			mesh->getCursor()->reset()->translate(glm::vec3(renderCenter, 0))->scale(scale, scale, 0);
 
-		App->renderEngine->setProjection2D();
-		m_mesh->render();
+			App->renderEngine->setProjection2D();
+			mesh->render();
+		}
 	}
 
 	void SimpleRenderer::setBounds(const uint &marginLeft, const uint &marginTop, const uint &width, const uint &height)
@@ -79,14 +82,19 @@ namespace Scenes
 		m_renderDimensions = glm::vec2(width, height);
 	}
 
-	void SimpleRenderer::setMesh(Mesh * mesh)
+	void SimpleRenderer::clear()
 	{
-		m_mesh = mesh;
+		m_meshs.clear();
+	}
 
-		if(m_mesh == nullptr)
+	void SimpleRenderer::addMesh(Mesh * mesh)
+	{
+		if(mesh == nullptr)
 			return;
 
-		if(!m_mesh->isGenerated())
-			m_mesh->generate();
+		if(!mesh->isGenerated())
+			mesh->generate();
+
+		m_meshs.push_back(mesh);
 	}
 }

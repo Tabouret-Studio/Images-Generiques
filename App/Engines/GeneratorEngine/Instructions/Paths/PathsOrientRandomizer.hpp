@@ -20,11 +20,11 @@ public:
 
 	static Instruction * get();
 	
-	std::vector<VectorImage *> execute(const std::vector<VectorImage *> &vectorImages);
+	std::vector<VectorImage *> execute(std::vector<VectorImage *> &vectorImages);
 
 private:
 
-	PathsOrientRandomizer(): Instruction(INSTRUCTION_SOURCE_PATHS, INSTRUCTION_PROPERTY_GEOMETRY, "Rotation aleatoire") {};
+	PathsOrientRandomizer(): Instruction(INSTRUCTION_SOURCE_PATHS, INSTRUCTION_PROPERTY_GEOMETRY, "pivoter aleatoirement") {};
 };
 
 #endif /* PathsOrientRandomizer_hpp */

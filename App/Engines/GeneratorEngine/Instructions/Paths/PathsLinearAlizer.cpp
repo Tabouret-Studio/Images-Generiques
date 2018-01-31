@@ -5,19 +5,25 @@ Instruction * PathsLinearAlizer::get()
 	return new PathsLinearAlizer();
 }
 
-std::vector<VectorImage *> PathsLinearAlizer::execute(const std::vector<VectorImage *> &vectorImages)
+/// OK FOR V2
+
+std::vector<VectorImage *> PathsLinearAlizer::execute(std::vector<VectorImage *> &vectorImages)
 {
-	vectorImages[0]->applyCursor();
+	glm::mat4 tempCursor;
 
-	std::vector<Bezier> paths = vectorImages[0]->getBeziers();
-	Shape shape;
-
-	for(Bezier path : paths)
+	for(VectorImage * vImage : vectorImages)
 	{
-		path.applyCursor();
-		path= Bezier(path.getStartPoint(),path.getEndPoint(),path.getStartPoint(),path.getEndPoint());
-		shape << path;
+		for(Shape &shape : *vImage->getShapes())
+		{
+			for(Bezier &path : *shape.getPaths())
+			{
+				tempCursor = path.getCursor()->getMatrix();
+
+				path = Bezier(path.getStartPoint(),path.getEndPoint(),path.getStartPoint(),path.getEndPoint());
+				path.getCursor()->setMatrix(tempCursor);
+			}
+		}
 	}
 
-	return {new VectorImage(shape)};
+	return vectorImages;
 }

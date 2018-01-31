@@ -16,6 +16,7 @@
 
 #include "Engines/GeneratorEngine/InstructionsProtocol/InstructionsProtocol.hpp"
 #include "Engines/GeneratorEngine/Instructions/Instruction.hpp"
+#include "Engines/GeneratorEngine/VectorImageExcerpt.hpp"
 
 #include "Elements/Mesh.hpp"
 #include "Elements/Font.hpp"
@@ -25,8 +26,6 @@
 #include "Utils/Interface/UI/UIButton.hpp"
 
 #include <algorithm>
-#include <thread>
-#include <future>
 
 namespace Scenes
 {
@@ -54,7 +53,7 @@ namespace Scenes
 		sceneTitle->setFont(m_font, 50);
 		sceneTitle->setCaptionAlign(UI_TEXT_LEFT);
 		sceneTitle->setTextColors(glm::vec4(0, 0, 0, 1), glm::vec4(0, 0, 0, 1));
-		sceneTitle->setCaption("ASSEMBLAGE");
+		sceneTitle->setCaption("assemblage");
 		sceneTitle->setSelectable(false);
 		sceneTitle->setAction(nullptr);
 
@@ -63,7 +62,7 @@ namespace Scenes
 		//Add instruction button
 		m_addInstructionBtn = new UIButton(UI_BUTTON_TEXT, 420, 0, 175, 30);
 		m_addInstructionBtn->setFont(m_font, 30);
-		m_addInstructionBtn->setCaption("AJOUTER +");
+		m_addInstructionBtn->setCaption("ajouter +");
 		m_addInstructionBtn->setAction([this] () -> void {
 
 			//Disable current interface
@@ -81,19 +80,19 @@ namespace Scenes
 		m_baseInterface->addItem(m_addInstructionBtn);
 
 		//PlayPause Btn
-		m_playPauseBtn = new UIButton(UI_BUTTON_TEXT, 455, 50, 125, 30);
+		m_playPauseBtn = new UIButton(UI_BUTTON_TEXT, 430, 50, 150, 30);
 		m_playPauseBtn->setFont(m_font, 30);
-		m_playPauseBtn->setCaption("PLAY");
+		m_playPauseBtn->setCaption("boucle");
 		m_playPauseBtn->setAction([this] () -> void {
 			if(m_playing)
 			{
 				m_playing = false;
-				m_playPauseBtn->setCaption("PLAY");
+				m_playPauseBtn->setCaption("boucle");
 				return;
 			}
 
 			m_playing = true;
-			m_playPauseBtn->setCaption("PAUSE");
+			m_playPauseBtn->setCaption("pause");
 		});
 
 		m_baseInterface->addItem(m_playPauseBtn);
@@ -101,7 +100,7 @@ namespace Scenes
 		//Reset Btn
 		m_resetBtn = new UIButton(UI_BUTTON_TEXT, 10, 0, 175, 20);
 		m_resetBtn->setFont(m_font, 20);
-		m_resetBtn->setCaption("RECOMMENCER");
+		m_resetBtn->setCaption("recommencer");
 		m_resetBtn->setAction([this] () -> void {
 			resetLoop();
 		});
@@ -111,7 +110,7 @@ namespace Scenes
 		//Reset Btn
 		m_saveSVGBtn = new UIButton(UI_BUTTON_TEXT, App->getWidth() - 185, App->getHeight() - 20, 175, 20);
 		m_saveSVGBtn->setFont(m_font, 20);
-		m_saveSVGBtn->setCaption("ENREGISTRER");
+		m_saveSVGBtn->setCaption("enregistrer");
 		m_saveSVGBtn->setAction([this] () -> void {
 			saveWorkingImage();
 		});
@@ -217,7 +216,7 @@ namespace Scenes
 			UIButton * emptyProtocol = new UIButton(UI_BUTTON_TEXT, 45, posY-13, 425, 30);
 			emptyProtocol->setFont(m_font, 20);
 			emptyProtocol->setCaptionAlign(UI_TEXT_LEFT);
-			emptyProtocol->setCaption("L'assemblage est vide");
+			emptyProtocol->setCaption("l'assemblage est vide");
 			emptyProtocol->setSelectable(false);
 			
 			m_instructionsInterface->addItem(emptyProtocol);
@@ -329,12 +328,14 @@ namespace Scenes
 	{
 		m_lastIter = std::chrono::steady_clock::now() - std::chrono::duration<int>(100);
 
+		//reset working image
 		delete m_workingImage;
 
-		rId svgID = App->ressourcesEngine->loadAsset("enfant_machine.svg", VECTOR);
+		rId svgID = App->ressourcesEngine->loadAsset("github.svg", VECTOR);
 		m_workingImage = new VectorImage(*App->ressourcesEngine->getAsset(svgID)); //Copy constructor
 
-		sendToRenderer(m_workingImage);
+		m_renderer->clear();
+		sendToRenderer(m_workingImage, 1);
 
 		m_loopCursor->getCursor()->reset()->translate(600, 140, 0);
 
@@ -359,9 +360,12 @@ namespace Scenes
 		if(protocolSize == 0)
 			return; //Protocol is empty
 
-		//Set instruction to use (avoid going out of loop
-		if(m_nextInstruction >= protocolSize)
-			m_nextInstruction = 0;
+		if(m_nextInstruction == 0)
+		{
+			//Beginning of loop
+			//m_excerpter = new VectorImageExcerpt(m_workingImage);
+			//m_excerpt = m_excerpter->getExcerpt(EXCERPT_BEZIER);
+		}
 
 		//Get instruction to use
 		std::string instructionName = m_protocol->getInstructionsInOrder()[m_nextInstruction];
@@ -371,12 +375,15 @@ namespace Scenes
 		//TODO
 
 		//Execute instruction
-		VectorImage * tempImage = instruction->execute({m_workingImage})[0];
-		delete m_workingImage;
-		m_workingImage = tempImage;
+		//std::vector<VectorImage *> images = {m_excerpt};
+		//m_excerpt = instruction->execute(images)[0];
 
-		//Send image to renderer
-		sendToRenderer(m_workingImage);
+		std::vector<VectorImage *> images = {m_workingImage};
+		m_workingImage = instruction->execute(images)[0];
+
+		//Send images to renderer
+		m_renderer->clear();
+		sendToRenderer(m_workingImage, 1);
 
 		//Update arrow position
 		m_loopCursor->getCursor()->reset()->translate(600, 140 + float(m_nextInstruction) * 45, 0);
@@ -384,23 +391,34 @@ namespace Scenes
 		//Increment instruction
 		m_nextInstruction++;
 
+		//Check for end of loop
+		if(m_nextInstruction + 1 > protocolSize)
+		{
+			//End of loop
+			m_nextInstruction = 0;
+
+			//m_workingImage = m_excerpter->replaceExcerpt(m_excerpt, EXCERPT_BEZIER);
+			//delete m_excerpt;
+		}
+
 		//Reset interval timer
 		m_lastIter = std::chrono::steady_clock::now();
 	}
 
 	void AssemblageInterface::saveWorkingImage()
 	{
-		App->indexEngine->insertVectorIMage(m_workingImage, {"export", "loop"});
+		App->indexEngine->insertVectorImage(m_workingImage, {"export", "loop"});
 	}
 
-	void AssemblageInterface::sendToRenderer(VectorImage * vectorImage)
+	void AssemblageInterface::sendToRenderer(VectorImage * vectorImage, const uint &pointSize)
 	{
 		VectorImage * tempImage = new VectorImage(*vectorImage);
 		tempImage->applyCursor();
 
 		delete m_workingMesh;
 		m_workingMesh = tempImage->getMesh();
-		m_renderer->setMesh(m_workingMesh);
+		m_workingMesh->setPointSize(pointSize);
+		m_renderer->addMesh(m_workingMesh);
 
 		delete tempImage;
 	}
@@ -419,5 +437,6 @@ namespace Scenes
 		delete m_protocol;
 		delete m_loopCursor;
 		delete m_workingMesh;
+		delete m_excerpt;
 	}
 }
