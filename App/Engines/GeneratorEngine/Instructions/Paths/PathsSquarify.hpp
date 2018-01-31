@@ -24,7 +24,7 @@ public:
 
 private:
 
-	PathsSquarify() {};
+	PathsSquarify(): Instruction(INSTRUCTION_SOURCE_PATHS, INSTRUCTION_PROPERTY_GEOMETRY, "Echelonnage") {};
 };
 
 #endif /* PathsSquarify_hpp */

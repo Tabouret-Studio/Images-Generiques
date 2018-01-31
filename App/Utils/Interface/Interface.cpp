@@ -135,5 +135,8 @@ void Interface::moveCursor(UIElement * item)
 Interface::~Interface()
 {
 	for(std::vector<UIElement *>::iterator it = m_items.begin(); it != m_items.end(); ++it)
+	{
         delete (*it);
+		(*it) = nullptr;
+	}
 }

@@ -56,17 +56,36 @@ GeneratorEngine::GeneratorEngine()
 }
 
 
-Instruction * GeneratorEngine::getInstruction(const std::string &instruction)
+Instruction * GeneratorEngine::getInstruction(const std::string &instruction) const
 {
 	if(!instructionExist(instruction))
 		throw std::runtime_error("Could not run instruction "+instruction+".\nThe instruction "+instruction+" could not be found.");
 
-	if(m_instructionsFormats[instruction] == INSTRUCTION_CPP)
-		return m_instructionsIndex[instruction]();
+	if(m_instructionsFormats.at(instruction) == INSTRUCTION_CPP)
+		return m_instructionsIndex.at(instruction)();
 
 	return getPythonInstruction(instruction);
 }
 
+std::map<std::string, Instruction *> GeneratorEngine::getAllInstructions() const
+{
+	std::map<std::string, Instruction *> instructions;
+
+	for(std::map<std::string, std::function<Instruction *(void)>>::const_iterator it = m_instructionsIndex.begin(); it != m_instructionsIndex.end(); ++it)
+		instructions.insert(std::pair<std::string, Instruction *>(it->first, getInstruction(it->first)));
+
+	return instructions;
+}
+
+std::vector<std::string> GeneratorEngine::getAllInstructionNames() const
+{
+	std::vector<std::string> instructions;
+
+	for(std::map<std::string, std::function<Instruction *(void)>>::const_iterator it = m_instructionsIndex.begin(); it != m_instructionsIndex.end(); ++it)
+		instructions.push_back(it->first);
+
+	return instructions;
+}
 
 bool GeneratorEngine::instructionExist(const std::string &instruction) const
 {
@@ -113,40 +132,44 @@ void GeneratorEngine::registerCPPInstructions()
 
 void GeneratorEngine::registerPythonInstructions()
 {
-#ifdef __WIN32__
+#ifndef IG_PYTHON_INSTRUCTIONS
+	return;
+#elif
+#	ifdef __WIN32__
 
-	std::cout << "Directory parsing has not been implemented yet for windows.\nPython instructions will not be available." << std::endl;
+		std::cout << "Directory parsing has not been implemented yet for windows.\nPython instructions will not be available." << std::endl;
 
-#else
+#	else
 
-	DIR *dir;
-	struct dirent *ent;
+		DIR *dir;
+		struct dirent *ent;
 
-	std::string path = App->getAppPath() + "/assets/instructions/";
+		std::string path = App->getAppPath() + "/assets/instructions/";
 
-	if((dir = opendir(path.c_str())) == NULL)
-	{
-		std::cout << "Python instructions folder could not be parsed.\nPython instructions will not be available" << std::endl;
-		return;
-	}
+		if((dir = opendir(path.c_str())) == NULL)
+		{
+			std::cout << "Python instructions folder could not be parsed.\nPython instructions will not be available" << std::endl;
+			return;
+		}
 
-	while((ent = readdir(dir)) != NULL)
-	{
-		std::string scriptName = ent->d_name;
+		while((ent = readdir(dir)) != NULL)
+		{
+			std::string scriptName = ent->d_name;
 
-		if(scriptName.size() < 4)
-			continue;
+			if(scriptName.size() < 4)
+				continue;
 
-		if(scriptName.substr(scriptName.length() - 3, std::string::npos) != ".py")
-			continue; //Ignore non python script
+			if(scriptName.substr(scriptName.length() - 3, std::string::npos) != ".py")
+				continue; //Ignore non python script
 
-		scriptName = scriptName.substr(0, scriptName.length() - 3);
+			scriptName = scriptName.substr(0, scriptName.length() - 3);
 
-		registerInstruction(INSTRUCTION_PYTHON, scriptName, nullptr);
-	}
+			registerInstruction(INSTRUCTION_PYTHON, scriptName, nullptr);
+		}
 
-	closedir(dir);
+		closedir(dir);
 
+	#endif
 #endif
 }
 
@@ -157,12 +180,14 @@ void GeneratorEngine::registerInstruction(const instructionFormat &format, const
 	m_instructionsFormats.insert(std::pair<std::string, instructionFormat>(instructionName, format));
 }
 
-
-Instruction * GeneratorEngine::getPythonInstruction(const std::string &scriptName)
+Instruction * GeneratorEngine::getPythonInstruction(const std::string &scriptName) const
 {
+#ifndef IG_PYTHON_INSTRUCTIONS
+	throw std::runtime_error("Python instructions have been deactivated.");
+#elif
 	return PythonInstruction::get(scriptName);
+#endif
 }
-
 
 void GeneratorEngine::registerProtocols()
 {

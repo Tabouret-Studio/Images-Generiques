@@ -35,6 +35,7 @@ void AppObject::removeScene(Scene * scene)
 			continue;
 
 		delete (*it);
+		(*it) = nullptr;
 		m_scenes.erase(it);
 		return;
 	}

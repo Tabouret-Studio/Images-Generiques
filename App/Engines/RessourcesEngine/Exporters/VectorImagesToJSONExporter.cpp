@@ -26,8 +26,8 @@ void VectorImagesToJSONExporter::exportJSON(std::vector<VectorImage *> vectorIma
 	{
 		nlohmann::json vectorJson;
 
-		vectorJson["width"] = vectorImage->getWidth();
-		vectorJson["height"] = vectorImage->getHeight();
+		vectorJson["width"] = vectorImage->getDimensions().x;
+		vectorJson["height"] = vectorImage->getDimensions().y;
 
 		for(Shape &shape : vectorImage->getShapes())
 		{

@@ -39,6 +39,8 @@ namespace Scenes
 		 */
 		void init();
 
+		void onWindowResized();
+
 		/**
 		 Execute all the actions in the scene
 		 */
@@ -48,6 +50,8 @@ namespace Scenes
 		 Render the scene on the screen
 		 */
 		void render();
+
+		void addInstruction(const std::string &instruction);
 
 		/**
 		 Destructor, used to properly free all the memory used by the scene
@@ -65,9 +69,14 @@ namespace Scenes
 		UIButton * m_addInstructionBtn = nullptr;
 		UIButton * m_playPauseBtn = nullptr;
 		UIButton * m_resetBtn = nullptr;
+		UIButton * m_saveSVGBtn = nullptr;
 		Interface * m_instructionsInterface = nullptr;
 		std::vector<Mesh *> m_lines;
 		Mesh * m_vertSeparator;
+
+		rId m_upArrowTexID; rId m_upArrowTexIDSelected;
+		rId m_downArrowTexID; rId m_downArrowTexIDSelected;
+		rId m_deleteTexID; rId m_deleteTexIDSelected;
 
 		SimpleRenderer * m_renderer;
 
@@ -76,16 +85,19 @@ namespace Scenes
 		//The instructions, stored in a protocol
 		InstructionsProtocol * m_protocol = nullptr;
 
-		bool m_playing = true;
+		bool m_playing = false;
 
 		//internal functions
 		void generateInstructionList();
+		void generateInstructionLine(const std::string &instructionName, uint &posY, const uint &i, const std::vector<std::string> &instructionNames);
 
 		//////////
 		//THE LOOP
 		void initLoop();
 		void resetLoop();
 		void protocolLoop();
+
+		void saveWorkingImage();
 
 		void sendToRenderer(VectorImage * vectorImage);
 

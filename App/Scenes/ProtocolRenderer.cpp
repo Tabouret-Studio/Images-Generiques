@@ -112,8 +112,6 @@ namespace Scenes
 
 		VectorImage * svgTransform = m_protocol->execute({m_svg})[0];
 
-		std::cout << glm::to_string(svgTransform->getDimensions()) << std::endl;
-
 		m_displayMesh = svgTransform->getMesh();
 		m_displayMesh->generate();
 

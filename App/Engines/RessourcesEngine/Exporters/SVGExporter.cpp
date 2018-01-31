@@ -15,17 +15,25 @@ void SVGExporter::exportSVG(const VectorImage * vectorImg, const std::string &fi
 		throw std::runtime_error("Unable to create file "+fileName);
 	}
 
-	f << getHeader(vectorImg->getWidth(), vectorImg->getHeight());
+	f << getHeader(1200, 850);
+
+	VectorImage * workingCopy = new VectorImage(vectorImg);
+	workingCopy->applyCursor();
+
+	float scaleFactor = std::min(1200 / workingCopy->getDimensions().x, 850 / workingCopy->getDimensions().y) * .8;
 
 	for(Shape shape : vectorImg->getShapes())
 	{
-		shape.getCursor()->translate(vectorImg->getWidth()/2, vectorImg->getHeight()/2, 0);
+		shape.applyCursor();
+		shape.getCursor()->translate(600, 425, 0)->scale(scaleFactor, scaleFactor, scaleFactor);
 		shape.applyCursor();
 		f << shapeToPath(shape);
 	}
 
+	delete workingCopy;
+
 	f << getFooter();
-	
+
 	f.close();
 }
 
@@ -35,7 +43,7 @@ std::string SVGExporter::shapeToPath(const Shape &shape)
 {
 	glm::vec3 lastPoint = shape.getPaths()[0].getStartPoint() + glm::vec3(1);
 
-	std::string path = "<path d=\"";
+	std::string path = "<path fill=\"none\" stroke=\"black\" d=\"";
 
 	for(Bezier bez : shape.getPaths())
 	{

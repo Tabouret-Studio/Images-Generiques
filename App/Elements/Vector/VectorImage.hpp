@@ -36,29 +36,7 @@ public:
 	VectorImage(const float &width, const float &height, const Shape &shape);
 	VectorImage(const float &width, const float &height, const std::vector<Shape> &shapes);
 	VectorImage(const VectorImage * vectorImage); //Copy constructor
-
-
-	/**
-	 Set the picture dimensions
-
-	 @param width New width
-	 @param height New height
-	 */
-	void setDimensions(const float &width, const float &height);
-
-	/**
-	 Return the with of the image
-
-	 @return Width
-	 */
-	inline uint getWidth() const { return m_width; }
-
-	/**
-	 Return the height of the image
-
-	 @return Height
-	 */
-	inline uint getHeight() const { return m_height; }
+	
 
 	/**
 	 Return all shapes in the image
@@ -147,9 +125,6 @@ public:
 	VectorImage &operator <<(const Shape &shape);
 
 private:
-
-	float m_width;
-	float m_height;
 
 	std::vector<Shape> m_shapes;
 

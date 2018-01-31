@@ -21,7 +21,7 @@ public:
 
 private:
 
-	PathsChaining() {};
+	PathsChaining(): Instruction(INSTRUCTION_SOURCE_PATHS, INSTRUCTION_PROPERTY_ORDER, "Chainer") {};
 };
 
 #endif /* PathsChaining_hpp */

@@ -11,8 +11,11 @@
 #include "Core/AppObject.hpp"
 
 #include "Engines/RessourcesEngine/RessourcesEngine.hpp"
+#include "Engines/GeneratorEngine/GeneratorEngine.hpp"
+#include "Engines/IndexEngine/IndexEngine.hpp"
 
 #include "Engines/GeneratorEngine/InstructionsProtocol/InstructionsProtocol.hpp"
+#include "Engines/GeneratorEngine/Instructions/Instruction.hpp"
 
 #include "Elements/Mesh.hpp"
 #include "Elements/Font.hpp"
@@ -22,6 +25,8 @@
 #include "Utils/Interface/UI/UIButton.hpp"
 
 #include <algorithm>
+#include <thread>
+#include <future>
 
 namespace Scenes
 {
@@ -38,8 +43,6 @@ namespace Scenes
 	///////////
 	void AssemblageInterface::init()
 	{
-		m_workArea = glm::vec2(800, 600);
-
 		rId fontID = App->ressourcesEngine->loadAsset("Karla-Bold.ttf", FONT);
 		m_font = *App->ressourcesEngine->getAsset(fontID);
 
@@ -61,13 +64,26 @@ namespace Scenes
 		m_addInstructionBtn = new UIButton(UI_BUTTON_TEXT, 420, 0, 175, 30);
 		m_addInstructionBtn->setFont(m_font, 30);
 		m_addInstructionBtn->setCaption("AJOUTER +");
+		m_addInstructionBtn->setAction([this] () -> void {
+
+			//Disable current interface
+			disable();
+			m_renderer->disable();
+
+			//Open add interface
+			AddInstructionInterface * scene = new AddInstructionInterface();
+			scene->setAssemblageScene(this);
+			scene->init();
+
+			App->addScene(scene);
+		});
 
 		m_baseInterface->addItem(m_addInstructionBtn);
 
 		//PlayPause Btn
 		m_playPauseBtn = new UIButton(UI_BUTTON_TEXT, 455, 50, 125, 30);
 		m_playPauseBtn->setFont(m_font, 30);
-		m_playPauseBtn->setCaption("PAUSE");
+		m_playPauseBtn->setCaption("PLAY");
 		m_playPauseBtn->setAction([this] () -> void {
 			if(m_playing)
 			{
@@ -92,15 +108,29 @@ namespace Scenes
 
 		m_baseInterface->addItem(m_resetBtn);
 
-		m_protocol = new InstructionsProtocol({
-			"PATHS_ORDER_RANDOMIZER",
-			"PATHS_GEOMETRY_NOISETRANSLATE",
-			"PATHS_GEOMETRY_NOISEROTATE",
-			"PATHS_GEOMETRY_SQUARIFY"
+		//Reset Btn
+		m_saveSVGBtn = new UIButton(UI_BUTTON_TEXT, App->getWidth() - 185, App->getHeight() - 20, 175, 20);
+		m_saveSVGBtn->setFont(m_font, 20);
+		m_saveSVGBtn->setCaption("ENREGISTRER");
+		m_saveSVGBtn->setAction([this] () -> void {
+			saveWorkingImage();
 		});
+
+		m_baseInterface->addItem(m_saveSVGBtn);
+
+		m_protocol = new InstructionsProtocol();
 
 		m_vertSeparator = App->ressourcesEngine->gen2DTile(598, App->getHeight()/2, 4, App->getHeight());
 		m_vertSeparator->generate();
+
+		m_upArrowTexID = App->ressourcesEngine->loadAsset("arrowUp.png", IMAGE);
+		m_upArrowTexIDSelected = App->ressourcesEngine->loadAsset("arrowUpSelected.png", IMAGE);
+
+		m_downArrowTexID = App->ressourcesEngine->loadAsset("arrowDown.png", IMAGE);
+		m_downArrowTexIDSelected = App->ressourcesEngine->loadAsset("arrowDownSelected.png", IMAGE);
+
+		m_deleteTexID = App->ressourcesEngine->loadAsset("delete.png", IMAGE);
+		m_deleteTexIDSelected = App->ressourcesEngine->loadAsset("deleteSelected.png", IMAGE);
 
 		generateInstructionList();
 
@@ -132,10 +162,26 @@ namespace Scenes
 
 
 	//////////////
+	// This is executed every time the window is resized
+	///////////
+	void AssemblageInterface::onWindowResized()
+	{
+		m_vertSeparator->getCursor()->reset()
+			->translate(598, App->getHeight() /2, 0)
+			->scale(4, App->getHeight(), 0);
+
+		m_saveSVGBtn->setPosition(App->getWidth() - 185, App->getHeight() - 20);
+	}
+
+
+	//////////////
 	// This is executed every frame at render
 	///////////
 	void AssemblageInterface::render()
 	{
+		//Make sure renderer is active
+		m_renderer->enable();
+
 		//Interface
 		m_baseInterface->render();
 		m_instructionsInterface->render();
@@ -156,75 +202,35 @@ namespace Scenes
 
 		for(Mesh * mesh : m_lines)
 			delete mesh;
+
 		m_lines.clear();
 
 		m_instructionsInterface = new Interface();
 		m_instructionsInterface->setInteractionFormat(INTERFACE_INTERACTIONS_MOUSE);
 
-		int posY = 150;
+		uint posY = 150;
 
 		std::vector<std::string> instructionNames = m_protocol->getInstructionsInOrder();
 
-		uint i = 0;
-		for(std::vector<std::string>::const_iterator instructionName = instructionNames.begin(); instructionName != instructionNames.end(); ++instructionName, ++i)
+		if(instructionNames.size() == 0)
 		{
-			std::vector<std::string> decomposedName = Utils::decomposeByDelimiter(*instructionName, "_");
-
-			//Remove Button
-			UIButton * instructionRemoveBtn = new UIButton(UI_BUTTON_TEXT, 10, posY, 30, 30);
-			instructionRemoveBtn->setFont(m_font, 30);
-			instructionRemoveBtn->setCaption("X");
-			instructionRemoveBtn->setAction([this, i] () -> void {
-				m_protocol->removeInstruction(i);
-				m_reloadList = true;
-			});
-
-			m_instructionsInterface->addItem(instructionRemoveBtn);
-
-			//Instruction name
-			UIButton * instructionBtn = new UIButton(UI_BUTTON_TEXT, 50, posY-7, 425, 30);
-			instructionBtn->setFont(m_font, 24);
-			instructionBtn->setCaptionAlign(UI_TEXT_LEFT);
-			instructionBtn->setCaption(decomposedName[0] + " " + decomposedName[1] + " " + decomposedName[2]);
-			instructionBtn->setSelectable(false);
-
-			m_instructionsInterface->addItem(instructionBtn);
-
-			if(i != 0)
-			{
-				//Move up Button
-				UIButton * instructionUpBtn = new UIButton(UI_BUTTON_TEXT, 535, posY, 30, 30);
-				instructionUpBtn->setFont(m_font, 30);
-				instructionUpBtn->setCaption("U");
-				instructionUpBtn->setAction([this, i] () -> void {
-					m_protocol->swapInstructions(i-1, i);
-					m_reloadList = true;
-				});
-
-				m_instructionsInterface->addItem(instructionUpBtn);
-			}
-
-			if(i != instructionNames.size()-1)
-			{
-				//Move down Button
-				UIButton * instructionDownBtn = new UIButton(UI_BUTTON_TEXT, 565, posY, 30, 30);
-				instructionDownBtn->setFont(m_font, 30);
-				instructionDownBtn->setCaption("D");
-				instructionDownBtn->setAction([this, i] () -> void {
-					m_protocol->swapInstructions(i, i+1);
-					m_reloadList = true;
-				});
-
-				m_instructionsInterface->addItem(instructionDownBtn);
-			}
-
-			//*BEAUTIFUL* line
-			Mesh * line = App->ressourcesEngine->gen2DTile(300, posY + 12, 600, 4);
-			line->generate();
-
-			m_lines.push_back(line);
+			UIButton * emptyProtocol = new UIButton(UI_BUTTON_TEXT, 45, posY-13, 425, 30);
+			emptyProtocol->setFont(m_font, 20);
+			emptyProtocol->setCaptionAlign(UI_TEXT_LEFT);
+			emptyProtocol->setCaption("L'assemblage est vide");
+			emptyProtocol->setSelectable(false);
+			
+			m_instructionsInterface->addItem(emptyProtocol);
 
 			posY += 45;
+		}
+		else
+		{
+			uint i = 0;
+			for(std::vector<std::string>::const_iterator instructionName = instructionNames.begin(); instructionName != instructionNames.end(); ++instructionName, ++i)
+			{
+				generateInstructionLine(*instructionName, posY, i, instructionNames);
+			}
 		}
 
 		//Update end-of-list buttons
@@ -232,6 +238,74 @@ namespace Scenes
 		m_resetBtn->setPosition(10, posY + 30);
 
 		m_reloadList = false;
+	}
+
+	void AssemblageInterface::generateInstructionLine(const std::string &instructionName, uint &posY, const uint &i, const std::vector<std::string> &instructionNames)
+	{
+		Instruction * instruction = App->generatorEngine->getInstruction(instructionName);
+
+		//Remove Button
+		UIButton * instructionRemoveBtn = new UIButton(UI_BUTTON_TEXT, 10, posY, 30, 30);
+		instructionRemoveBtn->setFont(m_font, 30);
+		instructionRemoveBtn->setCaption("X");
+		instructionRemoveBtn->setAction([this, i] () -> void {
+			m_protocol->removeInstruction(i);
+			m_reloadList = true;
+		});
+		instructionRemoveBtn->setTextures(m_deleteTexID, m_deleteTexIDSelected);
+
+		m_instructionsInterface->addItem(instructionRemoveBtn);
+
+		std::string instructionTextName = instruction->getFullName();
+
+		//Instruction name
+		UIButton * instructionBtn = new UIButton(UI_BUTTON_TEXT, 45, posY-13, 425, 30);
+		instructionBtn->setFont(m_font, 20);
+		instructionBtn->setCaptionAlign(UI_TEXT_LEFT);
+		instructionBtn->setCaption(instructionTextName);
+		instructionBtn->setSelectable(false);
+
+		m_instructionsInterface->addItem(instructionBtn);
+
+		if(i != 0)
+		{
+			//Move up Button
+			UIButton * instructionUpBtn = new UIButton(UI_BUTTON_TEXT, 535, posY, 30, 30);
+			instructionUpBtn->setFont(m_font, 30);
+			instructionUpBtn->setCaption("+");
+			instructionUpBtn->setAction([this, i] () -> void {
+				m_protocol->swapInstructions(i-1, i);
+				m_reloadList = true;
+			});
+			instructionUpBtn->setTextures(m_upArrowTexID, m_upArrowTexIDSelected);
+
+			m_instructionsInterface->addItem(instructionUpBtn);
+		}
+
+		if(i != instructionNames.size()-1)
+		{
+			//Move down Button
+			UIButton * instructionDownBtn = new UIButton(UI_BUTTON_TEXT, 565, posY, 30, 30);
+			instructionDownBtn->setFont(m_font, 30);
+			instructionDownBtn->setCaption("-");
+			instructionDownBtn->setAction([this, i] () -> void {
+				m_protocol->swapInstructions(i, i+1);
+				m_reloadList = true;
+			});
+			instructionDownBtn->setTextures(m_downArrowTexID, m_downArrowTexIDSelected);
+
+			m_instructionsInterface->addItem(instructionDownBtn);
+		}
+
+		//*BEAUTIFUL* line
+		Mesh * line = App->ressourcesEngine->gen2DTile(300, posY + 12, 600, 4);
+		line->generate();
+
+		m_lines.push_back(line);
+
+		posY += 45;
+
+		delete instruction;
 	}
 
 	void AssemblageInterface::initLoop()
@@ -257,7 +331,7 @@ namespace Scenes
 
 		delete m_workingImage;
 
-		rId svgID = App->ressourcesEngine->loadAsset("github.svg", VECTOR);
+		rId svgID = App->ressourcesEngine->loadAsset("enfant_machine.svg", VECTOR);
 		m_workingImage = new VectorImage(*App->ressourcesEngine->getAsset(svgID)); //Copy constructor
 
 		sendToRenderer(m_workingImage);
@@ -269,7 +343,7 @@ namespace Scenes
 
 	void AssemblageInterface::protocolLoop()
 	{
-		uint iterationInterval = 1; //seconds
+		float iterationInterval = 1; //seconds
 
 		//Are we paused ?
 		if(!m_playing)
@@ -314,6 +388,11 @@ namespace Scenes
 		m_lastIter = std::chrono::steady_clock::now();
 	}
 
+	void AssemblageInterface::saveWorkingImage()
+	{
+		App->indexEngine->insertVectorIMage(m_workingImage, {"export", "loop"});
+	}
+
 	void AssemblageInterface::sendToRenderer(VectorImage * vectorImage)
 	{
 		VectorImage * tempImage = new VectorImage(*vectorImage);
@@ -324,6 +403,13 @@ namespace Scenes
 		m_renderer->setMesh(m_workingMesh);
 
 		delete tempImage;
+	}
+
+	void AssemblageInterface::addInstruction(const std::string &instruction)
+	{
+		m_protocol->addInstruction(instruction);
+		m_reloadList = true;
+		onWindowResized();
 	}
 
 	AssemblageInterface::~AssemblageInterface()

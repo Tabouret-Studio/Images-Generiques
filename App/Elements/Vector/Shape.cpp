@@ -92,9 +92,9 @@ void Shape::updateBounds(const std::vector<Bezier> &paths)
 void Shape::compareAndUpdateBounds(const Bezier &path)
 {
 	//Min
-	if(path.getPosition().x < m_boundsMin.x) m_boundsMax.x = path.getPosition().x;
-	if(path.getPosition().y < m_boundsMin.y) m_boundsMax.y = path.getPosition().y;
-	if(path.getPosition().z < m_boundsMin.z) m_boundsMax.z = path.getPosition().z;
+	if(path.getPosition().x < m_boundsMin.x) m_boundsMin.x = path.getPosition().x;
+	if(path.getPosition().y < m_boundsMin.y) m_boundsMin.y = path.getPosition().y;
+	if(path.getPosition().z < m_boundsMin.z) m_boundsMin.z = path.getPosition().z;
 
 	//Max
 	if(path.getBoundsMax().x > m_boundsMax.x) m_boundsMax.x = path.getBoundsMax().x;

@@ -62,13 +62,14 @@
 		3967C5A02012308F006E31AB /* InstructionsProtocol.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3967C59F2012308F006E31AB /* InstructionsProtocol.cpp */; };
 		3967C5A320123687006E31AB /* GeneratorEngine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3967C5A120123687006E31AB /* GeneratorEngine.cpp */; };
 		396CDD7B201F39C700660A7B /* AssemblageInterface.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 396CDD79201F39C700660A7B /* AssemblageInterface.cpp */; };
-		396CDD7D201F97A800660A7B /* InstructionNames.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 396CDD7C201F97A800660A7B /* InstructionNames.cpp */; };
 		396CDD80201FC7C800660A7B /* SimpleRenderer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 396CDD7E201FC7C800660A7B /* SimpleRenderer.cpp */; };
 		397A72D6201B3C510025058C /* PathsLinearAlizer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 397A72CD201B3C500025058C /* PathsLinearAlizer.cpp */; };
 		397A72D7201B3C510025058C /* PathsOrientRandomizer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 397A72CF201B3C510025058C /* PathsOrientRandomizer.cpp */; };
 		397A72D8201B3C510025058C /* PathsInvert.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 397A72D3201B3C510025058C /* PathsInvert.cpp */; };
 		397A72D9201B3C510025058C /* PathsSquarify.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 397A72D4201B3C510025058C /* PathsSquarify.cpp */; };
 		397A72DA201B3C510025058C /* PathsNoise.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 397A72D5201B3C510025058C /* PathsNoise.cpp */; };
+		397AE6362020E09D007B2B04 /* AddInstructionInterface.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 397AE6342020E09D007B2B04 /* AddInstructionInterface.cpp */; };
+		397AE63820212344007B2B04 /* Instruction.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 397AE63720212344007B2B04 /* Instruction.cpp */; };
 		39AF3CCC1FDB4FE10089622E /* SDL2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39AF3CCB1FDB4FE10089622E /* SDL2.framework */; };
 		39AF3CD01FDB51AD0089622E /* RenderEngine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39AF3CCE1FDB51AD0089622E /* RenderEngine.cpp */; };
 		39D90C1A1FDAEE8400282ED1 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39D90C181FDAEE8400282ED1 /* main.cpp */; };
@@ -220,9 +221,14 @@
 		3967C5A220123687006E31AB /* GeneratorEngine.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = GeneratorEngine.hpp; sourceTree = "<group>"; };
 		396CDD79201F39C700660A7B /* AssemblageInterface.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = AssemblageInterface.cpp; sourceTree = "<group>"; };
 		396CDD7A201F39C700660A7B /* AssemblageInterface.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = AssemblageInterface.hpp; sourceTree = "<group>"; };
-		396CDD7C201F97A800660A7B /* InstructionNames.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = InstructionNames.cpp; path = App/Engines/GeneratorEngine/Instructions/Paths/InstructionNames.cpp; sourceTree = SOURCE_ROOT; };
 		396CDD7E201FC7C800660A7B /* SimpleRenderer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = SimpleRenderer.cpp; sourceTree = "<group>"; };
 		396CDD7F201FC7C800660A7B /* SimpleRenderer.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = SimpleRenderer.hpp; sourceTree = "<group>"; };
+		396CDD8220208A7A00660A7B /* arrowDown.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrowDown.png; sourceTree = "<group>"; };
+		396CDD8320208A7A00660A7B /* arrowUp.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrowUp.png; sourceTree = "<group>"; };
+		396CDD8420208A7A00660A7B /* delete.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = delete.png; sourceTree = "<group>"; };
+		396CDD8520208BD700660A7B /* arrowDownSelected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrowDownSelected.png; sourceTree = "<group>"; };
+		396CDD8620208BD700660A7B /* arrowUpSelected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrowUpSelected.png; sourceTree = "<group>"; };
+		396CDD8720208BD700660A7B /* deleteSelected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = deleteSelected.png; sourceTree = "<group>"; };
 		397A72CC201B3C500025058C /* PathsInvert.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = PathsInvert.hpp; path = App/Engines/GeneratorEngine/Instructions/Paths/PathsInvert.hpp; sourceTree = SOURCE_ROOT; };
 		397A72CD201B3C500025058C /* PathsLinearAlizer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = PathsLinearAlizer.cpp; path = App/Engines/GeneratorEngine/Instructions/Paths/PathsLinearAlizer.cpp; sourceTree = SOURCE_ROOT; };
 		397A72CE201B3C500025058C /* PathsLinearAlizer.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = PathsLinearAlizer.hpp; path = App/Engines/GeneratorEngine/Instructions/Paths/PathsLinearAlizer.hpp; sourceTree = SOURCE_ROOT; };
@@ -247,6 +253,9 @@
 		397A72EB201CF96A0025058C /* ORDER_RANDOMIZER_NOISER.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ORDER_RANDOMIZER_NOISER.json; sourceTree = "<group>"; };
 		397A72EC201CF96A0025058C /* SQUARIFIER.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = SQUARIFIER.json; sourceTree = "<group>"; };
 		397A72ED201CF96A0025058C /* CHAINER.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = CHAINER.json; sourceTree = "<group>"; };
+		397AE6342020E09D007B2B04 /* AddInstructionInterface.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = AddInstructionInterface.cpp; sourceTree = "<group>"; };
+		397AE6352020E09D007B2B04 /* AddInstructionInterface.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = AddInstructionInterface.hpp; sourceTree = "<group>"; };
+		397AE63720212344007B2B04 /* Instruction.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Instruction.cpp; sourceTree = "<group>"; };
 		397BE0D01FDAED60006254F0 /* ImagesGeneriques */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = ImagesGeneriques; sourceTree = BUILT_PRODUCTS_DIR; };
 		39AF3CCB1FDB4FE10089622E /* SDL2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2.framework; path = ../../../../../Library/Frameworks/SDL2.framework; sourceTree = "<group>"; };
 		39AF3CCE1FDB51AD0089622E /* RenderEngine.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = RenderEngine.cpp; sourceTree = "<group>"; };
@@ -281,6 +290,7 @@
 		390196C91FDDD956000F2113 /* assets */ = {
 			isa = PBXGroup;
 			children = (
+				396CDD8120208A7A00660A7B /* images */,
 				39152351201A8606002AF97A /* protocols */,
 				394F9430201620D40065CE25 /* instructions */,
 				390196D71FDE7E29000F2113 /* SVG */,
@@ -399,6 +409,8 @@
 				396CDD7A201F39C700660A7B /* AssemblageInterface.hpp */,
 				396CDD7E201FC7C800660A7B /* SimpleRenderer.cpp */,
 				396CDD7F201FC7C800660A7B /* SimpleRenderer.hpp */,
+				397AE6342020E09D007B2B04 /* AddInstructionInterface.cpp */,
+				397AE6352020E09D007B2B04 /* AddInstructionInterface.hpp */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";
@@ -535,7 +547,7 @@
 		3967C57B20120BAC006E31AB /* GeneratorEngine */ = {
 			isa = PBXGroup;
 			children = (
-				3967C57D20120BD4006E31AB /* instructions */,
+				3967C57D20120BD4006E31AB /* Instructions */,
 				3967C57C20120BCB006E31AB /* InstructionsProtocol */,
 				3967C5A120123687006E31AB /* GeneratorEngine.cpp */,
 				3967C5A220123687006E31AB /* GeneratorEngine.hpp */,
@@ -555,15 +567,16 @@
 			path = InstructionsProtocol;
 			sourceTree = "<group>";
 		};
-		3967C57D20120BD4006E31AB /* instructions */ = {
+		3967C57D20120BD4006E31AB /* Instructions */ = {
 			isa = PBXGroup;
 			children = (
 				3967C59820122DF5006E31AB /* Paths */,
 				3967C57E20120BEC006E31AB /* Instruction.hpp */,
+				397AE63720212344007B2B04 /* Instruction.cpp */,
 				391CFE452016409D00780A4C /* PythonInstruction.cpp */,
 				391CFE462016409D00780A4C /* PythonInstruction.hpp */,
 			);
-			path = instructions;
+			path = Instructions;
 			sourceTree = "<group>";
 		};
 		3967C59820122DF5006E31AB /* Paths */ = {
@@ -583,7 +596,6 @@
 				397A72D1201B3C510025058C /* PathsOrientRandomizer.hpp */,
 				397A72D4201B3C510025058C /* PathsSquarify.cpp */,
 				397A72D2201B3C510025058C /* PathsSquarify.hpp */,
-				396CDD7C201F97A800660A7B /* InstructionNames.cpp */,
 			);
 			path = Paths;
 			sourceTree = "<group>";
@@ -599,6 +611,19 @@
 				391C904B20174D530003E2B7 /* VectorImagesToJSONExporter.hpp */,
 			);
 			path = Exporters;
+			sourceTree = "<group>";
+		};
+		396CDD8120208A7A00660A7B /* images */ = {
+			isa = PBXGroup;
+			children = (
+				396CDD8520208BD700660A7B /* arrowDownSelected.png */,
+				396CDD8620208BD700660A7B /* arrowUpSelected.png */,
+				396CDD8720208BD700660A7B /* deleteSelected.png */,
+				396CDD8220208A7A00660A7B /* arrowDown.png */,
+				396CDD8320208A7A00660A7B /* arrowUp.png */,
+				396CDD8420208A7A00660A7B /* delete.png */,
+			);
+			path = images;
 			sourceTree = "<group>";
 		};
 		397BE0C71FDAED60006254F0 = {
@@ -813,7 +838,6 @@
 				3967C57120108C2A006E31AB /* MeshGroup.cpp in Sources */,
 				391C904F201783E10003E2B7 /* JSONToVectorImagesImporter.cpp in Sources */,
 				3967C577201117BA006E31AB /* ml2.cpp in Sources */,
-				396CDD7D201F97A800660A7B /* InstructionNames.cpp in Sources */,
 				397A72D8201B3C510025058C /* PathsInvert.cpp in Sources */,
 				39152360201B2EF5002AF97A /* JSONImporter.cpp in Sources */,
 				3952DCB1200BFC600098779F /* VectorImage.cpp in Sources */,
@@ -838,8 +862,10 @@
 				39D90C341FDAEF0F00282ED1 /* AppEngine.cpp in Sources */,
 				391CFE4A2016657700780A4C /* Utils.cpp in Sources */,
 				3923605C2009105600400C45 /* Image.cpp in Sources */,
+				397AE6362020E09D007B2B04 /* AddInstructionInterface.cpp in Sources */,
 				3915234F2019E25A002AF97A /* UIButton.cpp in Sources */,
 				3923604B2009105600400C45 /* SoundImporter.cpp in Sources */,
+				397AE63820212344007B2B04 /* Instruction.cpp in Sources */,
 				391C905F201907B30003E2B7 /* ProtocolsMenu.cpp in Sources */,
 				3923605A2009105600400C45 /* Asset.cpp in Sources */,
 				3967C59E20122EF8006E31AB /* SVGExporter.cpp in Sources */,

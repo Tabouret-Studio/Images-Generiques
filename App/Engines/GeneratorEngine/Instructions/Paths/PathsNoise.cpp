@@ -25,7 +25,8 @@ std::vector<VectorImage *> PathsNoise::execute(const std::vector<VectorImage *> 
 	for(Bezier path : paths)
 	{
 		path.applyCursor();
-		path.move(path.getStartPoint()+glm::vec3(rand()%100,rand()%100, 0));
+		path.getCursor()->translate(rand()%11 - 5, rand()%11 - 5, 0);
+		path.applyCursor();
 
 		shape << path;
 	}

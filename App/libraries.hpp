@@ -49,7 +49,6 @@
 
 //////////
 //NanoSVG
-#define NANOSVG_ALL_COLOR_KEYWORDS
 #include <NanoSVG/nanosvg.h>
 
 //////////
@@ -61,6 +60,9 @@
 #include <boost/uuid/uuid.hpp>
 #include <boost/uuid/uuid_generators.hpp>
 #include <boost/uuid/uuid_io.hpp>
+
+//PYTHON INSTRUCTION
+//#define IG_PYTHON_INSTRUCTIONS
 
 
 //////////////////

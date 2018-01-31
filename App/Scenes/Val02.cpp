@@ -39,12 +39,7 @@ namespace Scenes
 		m_fullImage = m_svg->getMesh();
 		m_fullImage->generate();
 
-		float factor;
-
-		if(m_svg->getWidth() > m_svg->getHeight())
-			factor = 400.0 / m_svg->getWidth();
-		else
-			factor = 400.0 / m_svg->getHeight();
+		float factor = std::min(400.0 / m_svg->getDimensions().x, 400.0 / m_svg->getDimensions().y) * 0.9f;
 
 		m_fullImage->getCursor()
 			->translate(225, 225, 0)

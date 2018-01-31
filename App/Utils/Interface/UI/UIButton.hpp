@@ -60,6 +60,8 @@ public:
 	 */
 	void setTextColors(const glm::vec4 &idleColor, const glm::vec4 &selectedColor);
 
+	void setBackColors(const glm::vec4 &idleColor, const glm::vec4 &selectedColor);
+
 	/**
 	 Set the caption to display on the button
 
@@ -134,6 +136,8 @@ private:
 	//The colors
 	glm::vec4 m_idleColor = glm::vec4(0, 0, 0, 1);
 	glm::vec4 m_selectedColor = glm::vec4(1, 1, 1, 1);
+	glm::vec4 m_backIdleColor = glm::vec4(0, 0, 0, 0.0);
+	glm::vec4 m_backSelectedColor = glm::vec4(0, 0, 0, 1.0);
 
 	//The text
 	Font * m_font;

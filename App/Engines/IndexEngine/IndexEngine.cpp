@@ -12,7 +12,7 @@
 
 #include <fstream>
 #include <algorithm>
-
+#include <ctime>
 
 bool IndexEngine::m_instanciated = false;
 
@@ -97,7 +97,8 @@ std::string IndexEngine::insertVectorIMage(const VectorImage * image, const std:
 {
 	SVGExporter exporter;
 	srcId imgId = App->genUUID();
-	std::string exportPath = "exports/" + boost::uuids::to_string(imgId);
+	std::string imgFileName = std::to_string(std::time(0));
+	std::string exportPath = "exports/" + imgFileName;
 
 	exporter.exportSVG(image, buildPath(exportPath));
 

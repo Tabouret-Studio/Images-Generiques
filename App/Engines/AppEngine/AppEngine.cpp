@@ -39,12 +39,19 @@ void AppEngine::executeScenes()
 	//get all scenes
 	std::vector<Scene *> scenes = App->getScenes();
 
-	//Execute all scenes
+	//Call scenes' events listeners and execute()
 	for(std::vector<Scene *>::iterator it = scenes.begin(); it != scenes.end(); ++it)
 	{
-		if((*it)->isEnabled()) {
-			(*it)->execute();
-		}
+		//Ignore disabled scenes
+		if(!(*it)->isEnabled())
+			continue;
+
+		//Window resized event
+		if(m_window.resized)
+			(*it)->onWindowResized();
+
+		//Execute
+		(*it)->execute();
 	}
 }
 

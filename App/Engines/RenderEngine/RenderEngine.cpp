@@ -46,6 +46,8 @@ void RenderEngine::initRender()
 	glDepthFunc(GL_LESS);
 
 	glEnable(GL_BLEND);
+	//glBlendEquationSeparate(GL_FUNC_ADD, GL_FUNC_ADD);
+	//glBlendFuncSeparate(GL_ONE, GL_SRC_COLOR, GL_ONE, GL_SRC_ALPHA);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
 	glEnable(GL_PROGRAM_POINT_SIZE);
@@ -169,6 +171,7 @@ void RenderEngine::render(const Mesh * mesh, const DrawCursor * cursor)
 	if(mesh->isTextured())
 	{
 		glBindTexture(GL_TEXTURE_2D, mesh->getTextureID());
+		check_gl_error();
 		mesh->getProgram()->setUniformUint("uTexturedMesh", 1);
 		mesh->getProgram()->setUniformUint("uTexture", 0);
 	}
@@ -184,7 +187,6 @@ void RenderEngine::render(const Mesh * mesh, const DrawCursor * cursor)
 
 	//Bind VAO
 	glBindVertexArray(*mesh->getVAO());
-	check_gl_error();
 
 	//Draw cube
 	glDrawArrays(mesh->getRenderFormat(), 0, (GLsizei)mesh->getVertexCount());

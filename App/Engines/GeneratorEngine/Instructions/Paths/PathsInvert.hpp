@@ -24,7 +24,7 @@ public:
 
 private:
 
-	PathsInvert() {};
+	PathsInvert(): Instruction(INSTRUCTION_SOURCE_PATHS, INSTRUCTION_PROPERTY_GEOMETRY, "Inversion") {};
 };
 
 #endif /* PathsInvert_hpp */

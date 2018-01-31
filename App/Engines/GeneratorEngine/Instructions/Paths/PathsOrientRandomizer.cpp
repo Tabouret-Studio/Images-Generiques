@@ -16,7 +16,8 @@ Instruction * PathsOrientRandomizer::get()
 
 std::vector<VectorImage *> PathsOrientRandomizer::execute(const std::vector<VectorImage *> &vectorImages)
 {
-	
+	vectorImages[0]->applyCursor();
+
 	std::vector<Bezier> paths = vectorImages[0]->getBeziers();
 
 	Shape shape;
@@ -24,7 +25,7 @@ std::vector<VectorImage *> PathsOrientRandomizer::execute(const std::vector<Vect
 	for(Bezier path : paths)
 	{
 		
-		path.getCursor()->rotate(Utils::rand(360),0,0,1);
+		path.getCursor()->rotate(5.0 - Utils::rand(10),0,0,1);
 		path.applyCursor();
 
 		shape << path;
