@@ -40,7 +40,7 @@ namespace Scenes
 
 		// INSTRUCTION A UPGRADE FOR MULTISVG PROCESS
 		//Loading
-		rId svgID = App->ressourcesEngine->loadAsset("github.svg", VECTOR);
+		rId svgID = App->ressourcesEngine->loadAsset("val.svg", VECTOR);
 		m_svg.push_back(*App->ressourcesEngine->getAsset(svgID));
 
 		// rId svgID2 = App->ressourcesEngine->loadAsset("handComputer.svg", VECTOR);
@@ -53,7 +53,8 @@ namespace Scenes
 		InstructionsProtocol protocol({
 			//"SHAPE_SYMX"
 			//"PATHS_ORDER_RANDOMIZER"
-			"SHAPE_SYMY"
+			//"SHAPE_SYMY"
+			"SHAPE_NOISE"
 		});
 
 		std::vector<VectorImage*> imageTransformed = protocol.execute(m_svg);

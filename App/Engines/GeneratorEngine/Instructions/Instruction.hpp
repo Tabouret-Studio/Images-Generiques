@@ -78,6 +78,7 @@ protected:
 #include "Paths/PathsIndex.hpp"
 #include "Shape/ShapeSymX.hpp"
 #include "Shape/ShapeSymY.hpp"
+#include "Shape/ShapeNoise.hpp"
 
 
 #endif /* Instruction_h */

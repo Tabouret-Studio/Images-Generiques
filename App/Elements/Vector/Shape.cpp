@@ -55,6 +55,13 @@ void Shape::applyCursor(const glm::mat4 &imageCursor)
 	m_cursor.reset();
 }
 
+void Shape::move(const glm::vec3 &dest){
+	glm::vec3 refpoint=getPaths()[0].getStartPoint();
+	glm::vec3 movement=dest-refpoint;
+	m_cursor.translate(movement);
+	applyCursor();
+}
+
 Shape &Shape::operator<<(const Bezier &path)
 {
 	m_paths.push_back(path);
