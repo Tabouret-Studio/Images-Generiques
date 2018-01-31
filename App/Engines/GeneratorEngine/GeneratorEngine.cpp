@@ -112,6 +112,7 @@ void GeneratorEngine::registerCPPInstructions()
 	registerInstruction(INSTRUCTION_CPP, "SHAPE_SYMX", ShapeSymX::get);
 	registerInstruction(INSTRUCTION_CPP, "SHAPE_SYMY", ShapeSymY::get);
 	registerInstruction(INSTRUCTION_CPP, "SHAPE_NOISE", ShapeNoise::get);
+	registerInstruction(INSTRUCTION_CPP, "SHAPE_INDEX", ShapeIndex::get);
 }
 
 

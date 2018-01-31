@@ -79,6 +79,7 @@ protected:
 #include "Shape/ShapeSymX.hpp"
 #include "Shape/ShapeSymY.hpp"
 #include "Shape/ShapeNoise.hpp"
+#include "Shape/ShapeIndex.hpp"
 
 
 #endif /* Instruction_h */

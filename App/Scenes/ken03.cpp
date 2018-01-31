@@ -40,7 +40,7 @@ namespace Scenes
 
 		// INSTRUCTION A UPGRADE FOR MULTISVG PROCESS
 		//Loading
-		rId svgID = App->ressourcesEngine->loadAsset("val.svg", VECTOR);
+		rId svgID = App->ressourcesEngine->loadAsset("handComputer.svg", VECTOR);
 		m_svg.push_back(*App->ressourcesEngine->getAsset(svgID));
 
 		// rId svgID2 = App->ressourcesEngine->loadAsset("handComputer.svg", VECTOR);
@@ -54,7 +54,8 @@ namespace Scenes
 			//"SHAPE_SYMX"
 			//"PATHS_ORDER_RANDOMIZER"
 			//"SHAPE_SYMY"
-			"SHAPE_NOISE"
+			//"SHAPE_NOISE"
+			"SHAPE_INDEX"
 		});
 
 		std::vector<VectorImage*> imageTransformed = protocol.execute(m_svg);
@@ -115,7 +116,7 @@ namespace Scenes
 		for (Mesh* mesh : m_mesh)
 		{
 			mesh->getCursor()->reset()
-			->translate(App->getWidth()/2, App->getHeight()/2, 1)->scale(m_zoomLevel, m_zoomLevel, 0);
+			->translate(10, 10, 1)->scale(m_zoomLevel, m_zoomLevel, 0);
 
 			mesh->render();
 		}

@@ -124,9 +124,9 @@ void Bezier::calculateBounds()
 	for(std::vector<glm::vec3>::const_iterator it = points.begin()+1; it != points.end(); ++it)
 	{
 		//Min
-		if(it->x < m_boundsMin.x) m_boundsMax.x = it->x;
-		if(it->y < m_boundsMin.y) m_boundsMax.y = it->y;
-		if(it->z < m_boundsMin.z) m_boundsMax.z = it->z;
+		if(it->x < m_boundsMin.x) m_boundsMin.x = it->x;
+		if(it->y < m_boundsMin.y) m_boundsMin.y = it->y;
+		if(it->z < m_boundsMin.z) m_boundsMin.z = it->z;
 
 		//Max
 		if(it->x > m_boundsMax.x) m_boundsMax.x = it->x;

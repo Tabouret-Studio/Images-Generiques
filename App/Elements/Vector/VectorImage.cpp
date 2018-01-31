@@ -177,9 +177,9 @@ void VectorImage::updateBounds(const std::vector<Shape> &shapes)
 void VectorImage::compareAndUpdateBounds(const Shape &shape)
 {
 	//Min
-	if(shape.getPosition().x < m_boundsMin.x) m_boundsMax.x = shape.getPosition().x;
-	if(shape.getPosition().y < m_boundsMin.y) m_boundsMax.y = shape.getPosition().y;
-	if(shape.getPosition().z < m_boundsMin.z) m_boundsMax.z = shape.getPosition().z;
+	if(shape.getPosition().x < m_boundsMin.x) m_boundsMin.x = shape.getPosition().x;
+	if(shape.getPosition().y < m_boundsMin.y) m_boundsMin.y = shape.getPosition().y;
+	if(shape.getPosition().z < m_boundsMin.z) m_boundsMin.z = shape.getPosition().z;
 
 	//Max
 	if(shape.getBoundsMax().x > m_boundsMax.x) m_boundsMax.x = shape.getBoundsMax().x;

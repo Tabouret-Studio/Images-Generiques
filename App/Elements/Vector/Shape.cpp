@@ -56,7 +56,7 @@ void Shape::applyCursor(const glm::mat4 &imageCursor)
 }
 
 void Shape::move(const glm::vec3 &dest){
-	glm::vec3 refpoint=getPaths()[0].getStartPoint();
+	glm::vec3 refpoint=getPosition();
 	glm::vec3 movement=dest-refpoint;
 	m_cursor.translate(movement);
 	applyCursor();
@@ -99,9 +99,9 @@ void Shape::updateBounds(const std::vector<Bezier> &paths)
 void Shape::compareAndUpdateBounds(const Bezier &path)
 {
 	//Min
-	if(path.getPosition().x < m_boundsMin.x) m_boundsMax.x = path.getPosition().x;
-	if(path.getPosition().y < m_boundsMin.y) m_boundsMax.y = path.getPosition().y;
-	if(path.getPosition().z < m_boundsMin.z) m_boundsMax.z = path.getPosition().z;
+	if(path.getPosition().x < m_boundsMin.x) m_boundsMin.x = path.getPosition().x;
+	if(path.getPosition().y < m_boundsMin.y) m_boundsMin.y = path.getPosition().y;
+	if(path.getPosition().z < m_boundsMin.z) m_boundsMin.z = path.getPosition().z;
 
 	//Max
 	if(path.getBoundsMax().x > m_boundsMax.x) m_boundsMax.x = path.getBoundsMax().x;
