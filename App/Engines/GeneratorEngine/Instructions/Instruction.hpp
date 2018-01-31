@@ -154,7 +154,11 @@ protected:
 #include "Paths/PathsNoise.hpp"
 #include "Paths/PathsOrientRandomizer.hpp"
 #include "Paths/PathsSquarify.hpp"
-
+#include "Paths/PathsIndex.hpp"
+#include "Shape/ShapeSymX.hpp"
+#include "Shape/ShapeSymY.hpp"
+#include "Shape/ShapeNoise.hpp"
+#include "Shape/ShapeIndex.hpp"
 
 
 #endif /* Instruction_h */

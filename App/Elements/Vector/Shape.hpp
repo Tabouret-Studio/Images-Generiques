@@ -100,6 +100,8 @@ public:
 
 	void applyCursor(const glm::mat4 &imageCursor);
 
+	void move(const glm::vec3 &dest);
+
 private:
 
 	std::vector<Bezier> m_paths;

@@ -126,8 +126,9 @@ private:
 #include "ml1.hpp"
 #include "ml2.hpp"
 #include "Gen01.hpp"
-
-
+#include "ken01.hpp"
+#include "ken02.hpp"
+#include "ken03.hpp"
 #include "ProtocolsMenu.hpp"
 #include "ProtocolRenderer.hpp"
 
