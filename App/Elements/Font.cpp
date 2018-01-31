@@ -63,16 +63,21 @@ void Font::storeSizedFont(FontFace &sizedFace)
 	glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
 
 	//Store all ASCII chars
-	for(uint c = 0; c < 128; ++c)
+	FT_ULong  charcode;
+	FT_UInt   glyphIndex;
+
+	charcode = FT_Get_First_Char(m_face, &glyphIndex);
+	while(glyphIndex != 0 )
 	{
-		sizedFace.chars.push_back(genFontCharacter(c));
+		sizedFace.chars.insert(std::pair<FT_ULong, FontCharacter>(charcode,genFontCharacter(charcode)));
+		charcode = FT_Get_Next_Char(m_face, charcode, &glyphIndex);
 	}
 
 	//Re-Enable GL Alignement
 	glPixelStorei(GL_UNPACK_ALIGNMENT, 4);
 }
 
-Mesh * Font::genCaption(const std::string &caption, const float &fontSize)
+Mesh * Font::genCaption(const std::u16string &caption, const float &fontSize)
 {
 	FontFace * fontFace = getSizedFace(fontSize);
 
@@ -81,7 +86,7 @@ Mesh * Font::genCaption(const std::string &caption, const float &fontSize)
 	uint textureHeight = fontFace->size * 2;
 
 	//Get texture width
-	for(char c : caption)
+	for(FT_ULong c : caption)
 		textureWidth += fontFace->chars[c].advance;
 
 	FontCharacter lastChar = fontFace->chars[caption[caption.size()-1]];
@@ -108,7 +113,7 @@ Mesh * Font::genCaption(const std::string &caption, const float &fontSize)
 	uint advanceX = 0;
 	FontCharacter fChar;
 
-	for(const char &c : caption)
+	for(const FT_ULong c : caption)
 	{
 		fChar = fontFace->chars[c];
 
@@ -155,7 +160,7 @@ FontFace * Font::getSizedFace(const float &fontSize)
 	return &m_sizedFaces[fontSize];
 }
 
-FontCharacter Font::genFontCharacter(char charID)
+FontCharacter Font::genFontCharacter(FT_ULong charID)
 {
 	GLuint texture;
 	FontCharacter character;
@@ -244,13 +249,13 @@ bool Font::prepareTexture(const uint &width, const uint &height, GLuint &frameBu
 	return true;
 }
 
-VectorImage * Font::genOutlines(const std::string &caption)
+VectorImage * Font::genOutlines(const std::u16string &caption)
 {
 	VectorImage * captionImage = new VectorImage();
 
 	float advanceX = 0;
 
-	for(const char &c : caption)
+	for(const FT_ULong c : caption)
 	{
 		FT_Load_Glyph(m_face, FT_Get_Char_Index(m_face, (FT_ULong)c), FT_LOAD_NO_SCALE | FT_LOAD_NO_BITMAP);
 		FT_GlyphSlot slot = m_face->glyph;
@@ -271,7 +276,7 @@ VectorImage * Font::genOutlines(const std::string &caption)
 	return captionImage;
 }
 
-Shape Font::genCharacterOutline(char charID)
+Shape Font::genCharacterOutline(FT_ULong charID)
 {
 	//Load glyph
 
@@ -328,8 +333,8 @@ void Font::freeFontSize(const float &fontSize)
 
 	FontFace * faceToRemove = getSizedFace(fontSize);
 
-	for(FontCharacter fChar : faceToRemove->chars)
-		glDeleteTextures(1, &fChar.texture);
+	for(std::pair<FT_ULong, FontCharacter> fChar : faceToRemove->chars)
+		glDeleteTextures(1, &fChar.second.texture);
 
 	faceToRemove->chars.clear();
 

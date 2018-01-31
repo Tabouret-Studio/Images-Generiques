@@ -41,7 +41,7 @@ namespace Scenes
 		sceneTitle->setFont(m_font, 50);
 		sceneTitle->setCaptionAlign(UI_TEXT_LEFT);
 		sceneTitle->setTextColors(glm::vec4(0, 0, 0, 1), glm::vec4(0, 0, 0, 1));
-		sceneTitle->setCaption("ajouter une instruction");
+		sceneTitle->setCaption(u"ajouter une instruction");
 		sceneTitle->setSelectable(false);
 
 		m_baseInterface->addItem(sceneTitle);
@@ -49,7 +49,7 @@ namespace Scenes
 		//Back button
 		m_backButton = new UIButton(UI_BUTTON_TEXT, App->getWidth() - 170, 50, 150, 30);
 		m_backButton->setFont(m_font, 30);
-		m_backButton->setCaption("retour");
+		m_backButton->setCaption(u"retour");
 		m_backButton->setAction([this] () -> void {
 			m_goback = true;
 		});
@@ -130,30 +130,30 @@ namespace Scenes
 			->scale(4, App->getHeight() - 334, 0);
 
 		//Regenerate lists
-		std::string tempSource, tempType, tempAction;
+		std::u16string tempSource, tempType, tempAction;
 
 		displaySourceList();
 
-		if(m_currentSource == "")
+		if(m_currentSource == u"")
 			return;
 
 		tempSource = m_currentSource;
-		m_currentSource = "";
+		m_currentSource = u"";
 
 		tempType = m_currentType;
-		m_currentType = "";
+		m_currentType = u"";
 
 		tempAction = m_currentAction;
-		m_currentAction = "";
+		m_currentAction = u"";
 
 		displayTypeList(tempSource);
 
-		if(tempType == "")
+		if(tempType == u"")
 			return;
 
 		displayActionList(m_currentSource, tempType);
 
-		if(tempAction == "")
+		if(tempAction == u"")
 			return;
 
 		displayConfirm(m_currentSource, m_currentType, tempAction);
@@ -195,11 +195,11 @@ namespace Scenes
 				//Source is absent in current lists
 
 				//Create action map
-				std::map<std::string, std::string> actions;
+				std::map<std::u16string, std::string> actions;
 				actions[in.second->getAction()] = in.first;
 
 				//Create type map
-				std::map<std::string, std::map<std::string, std::string>> types;
+				std::map<std::u16string, std::map<std::u16string, std::string>> types;
 				types[in.second->getTypeName()] = actions;
 
 				//Insert in source map
@@ -215,7 +215,7 @@ namespace Scenes
 				//Type is absent from source list
 
 				//Create action map
-				std::map<std::string, std::string> actions;
+				std::map<std::u16string, std::string> actions;
 				actions[in.second->getAction()] = in.first;
 
 				//Insert in type map
@@ -242,19 +242,19 @@ namespace Scenes
 		delete m_actionListInterface; m_actionListInterface = nullptr;  m_actionBtn = nullptr;
 		delete m_instructionConfirmInterface; m_instructionConfirmInterface = nullptr;
 
-		m_currentSource = "";
-		m_currentType = "";
-		m_currentAction = "";
+		m_currentSource = u"";
+		m_currentType = u"";
+		m_currentAction = u"";
 
 		uint posY = 150;
 
-		for(const std::pair<std::string, std::map<std::string, std::map<std::string, std::string>>> &source : m_instructionsLists)
+		for(const std::pair<std::u16string, std::map<std::u16string, std::map<std::u16string, std::string>>> &source : m_instructionsLists)
 		{
-			std::string sourceName = source.first;
+			std::u16string sourceName = source.first;
 			UIButton * sourceBtn = new UIButton(UI_BUTTON_TEXT, m_listsLeftMargin, posY, 198, 30);
 			sourceBtn->setFont(m_font, 30);
 			sourceBtn->setCaptionAlign(UI_TEXT_LEFT);
-			sourceBtn->setCaption(" " + sourceName);
+			sourceBtn->setCaption(u" " + sourceName);
 			sourceBtn->setAction([this, sourceName, sourceBtn] () -> void {
 				displayTypeList(sourceName);
 
@@ -276,7 +276,7 @@ namespace Scenes
 		}
 	}
 
-	void AddInstructionInterface::displayTypeList(const std::string &source)
+	void AddInstructionInterface::displayTypeList(const std::u16string &source)
 	{
 		if(m_currentSource == source)
 			return;
@@ -286,22 +286,22 @@ namespace Scenes
 		delete m_instructionConfirmInterface; m_instructionConfirmInterface = nullptr;
 
 		m_currentSource = source;
-		m_currentType = "";
-		m_currentAction = "";
+		m_currentType = u"";
+		m_currentAction = u"";
 
 		uint posY = 150;
 
 		m_typeListInterface = new Interface();
 		m_typeListInterface->setInteractionFormat(INTERFACE_INTERACTIONS_MOUSE);
 
-		for(const std::pair<std::string, std::map<std::string, std::string>> &type : m_instructionsLists[source])
+		for(const std::pair<std::u16string, std::map<std::u16string, std::string>> &type : m_instructionsLists[source])
 		{
-			std::string typeName = type.first;
+			std::u16string typeName = type.first;
 
 			UIButton * typeBtn = new UIButton(UI_BUTTON_TEXT, m_listsLeftMargin + 202, posY, 246, 30);
 			typeBtn->setFont(m_font, 30);
 			typeBtn->setCaptionAlign(UI_TEXT_LEFT);
-			typeBtn->setCaption(" " + typeName);
+			typeBtn->setCaption(u" " + typeName);
 			typeBtn->setAction([this, source, typeName, typeBtn] () -> void {
 				displayActionList(source, typeName);
 
@@ -329,7 +329,7 @@ namespace Scenes
 		m_instructionConfirmInterface = nullptr;
 	}
 
-	void AddInstructionInterface::displayActionList(const std::string &source, const std::string &type)
+	void AddInstructionInterface::displayActionList(const std::u16string &source, const std::u16string &type)
 	{
 		if(m_currentSource == source && m_currentType == type)
 			return;
@@ -338,21 +338,21 @@ namespace Scenes
 		delete m_instructionConfirmInterface; m_instructionConfirmInterface = nullptr;
 
 		m_currentType = type;
-		m_currentAction = "";
+		m_currentAction = u"";
 
 		uint posY = 150;
 
 		m_actionListInterface = new Interface();
 		m_actionListInterface->setInteractionFormat(INTERFACE_INTERACTIONS_MOUSE);
 
-		for(const std::pair<std::string, std::string> &action : m_instructionsLists[source][type])
+		for(const std::pair<std::u16string, std::string> &action : m_instructionsLists[source][type])
 		{
-			std::string actionName = action.first;
+			std::u16string actionName = action.first;
 
 			UIButton * actionBtn = new UIButton(UI_BUTTON_TEXT, m_listsLeftMargin + 452, posY, 558, 30);
 			actionBtn->setFont(m_font, 30);
 			actionBtn->setCaptionAlign(UI_TEXT_LEFT);
-			actionBtn->setCaption(" " + actionName);
+			actionBtn->setCaption(u" " + actionName);
 			actionBtn->setAction([this, source, type, actionName, actionBtn] () -> void {
 				displayConfirm(source, type, actionName);
 
@@ -376,7 +376,7 @@ namespace Scenes
 		m_instructionConfirmInterface = nullptr;
 	}
 
-	void AddInstructionInterface::displayConfirm(const std::string &source, const std::string &type, const std::string &action)
+	void AddInstructionInterface::displayConfirm(const std::u16string &source, const std::u16string &type, const std::u16string &action)
 	{
 		if(m_currentSource == source && m_currentType == type && m_currentAction == action)
 			return;
@@ -390,7 +390,7 @@ namespace Scenes
 		std::string instructionID = m_instructionsLists[source][type][action];
 		Instruction * instruction = App->generatorEngine->getInstruction(instructionID);
 
-		std::string instructionTextName = instruction->getFullName();
+		std::u16string instructionTextName = instruction->getFullName();
 
 		delete instruction;
 
@@ -404,7 +404,7 @@ namespace Scenes
 
 		UIButton * addInstruction = new UIButton(UI_BUTTON_TEXT, App->getWidth() / 2 - 125, App->getHeight() - 50, 250, 30);
 		addInstruction->setFont(m_font, 30);
-		addInstruction->setCaption("- ajouter -");
+		addInstruction->setCaption(u"- ajouter -");
 		addInstruction->setAction([this, instructionID] () -> void {
 			addInstructionAndQuit(instructionID);
 		});

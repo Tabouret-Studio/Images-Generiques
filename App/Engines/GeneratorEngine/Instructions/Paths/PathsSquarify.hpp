@@ -24,7 +24,7 @@ public:
 
 private:
 
-	PathsSquarify(): Instruction(INSTRUCTION_SOURCE_PATHS, INSTRUCTION_PROPERTY_GEOMETRY, "echelonner") {};
+	PathsSquarify(): Instruction(INSTRUCTION_SOURCE_PATHS, INSTRUCTION_PROPERTY_GEOMETRY, u"echelonner") {};
 };
 
 #endif /* PathsSquarify_hpp */

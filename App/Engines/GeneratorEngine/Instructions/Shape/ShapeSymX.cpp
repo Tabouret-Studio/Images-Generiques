@@ -13,12 +13,12 @@ Instruction * ShapeSymX::get()
 	return new ShapeSymX();
 }
 
-std::vector<VectorImage *> ShapeSymX::execute(const std::vector<VectorImage *> &vectorImages)
+std::vector<VectorImage *> ShapeSymX::execute(std::vector<VectorImage *> &vectorImages)
 {
 	vectorImages[0]->applyCursor();
-	std::vector<Shape> shapes=vectorImages[0]->getShapes();
-	std::cout<<"nombre de shapes récupéré: "<<shapes.size()<<std::endl;
-	std::vector<Bezier> paths,buffer;
+	std::vector<Shape> *shapes=vectorImages[0]->getShapes();
+	std::cout<<"nombre de shapes récupéré: "<<shapes->size()<<std::endl;
+	std::vector<Bezier> *paths,buffer;
 	std::vector<glm::vec3> points,transformed;
 	VectorImage* svg=new VectorImage();
 
@@ -26,9 +26,9 @@ std::vector<VectorImage *> ShapeSymX::execute(const std::vector<VectorImage *> &
 	glm::vec3 projected,projection,sympoint,
 	symline=glm::vec3(1,0,0); // axe de symétrie
 	float hauteur;
-	for(Shape shape:shapes){
+	for(Shape shape: *shapes){
 		paths = shape.getPaths();
-		for(Bezier path : paths)
+		for(Bezier path : *paths)
 		{
 			//path.applyCursor();
 			points = {path.getStartPoint(),path.getStartHandle(),path.getEndHandle(),path.getEndPoint()};

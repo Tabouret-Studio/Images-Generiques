@@ -8,43 +8,43 @@
 
 #include "Instruction.hpp"
 
-std::string Instruction::getSourceName() const
+std::u16string Instruction::getSourceName() const
 {
 	switch(m_instructionSource)
 	{
-		case INSTRUCTION_SOURCE_PATHS : return "traces"; break;
-		case INSTRUCTION_SOURCE_SHAPES : return "formes"; break;
+		case INSTRUCTION_SOURCE_PATHS : return u"tracés"; break;
+		case INSTRUCTION_SOURCE_SHAPES : return u"formes"; break;
 	}
 }
 
-std::string Instruction::getSourcePrefix() const
+std::u16string Instruction::getSourcePrefix() const
 {
 	switch(m_instructionSource)
 	{
-		case INSTRUCTION_SOURCE_PATHS : return "des "; break;
-		case INSTRUCTION_SOURCE_SHAPES : return "des "; break;
+		case INSTRUCTION_SOURCE_PATHS : return u"des "; break;
+		case INSTRUCTION_SOURCE_SHAPES : return u"des "; break;
 	}
 }
 
-std::string Instruction::getTypeName() const
+std::u16string Instruction::getTypeName() const
 {
 	switch(m_instructionProperty)
 	{
-		case INSTRUCTION_PROPERTY_ORDER : return "ordre"; break;
-		case INSTRUCTION_PROPERTY_GEOMETRY : return "geometrie"; break;
+		case INSTRUCTION_PROPERTY_ORDER : return u"ordre"; break;
+		case INSTRUCTION_PROPERTY_GEOMETRY : return u"géometrie"; break;
 	}
 }
 
-std::string Instruction::getTypePrefix() const
+std::u16string Instruction::getTypePrefix() const
 {
 	switch(m_instructionProperty)
 	{
-		case INSTRUCTION_PROPERTY_ORDER : return "l'"; break;
-		case INSTRUCTION_PROPERTY_GEOMETRY : return "la "; break;
+		case INSTRUCTION_PROPERTY_ORDER : return u"l'"; break;
+		case INSTRUCTION_PROPERTY_GEOMETRY : return u"la "; break;
 	}
 }
 
-std::string Instruction::getFullName() const
+std::u16string Instruction::getFullName() const
 {
-	return getAction() + " " + getTypePrefix() + getTypeName() + " " + getSourcePrefix() + getSourceName();
+	return getAction() + u" " + getTypePrefix() + getTypeName() + u" " + getSourcePrefix() + getSourceName();
 }

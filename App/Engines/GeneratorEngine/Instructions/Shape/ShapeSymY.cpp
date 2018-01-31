@@ -13,7 +13,7 @@ Instruction * ShapeSymY::get()
 	return new ShapeSymY();
 }
 
-std::vector<VectorImage *> ShapeSymY::execute(const std::vector<VectorImage *> &vectorImages)
+std::vector<VectorImage *> ShapeSymY::execute(std::vector<VectorImage *> &vectorImages)
 {
 	/*
 	for()
@@ -21,7 +21,7 @@ std::vector<VectorImage *> ShapeSymY::execute(const std::vector<VectorImage *> &
 		shape.applyCursor();
 	*/
 	vectorImages[0]->applyCursor();
-	std::vector<Shape> shapes=vectorImages[0]->getShapes();
+	std::vector<Shape> * shapes = vectorImages[0]->getShapes();
 /*
 	std::cout<<"nombre de shapes récupéré: "<<shapes.size()<<std::endl;
 	std::vector<Bezier> paths,buffer;
@@ -34,7 +34,7 @@ std::vector<VectorImage *> ShapeSymY::execute(const std::vector<VectorImage *> &
 	symline=glm::vec3(1,0,0); // axe de symétrie
 	float hauteur;
 */
-	for(Shape shape:shapes){
+	for(Shape shape: *shapes){
 		
 		shape.getCursor()->rotate(180,0,1,0);
 		shape.applyCursor();

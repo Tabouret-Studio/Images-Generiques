@@ -86,14 +86,14 @@ public:
 
 	 @return Name of the source
 	 */
-	std::string getSourceName() const;
+	std::u16string getSourceName() const;
 
 	/**
 	 Get the source prefix for pretty-printing
 
 	 @return The prefix
 	 */
-	std::string getSourcePrefix() const;
+	std::u16string getSourcePrefix() const;
 
 	/**
 	 Get the property the instruction is working on
@@ -107,31 +107,31 @@ public:
 
 	 @return The type name
 	 */
-	std::string getTypeName() const;
+	std::u16string getTypeName() const;
 
 	/**
 	 Get the type prefix for pretty printing
 
 	 @return The prefix
 	 */
-	std::string getTypePrefix() const;
+	std::u16string getTypePrefix() const;
 
 	/**
 	 Get the instruction name
 
 	 @return The name
 	 */
-	std::string inline getAction() const { return m_instructionAction; };
+	std::u16string inline getAction() const { return m_instructionAction; };
 
 	/**
 	 Return the full name for pretty-printing
 
 	 @return The full name
 	 */
-	std::string getFullName() const;
+	std::u16string getFullName() const;
 
 protected:
-	Instruction(const instructionSource &source, const instructionProperty &property, const std::string &action):
+	Instruction(const instructionSource &source, const instructionProperty &property, const std::u16string &action):
 		m_parameters(nullptr),
 		m_instructionSource(source),
 		m_instructionProperty(property),
@@ -141,7 +141,7 @@ protected:
 
 	instructionSource m_instructionSource;
 	instructionProperty m_instructionProperty;
-	std::string m_instructionAction;
+	std::u16string m_instructionAction;
 };
 
 #include "PythonInstruction.hpp"

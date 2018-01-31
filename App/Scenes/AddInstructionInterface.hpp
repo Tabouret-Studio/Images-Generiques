@@ -90,19 +90,19 @@ namespace Scenes
 
 		uint m_listsLeftMargin;
 
-		std::string m_currentSource = "";
-		std::string m_currentType = "";
-		std::string m_currentAction = "";
+		std::u16string m_currentSource = u"";
+		std::u16string m_currentType = u"";
+		std::u16string m_currentAction = u"";
 
 		//Lists
 		//[SOURCE, [TYPE, [ACTION, ID]]]
-		std::map<std::string, std::map<std::string, std::map<std::string, std::string>>> m_instructionsLists;
+		std::map<std::u16string, std::map<std::u16string, std::map<std::u16string, std::string>>> m_instructionsLists;
 
 		void parseInstructions();
 		void displaySourceList();
-		void displayTypeList(const std::string &source);
-		void displayActionList(const std::string &source, const std::string &type);
-		void displayConfirm(const std::string &source, const std::string &type, const std::string &action);
+		void displayTypeList(const std::u16string &source);
+		void displayActionList(const std::u16string &source, const std::u16string &type);
+		void displayConfirm(const std::u16string &source, const std::u16string &type, const std::u16string &action);
 		void addInstructionAndQuit(const std::string &instruction);
 	};
 }

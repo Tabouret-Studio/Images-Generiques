@@ -97,7 +97,7 @@ void UIButton::setBackColors(const glm::vec4 &idleColor, const glm::vec4 &select
 	refreshTextColor();
 }
 
-void UIButton::setCaption(const std::string &caption)
+void UIButton::setCaption(const std::u16string &caption)
 {
 	if(m_caption == caption)
 		return;

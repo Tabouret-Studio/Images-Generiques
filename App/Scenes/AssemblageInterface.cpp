@@ -53,7 +53,7 @@ namespace Scenes
 		sceneTitle->setFont(m_font, 50);
 		sceneTitle->setCaptionAlign(UI_TEXT_LEFT);
 		sceneTitle->setTextColors(glm::vec4(0, 0, 0, 1), glm::vec4(0, 0, 0, 1));
-		sceneTitle->setCaption("assemblage");
+		sceneTitle->setCaption(u"assemblage");
 		sceneTitle->setSelectable(false);
 		sceneTitle->setAction(nullptr);
 
@@ -62,7 +62,7 @@ namespace Scenes
 		//Add instruction button
 		m_addInstructionBtn = new UIButton(UI_BUTTON_TEXT, 420, 0, 175, 30);
 		m_addInstructionBtn->setFont(m_font, 30);
-		m_addInstructionBtn->setCaption("ajouter +");
+		m_addInstructionBtn->setCaption(u"ajouter +");
 		m_addInstructionBtn->setAction([this] () -> void {
 
 			//Disable current interface
@@ -82,17 +82,17 @@ namespace Scenes
 		//PlayPause Btn
 		m_playPauseBtn = new UIButton(UI_BUTTON_TEXT, 430, 50, 150, 30);
 		m_playPauseBtn->setFont(m_font, 30);
-		m_playPauseBtn->setCaption("boucle");
+		m_playPauseBtn->setCaption(u"boucle");
 		m_playPauseBtn->setAction([this] () -> void {
 			if(m_playing)
 			{
 				m_playing = false;
-				m_playPauseBtn->setCaption("boucle");
+				m_playPauseBtn->setCaption(u"boucle");
 				return;
 			}
 
 			m_playing = true;
-			m_playPauseBtn->setCaption("pause");
+			m_playPauseBtn->setCaption(u"pause");
 		});
 
 		m_baseInterface->addItem(m_playPauseBtn);
@@ -100,7 +100,7 @@ namespace Scenes
 		//Reset Btn
 		m_resetBtn = new UIButton(UI_BUTTON_TEXT, 10, 0, 175, 20);
 		m_resetBtn->setFont(m_font, 20);
-		m_resetBtn->setCaption("recommencer");
+		m_resetBtn->setCaption(u"recommencer");
 		m_resetBtn->setAction([this] () -> void {
 			resetLoop();
 		});
@@ -110,7 +110,7 @@ namespace Scenes
 		//Reset Btn
 		m_saveSVGBtn = new UIButton(UI_BUTTON_TEXT, App->getWidth() - 185, App->getHeight() - 20, 175, 20);
 		m_saveSVGBtn->setFont(m_font, 20);
-		m_saveSVGBtn->setCaption("enregistrer");
+		m_saveSVGBtn->setCaption(u"enregistrer");
 		m_saveSVGBtn->setAction([this] () -> void {
 			saveWorkingImage();
 		});
@@ -216,7 +216,7 @@ namespace Scenes
 			UIButton * emptyProtocol = new UIButton(UI_BUTTON_TEXT, 45, posY-13, 425, 30);
 			emptyProtocol->setFont(m_font, 20);
 			emptyProtocol->setCaptionAlign(UI_TEXT_LEFT);
-			emptyProtocol->setCaption("l'assemblage est vide");
+			emptyProtocol->setCaption(u"l'assemblage est vide");
 			emptyProtocol->setSelectable(false);
 			
 			m_instructionsInterface->addItem(emptyProtocol);
@@ -246,7 +246,7 @@ namespace Scenes
 		//Remove Button
 		UIButton * instructionRemoveBtn = new UIButton(UI_BUTTON_TEXT, 10, posY, 30, 30);
 		instructionRemoveBtn->setFont(m_font, 30);
-		instructionRemoveBtn->setCaption("X");
+		instructionRemoveBtn->setCaption(u"X");
 		instructionRemoveBtn->setAction([this, i] () -> void {
 			m_protocol->removeInstruction(i);
 			m_reloadList = true;
@@ -255,7 +255,7 @@ namespace Scenes
 
 		m_instructionsInterface->addItem(instructionRemoveBtn);
 
-		std::string instructionTextName = instruction->getFullName();
+		std::u16string instructionTextName = instruction->getFullName();
 
 		//Instruction name
 		UIButton * instructionBtn = new UIButton(UI_BUTTON_TEXT, 45, posY-13, 425, 30);
@@ -271,7 +271,7 @@ namespace Scenes
 			//Move up Button
 			UIButton * instructionUpBtn = new UIButton(UI_BUTTON_TEXT, 535, posY, 30, 30);
 			instructionUpBtn->setFont(m_font, 30);
-			instructionUpBtn->setCaption("+");
+			instructionUpBtn->setCaption(u"+");
 			instructionUpBtn->setAction([this, i] () -> void {
 				m_protocol->swapInstructions(i-1, i);
 				m_reloadList = true;
@@ -286,7 +286,7 @@ namespace Scenes
 			//Move down Button
 			UIButton * instructionDownBtn = new UIButton(UI_BUTTON_TEXT, 565, posY, 30, 30);
 			instructionDownBtn->setFont(m_font, 30);
-			instructionDownBtn->setCaption("-");
+			instructionDownBtn->setCaption(u"-");
 			instructionDownBtn->setAction([this, i] () -> void {
 				m_protocol->swapInstructions(i, i+1);
 				m_reloadList = true;
@@ -331,8 +331,10 @@ namespace Scenes
 		//reset working image
 		delete m_workingImage;
 
-		rId svgID = App->ressourcesEngine->loadAsset("github.svg", VECTOR);
-		m_workingImage = new VectorImage(*App->ressourcesEngine->getAsset(svgID)); //Copy constructor
+		//rId svgID = App->ressourcesEngine->loadAsset("github.svg", VECTOR);
+		//m_workingImage = new VectorImage(*App->ressourcesEngine->getAsset(svgID)); //Copy constructor
+
+		m_workingImage = m_font->genOutlines(u"é");
 
 		m_renderer->clear();
 		sendToRenderer(m_workingImage, 1);

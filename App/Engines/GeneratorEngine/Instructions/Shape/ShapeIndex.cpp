@@ -15,7 +15,7 @@ Instruction * ShapeIndex::get()
 	return new ShapeIndex();
 }
 
-std::vector<VectorImage *> ShapeIndex::execute(const std::vector<VectorImage *> &vectorImages)
+std::vector<VectorImage *> ShapeIndex::execute(std::vector<VectorImage *> &vectorImages)
 {
 
 	// Dimensions d'un tracé
@@ -23,7 +23,7 @@ std::vector<VectorImage *> ShapeIndex::execute(const std::vector<VectorImage *> 
 	// Espacement entre chaque courbe
 	float pas_x=App->getWidth()/20,pas_y=App->getHeight()/20;
 	
-	std::vector<Shape> shapes,buffer;
+	std::vector<Shape> *shapes,buffer;
 	std::vector<VectorImage*> resultat;
 
 	//std::cout<<"pas x et y: "<<pas_x<<" "<<pas_y<<std::endl;
@@ -34,7 +34,7 @@ std::vector<VectorImage *> ShapeIndex::execute(const std::vector<VectorImage *> 
 	for(VectorImage* svg:vectorImages){
 
 		shapes=svg->getShapes();
-		for(Shape shape : shapes)
+		for(Shape shape : *shapes)
 		{
 			//std::cout<<"last pos"<<lastPos.x<<" "<<lastPos.y<<std::endl;
 	

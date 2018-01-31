@@ -15,7 +15,7 @@ Instruction * PathsIndex::get()
 	return new PathsIndex();
 }
 
-std::vector<VectorImage *> PathsIndex::execute(const std::vector<VectorImage *> &vectorImages)
+std::vector<VectorImage *> PathsIndex::execute(std::vector<VectorImage *> &vectorImages)
 {
 
 	// Dimensions d'un tracé
@@ -69,7 +69,6 @@ std::vector<VectorImage *> PathsIndex::execute(const std::vector<VectorImage *> 
 		// L'instruction est elle réductrice ?
 		// Le protocole de la scène s'applique sur l'ensemble m_svg, et suivant l'instruction, on peut n'avoir plus qu'une seule image
 		resultat.push_back(new VectorImage(shape));
-		std::cout<<"shape size: "<<shape.getPaths().size()<<std::endl;
 
 		// VIDER LA SHAPE avant d'opérer un nouveau svg
 		// fuites ? getpaths() modifie t'il l'attrib ??

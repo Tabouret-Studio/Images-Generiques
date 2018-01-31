@@ -13,7 +13,7 @@ public:
 
 private:
 
-	PathsLinearAlizer(): Instruction(INSTRUCTION_SOURCE_PATHS, INSTRUCTION_PROPERTY_GEOMETRY, "lineariser") {};
+	PathsLinearAlizer(): Instruction(INSTRUCTION_SOURCE_PATHS, INSTRUCTION_PROPERTY_GEOMETRY, u"lineariser") {};
 };
 
 #endif /* PathsLinearAlizer_hpp */

@@ -38,7 +38,7 @@ struct FontCharacter
 struct FontFace
 {
 	float size;
-	std::vector<FontCharacter> chars;
+	std::map<FT_ULong, FontCharacter> chars;
 };
 
 /////////////
@@ -71,9 +71,9 @@ public:
 	 @param fontSize The size to render the text
 	 @return The tile in a mesh
 	 */
-	Mesh * genCaption(const std::string &caption, const float &fontSize);
+	Mesh * genCaption(const std::u16string &caption, const float &fontSize);
 
-	VectorImage * genOutlines(const std::string &caption);
+	VectorImage * genOutlines(const std::u16string &caption);
 
 	/**
 	 Liberate the font for the given size if it has been generated
@@ -112,9 +112,9 @@ private:
 	 @param charID The character to render
 	 @return The character infos
 	 */
-	FontCharacter genFontCharacter(char charID);
+	FontCharacter genFontCharacter(FT_ULong charID);
 
-	Shape genCharacterOutline(char charID);
+	Shape genCharacterOutline(FT_ULong charID);
 
 	/**
 	 Prepare a texture to hold up caption generation

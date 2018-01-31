@@ -66,7 +66,8 @@ namespace Scenes
 			int i = 0;
 
 			//Gen Shape text
-			textMesh = font->genCaption("Shape " + std::to_string(j+1), 25);
+			std::string str = "Shape " + std::to_string(j+1);
+			textMesh = font->genCaption(std::u16string(str.begin(), str.end()), 25);
 			textMesh->getCursor()->translate(175, roofLine, 0);
 			textMesh->generate();
 

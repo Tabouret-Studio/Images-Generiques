@@ -67,7 +67,7 @@ public:
 
 	 @param caption text to display
 	 */
-	void setCaption(const std::string &caption);
+	void setCaption(const std::u16string &caption);
 
 	/**
 	 Set the textures used by the item
@@ -143,7 +143,7 @@ private:
 	Font * m_font;
 	float m_fontSize;
 	UIButtonTextAlign m_textAlign;
-	std::string m_caption;
+	std::u16string m_caption;
 };
 
 #endif /* UIButton_hpp */

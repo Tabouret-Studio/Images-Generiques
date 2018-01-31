@@ -73,6 +73,11 @@
 		39AF3CCC1FDB4FE10089622E /* SDL2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39AF3CCB1FDB4FE10089622E /* SDL2.framework */; };
 		39AF3CD01FDB51AD0089622E /* RenderEngine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39AF3CCE1FDB51AD0089622E /* RenderEngine.cpp */; };
 		39B3714B2021C581008EACAA /* VectorImageExcerpt.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39B371492021C580008EACAA /* VectorImageExcerpt.cpp */; };
+		39B3715520222A3C008EACAA /* ShapeIndex.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39B3715020222A3C008EACAA /* ShapeIndex.cpp */; };
+		39B3715620222A3C008EACAA /* ShapeNoise.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39B3715220222A3C008EACAA /* ShapeNoise.cpp */; };
+		39B3715720222A3C008EACAA /* ShapeSymY.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39B3715320222A3C008EACAA /* ShapeSymY.cpp */; };
+		39B3715820222A3C008EACAA /* ShapeSymX.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39B3715420222A3C008EACAA /* ShapeSymX.cpp */; };
+		39B3715B20222A49008EACAA /* PathsIndex.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39B3715A20222A49008EACAA /* PathsIndex.cpp */; };
 		39D90C1A1FDAEE8400282ED1 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39D90C181FDAEE8400282ED1 /* main.cpp */; };
 		39D90C341FDAEF0F00282ED1 /* AppEngine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39D90C2C1FDAEF0F00282ED1 /* AppEngine.cpp */; };
 		39D90C3F1FDB403E00282ED1 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39D90C3E1FDB403E00282ED1 /* OpenGL.framework */; };
@@ -264,6 +269,16 @@
 		39AF3CD11FDB541F0089622E /* ImagesGeneriques */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = ImagesGeneriques; sourceTree = "<group>"; };
 		39B371492021C580008EACAA /* VectorImageExcerpt.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = VectorImageExcerpt.cpp; sourceTree = "<group>"; };
 		39B3714A2021C580008EACAA /* VectorImageExcerpt.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = VectorImageExcerpt.hpp; sourceTree = "<group>"; };
+		39B3714D20222A3C008EACAA /* ShapeNoise.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ShapeNoise.hpp; sourceTree = "<group>"; };
+		39B3714E20222A3C008EACAA /* ShapeSymY.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ShapeSymY.hpp; sourceTree = "<group>"; };
+		39B3714F20222A3C008EACAA /* ShapeSymX.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ShapeSymX.hpp; sourceTree = "<group>"; };
+		39B3715020222A3C008EACAA /* ShapeIndex.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ShapeIndex.cpp; sourceTree = "<group>"; };
+		39B3715120222A3C008EACAA /* ShapeIndex.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ShapeIndex.hpp; sourceTree = "<group>"; };
+		39B3715220222A3C008EACAA /* ShapeNoise.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ShapeNoise.cpp; sourceTree = "<group>"; };
+		39B3715320222A3C008EACAA /* ShapeSymY.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ShapeSymY.cpp; sourceTree = "<group>"; };
+		39B3715420222A3C008EACAA /* ShapeSymX.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ShapeSymX.cpp; sourceTree = "<group>"; };
+		39B3715920222A49008EACAA /* PathsIndex.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PathsIndex.hpp; sourceTree = "<group>"; };
+		39B3715A20222A49008EACAA /* PathsIndex.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PathsIndex.cpp; sourceTree = "<group>"; };
 		39D90C141FDAEDDC00282ED1 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		39D90C161FDAEE1400282ED1 /* Makefile */ = {isa = PBXFileReference; explicitFileType = sourcecode.make; path = Makefile; sourceTree = "<group>"; usesTabs = 1; };
 		39D90C181FDAEE8400282ED1 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
@@ -575,6 +590,7 @@
 		3967C57D20120BD4006E31AB /* Instructions */ = {
 			isa = PBXGroup;
 			children = (
+				39B3714C20222A3C008EACAA /* Shape */,
 				3967C59820122DF5006E31AB /* Paths */,
 				3967C57E20120BEC006E31AB /* Instruction.hpp */,
 				397AE63720212344007B2B04 /* Instruction.cpp */,
@@ -587,6 +603,8 @@
 		3967C59820122DF5006E31AB /* Paths */ = {
 			isa = PBXGroup;
 			children = (
+				39B3715A20222A49008EACAA /* PathsIndex.cpp */,
+				39B3715920222A49008EACAA /* PathsIndex.hpp */,
 				3967C59520122C51006E31AB /* PathsChaining.cpp */,
 				3967C59620122C51006E31AB /* PathsChaining.hpp */,
 				397A72D3201B3C510025058C /* PathsInvert.cpp */,
@@ -656,6 +674,21 @@
 				39AF3CCF1FDB51AD0089622E /* RenderEngine.hpp */,
 			);
 			path = RenderEngine;
+			sourceTree = "<group>";
+		};
+		39B3714C20222A3C008EACAA /* Shape */ = {
+			isa = PBXGroup;
+			children = (
+				39B3715020222A3C008EACAA /* ShapeIndex.cpp */,
+				39B3715120222A3C008EACAA /* ShapeIndex.hpp */,
+				39B3715220222A3C008EACAA /* ShapeNoise.cpp */,
+				39B3714D20222A3C008EACAA /* ShapeNoise.hpp */,
+				39B3715420222A3C008EACAA /* ShapeSymX.cpp */,
+				39B3714F20222A3C008EACAA /* ShapeSymX.hpp */,
+				39B3715320222A3C008EACAA /* ShapeSymY.cpp */,
+				39B3714E20222A3C008EACAA /* ShapeSymY.hpp */,
+			);
+			path = Shape;
 			sourceTree = "<group>";
 		};
 		39D90C151FDAEDE400282ED1 /* App */ = {
@@ -819,15 +852,18 @@
 				396CDD7B201F39C700660A7B /* AssemblageInterface.cpp in Sources */,
 				396CDD80201FC7C800660A7B /* SimpleRenderer.cpp in Sources */,
 				39131674200F99A200F691B5 /* ml1.cpp in Sources */,
+				39B3715B20222A49008EACAA /* PathsIndex.cpp in Sources */,
 				392360522009105600400C45 /* MeshImporter.cpp in Sources */,
 				39131671200F6FE700F691B5 /* Val02.cpp in Sources */,
 				39AF3CD01FDB51AD0089622E /* RenderEngine.cpp in Sources */,
 				39152356201B1541002AF97A /* ProtocolRenderer.cpp in Sources */,
 				3967C5A320123687006E31AB /* GeneratorEngine.cpp in Sources */,
 				397A72DA201B3C510025058C /* PathsNoise.cpp in Sources */,
+				39B3715620222A3C008EACAA /* ShapeNoise.cpp in Sources */,
 				392360562009105600400C45 /* FontImporter.cpp in Sources */,
 				3923604C2009105600400C45 /* ShaderImporter.cpp in Sources */,
 				392360602009105600400C45 /* Shader.cpp in Sources */,
+				39B3715720222A3C008EACAA /* ShapeSymY.cpp in Sources */,
 				3967C58320121F2A006E31AB /* InstructionParameters.cpp in Sources */,
 				392360662009105600400C45 /* primitives.cpp in Sources */,
 				3923601A20090F6000400C45 /* Interactions.cpp in Sources */,
@@ -850,6 +886,7 @@
 				392C9EB7200902E70006ECB9 /* SDL.cpp in Sources */,
 				397A72D9201B3C510025058C /* PathsSquarify.cpp in Sources */,
 				3967C57A2011F94D006E31AB /* Gen01.cpp in Sources */,
+				39B3715520222A3C008EACAA /* ShapeIndex.cpp in Sources */,
 				394F942F2016209C0065CE25 /* Python.cpp in Sources */,
 				3952DCBA200E4BB50098779F /* Shape.cpp in Sources */,
 				391C904C20174D530003E2B7 /* VectorImagesToJSONExporter.cpp in Sources */,
@@ -868,6 +905,7 @@
 				391CFE4A2016657700780A4C /* Utils.cpp in Sources */,
 				3923605C2009105600400C45 /* Image.cpp in Sources */,
 				39B3714B2021C581008EACAA /* VectorImageExcerpt.cpp in Sources */,
+				39B3715820222A3C008EACAA /* ShapeSymX.cpp in Sources */,
 				397AE6362020E09D007B2B04 /* AddInstructionInterface.cpp in Sources */,
 				3915234F2019E25A002AF97A /* UIButton.cpp in Sources */,
 				3923604B2009105600400C45 /* SoundImporter.cpp in Sources */,
