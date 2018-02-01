@@ -58,6 +58,7 @@ std::vector<VectorImage *> InstructionsProtocol::execute(std::vector<VectorImage
 void InstructionsProtocol::addInstruction(const std::string &instructionName)
 {
 	m_instructionsOrder.push_back(instructionName);
+	m_instructionsOrderParameters.push_back(nullptr);
 
 	if(m_instructions.find(instructionName) != m_instructions.end())
 		return; //Instruction already stored, do not store again
@@ -125,6 +126,7 @@ void InstructionsProtocol::swapInstructions(const uint &first, const uint &secon
 		throw std::runtime_error("Could not swap instructions " + std::to_string(first) + " and " + std::to_string(second) + ".\nInstruction index out of range (" + std::to_string(m_instructionsOrder.size()) + ")");
 
 	std::swap(m_instructionsOrder[first], m_instructionsOrder[second]);
+	std::swap(m_instructionsOrderParameters[first], m_instructionsOrderParameters[second]);
 }
 
 void InstructionsProtocol::removeInstruction(const uint &instructionIndex)
@@ -134,15 +136,16 @@ void InstructionsProtocol::removeInstruction(const uint &instructionIndex)
 
 	std::string instructionName = m_instructionsOrder[instructionIndex];
 
-	m_instructionsOrder.erase(m_instructionsOrder.begin() + instructionIndex);
-
-	if(std::find(m_instructionsOrder.begin(), m_instructionsOrder.end(), instructionName) != m_instructionsOrder.end())
+	if(std::find(m_instructionsOrder.begin(), m_instructionsOrder.end(), instructionName) == m_instructionsOrder.end())
 		return;
 
-	m_instructionsOrderParameters.erase(instructionIndex);
+	m_instructionsOrder.erase(m_instructionsOrder.begin() + instructionIndex);
 
 	delete m_instructions[instructionName];
 	m_instructions.erase(instructionName);
+	
+	m_instructionsOrderParameters.erase(m_instructionsOrderParameters.begin() + instructionIndex);
+
 
 }
 
@@ -151,6 +154,6 @@ InstructionsProtocol::~InstructionsProtocol()
 	for(std::map<std::string, InstructionObject *>::const_iterator it = m_instructions.begin(); it != m_instructions.end(); ++it)
 		delete it->second;
 
-	for(std::map<uint, InstructionParameters *>::const_iterator it = m_instructionsOrderParameters.begin(); it != m_instructionsOrderParameters.end(); ++it)
-		delete it->second;
+	for(InstructionParameters * params : m_instructionsOrderParameters)
+		delete params;
 }

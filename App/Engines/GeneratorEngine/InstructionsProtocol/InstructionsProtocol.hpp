@@ -126,7 +126,7 @@ private:
 
 	std::map<std::string, InstructionObject *> m_instructions;
 	std::vector<std::string> m_instructionsOrder;
-	std::map<uint, InstructionParameters *> m_instructionsOrderParameters;
+	std::vector<InstructionParameters *> m_instructionsOrderParameters;
 
 	std::string m_name;
 };
