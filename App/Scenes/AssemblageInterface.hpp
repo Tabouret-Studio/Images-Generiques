@@ -75,6 +75,7 @@ namespace Scenes
 		UIButton * m_shapesIndexBtn = nullptr;
 		UIButton * m_saveSVGBtn = nullptr;
 		Interface * m_instructionsInterface = nullptr;
+		UIButton * m_pathsCount = nullptr;
 		std::vector<Mesh *> m_lines;
 		Mesh * m_vertSeparator;
 

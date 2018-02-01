@@ -139,6 +139,15 @@ namespace Scenes
 
 		m_baseInterface->addItem(m_saveSVGBtn);
 
+		//Paths count
+		m_pathsCount = new UIButton(UI_BUTTON_TEXT, 10, App->getHeight() - 17, 175, 20);
+		m_pathsCount->setFont(m_font, 20);
+		m_pathsCount->setCaptionAlign(UI_TEXT_LEFT);
+		m_pathsCount->setSelectable(false);
+
+		m_baseInterface->addItem(m_pathsCount);
+
+		//Protocol elements
 		m_protocol = new InstructionsProtocol();
 
 		m_vertSeparator = App->ressourcesEngine->gen2DTile(598, App->getHeight()/2, 4, App->getHeight());
@@ -430,6 +439,9 @@ namespace Scenes
 
 		m_loopCursor->getCursor()->reset()->translate(600, 150, 0);
 
+		std::string count = std::to_string(m_workingImage->getBeziers().size());
+		m_pathsCount->setCaption(std::u16string(count.begin(), count.end()));
+
 		m_nextInstruction = 0;
 	}
 
@@ -486,6 +498,9 @@ namespace Scenes
 		//Send images to renderer
 		m_renderer->clear();
 		sendToRenderer(m_workingImage, 1);
+
+		std::string count = std::to_string(m_workingImage->getBeziers().size());
+		m_pathsCount->setCaption(std::u16string(count.begin(), count.end()));
 
 		//Update arrow position
 		m_loopCursor->getCursor()->reset()->translate(600, 150 + float(m_nextInstruction) * 65, 0);
