@@ -128,10 +128,10 @@ void GeneratorEngine::registerCPPInstructions()
 	registerInstruction(INSTRUCTION_CPP, "PATHS_GEOMETRY_SQUARIFY", PathsSquarify::get);
 	registerInstruction(INSTRUCTION_CPP, "PATHS_GEOMETRY_LINEARALIZER", PathsLinearAlizer::get);
 	registerInstruction(INSTRUCTION_CPP, "PATHS_INDEX", PathsIndex::get);
-	registerInstruction(INSTRUCTION_CPP, "SHAPE_SYMX", ShapeSymX::get);
-	registerInstruction(INSTRUCTION_CPP, "SHAPE_SYMY", ShapeSymY::get);
-	registerInstruction(INSTRUCTION_CPP, "SHAPE_NOISE", ShapeNoise::get);
-	registerInstruction(INSTRUCTION_CPP, "SHAPE_INDEX", ShapeIndex::get);
+	registerInstruction(INSTRUCTION_CPP, "SHAPES_SYMX", ShapeSymX::get);
+	registerInstruction(INSTRUCTION_CPP, "SHAPES_SYMY", ShapeSymY::get);
+	registerInstruction(INSTRUCTION_CPP, "SHAPES_NOISE", ShapeNoise::get);
+	registerInstruction(INSTRUCTION_CPP, "SHAPES_INDEX", ShapeIndex::get);
 }
 
 

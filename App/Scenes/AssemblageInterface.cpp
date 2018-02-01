@@ -97,8 +97,28 @@ namespace Scenes
 
 		m_baseInterface->addItem(m_playPauseBtn);
 
+		//Paths index Btn
+		m_pathsIndexBtn = new UIButton(UI_BUTTON_TEXT, 25, 0, 175, 20);
+		m_pathsIndexBtn->setFont(m_font, 20);
+		m_pathsIndexBtn->setCaption(u"index des tracés");
+		m_pathsIndexBtn->setAction([this] () -> void {
+			applyPathsIndex();
+		});
+
+		m_baseInterface->addItem(m_pathsIndexBtn);
+
+		//Paths index Btn
+		m_shapesIndexBtn = new UIButton(UI_BUTTON_TEXT, 25, 0, 175, 20);
+		m_shapesIndexBtn->setFont(m_font, 20);
+		m_shapesIndexBtn->setCaption(u"index des formes");
+		m_shapesIndexBtn->setAction([this] () -> void {
+			applyShapesIndex();
+		});
+
+		m_baseInterface->addItem(m_shapesIndexBtn);
+
 		//Reset Btn
-		m_resetBtn = new UIButton(UI_BUTTON_TEXT, 10, 0, 175, 20);
+		m_resetBtn = new UIButton(UI_BUTTON_TEXT, 25, 0, 175, 20);
 		m_resetBtn->setFont(m_font, 20);
 		m_resetBtn->setCaption(u"recommencer");
 		m_resetBtn->setAction([this] () -> void {
@@ -234,7 +254,9 @@ namespace Scenes
 
 		//Update end-of-list buttons
 		m_addInstructionBtn->setPosition(370, posY + 30);
-		m_resetBtn->setPosition(10, posY + 30);
+		m_pathsIndexBtn->setPosition(25, posY + 15);
+		m_shapesIndexBtn->setPosition(25, posY + 40);
+		m_resetBtn->setPosition(25, posY + 65);
 
 		m_reloadList = false;
 	}
@@ -331,10 +353,10 @@ namespace Scenes
 		//reset working image
 		delete m_workingImage;
 
-		//rId svgID = App->ressourcesEngine->loadAsset("github.svg", VECTOR);
-		//m_workingImage = new VectorImage(*App->ressourcesEngine->getAsset(svgID)); //Copy constructor
+		rId svgID = App->ressourcesEngine->loadAsset("github.svg", VECTOR);
+		m_workingImage = new VectorImage(*App->ressourcesEngine->getAsset(svgID)); //Copy constructor
 
-		m_workingImage = m_font->genOutlines(u"é");
+		//m_workingImage = m_font->genOutlines(u"é");
 
 		m_renderer->clear();
 		sendToRenderer(m_workingImage, 1);
@@ -361,6 +383,16 @@ namespace Scenes
 		//Is there any instruction to use ?
 		if(protocolSize == 0)
 			return; //Protocol is empty
+
+		//Check for end of loop
+		if(m_nextInstruction + 1 > protocolSize)
+		{
+			//End of loop
+			m_nextInstruction = 0;
+
+			//m_workingImage = m_excerpter->replaceExcerpt(m_excerpt, EXCERPT_BEZIER);
+			//delete m_excerpt;
+		}
 
 		if(m_nextInstruction == 0)
 		{
@@ -393,16 +425,6 @@ namespace Scenes
 		//Increment instruction
 		m_nextInstruction++;
 
-		//Check for end of loop
-		if(m_nextInstruction + 1 > protocolSize)
-		{
-			//End of loop
-			m_nextInstruction = 0;
-
-			//m_workingImage = m_excerpter->replaceExcerpt(m_excerpt, EXCERPT_BEZIER);
-			//delete m_excerpt;
-		}
-
 		//Reset interval timer
 		m_lastIter = std::chrono::steady_clock::now();
 	}
@@ -430,6 +452,36 @@ namespace Scenes
 		m_protocol->addInstruction(instruction);
 		m_reloadList = true;
 		onWindowResized();
+	}
+
+	void AssemblageInterface::applyPathsIndex()
+	{
+		m_playing = false;
+
+		Instruction * indexInstruction = App->generatorEngine->getInstruction("PATHS_INDEX");
+		std::vector<VectorImage *> images = {m_workingImage};
+
+		m_workingImage = indexInstruction->execute(images)[0];
+
+		m_renderer->clear();
+		sendToRenderer(m_workingImage, 1);
+
+		delete indexInstruction;
+	}
+
+	void AssemblageInterface::applyShapesIndex()
+	{
+		m_playing = false;
+
+		Instruction * indexInstruction = App->generatorEngine->getInstruction("SHAPES_INDEX");
+		std::vector<VectorImage *> images = {m_workingImage};
+
+		m_workingImage = indexInstruction->execute(images)[0];
+
+		m_renderer->clear();
+		sendToRenderer(m_workingImage, 1);
+
+		delete indexInstruction;
 	}
 
 	AssemblageInterface::~AssemblageInterface()

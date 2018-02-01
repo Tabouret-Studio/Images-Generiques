@@ -66,10 +66,15 @@ namespace Scenes
 		for(Mesh * mesh : m_meshs)
 		{
 			glm::vec3 meshDims = mesh->getDimensions();
+			glm::vec3 meshPos = mesh->getBoundariesMin();
 
+			//Move bezier to origin
 			float scale = std::min(workingDimensions.x / meshDims.x, workingDimensions.y / meshDims.y) * 0.9f;
 
-			mesh->getCursor()->reset()->translate(glm::vec3(renderCenter, 0))->scale(scale, scale, 0);
+			mesh->getCursor()->reset()
+				->translate(-(meshPos.x + meshDims.x / 2.0), -(meshPos.y + meshDims.y / 2.0), 0)
+				->translate(glm::vec3(renderCenter, 0))
+				->scale(scale, scale, 0);
 
 			App->renderEngine->setProjection2D();
 			mesh->render();

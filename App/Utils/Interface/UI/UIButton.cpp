@@ -104,6 +104,7 @@ void UIButton::setCaption(const std::u16string &caption)
 
 	m_caption = caption;
 
+	delete m_tile;
 	m_tile = m_font->genCaption(m_caption, m_fontSize);
 	m_tile->applyCursor();
 	m_tile->generate();

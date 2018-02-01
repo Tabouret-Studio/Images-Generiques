@@ -24,7 +24,7 @@ public:
 
 private:
 
-	ShapeSymX(): Instruction(INSTRUCTION_SOURCE_SHAPES, INSTRUCTION_PROPERTY_GEOMETRY, u"symetrie verticale") {};
+	ShapeSymX(): Instruction(INSTRUCTION_SOURCE_SHAPES, INSTRUCTION_PROPERTY_GEOMETRY, u"symetrie horizontale") {};
 };
 
 #endif /* ShapeSymX_hpp */

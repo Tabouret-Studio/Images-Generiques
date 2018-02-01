@@ -29,7 +29,8 @@ public:
 	Shape(const Bezier &path):
 		m_paths({path}),
 		m_boundsMin(path.getPosition()),
-		m_boundsMax(path.getBoundsMax()) {};
+		m_boundsMax(path.getBoundsMax())
+	{ calculateBounds(); };
 
 	Shape(const std::vector<Bezier> &paths):
 		m_paths(paths) { calculateBounds(); };

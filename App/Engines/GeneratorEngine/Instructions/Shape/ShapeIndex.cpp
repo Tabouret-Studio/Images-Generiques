@@ -17,60 +17,54 @@ Instruction * ShapeIndex::get()
 
 std::vector<VectorImage *> ShapeIndex::execute(std::vector<VectorImage *> &vectorImages)
 {
-
-	// Dimensions d'un tracé
-	float dimx,dimy;
 	// Espacement entre chaque courbe
-	float pas_x=App->getWidth()/20,pas_y=App->getHeight()/20;
-	
-	std::vector<Shape> *shapes,buffer;
-	std::vector<VectorImage*> resultat;
+	uint boxSize = 50;
+	uint demiBox = boxSize / 2;
+	uint numCols = (App->getWidth() - 600) / boxSize;
+	uint leftMargin = ((App->getWidth() - 600) % boxSize) / 2;
 
-	//std::cout<<"pas x et y: "<<pas_x<<" "<<pas_y<<std::endl;
-	// Coordonnées: 0,0 pour top-left corner, app-width,0 pour top-right corner
-	glm::vec3 lastPos(0, 0, 0);
+	std::vector<VectorImage *> resultat;
+	glm::vec3 shapePos, shapeDim;
+
+	// Coordonnées: 0,0 pour top-left corner
+	uint col = 0, row = 0;
 
 	// A noter: des ajustements le render de la scène sont à prévoir
-	for(VectorImage* svg:vectorImages){
+	for(VectorImage* svg : vectorImages)
+	{
+		VectorImage * indexImage = new VectorImage();
 
-		shapes=svg->getShapes();
-		for(Shape shape : *shapes)
+		for(Shape shape : *svg->getShapes())
 		{
-			//std::cout<<"last pos"<<lastPos.x<<" "<<lastPos.y<<std::endl;
-	
 			// Si on dépasse l'écran, retour à la ligne -> saut en y
-			if (lastPos.x+pas_x>App->getWidth())
+			if (col >= numCols)
 			{
-				lastPos.x=0;
-				lastPos.y+=pas_y;
+				col = 0;
+				++row;
 			}
+
 			shape.getCursor()->reset();
-			dimx=abs(shape.getBoundsMax().x-shape.getPosition().x);
-			dimy=abs(shape.getBoundsMax().y-shape.getPosition().y);
-	
+
+			//Reset path position
+			shapePos = shape.getPosition();
+			shapeDim = shape.getDimensions();
+
+			//Move shape to origin
+			shape.getCursor()
+				->translate(-(shapePos.x + shapeDim.x / 2.0), -(shapePos.y + shapeDim.y / 2.0), 0);
+
 			// On scale selon la dimension la plus grande
-			if (dimx>dimy){
-				shape.getCursor()->scale(pas_x/3/dimx,pas_x/3/dimx,1);
-			}else{
-				shape.getCursor()->scale(pas_y/3/dimy,pas_y/3/dimy,1);
-			}
-			shape.applyCursor();
+			float scale = std::min(demiBox / shapeDim.x, demiBox / shapeDim.y);
+
+			shape.getCursor()->translate(leftMargin + col * boxSize + demiBox, row * boxSize + demiBox, 0);
+			shape.getCursor()->scale(scale, scale, 1);
 	
-			// Déplacement, ATTENTION, en deux temps pour des coordonnées de points refreshed
-			shape.move(lastPos);
-			shape.move(lastPos-(shape.getBoundsMax()-shape.getPosition())/2);
-	
-			lastPos.x += pas_x;
-	
-			buffer.push_back(shape);
+			*indexImage << shape;
+
+			++col;
 		}
-		
-		// L'instruction est elle réductrice ?
-		// Le protocole de la scène s'applique sur l'ensemble m_svg, et suivant l'instruction, on peut n'avoir plus qu'une seule image
-		resultat.push_back(new VectorImage(buffer));
-		// VIDER LA SHAPE avant d'opérer un nouveau svg
-		// fuites ? getpaths() modifie t'il l'attrib ??
-		buffer.clear();
+
+		resultat.push_back(indexImage);
 		
 	}
 	return resultat;

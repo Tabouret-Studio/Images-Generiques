@@ -70,6 +70,8 @@ namespace Scenes
 		UIButton * m_addInstructionBtn = nullptr;
 		UIButton * m_playPauseBtn = nullptr;
 		UIButton * m_resetBtn = nullptr;
+		UIButton * m_pathsIndexBtn = nullptr;
+		UIButton * m_shapesIndexBtn = nullptr;
 		UIButton * m_saveSVGBtn = nullptr;
 		Interface * m_instructionsInterface = nullptr;
 		std::vector<Mesh *> m_lines;
@@ -115,6 +117,9 @@ namespace Scenes
 
 		//
 		//////////
+
+		void applyPathsIndex();
+		void applyShapesIndex();
 
 	};
 }

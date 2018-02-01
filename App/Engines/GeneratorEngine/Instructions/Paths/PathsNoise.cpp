@@ -7,6 +7,7 @@
 //
 
 #include "PathsNoise.hpp"
+#include "Utils/Utils.hpp"
 
 Instruction * PathsNoise::get()
 {
@@ -18,6 +19,7 @@ Instruction * PathsNoise::get()
 std::vector<VectorImage *> PathsNoise::execute(std::vector<VectorImage *> &vectorImages)
 {
 	glm::mat4 tempCursor;
+	DrawCursor modificationCursor;
 
 	for(VectorImage * vImage : vectorImages)
 	{
@@ -26,9 +28,9 @@ std::vector<VectorImage *> PathsNoise::execute(std::vector<VectorImage *> &vecto
 			for(Bezier &path : *shape.getPaths())
 			{
 				tempCursor = path.getCursor()->getMatrix();
-				path.getCursor()->reset()->translate(rand()%11 - 5, rand()%11 - 5, 0);
-				path.applyCursor();
-				path.getCursor()->setMatrix(tempCursor);
+				modificationCursor.reset()->translate(5.0 - Utils::rand(11), 5.0 - Utils::rand(11), 0);
+
+				path.getCursor()->setMatrix(modificationCursor * tempCursor);
 			}
 		}
 	}

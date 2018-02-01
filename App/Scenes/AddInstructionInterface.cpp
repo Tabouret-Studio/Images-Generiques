@@ -190,6 +190,9 @@ namespace Scenes
 		//Parse all possible sources
 		for(const std::pair<std::string, Instruction *> &in : instructions)
 		{
+			if(in.second->getAction() == u"indexer")
+				continue; //Ignore index instructions
+
 			if(m_instructionsLists.find(in.second->getSourceName()) == m_instructionsLists.end())
 			{
 				//Source is absent in current lists
@@ -230,6 +233,11 @@ namespace Scenes
 		}
 
 		//Parsing done ! All instructions are now referenced;
+		//Delete all instructions used for parsing
+		for(const std::pair<std::string, Instruction *> &in : instructions)
+		{
+			delete in.second;
+		}
 	}
 
 	void AddInstructionInterface::displaySourceList()

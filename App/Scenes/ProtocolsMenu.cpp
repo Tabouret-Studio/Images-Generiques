@@ -102,8 +102,11 @@ namespace Scenes
 			posY += 37;
 		}
 
-		firstProtocolBtn->setTopNeighboor(lastProtocolBtn);
-		lastProtocolBtn->setBottomNeighboor(firstProtocolBtn);
+		if(lastProtocolBtn != nullptr)
+		{
+			firstProtocolBtn->setTopNeighboor(lastProtocolBtn);
+			lastProtocolBtn->setBottomNeighboor(firstProtocolBtn);
+		}
 
 		m_interface->setInteractionFormat(INTERFACE_INTERACTIONS_MOUSE);
 		m_interface->addItem(title);

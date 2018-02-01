@@ -8,31 +8,30 @@
 
 #include "ShapeNoise.hpp"
 
+#include "Utils/Utils.hpp"
+
 Instruction * ShapeNoise::get()
 {
 	return new ShapeNoise();
 }
 
+/// OK FOR V2
+
 std::vector<VectorImage *> ShapeNoise::execute(std::vector<VectorImage *> &vectorImages)
 {
-	vectorImages[0]->applyCursor();
+	glm::mat4 tempCursor;
+	DrawCursor modificationCursor;
 
-	std::vector<Shape> * shapes = vectorImages[0]->getShapes();
-
-	glm::vec2 lastPos(0, 0);
-	VectorImage* svg=new VectorImage();
-
-	glm::vec3 refpoint;
-
-	for(Shape shape : *shapes)
+	for(VectorImage * vImage : vectorImages)
 	{
+		for(Shape &shape : *vImage->getShapes())
+		{
+			tempCursor = shape.getCursor()->getMatrix();
+			modificationCursor.reset()->translate(50-Utils::rand(101), 50-Utils::rand(101), 0);
 
-		shape.applyCursor();
-		refpoint=(*shape.getPaths())[0].getStartPoint();
-		shape.move(refpoint+glm::vec3(rand()%100,rand()%100, 0));
-
-		*svg << shape;
+			shape.getCursor()->setMatrix(modificationCursor * tempCursor);
+		}
 	}
 
-	return {svg};
+	return vectorImages;
 }
