@@ -13,43 +13,46 @@ Instruction * PathsInvert::get()
 	return new PathsInvert();
 }
 
-std::vector<VectorImage *> PathsInvert::execute(const std::vector<VectorImage *> &vectorImages)
+/// OK FOR V2
+
+std::vector<VectorImage *> PathsInvert::execute(std::vector<VectorImage *> &vectorImages)
 {
-	vectorImages[0]->applyCursor();
-	std::vector<Bezier> paths = vectorImages[0]->getBeziers();
-
-	Shape shape;
-
 	glm::vec3
-	symline, // axe de symétrie
-	starthandle,endhandle, // vecteur poigné
-	starthandleprojected,endhandleprojected, // projeté des vecteurs poigné sur symline 
-	starthandlegap,endhandlegap, // vecteur décrivant la projection opérée
-	starthandlesym,endhandlesym; // coordonné de la symétrie
+		symline, // axe de symétrie
+		starthandle, endhandle, // vecteur poigné
+		starthandleprojected, endhandleprojected, // projeté des vecteurs poigné sur symline
+		starthandlegap, endhandlegap, // vecteur décrivant la projection opérée
+		starthandlesym, endhandlesym; // coordonné de la symétrie
 
+	glm::mat4 tempCursor;
 
-	for(Bezier path : paths)
+	for(VectorImage * vImage : vectorImages)
 	{
-		path.applyCursor();
-		starthandle=path.getStartHandle()-path.getStartPoint();
-		endhandle=path.getEndHandle()-path.getEndPoint();
-		symline=glm::normalize(path.getEndPoint()-path.getStartPoint());
-		
-		starthandleprojected=glm::dot(symline,starthandle)*symline;
-		starthandlegap=(path.getStartPoint()+starthandleprojected)-path.getStartHandle();
-		starthandlesym=path.getStartHandle()+2*starthandlegap;
+		for(Shape &shape : *vImage->getShapes())
+		{
+			for(Bezier &path : *shape.getPaths())
+			{
+				tempCursor = path.getCursor()->getMatrix();
+				path.getCursor()->reset();
 
-		endhandleprojected=glm::dot(symline,endhandle)*symline;
-		endhandlegap=(path.getEndPoint()+endhandleprojected)-path.getEndHandle();
-		endhandlesym=path.getEndHandle()+2*endhandlegap;
+				starthandle = path.getStartHandle() - path.getStartPoint();
+				endhandle = path.getEndHandle()  -path.getEndPoint();
+				symline = glm::normalize(path.getEndPoint() - path.getStartPoint());
 
-		path= Bezier(path.getStartPoint(),starthandlesym,
-			endhandlesym,path.getEndPoint()
-		);
-		path.applyCursor();
+				starthandleprojected = glm::dot(symline, starthandle) * symline;
+				starthandlegap = (path.getStartPoint() + starthandleprojected) - path.getStartHandle();
+				starthandlesym=path.getStartHandle()+2*starthandlegap;
 
-		shape << path;
+				endhandleprojected = glm::dot(symline, endhandle) * symline;
+				endhandlegap = (path.getEndPoint() + endhandleprojected) - path.getEndHandle();
+				endhandlesym = path.getEndHandle() + 2 * endhandlegap;
+
+				path = Bezier(path.getStartPoint(), starthandlesym, endhandlesym, path.getEndPoint());
+
+				path.getCursor()->setMatrix(tempCursor);
+			}
+		}
 	}
 
-	return {new VectorImage(shape)};
+	return vectorImages;
 }

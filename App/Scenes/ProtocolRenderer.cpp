@@ -108,16 +108,15 @@ namespace Scenes
 		//m_svg = App->indexEngine->getRandomVectorImage();
 		//m_svg->applyCursor();
 
-		m_svg = m_font->genOutlines("Images Generiques");
+		m_svg = m_font->genOutlines(u"Images Génériques");
 
-		VectorImage * svgTransform = m_protocol->execute({m_svg})[0];
-
-		std::cout << glm::to_string(svgTransform->getDimensions()) << std::endl;
+		std::vector<VectorImage *> images = {m_svg};
+		VectorImage * svgTransform = m_protocol->execute(images)[0];
 
 		m_displayMesh = svgTransform->getMesh();
 		m_displayMesh->generate();
 
-		m_protocolCaption = m_font->genCaption(m_protocolName, 35);
+		m_protocolCaption = m_font->genCaption(std::u16string(m_protocolName.end(), m_protocolName.end()), 35);
 		m_protocolCaption->generate();
 
 		delete m_svg;

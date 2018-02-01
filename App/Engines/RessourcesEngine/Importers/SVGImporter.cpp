@@ -25,7 +25,6 @@ Asset * SVGImporter::getAsset(const std::string &path)
 
 	float * p;
 
-	glm::vec3 shapePos, shapeDim, shapeDemiDim;
 	glm::vec3 bezierPos, bezierDim;
 
 	std::vector<Bezier> paths;
@@ -37,10 +36,6 @@ Asset * SVGImporter::getAsset(const std::string &path)
 	for (NSVGshape * shape = image->shapes; shape != NULL; shape = shape->next)
 	{
 		paths.clear();
-
-		//Get shape coordinates
-		shapePos = glm::vec3(shape->bounds[0], shape->bounds[1], 0);
-		shapeDim = glm::vec3(shape->bounds[2] - shape->bounds[0], shape->bounds[3] - shape->bounds[1], 0);
 
 		//Parse the shape's paths
 		for (NSVGpath * path = shape->paths; path != NULL; path = path->next)
@@ -81,6 +76,6 @@ Asset * SVGImporter::getAsset(const std::string &path)
 
 	nsvgDelete(image);
 
-	return new VectorImage(image->width, image->height, shapes);
+	return new VectorImage(shapes);
 }
 

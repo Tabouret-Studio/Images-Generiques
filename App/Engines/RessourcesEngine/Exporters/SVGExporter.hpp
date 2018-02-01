@@ -13,7 +13,13 @@ class VectorImage;
 class SVGExporter
 {
 public:
-	void exportSVG(const VectorImage * vectorImg, const std::string &fileName);
+	/**
+	 Export given vector img as an SVG
+
+	 @param vectorImg VectorImage to export
+	 @param fileName exprt filename
+	 */
+	void exportSVG(VectorImage * vectorImg, const std::string &fileName);
 
 
 private:
@@ -22,7 +28,7 @@ private:
 
 	 @return a string with Path format
 	 */
-	std::string shapeToPath(const Shape &shape);
+	std::string shapeToPath(Shape &shape);
 
 	/**
 	 Initialize a SVG header tag with dimensions of the VectorImage

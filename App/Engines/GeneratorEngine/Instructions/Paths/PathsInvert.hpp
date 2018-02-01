@@ -20,11 +20,11 @@ public:
 
 	static Instruction * get();
 	
-	std::vector<VectorImage *> execute(const std::vector<VectorImage *> &vectorImages);
+	std::vector<VectorImage *> execute(std::vector<VectorImage *> &vectorImages);
 
 private:
 
-	PathsInvert() {};
+	PathsInvert(): Instruction(INSTRUCTION_SOURCE_PATHS, INSTRUCTION_PROPERTY_GEOMETRY, u"inverser") {};
 };
 
 #endif /* PathsInvert_hpp */

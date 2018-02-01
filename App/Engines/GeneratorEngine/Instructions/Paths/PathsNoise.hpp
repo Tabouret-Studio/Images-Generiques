@@ -20,11 +20,11 @@ public:
 
 	static Instruction * get();
 	
-	std::vector<VectorImage *> execute(const std::vector<VectorImage *> &vectorImages);
+	std::vector<VectorImage *> execute(std::vector<VectorImage *> &vectorImages);
 
 private:
 
-	PathsNoise() {};
+	PathsNoise(): Instruction(INSTRUCTION_SOURCE_PATHS, INSTRUCTION_PROPERTY_GEOMETRY, u"translater aléatoirement") {};
 };
 
 #endif /* PathsNoise_hpp */

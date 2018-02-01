@@ -13,45 +13,57 @@ Instruction * PathsSquarify::get()
 	return new PathsSquarify();
 }
 
-std::vector<VectorImage *> PathsSquarify::execute(const std::vector<VectorImage *> &vectorImages)
+/// OK FOR V2
+
+std::vector<VectorImage *> PathsSquarify::execute(std::vector<VectorImage *> &vectorImages)
 {
-	vectorImages[0]->applyCursor();
-	
-	std::vector<Bezier> paths = vectorImages[0]->getBeziers();
-	Shape shape;
+	glm::mat4 tempCursor;
 
 	glm::vec3 vec_starthandle, startpoint, endpoint;
 	Bezier vertical, horizontal;
 
-	for(Bezier path : paths)
+	std::vector<Bezier> newPaths;
+
+	for(VectorImage * vImage : vectorImages)
 	{
-		path.applyCursor();
-		startpoint = path.getStartPoint();
-		endpoint = path.getEndPoint();
-		vec_starthandle = path.getStartHandle() - path.getStartPoint();
-
-		if(vec_starthandle.x > vec_starthandle.y)
+		for(Shape &shape : *vImage->getShapes())
 		{
-			horizontal = Bezier(startpoint, glm::vec3(endpoint.x,startpoint.y, 0),
-								startpoint, glm::vec3(endpoint.x,startpoint.y, 0));
-			shape << horizontal;
+			for(std::vector<Bezier>::iterator path = shape.getPaths()->begin(); path != shape.getPaths()->end(); ++path)
+			{
+				tempCursor = path->getCursor()->getMatrix();
+				path->getCursor()->reset();
+				
+				startpoint = path->getStartPoint();
+				endpoint = path->getEndPoint();
+				vec_starthandle = path->getStartHandle() - path->getStartPoint();
 
-			vertical = Bezier(glm::vec3(endpoint.x, startpoint.y, 0), endpoint,
-							  glm::vec3(endpoint.x, startpoint.y, 0), endpoint);
-			shape << vertical;
-		}
-		else
-		{
-			vertical = Bezier(startpoint, glm::vec3(startpoint.x, endpoint.y, 0),
-							  startpoint, glm::vec3(startpoint.x, endpoint.y, 0));
-			shape << vertical;
+				if(vec_starthandle.x > vec_starthandle.y)
+				{
+					vertical = Bezier(startpoint, glm::vec3(endpoint.x,startpoint.y, 0),
+										startpoint, glm::vec3(endpoint.x,startpoint.y, 0));
 
-			horizontal= Bezier(glm::vec3(startpoint.x, endpoint.y, 0), endpoint,
-							   glm::vec3(startpoint.x, endpoint.y, 0), endpoint
-			);
-			shape << horizontal;
+					horizontal = Bezier(glm::vec3(endpoint.x, startpoint.y, 0), endpoint,
+									  glm::vec3(endpoint.x, startpoint.y, 0), endpoint);
+				}
+				else
+				{
+					vertical = Bezier(startpoint, glm::vec3(startpoint.x, endpoint.y, 0),
+									  startpoint, glm::vec3(startpoint.x, endpoint.y, 0));
+
+					horizontal = Bezier(glm::vec3(startpoint.x, endpoint.y, 0), endpoint,
+									   glm::vec3(startpoint.x, endpoint.y, 0), endpoint);
+				}
+
+				vertical.getCursor()->setMatrix(tempCursor);
+				*path = vertical;
+
+				horizontal.getCursor()->setMatrix(tempCursor);
+				newPaths.push_back(horizontal);
+			}
+
+			shape.getPaths()->insert(shape.getPaths()->end(), newPaths.begin(), newPaths.end());
 		}
 	}
 
-	return {new VectorImage(shape)};
+	return vectorImages;
 }

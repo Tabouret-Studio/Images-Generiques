@@ -35,7 +35,7 @@ namespace Scenes
 		rId fontID = App->ressourcesEngine->loadAsset("Karla-Regular.ttf", FONT);
 		Font * font = *App->ressourcesEngine->getAsset(fontID);
 
-		m_mesh = font->genOutlines("Images Generiques")->getMesh(.5f);
+		m_mesh = font->genOutlines(u"Images Génériques")->getMesh(.5f);
 		m_mesh->generate();
 		m_mesh->getCursor()->translate(App->getWidth()/2, App->getHeight()/2, 0);
 

@@ -15,12 +15,17 @@ Instruction * PathsOrderRandomizer::get()
 	return new PathsOrderRandomizer();
 }
 
-std::vector<VectorImage *> PathsOrderRandomizer::execute(const std::vector<VectorImage *> &vectorImages)
+/// OK FOR V2
+
+std::vector<VectorImage *> PathsOrderRandomizer::execute(std::vector<VectorImage *> &vectorImages)
 {
-	vectorImages[0]->applyCursor();
+	for(VectorImage * vImage : vectorImages)
+	{
+		for(Shape &shape : *vImage->getShapes())
+		{
+			std::random_shuffle(shape.getPaths()->begin(), shape.getPaths()->end(), Utils::rand);
+		}
+	}
 
-	std::vector<Bezier> paths = vectorImages[0]->getBeziers();
-	std::random_shuffle(paths.begin(), paths.end(), Utils::rand);
-
-	return {new VectorImage(Shape(paths))};
+	return vectorImages;
 }

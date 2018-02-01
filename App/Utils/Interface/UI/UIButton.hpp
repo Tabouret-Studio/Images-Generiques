@@ -60,12 +60,14 @@ public:
 	 */
 	void setTextColors(const glm::vec4 &idleColor, const glm::vec4 &selectedColor);
 
+	void setBackColors(const glm::vec4 &idleColor, const glm::vec4 &selectedColor);
+
 	/**
 	 Set the caption to display on the button
 
 	 @param caption text to display
 	 */
-	void setCaption(const std::string &caption);
+	void setCaption(const std::u16string &caption);
 
 	/**
 	 Set the textures used by the item
@@ -121,14 +123,7 @@ private:
 
 	void refreshGeometry();
 	void refreshTextColor();
-
-	//Positionning
-	uint m_posX;
-	uint m_posY;
-
-	//Dimensions
-	uint m_width;
-	uint m_height;
+	void setTextPosition();
 
 	//The tile
 	Mesh * m_tile = nullptr;
@@ -141,12 +136,14 @@ private:
 	//The colors
 	glm::vec4 m_idleColor = glm::vec4(0, 0, 0, 1);
 	glm::vec4 m_selectedColor = glm::vec4(1, 1, 1, 1);
+	glm::vec4 m_backIdleColor = glm::vec4(0, 0, 0, 0.0);
+	glm::vec4 m_backSelectedColor = glm::vec4(0, 0, 0, 1.0);
 
 	//The text
 	Font * m_font;
 	float m_fontSize;
 	UIButtonTextAlign m_textAlign;
-	std::string m_caption;
+	std::u16string m_caption;
 };
 
 #endif /* UIButton_hpp */

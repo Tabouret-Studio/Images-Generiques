@@ -12,7 +12,7 @@
 
 #include <fstream>
 #include <algorithm>
-
+#include <ctime>
 
 bool IndexEngine::m_instanciated = false;
 
@@ -93,11 +93,12 @@ std::vector<std::string> IndexEngine::getImageTags(const srcId &imgId) const
 	return m_ImagesIdsTags.at(imgId);
 }
 
-std::string IndexEngine::insertVectorIMage(const VectorImage * image, const std::vector<std::string> &tags)
+std::string IndexEngine::insertVectorImage(VectorImage * image, const std::vector<std::string> &tags)
 {
 	SVGExporter exporter;
 	srcId imgId = App->genUUID();
-	std::string exportPath = "exports/" + boost::uuids::to_string(imgId);
+	std::string imgFileName = std::to_string(std::time(0));
+	std::string exportPath = "exports/" + imgFileName;
 
 	exporter.exportSVG(image, buildPath(exportPath));
 

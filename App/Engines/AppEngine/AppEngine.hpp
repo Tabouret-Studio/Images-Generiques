@@ -51,10 +51,9 @@ struct keyboard
 struct mouse {
 	int scrollY = 0;
 	int scrollX = 0;
-	bool clickLeft = false;
-	bool clickRight = false;
-	int pointerPositionX = 0;
-	int pointerPositionY = 0;
+	bool leftBtn = false;
+	bool rightBtn = false;
+	glm::vec2 pos;
 };
 
 struct window {
@@ -104,6 +103,11 @@ public:
 	 Set all keys an not pressed
 	 */
 	inline void flushKeys() { m_keys = {}; };
+
+	/**
+	 Set all keys an not pressed
+	 */
+	void flushMouse();
 
 private:
 	//Singleton

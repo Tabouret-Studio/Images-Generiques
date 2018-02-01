@@ -26,15 +26,15 @@ void VectorImagesToJSONExporter::exportJSON(std::vector<VectorImage *> vectorIma
 	{
 		nlohmann::json vectorJson;
 
-		vectorJson["width"] = vectorImage->getWidth();
-		vectorJson["height"] = vectorImage->getHeight();
+		vectorJson["width"] = vectorImage->getDimensions().x;
+		vectorJson["height"] = vectorImage->getDimensions().y;
 
-		for(Shape &shape : vectorImage->getShapes())
+		for(Shape &shape : *vectorImage->getShapes())
 		{
 			nlohmann::json shapeJ;
 			shapeJ["cursor"] = cursorToJson(shape.getCursor());
 
-			for(Bezier &bezier : shape.getPaths())
+			for(Bezier &bezier : *shape.getPaths())
 			{
 				nlohmann::json bezierj;
 				bezierj["width"] = bezier.getDimensions().x;

@@ -38,6 +38,4 @@ void main()
 #endif
 
 	fFragColor = vColor_vs * alpha;
-
-	//FragColor = vColor_vs;
 }

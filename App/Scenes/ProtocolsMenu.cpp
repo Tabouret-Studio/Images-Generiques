@@ -51,7 +51,8 @@ namespace Scenes
 		UIButton * title = new UIButton(UI_BUTTON_TEXT, 20, 100, 410, 100);
 		title->setFont(m_font, 100);
 		title->setCaptionAlign(UI_TEXT_LEFT);
-		title->setCaption("IMAGES GENERIQUES");
+		title->setCaption(u"IMAGES GENERIQUES");
+		title->setSelectable(false);
 
 		std::vector<InstructionsProtocol *> protocols = App->generatorEngine->getProtocols();
 
@@ -67,7 +68,7 @@ namespace Scenes
 			protocolBtn->setFont(m_font, 30);
 			protocolBtn->setCaptionAlign(UI_TEXT_LEFT);
 			protocolBtn->setTextColors(glm::vec4(0, 0, 0, 1), glm::vec4(1, 1, 1, 1));
-			protocolBtn->setCaption(protocol->getName());
+			protocolBtn->setCaption(std::u16string(protocol->getName().begin(), protocol->getName().end()));
 			protocolBtn->setAction([protocolName, this] () -> void
 			{
 				ProtocolRenderer * scene = new ProtocolRenderer();
@@ -101,9 +102,13 @@ namespace Scenes
 			posY += 37;
 		}
 
-		firstProtocolBtn->setTopNeighboor(lastProtocolBtn);
-		lastProtocolBtn->setBottomNeighboor(firstProtocolBtn);
+		if(lastProtocolBtn != nullptr)
+		{
+			firstProtocolBtn->setTopNeighboor(lastProtocolBtn);
+			lastProtocolBtn->setBottomNeighboor(firstProtocolBtn);
+		}
 
+		m_interface->setInteractionFormat(INTERFACE_INTERACTIONS_MOUSE);
 		m_interface->addItem(title);
 	}
 

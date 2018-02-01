@@ -108,6 +108,18 @@ public:
 		calculateBounds();
 	};
 
+	/**
+	 Copy Constructor
+	 */
+	/*Bezier(const Bezier &bezier):
+		m_startPoint(bezier.m_startPoint),
+		m_startHandle(bezier.m_startHandle),
+		m_endHandle(bezier.m_endHandle),
+		m_endPoint(bezier.m_endPoint),
+		m_cursor(bezier.m_cursor) {
+		calculateBounds();
+	};*/
+
 	Bezier() {};
 
 	/////////
@@ -116,6 +128,13 @@ public:
 	inline glm::vec3 getStartHandle() const { return m_startHandle; };
 	inline glm::vec3 getEndPoint() const { return m_endPoint; };
 	inline glm::vec3 getEndHandle() const { return m_endHandle; };
+
+	/////////
+	//Setters
+	inline void setStartPoint(const glm::vec3 &startPoint) { m_startPoint = startPoint; };
+	inline void setStartHandle(const glm::vec3 &startHandle) { m_startHandle = startHandle; };
+	inline void setEndPoint(const glm::vec3 &endPoint) { m_endPoint = endPoint; };
+	inline void setEndHandle(const glm::vec3 &endHandle) { m_endHandle = endHandle; };
 
 	/**
 	 Interpolate the curve and return it composed of number of points based on its length

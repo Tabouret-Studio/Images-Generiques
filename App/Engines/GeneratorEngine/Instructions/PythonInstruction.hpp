@@ -9,6 +9,8 @@
 #ifndef PythonInstruction_hpp
 #define PythonInstruction_hpp
 
+#ifdef IG_PYTHON_INSTRUCTIONS
+
 #include "Instruction.hpp"
 
 class PythonInstruction: public Instruction
@@ -62,5 +64,7 @@ private:
 	 */
 	void cleanup();
 };
+
+#endif /* IG_PYTHON_INSTRUCTIONS */
 
 #endif /* PythonInstruction_hpp */

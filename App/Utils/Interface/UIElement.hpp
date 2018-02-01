@@ -20,7 +20,7 @@ public:
 		m_display(true),
 		m_selected(false),
 		m_topItem(nullptr), m_rightItem(nullptr), m_bottomItem(nullptr), m_leftItem(nullptr),
-		m_callback(nullptr) {};
+		m_callback(nullptr), m_selectable(true) {};
 
 	/**
 	 Print the Item
@@ -128,6 +128,34 @@ public:
 		m_callback();
 	}
 
+	/**
+	 Return the dimensions of the element
+
+	 @return The element's dimensions
+	 */
+	inline glm::vec2 getDimensions() const { return glm::vec2(m_width, m_height); };
+
+	/**
+	 Return the position (top left) of the element
+
+	 @return The element's position
+	 */
+	inline glm::vec2 getPosition() const { return glm::vec2(m_posX, m_posY); };
+
+	/**
+	 Set if item can be selected
+
+	 @param selectable True to be able to be selected, false otherwise
+	 */
+	void setSelectable(const bool &selectable) { m_selectable = selectable; };
+
+	/**
+	 Tell if the item can be selected
+
+	 @return True if yes, false otherwise
+	 */
+	inline bool isSelectable() const { return m_selectable; };
+
 	virtual ~UIElement() = default;
 
 protected:
@@ -135,8 +163,17 @@ protected:
 	//Display properties
 	bool m_display;
 
+	//Positionning
+	uint m_posX;
+	uint m_posY;
+
+	//Dimensions
+	uint m_width;
+	uint m_height;
+
 	//current state
 	bool m_selected;
+	bool m_selectable;
 
 	//Neighboors
 	UIElement * m_topItem;

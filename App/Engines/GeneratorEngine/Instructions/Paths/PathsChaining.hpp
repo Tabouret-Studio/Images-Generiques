@@ -17,11 +17,11 @@ public:
 
 	static Instruction * get();
 	
-	std::vector<VectorImage *> execute(const std::vector<VectorImage *> &vectorImages);
+	std::vector<VectorImage *> execute(std::vector<VectorImage *> &vectorImages);
 
 private:
 
-	PathsChaining() {};
+	PathsChaining(): Instruction(INSTRUCTION_SOURCE_PATHS, INSTRUCTION_PROPERTY_ORDER, u"chainer") {};
 };
 
 #endif /* PathsChaining_hpp */

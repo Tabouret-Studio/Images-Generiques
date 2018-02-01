@@ -61,13 +61,32 @@
 		3967C59E20122EF8006E31AB /* SVGExporter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3967C59B20122EF8006E31AB /* SVGExporter.cpp */; };
 		3967C5A02012308F006E31AB /* InstructionsProtocol.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3967C59F2012308F006E31AB /* InstructionsProtocol.cpp */; };
 		3967C5A320123687006E31AB /* GeneratorEngine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3967C5A120123687006E31AB /* GeneratorEngine.cpp */; };
+		396CDD7B201F39C700660A7B /* AssemblageInterface.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 396CDD79201F39C700660A7B /* AssemblageInterface.cpp */; };
+		396CDD80201FC7C800660A7B /* SimpleRenderer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 396CDD7E201FC7C800660A7B /* SimpleRenderer.cpp */; };
 		397A72D6201B3C510025058C /* PathsLinearAlizer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 397A72CD201B3C500025058C /* PathsLinearAlizer.cpp */; };
 		397A72D7201B3C510025058C /* PathsOrientRandomizer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 397A72CF201B3C510025058C /* PathsOrientRandomizer.cpp */; };
 		397A72D8201B3C510025058C /* PathsInvert.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 397A72D3201B3C510025058C /* PathsInvert.cpp */; };
 		397A72D9201B3C510025058C /* PathsSquarify.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 397A72D4201B3C510025058C /* PathsSquarify.cpp */; };
 		397A72DA201B3C510025058C /* PathsNoise.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 397A72D5201B3C510025058C /* PathsNoise.cpp */; };
+		397AE6362020E09D007B2B04 /* AddInstructionInterface.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 397AE6342020E09D007B2B04 /* AddInstructionInterface.cpp */; };
+		397AE63820212344007B2B04 /* Instruction.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 397AE63720212344007B2B04 /* Instruction.cpp */; };
 		39AF3CCC1FDB4FE10089622E /* SDL2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39AF3CCB1FDB4FE10089622E /* SDL2.framework */; };
 		39AF3CD01FDB51AD0089622E /* RenderEngine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39AF3CCE1FDB51AD0089622E /* RenderEngine.cpp */; };
+		39B3714B2021C581008EACAA /* VectorImageExcerpt.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39B371492021C580008EACAA /* VectorImageExcerpt.cpp */; };
+		39B3715B20222A49008EACAA /* PathsIndex.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39B3715A20222A49008EACAA /* PathsIndex.cpp */; };
+		39B371662022FEDF008EACAA /* BeziersOpposing.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39B3715C2022FEDE008EACAA /* BeziersOpposing.cpp */; };
+		39B371682022FEDF008EACAA /* PathsOrderInvert.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39B371632022FEDF008EACAA /* PathsOrderInvert.cpp */; };
+		39B371692022FEDF008EACAA /* BeziersAmplitude.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39B371642022FEDF008EACAA /* BeziersAmplitude.cpp */; };
+		39B3716A2022FEDF008EACAA /* BeziersHandlesReversing.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39B371652022FEDF008EACAA /* BeziersHandlesReversing.cpp */; };
+		39B3717E2022FEE7008EACAA /* ShapesOrderRandomizer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39B371712022FEE7008EACAA /* ShapesOrderRandomizer.cpp */; };
+		39B3717F2022FEE7008EACAA /* ShapeIndex.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39B371722022FEE7008EACAA /* ShapeIndex.cpp */; };
+		39B371802022FEE7008EACAA /* ShapesGeometryRandomizer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39B371732022FEE7008EACAA /* ShapesGeometryRandomizer.cpp */; };
+		39B371812022FEE7008EACAA /* ShapesChaining.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39B371782022FEE7008EACAA /* ShapesChaining.cpp */; };
+		39B371822022FEE7008EACAA /* ShapesGeometryInvert.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39B371792022FEE7008EACAA /* ShapesGeometryInvert.cpp */; };
+		39B371832022FEE7008EACAA /* ShapeNoise.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39B3717A2022FEE7008EACAA /* ShapeNoise.cpp */; };
+		39B371842022FEE7008EACAA /* ShapesOrderInvert.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39B3717B2022FEE7008EACAA /* ShapesOrderInvert.cpp */; };
+		39B371852022FEE7008EACAA /* ShapeSymY.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39B3717C2022FEE7008EACAA /* ShapeSymY.cpp */; };
+		39B371862022FEE7008EACAA /* ShapeSymX.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39B3717D2022FEE7008EACAA /* ShapeSymX.cpp */; };
 		39D90C1A1FDAEE8400282ED1 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39D90C181FDAEE8400282ED1 /* main.cpp */; };
 		39D90C341FDAEF0F00282ED1 /* AppEngine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39D90C2C1FDAEF0F00282ED1 /* AppEngine.cpp */; };
 		39D90C3F1FDB403E00282ED1 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39D90C3E1FDB403E00282ED1 /* OpenGL.framework */; };
@@ -215,6 +234,16 @@
 		3967C59F2012308F006E31AB /* InstructionsProtocol.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = InstructionsProtocol.cpp; sourceTree = "<group>"; };
 		3967C5A120123687006E31AB /* GeneratorEngine.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = GeneratorEngine.cpp; sourceTree = "<group>"; };
 		3967C5A220123687006E31AB /* GeneratorEngine.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = GeneratorEngine.hpp; sourceTree = "<group>"; };
+		396CDD79201F39C700660A7B /* AssemblageInterface.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = AssemblageInterface.cpp; sourceTree = "<group>"; };
+		396CDD7A201F39C700660A7B /* AssemblageInterface.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = AssemblageInterface.hpp; sourceTree = "<group>"; };
+		396CDD7E201FC7C800660A7B /* SimpleRenderer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = SimpleRenderer.cpp; sourceTree = "<group>"; };
+		396CDD7F201FC7C800660A7B /* SimpleRenderer.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = SimpleRenderer.hpp; sourceTree = "<group>"; };
+		396CDD8220208A7A00660A7B /* arrowDown.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrowDown.png; sourceTree = "<group>"; };
+		396CDD8320208A7A00660A7B /* arrowUp.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrowUp.png; sourceTree = "<group>"; };
+		396CDD8420208A7A00660A7B /* delete.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = delete.png; sourceTree = "<group>"; };
+		396CDD8520208BD700660A7B /* arrowDownSelected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrowDownSelected.png; sourceTree = "<group>"; };
+		396CDD8620208BD700660A7B /* arrowUpSelected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrowUpSelected.png; sourceTree = "<group>"; };
+		396CDD8720208BD700660A7B /* deleteSelected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = deleteSelected.png; sourceTree = "<group>"; };
 		397A72CC201B3C500025058C /* PathsInvert.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = PathsInvert.hpp; path = App/Engines/GeneratorEngine/Instructions/Paths/PathsInvert.hpp; sourceTree = SOURCE_ROOT; };
 		397A72CD201B3C500025058C /* PathsLinearAlizer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = PathsLinearAlizer.cpp; path = App/Engines/GeneratorEngine/Instructions/Paths/PathsLinearAlizer.cpp; sourceTree = SOURCE_ROOT; };
 		397A72CE201B3C500025058C /* PathsLinearAlizer.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = PathsLinearAlizer.hpp; path = App/Engines/GeneratorEngine/Instructions/Paths/PathsLinearAlizer.hpp; sourceTree = SOURCE_ROOT; };
@@ -239,11 +268,46 @@
 		397A72EB201CF96A0025058C /* ORDER_RANDOMIZER_NOISER.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ORDER_RANDOMIZER_NOISER.json; sourceTree = "<group>"; };
 		397A72EC201CF96A0025058C /* SQUARIFIER.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = SQUARIFIER.json; sourceTree = "<group>"; };
 		397A72ED201CF96A0025058C /* CHAINER.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = CHAINER.json; sourceTree = "<group>"; };
+		397AE6342020E09D007B2B04 /* AddInstructionInterface.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = AddInstructionInterface.cpp; sourceTree = "<group>"; };
+		397AE6352020E09D007B2B04 /* AddInstructionInterface.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = AddInstructionInterface.hpp; sourceTree = "<group>"; };
+		397AE63720212344007B2B04 /* Instruction.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Instruction.cpp; sourceTree = "<group>"; };
 		397BE0D01FDAED60006254F0 /* ImagesGeneriques */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = ImagesGeneriques; sourceTree = BUILT_PRODUCTS_DIR; };
 		39AF3CCB1FDB4FE10089622E /* SDL2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2.framework; path = ../../../../../Library/Frameworks/SDL2.framework; sourceTree = "<group>"; };
 		39AF3CCE1FDB51AD0089622E /* RenderEngine.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = RenderEngine.cpp; sourceTree = "<group>"; };
 		39AF3CCF1FDB51AD0089622E /* RenderEngine.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = RenderEngine.hpp; sourceTree = "<group>"; };
 		39AF3CD11FDB541F0089622E /* ImagesGeneriques */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = ImagesGeneriques; sourceTree = "<group>"; };
+		39B371492021C580008EACAA /* VectorImageExcerpt.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = VectorImageExcerpt.cpp; sourceTree = "<group>"; };
+		39B3714A2021C580008EACAA /* VectorImageExcerpt.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = VectorImageExcerpt.hpp; sourceTree = "<group>"; };
+		39B3715920222A49008EACAA /* PathsIndex.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PathsIndex.hpp; sourceTree = "<group>"; };
+		39B3715A20222A49008EACAA /* PathsIndex.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PathsIndex.cpp; sourceTree = "<group>"; };
+		39B3715C2022FEDE008EACAA /* BeziersOpposing.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BeziersOpposing.cpp; sourceTree = "<group>"; };
+		39B3715D2022FEDE008EACAA /* BeziersHandlesReversing.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = BeziersHandlesReversing.hpp; sourceTree = "<group>"; };
+		39B3715E2022FEDE008EACAA /* PathsOrderInvert.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PathsOrderInvert.hpp; sourceTree = "<group>"; };
+		39B3715F2022FEDE008EACAA /* BeziersAmplitude.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = BeziersAmplitude.hpp; sourceTree = "<group>"; };
+		39B371622022FEDF008EACAA /* BeziersOpposing.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = BeziersOpposing.hpp; sourceTree = "<group>"; };
+		39B371632022FEDF008EACAA /* PathsOrderInvert.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PathsOrderInvert.cpp; sourceTree = "<group>"; };
+		39B371642022FEDF008EACAA /* BeziersAmplitude.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BeziersAmplitude.cpp; sourceTree = "<group>"; };
+		39B371652022FEDF008EACAA /* BeziersHandlesReversing.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BeziersHandlesReversing.cpp; sourceTree = "<group>"; };
+		39B3716C2022FEE7008EACAA /* ShapesGeometryInvert.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ShapesGeometryInvert.hpp; sourceTree = "<group>"; };
+		39B3716D2022FEE7008EACAA /* ShapeNoise.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ShapeNoise.hpp; sourceTree = "<group>"; };
+		39B3716E2022FEE7008EACAA /* ShapesOrderInvert.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ShapesOrderInvert.hpp; sourceTree = "<group>"; };
+		39B3716F2022FEE7008EACAA /* ShapeSymY.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ShapeSymY.hpp; sourceTree = "<group>"; };
+		39B371702022FEE7008EACAA /* ShapeSymX.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ShapeSymX.hpp; sourceTree = "<group>"; };
+		39B371712022FEE7008EACAA /* ShapesOrderRandomizer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ShapesOrderRandomizer.cpp; sourceTree = "<group>"; };
+		39B371722022FEE7008EACAA /* ShapeIndex.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ShapeIndex.cpp; sourceTree = "<group>"; };
+		39B371732022FEE7008EACAA /* ShapesGeometryRandomizer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ShapesGeometryRandomizer.cpp; sourceTree = "<group>"; };
+		39B371742022FEE7008EACAA /* ShapesChaining.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ShapesChaining.hpp; sourceTree = "<group>"; };
+		39B371752022FEE7008EACAA /* ShapesOrderRandomizer.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ShapesOrderRandomizer.hpp; sourceTree = "<group>"; };
+		39B371762022FEE7008EACAA /* ShapeIndex.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ShapeIndex.hpp; sourceTree = "<group>"; };
+		39B371772022FEE7008EACAA /* ShapesGeometryRandomizer.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ShapesGeometryRandomizer.hpp; sourceTree = "<group>"; };
+		39B371782022FEE7008EACAA /* ShapesChaining.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ShapesChaining.cpp; sourceTree = "<group>"; };
+		39B371792022FEE7008EACAA /* ShapesGeometryInvert.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ShapesGeometryInvert.cpp; sourceTree = "<group>"; };
+		39B3717A2022FEE7008EACAA /* ShapeNoise.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ShapeNoise.cpp; sourceTree = "<group>"; };
+		39B3717B2022FEE7008EACAA /* ShapesOrderInvert.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ShapesOrderInvert.cpp; sourceTree = "<group>"; };
+		39B3717C2022FEE7008EACAA /* ShapeSymY.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ShapeSymY.cpp; sourceTree = "<group>"; };
+		39B3717D2022FEE7008EACAA /* ShapeSymX.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ShapeSymX.cpp; sourceTree = "<group>"; };
+		39B3718720230A63008EACAA /* enfant_machine.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = enfant_machine.svg; sourceTree = "<group>"; };
+		39B3718820230A63008EACAA /* enfants_dos_classe.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = enfants_dos_classe.svg; sourceTree = "<group>"; };
 		39D90C141FDAEDDC00282ED1 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		39D90C161FDAEE1400282ED1 /* Makefile */ = {isa = PBXFileReference; explicitFileType = sourcecode.make; path = Makefile; sourceTree = "<group>"; usesTabs = 1; };
 		39D90C181FDAEE8400282ED1 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
@@ -273,6 +337,7 @@
 		390196C91FDDD956000F2113 /* assets */ = {
 			isa = PBXGroup;
 			children = (
+				396CDD8120208A7A00660A7B /* images */,
 				39152351201A8606002AF97A /* protocols */,
 				394F9430201620D40065CE25 /* instructions */,
 				390196D71FDE7E29000F2113 /* SVG */,
@@ -295,6 +360,8 @@
 		390196D71FDE7E29000F2113 /* SVG */ = {
 			isa = PBXGroup;
 			children = (
+				39B3718720230A63008EACAA /* enfant_machine.svg */,
+				39B3718820230A63008EACAA /* enfants_dos_classe.svg */,
 				3967C5722010967B006E31AB /* github.svg */,
 				3967C5742010967C006E31AB /* ml3.svg */,
 				3967C5732010967B006E31AB /* val.svg */,
@@ -387,6 +454,12 @@
 				391C905E201907B30003E2B7 /* ProtocolsMenu.hpp */,
 				39152354201B1541002AF97A /* ProtocolRenderer.cpp */,
 				39152355201B1541002AF97A /* ProtocolRenderer.hpp */,
+				396CDD79201F39C700660A7B /* AssemblageInterface.cpp */,
+				396CDD7A201F39C700660A7B /* AssemblageInterface.hpp */,
+				396CDD7E201FC7C800660A7B /* SimpleRenderer.cpp */,
+				396CDD7F201FC7C800660A7B /* SimpleRenderer.hpp */,
+				397AE6342020E09D007B2B04 /* AddInstructionInterface.cpp */,
+				397AE6352020E09D007B2B04 /* AddInstructionInterface.hpp */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";
@@ -523,7 +596,9 @@
 		3967C57B20120BAC006E31AB /* GeneratorEngine */ = {
 			isa = PBXGroup;
 			children = (
-				3967C57D20120BD4006E31AB /* instructions */,
+				39B371492021C580008EACAA /* VectorImageExcerpt.cpp */,
+				39B3714A2021C580008EACAA /* VectorImageExcerpt.hpp */,
+				3967C57D20120BD4006E31AB /* Instructions */,
 				3967C57C20120BCB006E31AB /* InstructionsProtocol */,
 				3967C5A120123687006E31AB /* GeneratorEngine.cpp */,
 				3967C5A220123687006E31AB /* GeneratorEngine.hpp */,
@@ -543,28 +618,40 @@
 			path = InstructionsProtocol;
 			sourceTree = "<group>";
 		};
-		3967C57D20120BD4006E31AB /* instructions */ = {
+		3967C57D20120BD4006E31AB /* Instructions */ = {
 			isa = PBXGroup;
 			children = (
+				39B3716B2022FEE7008EACAA /* Shapes */,
 				3967C59820122DF5006E31AB /* Paths */,
 				3967C57E20120BEC006E31AB /* Instruction.hpp */,
+				397AE63720212344007B2B04 /* Instruction.cpp */,
 				391CFE452016409D00780A4C /* PythonInstruction.cpp */,
 				391CFE462016409D00780A4C /* PythonInstruction.hpp */,
 			);
-			path = instructions;
+			path = Instructions;
 			sourceTree = "<group>";
 		};
 		3967C59820122DF5006E31AB /* Paths */ = {
 			isa = PBXGroup;
 			children = (
+				39B371642022FEDF008EACAA /* BeziersAmplitude.cpp */,
+				39B3715F2022FEDE008EACAA /* BeziersAmplitude.hpp */,
+				39B371652022FEDF008EACAA /* BeziersHandlesReversing.cpp */,
+				39B3715D2022FEDE008EACAA /* BeziersHandlesReversing.hpp */,
+				39B3715C2022FEDE008EACAA /* BeziersOpposing.cpp */,
+				39B371622022FEDF008EACAA /* BeziersOpposing.hpp */,
 				3967C59520122C51006E31AB /* PathsChaining.cpp */,
 				3967C59620122C51006E31AB /* PathsChaining.hpp */,
+				39B3715A20222A49008EACAA /* PathsIndex.cpp */,
+				39B3715920222A49008EACAA /* PathsIndex.hpp */,
 				397A72D3201B3C510025058C /* PathsInvert.cpp */,
 				397A72CC201B3C500025058C /* PathsInvert.hpp */,
 				397A72CD201B3C500025058C /* PathsLinearAlizer.cpp */,
 				397A72CE201B3C500025058C /* PathsLinearAlizer.hpp */,
 				397A72D5201B3C510025058C /* PathsNoise.cpp */,
 				397A72D0201B3C510025058C /* PathsNoise.hpp */,
+				39B371632022FEDF008EACAA /* PathsOrderInvert.cpp */,
+				39B3715E2022FEDE008EACAA /* PathsOrderInvert.hpp */,
 				3967C59220122948006E31AB /* PathsOrderRandomizer.cpp */,
 				3967C59320122948006E31AB /* PathsOrderRandomizer.hpp */,
 				397A72CF201B3C510025058C /* PathsOrientRandomizer.cpp */,
@@ -586,6 +673,19 @@
 				391C904B20174D530003E2B7 /* VectorImagesToJSONExporter.hpp */,
 			);
 			path = Exporters;
+			sourceTree = "<group>";
+		};
+		396CDD8120208A7A00660A7B /* images */ = {
+			isa = PBXGroup;
+			children = (
+				396CDD8520208BD700660A7B /* arrowDownSelected.png */,
+				396CDD8620208BD700660A7B /* arrowUpSelected.png */,
+				396CDD8720208BD700660A7B /* deleteSelected.png */,
+				396CDD8220208A7A00660A7B /* arrowDown.png */,
+				396CDD8320208A7A00660A7B /* arrowUp.png */,
+				396CDD8420208A7A00660A7B /* delete.png */,
+			);
+			path = images;
 			sourceTree = "<group>";
 		};
 		397BE0C71FDAED60006254F0 = {
@@ -613,6 +713,31 @@
 				39AF3CCF1FDB51AD0089622E /* RenderEngine.hpp */,
 			);
 			path = RenderEngine;
+			sourceTree = "<group>";
+		};
+		39B3716B2022FEE7008EACAA /* Shapes */ = {
+			isa = PBXGroup;
+			children = (
+				39B371722022FEE7008EACAA /* ShapeIndex.cpp */,
+				39B371762022FEE7008EACAA /* ShapeIndex.hpp */,
+				39B3717A2022FEE7008EACAA /* ShapeNoise.cpp */,
+				39B3716D2022FEE7008EACAA /* ShapeNoise.hpp */,
+				39B371782022FEE7008EACAA /* ShapesChaining.cpp */,
+				39B371742022FEE7008EACAA /* ShapesChaining.hpp */,
+				39B371792022FEE7008EACAA /* ShapesGeometryInvert.cpp */,
+				39B3716C2022FEE7008EACAA /* ShapesGeometryInvert.hpp */,
+				39B371732022FEE7008EACAA /* ShapesGeometryRandomizer.cpp */,
+				39B371772022FEE7008EACAA /* ShapesGeometryRandomizer.hpp */,
+				39B3717B2022FEE7008EACAA /* ShapesOrderInvert.cpp */,
+				39B3716E2022FEE7008EACAA /* ShapesOrderInvert.hpp */,
+				39B371712022FEE7008EACAA /* ShapesOrderRandomizer.cpp */,
+				39B371752022FEE7008EACAA /* ShapesOrderRandomizer.hpp */,
+				39B3717D2022FEE7008EACAA /* ShapeSymX.cpp */,
+				39B371702022FEE7008EACAA /* ShapeSymX.hpp */,
+				39B3717C2022FEE7008EACAA /* ShapeSymY.cpp */,
+				39B3716F2022FEE7008EACAA /* ShapeSymY.hpp */,
+			);
+			path = Shapes;
 			sourceTree = "<group>";
 		};
 		39D90C151FDAEDE400282ED1 /* App */ = {
@@ -768,23 +893,33 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				39B3717F2022FEE7008EACAA /* ShapeIndex.cpp in Sources */,
 				397A72D7201B3C510025058C /* PathsOrientRandomizer.cpp in Sources */,
+				39B371832022FEE7008EACAA /* ShapeNoise.cpp in Sources */,
 				392C9EB9200902E70006ECB9 /* DrawCursor.cpp in Sources */,
 				3952DCAE200BFA820098779F /* SVGImporter.cpp in Sources */,
 				391CFE472016409D00780A4C /* PythonInstruction.cpp in Sources */,
 				3967C59420122948006E31AB /* PathsOrderRandomizer.cpp in Sources */,
+				396CDD7B201F39C700660A7B /* AssemblageInterface.cpp in Sources */,
+				396CDD80201FC7C800660A7B /* SimpleRenderer.cpp in Sources */,
 				39131674200F99A200F691B5 /* ml1.cpp in Sources */,
+				39B3715B20222A49008EACAA /* PathsIndex.cpp in Sources */,
 				392360522009105600400C45 /* MeshImporter.cpp in Sources */,
 				39131671200F6FE700F691B5 /* Val02.cpp in Sources */,
 				39AF3CD01FDB51AD0089622E /* RenderEngine.cpp in Sources */,
 				39152356201B1541002AF97A /* ProtocolRenderer.cpp in Sources */,
+				39B371812022FEE7008EACAA /* ShapesChaining.cpp in Sources */,
+				39B371842022FEE7008EACAA /* ShapesOrderInvert.cpp in Sources */,
 				3967C5A320123687006E31AB /* GeneratorEngine.cpp in Sources */,
 				397A72DA201B3C510025058C /* PathsNoise.cpp in Sources */,
 				392360562009105600400C45 /* FontImporter.cpp in Sources */,
+				39B371802022FEE7008EACAA /* ShapesGeometryRandomizer.cpp in Sources */,
+				39B371852022FEE7008EACAA /* ShapeSymY.cpp in Sources */,
 				3923604C2009105600400C45 /* ShaderImporter.cpp in Sources */,
 				392360602009105600400C45 /* Shader.cpp in Sources */,
 				3967C58320121F2A006E31AB /* InstructionParameters.cpp in Sources */,
 				392360662009105600400C45 /* primitives.cpp in Sources */,
+				39B3716A2022FEDF008EACAA /* BeziersHandlesReversing.cpp in Sources */,
 				3923601A20090F6000400C45 /* Interactions.cpp in Sources */,
 				392C9EB4200902E70006ECB9 /* Bezier.cpp in Sources */,
 				39D90C1A1FDAEE8400282ED1 /* main.cpp in Sources */,
@@ -797,14 +932,17 @@
 				392C9EB8200902E70006ECB9 /* ShaderProgram.cpp in Sources */,
 				3967C57120108C2A006E31AB /* MeshGroup.cpp in Sources */,
 				391C904F201783E10003E2B7 /* JSONToVectorImagesImporter.cpp in Sources */,
+				39B371692022FEDF008EACAA /* BeziersAmplitude.cpp in Sources */,
 				3967C577201117BA006E31AB /* ml2.cpp in Sources */,
 				397A72D8201B3C510025058C /* PathsInvert.cpp in Sources */,
 				39152360201B2EF5002AF97A /* JSONImporter.cpp in Sources */,
+				39B371862022FEE7008EACAA /* ShapeSymX.cpp in Sources */,
 				3952DCB1200BFC600098779F /* VectorImage.cpp in Sources */,
 				3967C5A02012308F006E31AB /* InstructionsProtocol.cpp in Sources */,
 				392C9EB7200902E70006ECB9 /* SDL.cpp in Sources */,
 				397A72D9201B3C510025058C /* PathsSquarify.cpp in Sources */,
 				3967C57A2011F94D006E31AB /* Gen01.cpp in Sources */,
+				39B371682022FEDF008EACAA /* PathsOrderInvert.cpp in Sources */,
 				394F942F2016209C0065CE25 /* Python.cpp in Sources */,
 				3952DCBA200E4BB50098779F /* Shape.cpp in Sources */,
 				391C904C20174D530003E2B7 /* VectorImagesToJSONExporter.cpp in Sources */,
@@ -819,11 +957,17 @@
 				3923605E2009105600400C45 /* Font.cpp in Sources */,
 				392C9EAF200902E70006ECB9 /* Igniter.cpp in Sources */,
 				3915235A201B2DCF002AF97A /* IndexEngine.cpp in Sources */,
+				39B371822022FEE7008EACAA /* ShapesGeometryInvert.cpp in Sources */,
 				39D90C341FDAEF0F00282ED1 /* AppEngine.cpp in Sources */,
 				391CFE4A2016657700780A4C /* Utils.cpp in Sources */,
 				3923605C2009105600400C45 /* Image.cpp in Sources */,
+				39B371662022FEDF008EACAA /* BeziersOpposing.cpp in Sources */,
+				39B3714B2021C581008EACAA /* VectorImageExcerpt.cpp in Sources */,
+				39B3717E2022FEE7008EACAA /* ShapesOrderRandomizer.cpp in Sources */,
+				397AE6362020E09D007B2B04 /* AddInstructionInterface.cpp in Sources */,
 				3915234F2019E25A002AF97A /* UIButton.cpp in Sources */,
 				3923604B2009105600400C45 /* SoundImporter.cpp in Sources */,
+				397AE63820212344007B2B04 /* Instruction.cpp in Sources */,
 				391C905F201907B30003E2B7 /* ProtocolsMenu.cpp in Sources */,
 				3923605A2009105600400C45 /* Asset.cpp in Sources */,
 				3967C59E20122EF8006E31AB /* SVGExporter.cpp in Sources */,

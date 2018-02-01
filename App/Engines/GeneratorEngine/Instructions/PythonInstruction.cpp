@@ -6,6 +6,8 @@
 //  Copyright © 2018 Valentin Dufois. All rights reserved.
 //
 
+#ifdef IG_PYTHON_INSTRUCTIONS
+
 #include "PythonInstruction.hpp"
 
 #include "Core/AppObject.hpp"
@@ -98,3 +100,5 @@ void PythonInstruction::cleanup()
 	std::string output = App->getAppPath() + "assets/instructions/output.json";
 	std::remove(output.c_str());
 }
+
+#endif /* IG_PYTHON_INSTRUCTIONS */

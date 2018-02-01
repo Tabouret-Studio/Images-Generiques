@@ -29,7 +29,8 @@ public:
 	Shape(const Bezier &path):
 		m_paths({path}),
 		m_boundsMin(path.getPosition()),
-		m_boundsMax(path.getBoundsMax()) {};
+		m_boundsMax(path.getBoundsMax())
+	{ calculateBounds(); };
 
 	Shape(const std::vector<Bezier> &paths):
 		m_paths(paths) { calculateBounds(); };
@@ -39,7 +40,7 @@ public:
 
 	 @return Vector of bezier paths
 	 */
-	inline std::vector<Bezier> getPaths() const { return m_paths; };
+	inline std::vector<Bezier> * getPaths() { return &m_paths; };
 
 	/**
 	 Return all the points in the shape
@@ -99,6 +100,8 @@ public:
 	inline void applyCursor() { applyCursor(glm::mat4(1.0)); };
 
 	void applyCursor(const glm::mat4 &imageCursor);
+
+	void move(const glm::vec3 &dest);
 
 private:
 

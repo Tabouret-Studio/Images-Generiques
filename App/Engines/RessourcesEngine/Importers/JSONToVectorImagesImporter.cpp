@@ -33,7 +33,7 @@ std::vector<VectorImage *> JSONToVectorImagesImporter::import(const std::string 
 	//For each VectorImage in the file
 	for(const nlohmann::json &jsonVector : jsonOutput)
 	{
-		VectorImage * vectorImage = new VectorImage(jsonVector["width"], jsonVector["height"]);
+		VectorImage * vectorImage = new VectorImage();
 
 		//For each Shape in the VectorImage
 		for(const nlohmann::json &shapeJson : jsonVector["shapes"])
