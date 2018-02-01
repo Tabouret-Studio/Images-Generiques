@@ -131,6 +131,7 @@ private:
 #include "ken03.hpp"
 #include "ProtocolsMenu.hpp"
 #include "ProtocolRenderer.hpp"
+#include "AlexGen01.hpp"
 
 #include "AssemblageInterface.hpp"
 #include "SimpleRenderer.hpp"
