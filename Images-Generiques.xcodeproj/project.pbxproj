@@ -70,6 +70,7 @@
 		397A72DA201B3C510025058C /* PathsNoise.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 397A72D5201B3C510025058C /* PathsNoise.cpp */; };
 		397AE6362020E09D007B2B04 /* AddInstructionInterface.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 397AE6342020E09D007B2B04 /* AddInstructionInterface.cpp */; };
 		397AE63820212344007B2B04 /* Instruction.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 397AE63720212344007B2B04 /* Instruction.cpp */; };
+		39930A78202357EB00FEEFF8 /* ShapesScatterCircle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39930A76202357EB00FEEFF8 /* ShapesScatterCircle.cpp */; };
 		39AF3CCC1FDB4FE10089622E /* SDL2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39AF3CCB1FDB4FE10089622E /* SDL2.framework */; };
 		39AF3CD01FDB51AD0089622E /* RenderEngine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39AF3CCE1FDB51AD0089622E /* RenderEngine.cpp */; };
 		39B3714B2021C581008EACAA /* VectorImageExcerpt.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39B371492021C580008EACAA /* VectorImageExcerpt.cpp */; };
@@ -82,7 +83,6 @@
 		39B3717F2022FEE7008EACAA /* ShapeIndex.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39B371722022FEE7008EACAA /* ShapeIndex.cpp */; };
 		39B371802022FEE7008EACAA /* ShapesGeometryRandomizer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39B371732022FEE7008EACAA /* ShapesGeometryRandomizer.cpp */; };
 		39B371812022FEE7008EACAA /* ShapesChaining.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39B371782022FEE7008EACAA /* ShapesChaining.cpp */; };
-		39B371822022FEE7008EACAA /* ShapesGeometryInvert.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39B371792022FEE7008EACAA /* ShapesGeometryInvert.cpp */; };
 		39B371832022FEE7008EACAA /* ShapeNoise.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39B3717A2022FEE7008EACAA /* ShapeNoise.cpp */; };
 		39B371842022FEE7008EACAA /* ShapesOrderInvert.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39B3717B2022FEE7008EACAA /* ShapesOrderInvert.cpp */; };
 		39B371852022FEE7008EACAA /* ShapeSymY.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39B3717C2022FEE7008EACAA /* ShapeSymY.cpp */; };
@@ -272,6 +272,8 @@
 		397AE6352020E09D007B2B04 /* AddInstructionInterface.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = AddInstructionInterface.hpp; sourceTree = "<group>"; };
 		397AE63720212344007B2B04 /* Instruction.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Instruction.cpp; sourceTree = "<group>"; };
 		397BE0D01FDAED60006254F0 /* ImagesGeneriques */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = ImagesGeneriques; sourceTree = BUILT_PRODUCTS_DIR; };
+		39930A76202357EB00FEEFF8 /* ShapesScatterCircle.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ShapesScatterCircle.cpp; sourceTree = "<group>"; };
+		39930A77202357EB00FEEFF8 /* ShapesScatterCircle.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = ShapesScatterCircle.hpp; sourceTree = "<group>"; };
 		39AF3CCB1FDB4FE10089622E /* SDL2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2.framework; path = ../../../../../Library/Frameworks/SDL2.framework; sourceTree = "<group>"; };
 		39AF3CCE1FDB51AD0089622E /* RenderEngine.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = RenderEngine.cpp; sourceTree = "<group>"; };
 		39AF3CCF1FDB51AD0089622E /* RenderEngine.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = RenderEngine.hpp; sourceTree = "<group>"; };
@@ -288,7 +290,6 @@
 		39B371632022FEDF008EACAA /* PathsOrderInvert.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PathsOrderInvert.cpp; sourceTree = "<group>"; };
 		39B371642022FEDF008EACAA /* BeziersAmplitude.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BeziersAmplitude.cpp; sourceTree = "<group>"; };
 		39B371652022FEDF008EACAA /* BeziersHandlesReversing.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BeziersHandlesReversing.cpp; sourceTree = "<group>"; };
-		39B3716C2022FEE7008EACAA /* ShapesGeometryInvert.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ShapesGeometryInvert.hpp; sourceTree = "<group>"; };
 		39B3716D2022FEE7008EACAA /* ShapeNoise.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ShapeNoise.hpp; sourceTree = "<group>"; };
 		39B3716E2022FEE7008EACAA /* ShapesOrderInvert.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ShapesOrderInvert.hpp; sourceTree = "<group>"; };
 		39B3716F2022FEE7008EACAA /* ShapeSymY.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ShapeSymY.hpp; sourceTree = "<group>"; };
@@ -301,7 +302,6 @@
 		39B371762022FEE7008EACAA /* ShapeIndex.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ShapeIndex.hpp; sourceTree = "<group>"; };
 		39B371772022FEE7008EACAA /* ShapesGeometryRandomizer.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ShapesGeometryRandomizer.hpp; sourceTree = "<group>"; };
 		39B371782022FEE7008EACAA /* ShapesChaining.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ShapesChaining.cpp; sourceTree = "<group>"; };
-		39B371792022FEE7008EACAA /* ShapesGeometryInvert.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ShapesGeometryInvert.cpp; sourceTree = "<group>"; };
 		39B3717A2022FEE7008EACAA /* ShapeNoise.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ShapeNoise.cpp; sourceTree = "<group>"; };
 		39B3717B2022FEE7008EACAA /* ShapesOrderInvert.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ShapesOrderInvert.cpp; sourceTree = "<group>"; };
 		39B3717C2022FEE7008EACAA /* ShapeSymY.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ShapeSymY.cpp; sourceTree = "<group>"; };
@@ -724,8 +724,6 @@
 				39B3716D2022FEE7008EACAA /* ShapeNoise.hpp */,
 				39B371782022FEE7008EACAA /* ShapesChaining.cpp */,
 				39B371742022FEE7008EACAA /* ShapesChaining.hpp */,
-				39B371792022FEE7008EACAA /* ShapesGeometryInvert.cpp */,
-				39B3716C2022FEE7008EACAA /* ShapesGeometryInvert.hpp */,
 				39B371732022FEE7008EACAA /* ShapesGeometryRandomizer.cpp */,
 				39B371772022FEE7008EACAA /* ShapesGeometryRandomizer.hpp */,
 				39B3717B2022FEE7008EACAA /* ShapesOrderInvert.cpp */,
@@ -736,6 +734,8 @@
 				39B371702022FEE7008EACAA /* ShapeSymX.hpp */,
 				39B3717C2022FEE7008EACAA /* ShapeSymY.cpp */,
 				39B3716F2022FEE7008EACAA /* ShapeSymY.hpp */,
+				39930A76202357EB00FEEFF8 /* ShapesScatterCircle.cpp */,
+				39930A77202357EB00FEEFF8 /* ShapesScatterCircle.hpp */,
 			);
 			path = Shapes;
 			sourceTree = "<group>";
@@ -943,6 +943,7 @@
 				397A72D9201B3C510025058C /* PathsSquarify.cpp in Sources */,
 				3967C57A2011F94D006E31AB /* Gen01.cpp in Sources */,
 				39B371682022FEDF008EACAA /* PathsOrderInvert.cpp in Sources */,
+				39930A78202357EB00FEEFF8 /* ShapesScatterCircle.cpp in Sources */,
 				394F942F2016209C0065CE25 /* Python.cpp in Sources */,
 				3952DCBA200E4BB50098779F /* Shape.cpp in Sources */,
 				391C904C20174D530003E2B7 /* VectorImagesToJSONExporter.cpp in Sources */,
@@ -957,7 +958,6 @@
 				3923605E2009105600400C45 /* Font.cpp in Sources */,
 				392C9EAF200902E70006ECB9 /* Igniter.cpp in Sources */,
 				3915235A201B2DCF002AF97A /* IndexEngine.cpp in Sources */,
-				39B371822022FEE7008EACAA /* ShapesGeometryInvert.cpp in Sources */,
 				39D90C341FDAEF0F00282ED1 /* AppEngine.cpp in Sources */,
 				391CFE4A2016657700780A4C /* Utils.cpp in Sources */,
 				3923605C2009105600400C45 /* Image.cpp in Sources */,

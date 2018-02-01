@@ -20,9 +20,9 @@ Instruction * PathsIndex::get()
 std::vector<VectorImage *> PathsIndex::execute(std::vector<VectorImage *> &vectorImages)
 {
 	// Espacement entre chaque courbe
-	uint boxSize = 50;
+	uint boxSize = 100;
 	uint demiBox = boxSize /2;
-	uint numCols = (App->getWidth() - 600) / boxSize;
+	uint numCols = 40;
 	uint leftMargin = ((App->getWidth() - 600) % boxSize) / 2;
 
 	VectorImage * output = new VectorImage();

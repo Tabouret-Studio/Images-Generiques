@@ -137,12 +137,12 @@ void GeneratorEngine::registerCPPInstructions()
 	registerInstruction(INSTRUCTION_CPP, "SHAPES_INDEX", ShapeIndex::get);
 	registerInstruction(INSTRUCTION_CPP, "SHAPES_GEOMETRY_NOISETRANSLATE", ShapeNoise::get);
 	registerInstruction(INSTRUCTION_CPP, "SHAPES_CHAINING", ShapesChaining::get);
-	registerInstruction(INSTRUCTION_CPP, "SHAPES_GEOMETRY_INVERT", ShapesGeometryInvert::get);
 	registerInstruction(INSTRUCTION_CPP, "SHAPES_GEOMETRY_NOISEROTATE", ShapesGeometryRandomizer::get);
 	registerInstruction(INSTRUCTION_CPP, "SHAPES_ORDER_INVERT", ShapesOrderInvert::get);
 	registerInstruction(INSTRUCTION_CPP, "SHAPES_ORDER_RANDOMIZER", ShapesOrderRandomizer::get);
 	registerInstruction(INSTRUCTION_CPP, "SHAPES_SYMX", ShapeSymX::get);
 	registerInstruction(INSTRUCTION_CPP, "SHAPES_SYMY", ShapeSymY::get);
+	registerInstruction(INSTRUCTION_CPP, "SHAPES_SCATTER_CIRCLE", ShapesScatterCircle::get);
 }
 
 

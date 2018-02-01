@@ -21,7 +21,8 @@ enum instructionSource
 enum instructionProperty
 {
 	INSTRUCTION_PROPERTY_ORDER,
-	INSTRUCTION_PROPERTY_GEOMETRY
+	INSTRUCTION_PROPERTY_GEOMETRY,
+	INSTRUCTION_PROPERTY_SCATTER
 };
 
 /**
@@ -164,12 +165,12 @@ protected:
 #include "Shapes/ShapeIndex.hpp"
 #include "Shapes/ShapeNoise.hpp"
 #include "Shapes/ShapesChaining.hpp"
-#include "Shapes/ShapesGeometryInvert.hpp"
 #include "Shapes/ShapesGeometryRandomizer.hpp"
 #include "Shapes/ShapesOrderInvert.hpp"
 #include "Shapes/ShapesOrderRandomizer.hpp"
 #include "Shapes/ShapeSymX.hpp"
 #include "Shapes/ShapeSymY.hpp"
+#include "Shapes/ShapesScatterCircle.hpp"
 
 
 #endif /* Instruction_h */

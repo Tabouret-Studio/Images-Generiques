@@ -10,7 +10,7 @@
 
 #include "Core/AppObject.hpp"
 #include "Engines/RenderEngine/RenderEngine.hpp"
-#include "AppEngine.hpp"
+#include "Engines/AppEngine/AppEngine.hpp"
 
 #include "Elements/Mesh.hpp"
 

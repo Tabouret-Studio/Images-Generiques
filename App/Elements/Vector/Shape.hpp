@@ -102,6 +102,8 @@ public:
 	void applyCursor(const glm::mat4 &imageCursor);
 
 	void move(const glm::vec3 &dest);
+	
+	void calculateBounds();
 
 private:
 
@@ -112,7 +114,6 @@ private:
 
 	DrawCursor m_cursor;
 
-	void calculateBounds();
 	void updateBounds(const std::vector<Bezier> &paths);
 
 	void compareAndUpdateBounds(const Bezier &path);

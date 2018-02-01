@@ -6,19 +6,28 @@ Instruction * ShapesGeometryRandomizer::get()
 	return new ShapesGeometryRandomizer();
 }
 
+/// OK FOR V2
+
 std::vector<VectorImage *> ShapesGeometryRandomizer::execute(std::vector<VectorImage *> &vectorImages)
 {
-	
-	std::vector<Shape> shapes = *vectorImages[0]->getShapes();
-	VectorImage* img = new VectorImage();
+	glm::vec3 shapePos, shapeDim;
 
-	for(Shape shape : shapes)
+	glm::mat4 tempCursor;
+	DrawCursor modificationCursor;
+
+	for(VectorImage * vImage : vectorImages)
 	{
-		shape.applyCursor();
-		shape.getCursor()->rotate(5 - Utils::rand(11),0,0,1);
-		
-		*img << shape;
+		for(Shape &shape : *vImage->getShapes())
+		{
+			tempCursor = shape.getCursor()->getMatrix();
+
+			shape.getCursor()->reset();
+
+			modificationCursor.rotate(float(1 - Utils::rand(3)) / 2.0, 0, 0, 1);
+
+			shape.getCursor()->setMatrix(modificationCursor.getMatrix() * tempCursor);
+		}
 	}
 
-	return {img};
+	return vectorImages;
 }
