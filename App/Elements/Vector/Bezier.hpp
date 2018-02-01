@@ -108,6 +108,18 @@ public:
 		calculateBounds();
 	};
 
+	/**
+	 Copy Constructor
+	 */
+	/*Bezier(const Bezier &bezier):
+		m_startPoint(bezier.m_startPoint),
+		m_startHandle(bezier.m_startHandle),
+		m_endHandle(bezier.m_endHandle),
+		m_endPoint(bezier.m_endPoint),
+		m_cursor(bezier.m_cursor) {
+		calculateBounds();
+	};*/
+
 	Bezier() {};
 
 	/////////

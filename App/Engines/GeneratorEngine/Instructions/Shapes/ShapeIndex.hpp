@@ -16,8 +16,8 @@ class ShapeIndex: public Instruction
 public:
 
 	static Instruction * get();
-	
-	std::vector<VectorImage *> execute(std::vector<VectorImage *> &vectorImages);
+    
+    std::vector<VectorImage *> execute(std::vector<VectorImage *> &vectorImages);
 
 private:
 

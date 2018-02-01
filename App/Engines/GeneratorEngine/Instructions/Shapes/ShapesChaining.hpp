@@ -9,11 +9,11 @@ public:
 
 	static Instruction * get();
 	
-	std::vector<VectorImage *> execute(const std::vector<VectorImage *> &vectorImages);
+	std::vector<VectorImage *> execute(std::vector<VectorImage *> &vectorImages);
 
 private:
 
-	ShapesChaining() {};
+	ShapesChaining(): Instruction(INSTRUCTION_SOURCE_SHAPES, INSTRUCTION_PROPERTY_ORDER, u"chainer") {};
 };
 
 #endif /* ShapesChaining_hpp */

@@ -24,7 +24,7 @@ public:
 
 private:
 
-	PathsOrientRandomizer(): Instruction(INSTRUCTION_SOURCE_PATHS, INSTRUCTION_PROPERTY_GEOMETRY, u"pivoter aleatoirement") {};
+	PathsOrientRandomizer(): Instruction(INSTRUCTION_SOURCE_PATHS, INSTRUCTION_PROPERTY_GEOMETRY, u"pivoter aléatoirement") {};
 };
 
 #endif /* PathsOrientRandomizer_hpp */

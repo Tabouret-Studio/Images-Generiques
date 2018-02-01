@@ -6,7 +6,7 @@ Instruction * ShapesGeometryInvert::get()
 	return new ShapesGeometryInvert();
 }
 
-std::vector<VectorImage *> ShapesGeometryInvert::execute(const std::vector<VectorImage *> &vectorImages)
+std::vector<VectorImage *> ShapesGeometryInvert::execute(std::vector<VectorImage *> &vectorImages)
 {
 	vectorImages[0]->applyCursor();
 	std::vector<Bezier> paths = vectorImages[0]->getBeziers();

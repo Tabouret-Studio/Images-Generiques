@@ -17,17 +17,40 @@ Instruction * PathsChaining::get()
 
 std::vector<VectorImage *> PathsChaining::execute(std::vector<VectorImage *> &vectorImages)
 {
+	glm::vec3 bezierPos, bezierDim, lastPos;
+
 	for(VectorImage * vImage : vectorImages)
 	{
+		vImage->getCursor()->reset();
+
 		for(Shape &shape : *vImage->getShapes())
 		{
-			glm::vec3 lastPos(0, 0, 0);
+			lastPos = glm::vec3(0, 0, 0);
+			shape.getCursor()->reset();
 
 			for(Bezier &path : *shape.getPaths())
 			{
-				path.applyCursor();
-				path.move(lastPos);
-				lastPos = path.getEndPoint();
+				bezierPos = path.getPosition();
+				bezierDim = path.getDimensions();
+
+				//Move bezier to origin
+				path.getCursor()
+					->reset()
+					->translate(-(bezierPos.x + bezierDim.x / 2.0), -(bezierPos.y + bezierDim.y / 2.0), 0);
+
+				//Move bezier start point to origin
+				path.getCursor()
+					->translate(-path.getStartPoint());
+
+				//Move besier to lastPos
+				path.getCursor()
+					->translate(lastPos);
+
+				Bezier pathTemp = path;
+				pathTemp.applyCursor();
+
+				std::cout << glm::to_string(lastPos) << std::endl;
+				lastPos = pathTemp.getEndPoint();
 			}
 		}
 	}

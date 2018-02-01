@@ -9,10 +9,10 @@ public:
 
 	static Instruction * get();
 	
-	std::vector<VectorImage *> execute(const std::vector<VectorImage *> &vectorImages);
+	std::vector<VectorImage *> execute(std::vector<VectorImage *> &vectorImages);
 
 private:
-	ShapesOrderRandomizer() {};
+	ShapesOrderRandomizer(): Instruction(INSTRUCTION_SOURCE_SHAPES, INSTRUCTION_PROPERTY_ORDER, u"réordonner") {};
 };
 
 #endif /* ShapesOrderRandomizer_hpp */

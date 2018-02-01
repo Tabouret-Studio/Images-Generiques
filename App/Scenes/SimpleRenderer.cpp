@@ -10,6 +10,7 @@
 
 #include "Core/AppObject.hpp"
 #include "Engines/RenderEngine/RenderEngine.hpp"
+#include "AppEngine.hpp"
 
 #include "Elements/Mesh.hpp"
 
@@ -36,6 +37,9 @@ namespace Scenes
 	///////////
 	void SimpleRenderer::execute()
 	{
+		m_zoomLevel += App->appEngine->getMouse().scrollY / 50.f;
+		if(m_zoomLevel < 0)
+			m_zoomLevel = 0;
 	}
 
 
@@ -74,7 +78,8 @@ namespace Scenes
 			mesh->getCursor()->reset()
 				->translate(-(meshPos.x + meshDims.x / 2.0), -(meshPos.y + meshDims.y / 2.0), 0)
 				->translate(glm::vec3(renderCenter, 0))
-				->scale(scale, scale, 0);
+				->scale(scale, scale, 0)
+				->scale(m_zoomLevel, m_zoomLevel, 0);
 
 			App->renderEngine->setProjection2D();
 			mesh->render();

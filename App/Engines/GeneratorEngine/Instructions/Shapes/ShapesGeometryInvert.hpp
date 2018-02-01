@@ -12,11 +12,11 @@ public:
 
 	static Instruction * get();
 	
-	std::vector<VectorImage *> execute(const std::vector<VectorImage *> &vectorImages);
+	std::vector<VectorImage *> execute(std::vector<VectorImage *> &vectorImages);
 
 private:
 
-	ShapesGeometryInvert() {};
+	ShapesGeometryInvert(): Instruction(INSTRUCTION_SOURCE_SHAPES, INSTRUCTION_PROPERTY_GEOMETRY, u"inverser") {};
 };
 
 #endif /* ShapesGeometryInvert_hpp */

@@ -6,16 +6,16 @@ Instruction * ShapesGeometryRandomizer::get()
 	return new ShapesGeometryRandomizer();
 }
 
-std::vector<VectorImage *> ShapesGeometryRandomizer::execute(const std::vector<VectorImage *> &vectorImages)
+std::vector<VectorImage *> ShapesGeometryRandomizer::execute(std::vector<VectorImage *> &vectorImages)
 {
 	
-	std::vector<Shape> shapes = vectorImages[0]->getShapes();
+	std::vector<Shape> shapes = *vectorImages[0]->getShapes();
 	VectorImage* img = new VectorImage();
 
 	for(Shape shape : shapes)
 	{
 		shape.applyCursor();
-		shape.getCursor()->rotate(getParameters(),0,0,1);
+		shape.getCursor()->rotate(5 - Utils::rand(11),0,0,1);
 		
 		*img << shape;
 	}

@@ -19,8 +19,6 @@ Instruction * PathsOrderRandomizer::get()
 
 std::vector<VectorImage *> PathsOrderRandomizer::execute(std::vector<VectorImage *> &vectorImages)
 {
-	glm::mat4 tempCursor;
-
 	for(VectorImage * vImage : vectorImages)
 	{
 		for(Shape &shape : *vImage->getShapes())

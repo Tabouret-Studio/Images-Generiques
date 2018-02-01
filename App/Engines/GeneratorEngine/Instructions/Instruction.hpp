@@ -147,25 +147,29 @@ protected:
 #include "PythonInstruction.hpp"
 
 //Paths
-#include "Paths/PathsOrderRandomizer.hpp"
+#include "Paths/BeziersAmplitude.hpp"
+#include "Paths/BeziersHandlesReversing.hpp"
+#include "Paths/BeziersOpposing.hpp"
 #include "Paths/PathsChaining.hpp"
+#include "Paths/PathsIndex.hpp"
 #include "Paths/PathsInvert.hpp"
 #include "Paths/PathsLinearAlizer.hpp"
 #include "Paths/PathsNoise.hpp"
+#include "Paths/PathsOrderInvert.hpp"
+#include "Paths/PathsOrderRandomizer.hpp"
 #include "Paths/PathsOrientRandomizer.hpp"
 #include "Paths/PathsSquarify.hpp"
-#include "Paths/PathsIndex.hpp"
-#include "Shape/ShapeSymX.hpp"
-#include "Shape/ShapeSymY.hpp"
-#include "Shape/ShapeNoise.hpp"
-#include "Shape/ShapeIndex.hpp"
-#include "Beziers/BeziersLinearAlizer.hpp"
-#include "Beziers/BeziersAmplitude.hpp"
-#include "Shapes/ShapesOrderRandomizer.hpp"
+
+//Shapes
+#include "Shapes/ShapeIndex.hpp"
+#include "Shapes/ShapeNoise.hpp"
 #include "Shapes/ShapesChaining.hpp"
 #include "Shapes/ShapesGeometryInvert.hpp"
+#include "Shapes/ShapesGeometryRandomizer.hpp"
 #include "Shapes/ShapesOrderInvert.hpp"
-#include "Paths/PathsOrderInvert.hpp"
+#include "Shapes/ShapesOrderRandomizer.hpp"
+#include "Shapes/ShapeSymX.hpp"
+#include "Shapes/ShapeSymY.hpp"
 
 
 #endif /* Instruction_h */

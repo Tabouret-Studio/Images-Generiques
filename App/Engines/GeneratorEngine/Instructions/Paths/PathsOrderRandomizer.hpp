@@ -20,7 +20,7 @@ public:
 	std::vector<VectorImage *> execute(std::vector<VectorImage *> &vectorImages);
 
 private:
-	PathsOrderRandomizer(): Instruction(INSTRUCTION_SOURCE_PATHS, INSTRUCTION_PROPERTY_ORDER, u"reordonner") {};
+	PathsOrderRandomizer(): Instruction(INSTRUCTION_SOURCE_PATHS, INSTRUCTION_PROPERTY_ORDER, u"réordonner") {};
 };
 
 #endif /* PathsOrderRandomizer_hpp */

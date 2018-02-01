@@ -6,7 +6,7 @@ Instruction * ShapesOrderInvert::get()
 	return new ShapesOrderInvert();
 }
 
-std::vector<VectorImage *> ShapesOrderInvert::execute(const std::vector<VectorImage *> &vectorImages)
+std::vector<VectorImage *> ShapesOrderInvert::execute(std::vector<VectorImage *> &vectorImages)
 {
 	vectorImages[0]->applyCursor();
 	std::vector<Bezier> paths = vectorImages[0]->getBeziers();

@@ -5,19 +5,19 @@ Instruction * ShapesChaining::get()
 	return new ShapesChaining();
 }
 
-std::vector<VectorImage *> ShapesChaining::execute(const std::vector<VectorImage *> &vectorImages)
+std::vector<VectorImage *> ShapesChaining::execute(std::vector<VectorImage *> &vectorImages)
 {
 	std::vector<std::vector<Shape>> imagesShapes;
 
 	for(unsigned int i=0; i<vectorImages.size(); ++i)
 	{
-		imagesShapes.push_back(vectorImages[i]->getShapes());
+		imagesShapes.push_back(*vectorImages[i]->getShapes());
 	}
 
 	Shape rshape;
 	std::vector<Bezier> paths;
 
-	Bezier firstPath = imagesShapes[0][0].getPaths()[0];
+	Bezier firstPath = (*imagesShapes[0][0].getPaths())[0];
 	firstPath.applyCursor();
 	glm::vec3 currentPos(0, 0, 0);
 
@@ -25,7 +25,7 @@ std::vector<VectorImage *> ShapesChaining::execute(const std::vector<VectorImage
 	{
 		for(Shape shape : shapes)
 		{
-			paths = shape.getPaths();
+			paths = *shape.getPaths();
 			for(Bezier path : paths)
 			{
 				path.getCursor()->reset();

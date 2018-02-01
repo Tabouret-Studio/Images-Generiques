@@ -353,7 +353,7 @@ namespace Scenes
 		//reset working image
 		delete m_workingImage;
 
-		rId svgID = App->ressourcesEngine->loadAsset("github.svg", VECTOR);
+		rId svgID = App->ressourcesEngine->loadAsset("enfant_machine.svg", VECTOR);
 		m_workingImage = new VectorImage(*App->ressourcesEngine->getAsset(svgID)); //Copy constructor
 
 		//m_workingImage = m_font->genOutlines(u"é");
@@ -436,15 +436,13 @@ namespace Scenes
 
 	void AssemblageInterface::sendToRenderer(VectorImage * vectorImage, const uint &pointSize)
 	{
-		VectorImage * tempImage = new VectorImage(*vectorImage);
-		tempImage->applyCursor();
+		VectorImage tempImage = *vectorImage;
+		tempImage.applyCursor();
 
 		delete m_workingMesh;
-		m_workingMesh = tempImage->getMesh();
+		m_workingMesh = tempImage.getMesh();
 		m_workingMesh->setPointSize(pointSize);
 		m_renderer->addMesh(m_workingMesh);
-
-		delete tempImage;
 	}
 
 	void AssemblageInterface::addInstruction(const std::string &instruction)

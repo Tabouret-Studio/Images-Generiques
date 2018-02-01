@@ -120,23 +120,29 @@ void GeneratorEngine::registerCPPInstructions()
 	//Register all instructions
 
 	//Paths
-	registerInstruction(INSTRUCTION_CPP, "PATHS_ORDER_RANDOMIZER", PathsOrderRandomizer::get);
+	registerInstruction(INSTRUCTION_CPP, "PATHS_GEOMETRY_AMPLITUDE", BeziersAmplitude::get);
+	registerInstruction(INSTRUCTION_CPP, "PATHS_GEOMETRY_OPPOSING1", BeziersHandlesReversing::get);
+	registerInstruction(INSTRUCTION_CPP, "PATHS_GEOMETRY_OPPOSING2", BeziersOpposing::get);
 	registerInstruction(INSTRUCTION_CPP, "PATHS_ORDER_CHAINING", PathsChaining::get);
-	registerInstruction(INSTRUCTION_CPP, "PATHS_GEOMETRY_INVERT", PathsInvert::get);
-	registerInstruction(INSTRUCTION_CPP, "PATHS_GEOMETRY_NOISETRANSLATE", PathsNoise::get);
-	registerInstruction(INSTRUCTION_CPP, "PATHS_GEOMETRY_NOISEROTATE", PathsOrientRandomizer::get);
-	registerInstruction(INSTRUCTION_CPP, "PATHS_GEOMETRY_SQUARIFY", PathsSquarify::get);
-	registerInstruction(INSTRUCTION_CPP, "PATHS_GEOMETRY_LINEARALIZER", PathsLinearAlizer::get);
 	registerInstruction(INSTRUCTION_CPP, "PATHS_INDEX", PathsIndex::get);
-	registerInstruction(INSTRUCTION_CPP, "SHAPES_SYMX", ShapeSymX::get);
-	registerInstruction(INSTRUCTION_CPP, "SHAPES_SYMY", ShapeSymY::get);
-	registerInstruction(INSTRUCTION_CPP, "SHAPES_NOISE", ShapeNoise::get);
+	registerInstruction(INSTRUCTION_CPP, "PATHS_GEOMETRY_INVERT", PathsInvert::get);
+	registerInstruction(INSTRUCTION_CPP, "PATHS_GEOMETRY_LINEARALIZER", PathsLinearAlizer::get);
+	registerInstruction(INSTRUCTION_CPP, "PATHS_GEOMETRY_NOISETRANSLATE", PathsNoise::get);
+	registerInstruction(INSTRUCTION_CPP, "PATHS_ORDER_INVERT", PathsOrderInvert::get);
+	registerInstruction(INSTRUCTION_CPP, "PATHS_ORDER_RANDOMIZER", PathsOrderRandomizer::get);
+	registerInstruction(INSTRUCTION_CPP, "PATHS_GEOMETRY_ORIENTRANDOMIZER", PathsOrientRandomizer::get);
+	registerInstruction(INSTRUCTION_CPP, "PATHS_GEOMETRY_SQUARIFY", PathsSquarify::get);
+
+	//Shapes
 	registerInstruction(INSTRUCTION_CPP, "SHAPES_INDEX", ShapeIndex::get);
-	registerInstruction(INSTRUCTION_CPP, "SHAPES_ORDER_RANDOMIZER", ShapesOrderRandomizer::get);
+	registerInstruction(INSTRUCTION_CPP, "SHAPES_GEOMETRY_NOISETRANSLATE", ShapeNoise::get);
 	registerInstruction(INSTRUCTION_CPP, "SHAPES_CHAINING", ShapesChaining::get);
 	registerInstruction(INSTRUCTION_CPP, "SHAPES_GEOMETRY_INVERT", ShapesGeometryInvert::get);
+	registerInstruction(INSTRUCTION_CPP, "SHAPES_GEOMETRY_NOISEROTATE", ShapesGeometryRandomizer::get);
 	registerInstruction(INSTRUCTION_CPP, "SHAPES_ORDER_INVERT", ShapesOrderInvert::get);
-	registerInstruction(INSTRUCTION_CPP, "PATHS_ORDER_INVERT", PathsOrderInvert::get);
+	registerInstruction(INSTRUCTION_CPP, "SHAPES_ORDER_RANDOMIZER", ShapesOrderRandomizer::get);
+	registerInstruction(INSTRUCTION_CPP, "SHAPES_SYMX", ShapeSymX::get);
+	registerInstruction(INSTRUCTION_CPP, "SHAPES_SYMY", ShapeSymY::get);
 }
 
 

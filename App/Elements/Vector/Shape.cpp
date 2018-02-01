@@ -55,10 +55,12 @@ void Shape::applyCursor(const glm::mat4 &imageCursor)
 	m_cursor.reset();
 }
 
-void Shape::move(const glm::vec3 &dest){
-	glm::vec3 refpoint=getPosition();
-	glm::vec3 movement=dest-refpoint;
+void Shape::move(const glm::vec3 &dest)
+{
+	glm::vec3 movement = dest - getPosition();
+
 	m_cursor.translate(movement);
+
 	applyCursor();
 }
 

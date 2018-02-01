@@ -60,6 +60,8 @@ namespace Scenes
 		glm::vec2 m_renderMargin;
 		glm::vec2 m_renderDimensions;
 
+		float m_zoomLevel = 1;
+
 		std::vector<Mesh *> m_meshs;
 	};
 }
