@@ -76,10 +76,10 @@ namespace Scenes
 			float scale = std::min(workingDimensions.x / meshDims.x, workingDimensions.y / meshDims.y) * 0.9f;
 
 			mesh->getCursor()->reset()
-				->translate(-(meshPos.x + meshDims.x / 2.0), -(meshPos.y + meshDims.y / 2.0), 0)
 				->translate(glm::vec3(renderCenter, 0))
 				->scale(scale, scale, 0)
-				->scale(m_zoomLevel, m_zoomLevel, 0);
+				->scale(m_zoomLevel, m_zoomLevel, 0)
+			->translate(-(meshPos.x + meshDims.x / 2.0), -(meshPos.y + meshDims.y / 2.0), 0);
 
 			App->renderEngine->setProjection2D();
 			mesh->render();
