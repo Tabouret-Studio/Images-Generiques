@@ -53,8 +53,6 @@ std::vector<VectorImage *> ShapeIndex::execute(std::vector<VectorImage *> &vecto
 			shapePos = shapeTemp.getPosition();
 			shapeDim = shapeTemp.getDimensions();
 
-			std::cout << glm::to_string(shapePos) << glm::to_string(shapeDim) << std::endl;
-
 			//Move shape to origin
 			for(Bezier &path : *shape.getPaths())
 				path.getCursor()

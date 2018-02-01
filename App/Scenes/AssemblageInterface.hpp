@@ -15,6 +15,7 @@ class Font;
 class Interface;
 class UIButton;
 class InstructionsProtocol;
+class InstructionParameters;
 class VectorImage;
 class SimpleRenderer;
 class VectorImageExcerpt;
@@ -120,6 +121,8 @@ namespace Scenes
 
 		void applyPathsIndex();
 		void applyShapesIndex();
+
+		std::string floatToString(const float &val);
 
 	};
 }

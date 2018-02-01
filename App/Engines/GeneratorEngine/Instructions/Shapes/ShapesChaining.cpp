@@ -40,8 +40,6 @@ std::vector<VectorImage *> ShapesChaining::execute(std::vector<VectorImage *> &v
 
 				Bezier pathTemp = path;
 				pathTemp.applyCursor();
-
-				std::cout << glm::to_string(lastPos) << std::endl;
 				lastPos = pathTemp.getEndPoint();
 			}
 		}

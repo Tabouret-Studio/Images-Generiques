@@ -7,6 +7,7 @@
 //
 
 #include "InstructionsProtocol.hpp"
+#include "../InstructionParameters.hpp"
 
 #include "Core/AppObject.hpp"
 
@@ -109,6 +110,15 @@ void InstructionsProtocol::setParameters(const std::vector<InstructionParameters
 	}
 }
 
+
+void InstructionsProtocol::bindParameter(const uint &instructionID, InstructionParameters * &param)
+{
+	if(instructionID >= m_instructionsOrder.size())
+		throw std::runtime_error("Could not bind parameters. Instruction ID "+std::to_string(instructionID)+" out of range.");
+
+	m_instructionsOrderParameters[instructionID] = param;
+}
+
 void InstructionsProtocol::swapInstructions(const uint &first, const uint &second)
 {
 	if(first > m_instructionsOrder.size() - 1 || second > m_instructionsOrder.size() - 1)
@@ -129,12 +139,18 @@ void InstructionsProtocol::removeInstruction(const uint &instructionIndex)
 	if(std::find(m_instructionsOrder.begin(), m_instructionsOrder.end(), instructionName) != m_instructionsOrder.end())
 		return;
 
+	m_instructionsOrderParameters.erase(instructionIndex);
+
 	delete m_instructions[instructionName];
 	m_instructions.erase(instructionName);
+
 }
 
 InstructionsProtocol::~InstructionsProtocol()
 {
 	for(std::map<std::string, InstructionObject *>::const_iterator it = m_instructions.begin(); it != m_instructions.end(); ++it)
+		delete it->second;
+
+	for(std::map<uint, InstructionParameters *>::const_iterator it = m_instructionsOrderParameters.begin(); it != m_instructionsOrderParameters.end(); ++it)
 		delete it->second;
 }

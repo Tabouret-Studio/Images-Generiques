@@ -23,7 +23,6 @@ std::vector<VectorImage *> PathsIndex::execute(std::vector<VectorImage *> &vecto
 	uint boxSize = 100;
 	uint demiBox = boxSize /2;
 	uint numCols = 40;
-	uint leftMargin = ((App->getWidth() - 600) % boxSize) / 2;
 
 	VectorImage * output = new VectorImage();
 	glm::vec3 bezierPos, bezierDim;
@@ -61,16 +60,16 @@ std::vector<VectorImage *> PathsIndex::execute(std::vector<VectorImage *> &vecto
 				float scale = std::min(demiBox / bezierDim.x, demiBox / bezierDim.y);
 
 				//Place bezier on grid
-				path.getCursor()->translate(leftMargin + col * boxSize + demiBox, row * boxSize + demiBox, 0);
+				path.getCursor()->translate(col * boxSize + demiBox, row * boxSize + demiBox, 0);
 				path.getCursor()->scale(scale, scale, 1);
 
 				vectorShape << path;
+
 
 				++col;
 			}
 		}
 
-		vectorShape.getCursor()->translate((App->getWidth() - 600) / -2.0, ((row+1) * boxSize) / -2.0, 0);
 		*output << vectorShape;
 
 		//shape.getCursor()->translate(-(App->getWidth() - 600) / 2, 0, 0);

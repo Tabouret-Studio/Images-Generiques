@@ -23,6 +23,9 @@ std::vector<VectorImage *> ShapesScatterCircle::execute(std::vector<VectorImage 
 	glm::mat4 tempCursor;
 	DrawCursor modificationCursor;
 
+	float intensity = m_parameters->getParam("intensity");
+	float angle = 10.0 * intensity; float demiAngle = angle / 2.0;
+
 	for(VectorImage * vImage : vectorImages)
 	{
 		for(Shape &shape : *vImage->getShapes())
@@ -38,14 +41,12 @@ std::vector<VectorImage *> ShapesScatterCircle::execute(std::vector<VectorImage 
 			shapePos = shapeTemp.getPosition();
 			shapeDim = shapeTemp.getDimensions();
 
-			std::cout << glm::to_string(shapePos) << glm::to_string(shapeDim) << std::endl;
-
 			//Move shape to origin
 			for(Bezier &path : *shape.getPaths())
 				path.getCursor()
 				->translate(-(shapePos.x + shapeDim.x / 2.0), -(shapePos.y + shapeDim.y / 2.0), 0);
 
-			modificationCursor.rotate(5 - Utils::rand(11), 0, 0, 1);
+			modificationCursor.rotate(demiAngle - Utils::rand(angle + 1), 0, 0, 1);
 
 			shape.getCursor()->setMatrix(modificationCursor * tempCursor);
 		}

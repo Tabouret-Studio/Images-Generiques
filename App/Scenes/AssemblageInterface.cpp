@@ -15,6 +15,7 @@
 #include "Engines/IndexEngine/IndexEngine.hpp"
 
 #include "Engines/GeneratorEngine/InstructionsProtocol/InstructionsProtocol.hpp"
+#include "Engines/GeneratorEngine/InstructionParameters.hpp"
 #include "Engines/GeneratorEngine/Instructions/Instruction.hpp"
 #include "Engines/GeneratorEngine/VectorImageExcerpt.hpp"
 
@@ -26,6 +27,7 @@
 #include "Utils/Interface/UI/UIButton.hpp"
 
 #include <algorithm>
+#include <sstream>
 
 namespace Scenes
 {
@@ -264,9 +266,10 @@ namespace Scenes
 	void AssemblageInterface::generateInstructionLine(const std::string &instructionName, uint &posY, const uint &i, const std::vector<std::string> &instructionNames)
 	{
 		Instruction * instruction = App->generatorEngine->getInstruction(instructionName);
+		InstructionParameters * iParams = m_protocol->getParameters(i);
 
 		//Remove Button
-		UIButton * instructionRemoveBtn = new UIButton(UI_BUTTON_TEXT, 10, posY, 30, 30);
+		UIButton * instructionRemoveBtn = new UIButton(UI_BUTTON_TEXT, 10, posY + 12, 30, 30);
 		instructionRemoveBtn->setFont(m_font, 30);
 		instructionRemoveBtn->setCaption(u"X");
 		instructionRemoveBtn->setAction([this, i] () -> void {
@@ -291,7 +294,7 @@ namespace Scenes
 		if(i != 0)
 		{
 			//Move up Button
-			UIButton * instructionUpBtn = new UIButton(UI_BUTTON_TEXT, 535, posY, 30, 30);
+			UIButton * instructionUpBtn = new UIButton(UI_BUTTON_TEXT, 535, posY + 12, 30, 30);
 			instructionUpBtn->setFont(m_font, 30);
 			instructionUpBtn->setCaption(u"+");
 			instructionUpBtn->setAction([this, i] () -> void {
@@ -306,7 +309,7 @@ namespace Scenes
 		if(i != instructionNames.size()-1)
 		{
 			//Move down Button
-			UIButton * instructionDownBtn = new UIButton(UI_BUTTON_TEXT, 565, posY, 30, 30);
+			UIButton * instructionDownBtn = new UIButton(UI_BUTTON_TEXT, 565, posY + 12, 30, 30);
 			instructionDownBtn->setFont(m_font, 30);
 			instructionDownBtn->setCaption(u"-");
 			instructionDownBtn->setAction([this, i] () -> void {
@@ -317,6 +320,66 @@ namespace Scenes
 
 			m_instructionsInterface->addItem(instructionDownBtn);
 		}
+
+		posY += 20;
+
+		//Intensity controls
+
+		//Intensity label
+		UIButton * intensityLabel = new UIButton(UI_BUTTON_TEXT, 67, posY, 30, 15);
+		intensityLabel->setFont(m_font, 15);
+		intensityLabel->setCaption(u"intensité");
+		intensityLabel->setSelectable(false);
+
+		m_instructionsInterface->addItem(intensityLabel);
+
+		//Intensity value
+		std::string value8 = floatToString(iParams->getParam("intensity"));
+		std::u16string value16(value8.begin(), value8.end());
+
+		UIButton * intensityValue = new UIButton(UI_BUTTON_TEXT, 144, posY, 30, 15);
+		intensityValue->setFont(m_font, 15);
+		intensityValue->setCaption(value16);
+		intensityValue->setSelectable(false);
+
+		m_instructionsInterface->addItem(intensityValue);
+		
+		UIButton * intensityDownBtn = new UIButton(UI_BUTTON_TEXT, 127, posY, 15, 15);
+		intensityDownBtn->setFont(m_font, 15);
+		intensityDownBtn->setCaption(u"-");
+		intensityDownBtn->setAction([this, i, intensityValue] () -> void
+		{
+			float intensity = m_protocol->getParameters(i)->getParam("intensity") - .1f;
+
+			if(intensity < 0)
+				intensity = 0;
+
+			m_protocol->getParameters(i)->updateParam("intensity", intensity);
+
+			std::string value8 = floatToString(intensity);
+			std::u16string value16(value8.begin(), value8.end());
+
+			intensityValue->setCaption(value16);
+		});
+
+		//Intensity down button
+		UIButton * intensityUpBtn = new UIButton(UI_BUTTON_TEXT, 177, posY, 15, 15);
+		intensityUpBtn->setFont(m_font, 15);
+		intensityUpBtn->setCaption(u"+");
+		intensityUpBtn->setAction([this, i, intensityValue] () -> void
+		{
+			float intensity = m_protocol->getParameters(i)->getParam("intensity") + .1f;
+			m_protocol->getParameters(i)->updateParam("intensity", intensity);
+
+			std::string value8 = floatToString(intensity);
+			std::u16string value16(value8.begin(), value8.end());
+
+			intensityValue->setCaption(value16);
+		});
+
+		m_instructionsInterface->addItem(intensityUpBtn);
+
+		m_instructionsInterface->addItem(intensityDownBtn);
 
 		//*BEAUTIFUL* line
 		Mesh * line = App->ressourcesEngine->gen2DTile(300, posY + 12, 600, 4);
@@ -353,22 +416,26 @@ namespace Scenes
 		//reset working image
 		delete m_workingImage;
 
-		rId svgID = App->ressourcesEngine->loadAsset("enfant_machine.svg", VECTOR);
-		m_workingImage = new VectorImage(*App->ressourcesEngine->getAsset(svgID)); //Copy constructor
+		//Static load
+		//rId svgID = App->ressourcesEngine->loadAsset("enfant_machine.svg", VECTOR);
+		//m_workingImage = new VectorImage(*App->ressourcesEngine->getAsset(svgID)); //Copy constructor
+
+		//Dynamic load from index
+		m_workingImage = App->indexEngine->getRandomVectorImage();
 
 		//m_workingImage = m_font->genOutlines(u"é");
 
 		m_renderer->clear();
 		sendToRenderer(m_workingImage, 1);
 
-		m_loopCursor->getCursor()->reset()->translate(600, 140, 0);
+		m_loopCursor->getCursor()->reset()->translate(600, 150, 0);
 
 		m_nextInstruction = 0;
 	}
 
 	void AssemblageInterface::protocolLoop()
 	{
-		float iterationInterval = 1; //seconds
+		float iterationInterval = .5; //seconds
 
 		//Are we paused ?
 		if(!m_playing)
@@ -404,6 +471,7 @@ namespace Scenes
 		//Get instruction to use
 		std::string instructionName = m_protocol->getInstructionsInOrder()[m_nextInstruction];
 		InstructionObject * instruction = m_protocol->getInstructions()[instructionName];
+		instruction->setParameters(m_protocol->getParameters(m_nextInstruction));
 
 		//Pass parameters
 		//TODO
@@ -420,7 +488,7 @@ namespace Scenes
 		sendToRenderer(m_workingImage, 1);
 
 		//Update arrow position
-		m_loopCursor->getCursor()->reset()->translate(600, 140 + float(m_nextInstruction) * 45, 0);
+		m_loopCursor->getCursor()->reset()->translate(600, 150 + float(m_nextInstruction) * 65, 0);
 
 		//Increment instruction
 		m_nextInstruction++;
@@ -448,6 +516,13 @@ namespace Scenes
 	void AssemblageInterface::addInstruction(const std::string &instruction)
 	{
 		m_protocol->addInstruction(instruction);
+		uint instructionID = (uint)m_protocol->getInstructionsInOrder().size() - 1;
+
+		InstructionParameters * params = new InstructionParameters();
+		params->createParam("intensity", 1.0);
+
+		m_protocol->bindParameter(instructionID, params);
+
 		m_reloadList = true;
 		onWindowResized();
 	}
@@ -480,6 +555,13 @@ namespace Scenes
 		sendToRenderer(m_workingImage, 1);
 
 		delete indexInstruction;
+	}
+
+	std::string AssemblageInterface::floatToString(const float &val)
+	{
+		std::stringstream stream;
+		stream << std::fixed << std::setprecision(1) << val;
+		return stream.str();
 	}
 
 	AssemblageInterface::~AssemblageInterface()

@@ -9,6 +9,11 @@ Instruction * BeziersAmplitude::get()
 
 std::vector<VectorImage *> BeziersAmplitude::execute(std::vector<VectorImage *> &vectorImages)
 {
+	float intensity = m_parameters->getParam("intensity");
+	float amplitude = 1.05 * intensity;
+
+	//if(amplitude == 0)
+	//	return;
 
 	for(VectorImage * vImage : vectorImages)
 	{
@@ -16,8 +21,8 @@ std::vector<VectorImage *> BeziersAmplitude::execute(std::vector<VectorImage *> 
 		{
 			for(Bezier &path : *shape.getPaths())
 			{
-				path.setStartHandle(path.getStartHandle() * 2);
-				path.setEndHandle(path.getEndHandle() * 2);
+				path.setStartHandle(path.getStartHandle() * amplitude);
+				path.setEndHandle(path.getEndHandle() * amplitude);
 			}
 		}
 	}

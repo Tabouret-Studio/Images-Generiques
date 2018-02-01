@@ -15,6 +15,9 @@ std::vector<VectorImage *> ShapesGeometryRandomizer::execute(std::vector<VectorI
 	glm::mat4 tempCursor;
 	DrawCursor modificationCursor;
 
+	float intensity = m_parameters->getParam("intensity");
+	float angle = 3.0 * intensity; float demiAngle = angle / 2.0;
+
 	for(VectorImage * vImage : vectorImages)
 	{
 		for(Shape &shape : *vImage->getShapes())
@@ -23,7 +26,7 @@ std::vector<VectorImage *> ShapesGeometryRandomizer::execute(std::vector<VectorI
 
 			shape.getCursor()->reset();
 
-			modificationCursor.rotate(float(1 - Utils::rand(3)) / 2.0, 0, 0, 1);
+			modificationCursor.rotate(float(demiAngle - Utils::rand(angle + 1)) / 2.0, 0, 0, 1);
 
 			shape.getCursor()->setMatrix(modificationCursor.getMatrix() * tempCursor);
 		}

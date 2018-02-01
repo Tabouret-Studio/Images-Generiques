@@ -21,6 +21,9 @@ std::vector<VectorImage *> PathsOrientRandomizer::execute(std::vector<VectorImag
 	glm::mat4 tempCursor;
 	DrawCursor modificationCursor;
 
+	float intensity = m_parameters->getParam("intensity");
+	float angle = 10.0 * intensity; float demiAngle = angle / 2.0;
+
 	for(VectorImage * vImage : vectorImages)
 	{
 		for(Shape &shape : *vImage->getShapes())
@@ -28,7 +31,7 @@ std::vector<VectorImage *> PathsOrientRandomizer::execute(std::vector<VectorImag
 			for(Bezier &path : *shape.getPaths())
 			{
 				tempCursor = path.getCursor()->getMatrix();
-				modificationCursor.reset()->rotate(5.0 - Utils::rand(11),0,0,1);
+				modificationCursor.reset()->rotate(demiAngle - Utils::rand(angle + 1),0,0,1);
 
 				path.getCursor()->setMatrix(modificationCursor * tempCursor);
 			}
