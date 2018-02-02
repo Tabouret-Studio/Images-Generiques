@@ -254,7 +254,6 @@
 		397A72D3201B3C510025058C /* PathsInvert.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = PathsInvert.cpp; path = App/Engines/GeneratorEngine/Instructions/Paths/PathsInvert.cpp; sourceTree = SOURCE_ROOT; };
 		397A72D4201B3C510025058C /* PathsSquarify.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = PathsSquarify.cpp; path = App/Engines/GeneratorEngine/Instructions/Paths/PathsSquarify.cpp; sourceTree = SOURCE_ROOT; };
 		397A72D5201B3C510025058C /* PathsNoise.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = PathsNoise.cpp; path = App/Engines/GeneratorEngine/Instructions/Paths/PathsNoise.cpp; sourceTree = SOURCE_ROOT; };
-		397A72DB201B44940025058C /* indexLibrary.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = indexLibrary.json; path = indexLibrary/indexLibrary.json; sourceTree = "<group>"; };
 		397A72E1201B45DE0025058C /* ORIENT_RANDOMIZER_CHAINER_SQUARIFIER.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ORIENT_RANDOMIZER_CHAINER_SQUARIFIER.json; sourceTree = "<group>"; };
 		397A72E2201B45DE0025058C /* CHAINER_INVERTER.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = CHAINER_INVERTER.json; sourceTree = "<group>"; };
 		397A72E3201B45DE0025058C /* ORIENT_RANDOMIZER_CHAINER.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ORIENT_RANDOMIZER_CHAINER.json; sourceTree = "<group>"; };
@@ -278,7 +277,6 @@
 		39930A7A202388B400FEEFF8 /* enfants_dos_classe.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = enfants_dos_classe.svg; path = indexLibrary/sources/enfants_dos_classe.svg; sourceTree = "<group>"; };
 		39930A7B202388B400FEEFF8 /* groupe_travail.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = groupe_travail.svg; path = indexLibrary/sources/groupe_travail.svg; sourceTree = "<group>"; };
 		39930A7C202388B400FEEFF8 /* images_generiques.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = images_generiques.svg; path = indexLibrary/sources/images_generiques.svg; sourceTree = "<group>"; };
-		39930A7D2023A12100FEEFF8 /* index */ = {isa = PBXFileReference; lastKnownFileType = text; path = index; sourceTree = "<group>"; };
 		39AF3CCB1FDB4FE10089622E /* SDL2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2.framework; path = ../../../../../Library/Frameworks/SDL2.framework; sourceTree = "<group>"; };
 		39AF3CCE1FDB51AD0089622E /* RenderEngine.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = RenderEngine.cpp; sourceTree = "<group>"; };
 		39AF3CCF1FDB51AD0089622E /* RenderEngine.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = RenderEngine.hpp; sourceTree = "<group>"; };
@@ -792,8 +790,6 @@
 				39930A7A202388B400FEEFF8 /* enfants_dos_classe.svg */,
 				39930A7B202388B400FEEFF8 /* groupe_travail.svg */,
 				39930A7C202388B400FEEFF8 /* images_generiques.svg */,
-				397A72DB201B44940025058C /* indexLibrary.json */,
-				39930A7D2023A12100FEEFF8 /* index */,
 				390196C91FDDD956000F2113 /* assets */,
 				39AF3CD11FDB541F0089622E /* ImagesGeneriques */,
 			);

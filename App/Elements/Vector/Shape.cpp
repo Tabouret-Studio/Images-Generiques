@@ -29,9 +29,22 @@ Mesh * Shape::getMesh(const float &precision) const
 	Mesh * mesh = new Mesh();
 	Mesh * bezMesh;
 
-	for(std::vector<Bezier>::const_iterator it = m_paths.begin(); it != m_paths.end(); ++it)
+	for(std::vector<Bezier>::const_iterator bez = m_paths.begin(); bez != m_paths.end(); ++bez)
 	{
-		bezMesh = (*it).getMesh(precision);
+		float bezLength = bez->getLength();
+
+		if(bezLength <= 5)
+			continue;
+		
+		uint pc;
+		if(precision <= 0)
+			continue;
+		else if(precision <= 1)
+			pc = bezLength * 1.f * precision;
+		else
+			pc = precision;
+
+		bezMesh = bez->getMesh(pc);
 		*mesh << bezMesh;
 		delete bezMesh;
 	}

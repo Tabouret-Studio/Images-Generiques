@@ -143,7 +143,7 @@ void InstructionsProtocol::removeInstruction(const uint &instructionIndex)
 
 	delete m_instructions[instructionName];
 	m_instructions.erase(instructionName);
-	
+
 	m_instructionsOrderParameters.erase(m_instructionsOrderParameters.begin() + instructionIndex);
 
 

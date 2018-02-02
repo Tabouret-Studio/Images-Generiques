@@ -112,6 +112,7 @@ namespace Scenes
 		Mesh * m_loopCursor = nullptr;
 		Mesh * m_workingMesh = nullptr;
 		VectorImage * m_workingImage = nullptr;
+		VectorImage * m_savedImage = nullptr;
 		VectorImage * m_excerpt = nullptr;
 		VectorImage * m_renderingImage = nullptr;
 		

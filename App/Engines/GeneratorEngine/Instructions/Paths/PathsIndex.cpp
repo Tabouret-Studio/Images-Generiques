@@ -24,7 +24,6 @@ std::vector<VectorImage *> PathsIndex::execute(std::vector<VectorImage *> &vecto
 	uint demiBox = boxSize /2;
 	uint numCols = 40;
 
-	VectorImage * output = new VectorImage();
 	glm::vec3 bezierPos, bezierDim;
 
 	// Coordonnées: 0,0 pour top-left corner
@@ -33,10 +32,12 @@ std::vector<VectorImage *> PathsIndex::execute(std::vector<VectorImage *> &vecto
 	// A noter: des ajustements le render de la scène sont à prévoir
 	for(VectorImage * svg : vectorImages)
 	{
-		Shape vectorShape;
+		svg->getCursor()->reset();
 
 		for(Shape &shape : *svg->getShapes())
 		{
+			shape.getCursor()->reset();
+
 			for(Bezier &path : *shape.getPaths())
 			{
 				// Si on dépasse l'écran, retour à la ligne -> saut en y
@@ -63,17 +64,10 @@ std::vector<VectorImage *> PathsIndex::execute(std::vector<VectorImage *> &vecto
 				path.getCursor()->translate(col * boxSize + demiBox, row * boxSize + demiBox, 0);
 				path.getCursor()->scale(scale, scale, 1);
 
-				vectorShape << path;
-
-
 				++col;
 			}
 		}
-
-		*output << vectorShape;
-
-		//shape.getCursor()->translate(-(App->getWidth() - 600) / 2, 0, 0);
 	}
 
-	return {output};
+	return vectorImages;
 }

@@ -263,6 +263,7 @@ void GeneratorEngine::registerProtocol(const std::string &filename)
 	{
 		if(!instructionExist(instructionName))
 		{
+			delete protocol;
 			std::cout << "Protocol " + filename + " has not been registered because the instruction " + instructionName + " could not be found." << std::endl;
 			return;
 		}

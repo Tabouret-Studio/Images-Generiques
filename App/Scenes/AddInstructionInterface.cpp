@@ -68,10 +68,10 @@ namespace Scenes
 		m_bottomSeparator = App->ressourcesEngine->gen2DTile(App->getWidth()/2, App->getHeight() - 170, App->getWidth(), 4);
 		m_bottomSeparator->generate();
 
-		m_vertSeparatorA = App->ressourcesEngine->gen2DTile(m_listsLeftMargin + 200, 115 + (App->getHeight() - 320) / 2, 4, App->getHeight() - 334);
+		m_vertSeparatorA = App->ressourcesEngine->gen2DTile(m_listsLeftMargin + 200, 116 + (App->getHeight() - 320) / 2, 4, App->getHeight() - 333);
 		m_vertSeparatorA->generate();
 
-		m_vertSeparatorB = App->ressourcesEngine->gen2DTile(m_listsLeftMargin + 450, 115 + (App->getHeight() - 320) / 2, 4, App->getHeight() - 334);
+		m_vertSeparatorB = App->ressourcesEngine->gen2DTile(m_listsLeftMargin + 450, 116 + (App->getHeight() - 320) / 2, 4, App->getHeight() - 333);
 		m_vertSeparatorB->generate();
 	}
 
@@ -122,12 +122,12 @@ namespace Scenes
 			->scale(App->getWidth(), 4, 0);
 
 		m_vertSeparatorA->getCursor()->reset()
-			->translate(m_listsLeftMargin + 200, 115 + (App->getHeight() - 320) / 2, 0)
-			->scale(4, App->getHeight() - 334, 0);
+			->translate(m_listsLeftMargin + 200, 116 + (App->getHeight() - 320) / 2, 0)
+			->scale(4, App->getHeight() - 333, 0);
 
 		m_vertSeparatorB->getCursor()->reset()
-			->translate(m_listsLeftMargin + 450, 115 + (App->getHeight() - 320) / 2, 0)
-			->scale(4, App->getHeight() - 334, 0);
+			->translate(m_listsLeftMargin + 450, 116 + (App->getHeight() - 320) / 2, 0)
+			->scale(4, App->getHeight() - 333, 0);
 
 		//Regenerate lists
 		std::u16string tempSource, tempType, tempAction;

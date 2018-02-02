@@ -29,6 +29,8 @@
 #include <algorithm>
 #include <sstream>
 
+#define LOOP_INTERVAL .25
+
 namespace Scenes
 {
 	void AssemblageInterface::load()
@@ -424,6 +426,7 @@ namespace Scenes
 
 		//reset working image
 		delete m_workingImage;
+		delete m_savedImage;
 
 		//Static load
 		//rId svgID = App->ressourcesEngine->loadAsset("enfant_machine.svg", VECTOR);
@@ -431,6 +434,7 @@ namespace Scenes
 
 		//Dynamic load from index
 		m_workingImage = App->indexEngine->getRandomVectorImage();
+		m_savedImage = new VectorImage(m_workingImage);
 
 		//m_workingImage = m_font->genOutlines(u"é");
 
@@ -447,7 +451,7 @@ namespace Scenes
 
 	void AssemblageInterface::protocolLoop()
 	{
-		float iterationInterval = .5; //seconds
+		float iterationInterval = LOOP_INTERVAL; //seconds
 
 		//Are we paused ?
 		if(!m_playing)
@@ -485,15 +489,15 @@ namespace Scenes
 		InstructionObject * instruction = m_protocol->getInstructions()[instructionName];
 		instruction->setParameters(m_protocol->getParameters(m_nextInstruction));
 
-		//Pass parameters
-		//TODO
-
 		//Execute instruction
 		//std::vector<VectorImage *> images = {m_excerpt};
 		//m_excerpt = instruction->execute(images)[0];
 
 		std::vector<VectorImage *> images = {m_workingImage};
 		m_workingImage = instruction->execute(images)[0];
+
+		delete m_savedImage;
+		m_savedImage = new VectorImage(m_workingImage);
 
 		//Send images to renderer
 		m_renderer->clear();
@@ -545,10 +549,14 @@ namespace Scenes
 	void AssemblageInterface::applyPathsIndex()
 	{
 		m_playing = false;
+		m_playPauseBtn->setCaption(u"boucle");
+
+		m_playing = false;
 
 		Instruction * indexInstruction = App->generatorEngine->getInstruction("PATHS_INDEX");
-		std::vector<VectorImage *> images = {m_workingImage};
+		std::vector<VectorImage *> images = {new VectorImage(m_savedImage)};
 
+		delete m_workingImage;
 		m_workingImage = indexInstruction->execute(images)[0];
 
 		m_renderer->clear();
@@ -560,10 +568,12 @@ namespace Scenes
 	void AssemblageInterface::applyShapesIndex()
 	{
 		m_playing = false;
+		m_playPauseBtn->setCaption(u"boucle");
 
 		Instruction * indexInstruction = App->generatorEngine->getInstruction("SHAPES_INDEX");
-		std::vector<VectorImage *> images = {m_workingImage};
+		std::vector<VectorImage *> images = {new VectorImage(m_savedImage)};
 
+		delete m_workingImage;
 		m_workingImage = indexInstruction->execute(images)[0];
 
 		m_renderer->clear();

@@ -16,15 +16,16 @@
 std::vector<glm::vec3> Bezier::getPoints(const float &precision) const
 {
 	std::vector<glm::vec3> vertices;
-	uint pc;
+	float pc;
 
 	if(precision <= 0)
 		return vertices;
 	else if(precision <= 1)
-		 pc = getLength() * 2.f * precision;
+		 pc = getLength() * 1.f * precision;
 	else
 		pc = precision;
 
+	pc = std::min(pc, 400.0f);
 
 	float step = 1.f / (float)pc;
 
@@ -33,6 +34,8 @@ std::vector<glm::vec3> Bezier::getPoints(const float &precision) const
 		//External references
 		vertices.push_back(getPoint(i));
 	}
+
+	//std::cout << pc << " - " << glm::length(m_endPoint - m_startPoint) << std::endl;
 
 	return vertices;
 }

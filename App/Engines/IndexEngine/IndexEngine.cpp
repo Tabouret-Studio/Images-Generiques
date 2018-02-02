@@ -136,9 +136,14 @@ void IndexEngine::exportIndexToJSON() const
 
 VectorImage * IndexEngine::getRandomVectorImage() {
 	std::vector<srcId> imagesIds = getImagesIds();
-	std::random_shuffle(imagesIds.begin(), imagesIds.end(), Utils::rand);
-	
-	srcId imgId = imagesIds[0];
+
+	srcId imgId;
+
+	do
+	{
+		std::random_shuffle(imagesIds.begin(), imagesIds.end(), Utils::rand);
+		imgId = imagesIds[0];
+	} while(std::find(m_ImagesIdsTags[imgId].begin(), m_ImagesIdsTags[imgId].end(), "source") == m_ImagesIdsTags[imgId].end());
 
 	return getVectorImage(imgId);
 }

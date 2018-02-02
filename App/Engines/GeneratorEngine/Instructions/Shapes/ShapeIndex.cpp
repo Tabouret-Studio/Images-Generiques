@@ -33,9 +33,7 @@ std::vector<VectorImage *> ShapeIndex::execute(std::vector<VectorImage *> &vecto
 	// A noter: des ajustements le render de la scène sont à prévoir
 	for(VectorImage* svg : vectorImages)
 	{
-		VectorImage * indexImage = new VectorImage();
-
-		for(Shape shape : *svg->getShapes())
+		for(Shape &shape : *svg->getShapes())
 		{
 			// Si on dépasse l'écran, retour à la ligne -> saut en y
 			if (col >= numCols)
@@ -64,15 +62,9 @@ std::vector<VectorImage *> ShapeIndex::execute(std::vector<VectorImage *> &vecto
 			shape.getCursor()->translate(col * boxSize + demiBox, row * boxSize + demiBox, 0);
 			shape.getCursor()->scale(scale, scale, 1);
 
-			*indexImage << shape;
-
 			++col;
 		}
-
-		resultat.push_back(indexImage);
-
 	}
-	return resultat;
 
 	return vectorImages;
 }

@@ -37,9 +37,9 @@ namespace Scenes
 	///////////
 	void SimpleRenderer::execute()
 	{
-		m_zoomLevel += App->appEngine->getMouse().scrollY / 50.f;
-		if(m_zoomLevel < 0)
-			m_zoomLevel = 0;
+//		m_zoomLevel += App->appEngine->getMouse().scrollY / 50.f;
+//		if(m_zoomLevel < 0)
+//			m_zoomLevel = 0;
 	}
 
 
