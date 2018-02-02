@@ -225,6 +225,11 @@ public:
 	 */
 	void move(const glm::vec3 &dest);
 
+	/**
+	 Calculate the mesh boundaries
+	 */
+	void calculateBounds();
+
 private:
 	glm::vec3 m_startPoint;
 	glm::vec3 m_startHandle;
@@ -235,11 +240,6 @@ private:
 	glm::vec3 m_boundsMax;
 
 	DrawCursor m_cursor;
-
-	/**
-	 Calculate the mesh boundaries
-	 */
-	void calculateBounds();
 };
 
 #endif /* Bezier_hpp */

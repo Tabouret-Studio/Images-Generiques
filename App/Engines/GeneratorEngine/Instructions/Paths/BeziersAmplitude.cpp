@@ -23,6 +23,8 @@ std::vector<VectorImage *> BeziersAmplitude::execute(std::vector<VectorImage *> 
 			{
 				path.setStartHandle(path.getStartHandle() * amplitude);
 				path.setEndHandle(path.getEndHandle() * amplitude);
+
+				path.calculateBounds();
 			}
 		}
 	}
