@@ -114,9 +114,9 @@ namespace Scenes
 		VectorImage * m_workingImage = nullptr;
 		VectorImage * m_savedImage = nullptr;
 		VectorImage * m_excerpt = nullptr;
-		VectorImage * m_renderingImage = nullptr;
-		
-		VectorImageExcerpt * m_excerpter = nullptr;
+
+		//VectorImage * m_renderingImage = nullptr;
+		//VectorImageExcerpt * m_excerpter = nullptr;
 
 		//
 		//////////
