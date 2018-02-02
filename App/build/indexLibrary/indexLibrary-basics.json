@@ -1,0 +1,18 @@
+{"images":
+	[{
+	 	"path":"sources/enfant_machine.svg",
+	 	"tags":["source"]
+	 },
+	 {
+	 	"path":"sources/enfants_dos_classe.svg",
+	 	"tags":["source"]
+	 },
+	 {
+		 "path":"sources/groupe_travail.svg",
+		 "tags":["source"]
+	 },
+	 {
+	 	"path":"sources/images_generiques.svg",
+	 	"tags":["source"]
+	 }]
+}

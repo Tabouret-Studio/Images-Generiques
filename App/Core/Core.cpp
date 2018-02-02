@@ -1,31 +1,41 @@
 //
 //  Core.cpp
-//  Music Composer
+//  IMACMAN
 //
 //  Created by Valentin Dufois on 21/11/2017.
 //  Copyright © 2017 Valentin Dufois. All rights reserved.
 //
 
-#include "../main.hpp"
+#include "Core.hpp"
+
+#include "AppObject.hpp"
+#include "Igniter.hpp"
+#include "Scenes/Scene.hpp"
+
+#include "Engines/RenderEngine/RenderEngine.hpp"
+#include "Engines/AppEngine/AppEngine.hpp"
+
+#include <thread>
 
 //Ignite the different aspects of the game
-void Core::ignite()
+void Core::ignite(std::string appPath)
 {
-    //INIT ENGINES
-	AppObject::instanciate();
-    AppEngine::instanciate();
-    RenderEngine::instanciate();
-    
-    App->renderEngine->init();
+	Igniter igniter = Igniter();
+
+	igniter.igniteAppObject(appPath);
+	igniter.igniteSDL(1200, 650);
+	igniter.igniteOpenGL();
+	igniter.igniteEngines();
 }
 
 //The main loop
 void Core::main()
 {
-	setup();
-
-	//Used to set FPS
 	std::chrono::high_resolution_clock::time_point start, end;
+
+	//////////////////////
+	//Load the first scene
+	Scenes::AssemblageInterface::load();
 
 	while(App->isRunning())
 	{
@@ -34,11 +44,11 @@ void Core::main()
 
 		start = std::chrono::high_resolution_clock::now();
 
-		App->renderEngine->pollEvents();
+		//Actions
+		App->appEngine->executeScenes();
 
-		renderer();
-
-		//App->renderEngine->swapBuffers();
+		//Render
+		App->appEngine->renderScenes();
 
 		end = std::chrono::high_resolution_clock::now();
 
@@ -49,93 +59,20 @@ void Core::main()
 		/////////////////////////////////
 	}
 
-	glDeleteBuffers(1, &m_vbo);
-	glDeleteVertexArrays(1, &m_vao);
+	//End of game, clear everything
+	//TODO
 }
 
-
-//////////////
-// This is executed only one time at start up
-///////////
-void Core::setup()
+void Core::tempo(std::chrono::high_resolution_clock::time_point start, std::chrono::high_resolution_clock::time_point end)
 {
-	//Shader loading
-	glimac::FilePath applicationPath(App->getAppPath().c_str());
+	std::chrono::milliseconds elapsed, toWait;
 
-	std::string VS = "Assets/Shaders/triangle.vs.glsl";
-	std::string FS = "Assets/Shaders/triangle.fs.glsl";
+	elapsed = std::chrono::duration_cast<std::chrono::milliseconds>(end - start);
 
-	//Different loading path on macOS because of reasons
-#if __APPLE__
-	glimac::Program program = glimac::loadProgram(VS, FS);
-#else
-	Program program = loadProgram(applicationPath.dirPath() + VS,
-								  applicationPath.dirPath() + FS);
-#endif
-
-	program.use();
-
-	int N = 50;
-
-	//Création d'un VBO
-	glGenBuffers(1, &m_vbo);
-
-	//Bindind du vbo sur la cible
-	glBindBuffer(GL_ARRAY_BUFFER, m_vbo);
-
-	//Création d'un tableau de float pour stocker les points du VBO
-	GLfloat vertices[] = {-0.5f, -0.5f, 0.5f, -0.5f, 0.0f, 0.5f};
-
-	//Puis on envois les données à la CG
-	glBufferData(GL_ARRAY_BUFFER, 6 * sizeof(GLfloat), vertices, GL_STATIC_DRAW);
-
-	//Débindind du vbo de la cible pour éviter de le remodifier
-	glBindBuffer(GL_ARRAY_BUFFER, 0);
-
-
-	//Création du VAO
-	glGenVertexArrays(1, &m_vao);
-
-	//Binding du vao (un seul à la fois)
-	glBindVertexArray(m_vao);
-
-	//Dire à OpenGL qu'on utilise le VAO
-	const GLuint VERTEX_ATTR_POSITION = 1;
-	glEnableVertexAttribArray(VERTEX_ATTR_POSITION);
-
-	//Indiquer à OpenGL où trouver les sommets
-	//Bindind du vbo sur la cible
-	glBindBuffer(GL_ARRAY_BUFFER, m_vbo);
-
-	//Spécification du format de l'attribut de sommet position
-	glVertexAttribPointer(VERTEX_ATTR_POSITION, 2, GL_FLOAT, GL_FALSE, 2 * sizeof(GLfloat), 0);
-
-	//Débindind du vbo de la cible pour éviter de le remodifier
-	glBindBuffer(GL_ARRAY_BUFFER, 0);
-
-	//Débindind du vao de la cible pour éviter de le remodifier
-	glBindVertexArray(0);
+	if(elapsed.count() < FRAMERATE)
+	{
+		toWait = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::milliseconds(FRAMERATE) - elapsed);
+		std::this_thread::sleep_for(toWait);
+	}
 }
 
-
-
-
-//////////////
-// This is executed every frame
-///////////
-void Core::renderer()
-{
-	//On nettoit la fenêtre
-	glClear(GL_COLOR_BUFFER_BIT);
-
-	//On rebind le vao
-	glBindVertexArray(m_vao);
-
-	//On dessine le triangle //3*N pour le nombre de sommets pour N triangles
-	glDrawArrays(GL_TRIANGLES, 0, 3);
-
-	//Débindind du vao de la cible pour éviter de le remodifier
-	glBindVertexArray(0);
-
-	App->renderEngine->swapBuffers();
-}

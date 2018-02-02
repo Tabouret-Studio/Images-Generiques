@@ -1,5 +1,5 @@
 ########################
-### IMAGES GENERIQUES Makefile ###
+### IMACMAN Makefile ###
 ########################
 
 #THE TARGET
@@ -12,44 +12,66 @@ SRCDIR := .
 SRCEXT := cpp
 LIBDIR := libs
 
+UNAME_S := $(shell uname -s)
+
 # FIND ALL PROJECT SOURCES
-SOURCES := $(shell find $(SRCDIR) -type f -name "**.$(SRCEXT)" -not -path "./$(LIBDIR)/glm/*")
+ifeq ($(OS),Windows_NT)
+SOURCES := $(shell tree $(SRCDIR) -type f -name "**.$(SRCEXT)" -not -path "./$(LIBDIR)/*")
+else
+SOURCES := $(shell find $(SRCDIR) -type f -name "**.$(SRCEXT)" -not -path "./$(LIBDIR)/*")
+endif
+
 OBJECTS := $(SOURCES:.$(SRCEXT)=.o)
 
 # COMPILER FLAGS
-CXXFLAGS :=-g -std=c++11 -Wall -pedantic -I$(LIBDIR) -I$(LIBDIR)/glimac/include
-LDLIBS := -lGLEW
-LDFLAGS :=
+GCCOPTIONS = -g -std=c++11 -Wall -pedantic #-O2 -pipe -fno-common -fno-strict-aliasing
+CXXFLAGS := $(GCCOPTIONS) -I$(LIBDIR) -I.
+LDLIBS = `pkg-config --libs freetype2` #`pkg-config --libs assimp`
+LDFLAGS = `pkg-config --cflags freetype2` #`pkg-config --cflags assimp`
+BOOSTLIBS = -lboost_filesystem -lboost_system
 
 # OS-DEPENDANT COMPILER FLAGS
-UNAME_S := $(shell uname -s)
-# Windows (cygwin)
 ifeq ($(OS),Windows_NT)
-LDLIBS += -lGL -lSDL2
+
+# Windows (cygwin)
+LDLIBS +=  -lGLEW -lGL -lSDL2 -lSDL2_image `python-config --cflags`
 LDFLAGS +=
+PYTHONLIBS = `python-config --libs`
+PYTHONFLAGS = `python-config --cflags`
+
+else ifeq ($(UNAME_S),Darwin)
 
 # OS X
-else ifeq ($(UNAME_S),Darwin)
-LDLIBS += -framework OpenGL -framework SDL2
+LDLIBS += -framework OpenGL -framework SDL2 -framework SDL2_image -lGLEW
 LDFLAGS +=
-CXXFLAGS +=
-CXX := g++
+PYTHONLIBS = `python-config --libs`
+PYTHONFLAGS = -I/System/Library/Frameworks/Python.framework/Versions/2.7/include/python2.7 -fno-strict-aliasing -fno-common -dynamic -arch x86_64 -DENABLE_DTRACE -DMACOSX -DNDEBUG #-Wstrict-prototypes -Wshorten-64-to-32
+
 
 # Linux (default)
 else
-LDLIBS += -lGL -lSDL2
+LDLIBS +=-lGLEW -lGL -lSDL2 -lSDL2_image
 LDFLAGS +=
-CXXFLAGS +=
+PYTHONLIBS = `python-config --libs`
+PYTHONFLAGS = `python-config --includes`
+
 endif
 
+LDLIBS += $(BOOSTLIBS) $(PYTHONLIBS)
+LDFLAGS += $(PYTHONFLAGS)
+CXXFLAGS += $(LDFLAGS)
+
+
 # BUILD THE PROGRAM
-$(TARGET): hello linker
+$(TARGET): linker
+
+$(info )
+$(info ========================================)
+$(info    COMPILING $(TARGETNAME) on $(UNAME_S))
+$(info ========================================)
 
 #SAY HELLO
-hello:
-	@echo "\n========================================"
-	@echo "   COMPILING $(TARGETNAME) on $(UNAME_S)"
-	@echo "========================================\n"
+#hello:
 
 #LINK EVERYTHING
 linker: $(OBJECTS)
@@ -58,8 +80,8 @@ linker: $(OBJECTS)
 	@echo "   LINKING"
 	@echo "========================================\n"
 	@echo "  $(CXX) $^ -o $(TARGET) $(LDFLAGS) $(LDLIBS) $(OSLIB)\n"; $(CXX) $^ -o $(TARGET) $(LDFLAGS) $(LDLIBS) $(OSLIB)
-#	@echo "  Cleaning objects..."
-#	@$(RM) -r $(OBJECTS)
+#    @echo "  Cleaning objects..."
+#    @$(RM) -r $(OBJECTS)
 	@echo "\n========================================"
 	@echo "   $(TARGETNAME) successfully compiled!"
 	@echo "   Type \"./$(TARGET) to launch $(TARGETNAME)\""
@@ -67,7 +89,7 @@ linker: $(OBJECTS)
 
 # COMPILE THE SOURCES
 $(BUILDDIR)/%.o: $(SRCDIR)/%.$(SRCEXT)
-	@echo "  $(CXX) $(CXXFLAGS) $(LDFLAGS) -c -o $@ $<"; $(CXX) $(CXXFLAGS) $(LDFLAGS) -c -o $@ $<
+	@echo "  $(CXX) $(CXXFLAGS) $(LDFLAGS) -c -o -MMD $@ $<"; $(CXX) $(CXXFLAGS) $(LDFLAGS) -c -o -MMD $@ $<
 	@mkdir -p $(BUILDDIR)
 
 # REMOVE ALL OBJECTS
@@ -76,6 +98,3 @@ clean:
 	@echo " $(RM) -r $(OBJECTS) $(TARGET)"; $(RM) -r $(OBJECTS) $(TARGET)
 
 .PHONY: clean
-
-
-
