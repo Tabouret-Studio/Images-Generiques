@@ -49,6 +49,18 @@ std::string SVGExporter::shapeToPath(Shape &shape)
 	{
 		bez.applyCursor();
 
+		//precent saving corrupted points
+		//Should not happen but you never know
+		if(bez.getStartPoint().x == -2E+5 ||
+		   bez.getStartPoint().y == -2E+5 ||
+		   bez.getStartHandle().x == -2E+5 ||
+		   bez.getStartHandle().y == -2E+5 ||
+		   bez.getEndHandle().x == -2E+5 ||
+		   bez.getEndHandle().y == -2E+5 ||
+		   bez.getEndPoint().x == -2E+5 ||
+		   bez.getEndPoint().y == -2E+5)
+			continue; //Ignore corrupted points
+
 		std::string startPoint = vec2ToString(glm::vec2(bez.getStartPoint().x, bez.getStartPoint().y));
 		std::string startHandle = vec2ToString(glm::vec2(bez.getStartHandle().x, bez.getStartHandle().y));
 		std::string endHandle = vec2ToString(glm::vec2(bez.getEndHandle().x, bez.getEndHandle().y));

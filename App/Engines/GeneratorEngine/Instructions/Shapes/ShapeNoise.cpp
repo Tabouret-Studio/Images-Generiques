@@ -22,12 +22,15 @@ std::vector<VectorImage *> ShapeNoise::execute(std::vector<VectorImage *> &vecto
 	glm::mat4 tempCursor;
 	DrawCursor modificationCursor;
 
+	float intensity = m_parameters->getParam("intensity");
+	float amplitude = 20.0 * intensity; float demiAmplitude = amplitude / 2.0;
+
 	for(VectorImage * vImage : vectorImages)
 	{
 		for(Shape &shape : *vImage->getShapes())
 		{
 			tempCursor = shape.getCursor()->getMatrix();
-			modificationCursor.reset()->translate(50-Utils::rand(101), 50-Utils::rand(101), 0);
+			modificationCursor.reset()->translate(demiAmplitude - Utils::rand(amplitude + 1), demiAmplitude -Utils::rand(amplitude + 1), 0);
 
 			shape.getCursor()->setMatrix(modificationCursor * tempCursor);
 		}

@@ -21,6 +21,9 @@ std::vector<VectorImage *> PathsNoise::execute(std::vector<VectorImage *> &vecto
 	glm::mat4 tempCursor;
 	DrawCursor modificationCursor;
 
+	float intensity = m_parameters->getParam("intensity");
+	float amplitude = 10.0 * intensity; float demiAmplitude = amplitude / 2.0;
+
 	for(VectorImage * vImage : vectorImages)
 	{
 		for(Shape &shape : *vImage->getShapes())
@@ -28,7 +31,7 @@ std::vector<VectorImage *> PathsNoise::execute(std::vector<VectorImage *> &vecto
 			for(Bezier &path : *shape.getPaths())
 			{
 				tempCursor = path.getCursor()->getMatrix();
-				modificationCursor.reset()->translate(5.0 - Utils::rand(11), 5.0 - Utils::rand(11), 0);
+				modificationCursor.reset()->translate(demiAmplitude - Utils::rand(amplitude + 1), demiAmplitude - Utils::rand(amplitude + 1), 0);
 
 				path.getCursor()->setMatrix(modificationCursor * tempCursor);
 			}

@@ -22,10 +22,10 @@ std::vector<VectorImage *> PathsChaining::execute(std::vector<VectorImage *> &ve
 	for(VectorImage * vImage : vectorImages)
 	{
 		vImage->getCursor()->reset();
+		lastPos = glm::vec3(0, 0, 0);
 
 		for(Shape &shape : *vImage->getShapes())
 		{
-			lastPos = glm::vec3(0, 0, 0);
 			shape.getCursor()->reset();
 
 			for(Bezier &path : *shape.getPaths())
@@ -48,8 +48,7 @@ std::vector<VectorImage *> PathsChaining::execute(std::vector<VectorImage *> &ve
 
 				Bezier pathTemp = path;
 				pathTemp.applyCursor();
-
-				std::cout << glm::to_string(lastPos) << std::endl;
+				
 				lastPos = pathTemp.getEndPoint();
 			}
 		}

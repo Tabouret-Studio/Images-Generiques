@@ -1,4 +1,4 @@
-outputFile = open("assets/instructions/output.json", "w")
+outputFile = open("./build/assets/instructions/output.json", "w")
 
 primitive = """[{
 				\"height\":10,

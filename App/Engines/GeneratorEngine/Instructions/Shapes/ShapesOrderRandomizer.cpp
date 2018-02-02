@@ -7,13 +7,14 @@ Instruction * ShapesOrderRandomizer::get()
 	return new ShapesOrderRandomizer();
 }
 
+/// OK FOR V2
+
 std::vector<VectorImage *> ShapesOrderRandomizer::execute(std::vector<VectorImage *> &vectorImages)
 {
-	vectorImages[0]->applyCursor();
+	for(VectorImage * vImage : vectorImages)
+	{
+		std::random_shuffle(vImage->getShapes()->begin(), vImage->getShapes()->end(), Utils::rand);
+	}
 
-	std::vector<Shape> shapes = *vectorImages[0]->getShapes();
-
-	std::random_shuffle(shapes.begin(), shapes.end(), Utils::rand);
-
-	return {new VectorImage(shapes)};
+	return vectorImages;
 }

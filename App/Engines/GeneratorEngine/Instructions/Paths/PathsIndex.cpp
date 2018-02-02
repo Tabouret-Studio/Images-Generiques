@@ -20,12 +20,10 @@ Instruction * PathsIndex::get()
 std::vector<VectorImage *> PathsIndex::execute(std::vector<VectorImage *> &vectorImages)
 {
 	// Espacement entre chaque courbe
-	uint boxSize = 50;
+	uint boxSize = 100;
 	uint demiBox = boxSize /2;
-	uint numCols = (App->getWidth() - 600) / boxSize;
-	uint leftMargin = ((App->getWidth() - 600) % boxSize) / 2;
+	uint numCols = 40;
 
-	VectorImage * output = new VectorImage();
 	glm::vec3 bezierPos, bezierDim;
 
 	// Coordonnées: 0,0 pour top-left corner
@@ -34,10 +32,12 @@ std::vector<VectorImage *> PathsIndex::execute(std::vector<VectorImage *> &vecto
 	// A noter: des ajustements le render de la scène sont à prévoir
 	for(VectorImage * svg : vectorImages)
 	{
-		Shape vectorShape;
+		svg->getCursor()->reset();
 
 		for(Shape &shape : *svg->getShapes())
 		{
+			shape.getCursor()->reset();
+
 			for(Bezier &path : *shape.getPaths())
 			{
 				// Si on dépasse l'écran, retour à la ligne -> saut en y
@@ -61,20 +61,13 @@ std::vector<VectorImage *> PathsIndex::execute(std::vector<VectorImage *> &vecto
 				float scale = std::min(demiBox / bezierDim.x, demiBox / bezierDim.y);
 
 				//Place bezier on grid
-				path.getCursor()->translate(leftMargin + col * boxSize + demiBox, row * boxSize + demiBox, 0);
+				path.getCursor()->translate(col * boxSize + demiBox, row * boxSize + demiBox, 0);
 				path.getCursor()->scale(scale, scale, 1);
-
-				vectorShape << path;
 
 				++col;
 			}
 		}
-
-		vectorShape.getCursor()->translate((App->getWidth() - 600) / -2.0, ((row+1) * boxSize) / -2.0, 0);
-		*output << vectorShape;
-
-		//shape.getCursor()->translate(-(App->getWidth() - 600) / 2, 0, 0);
 	}
 
-	return {output};
+	return vectorImages;
 }

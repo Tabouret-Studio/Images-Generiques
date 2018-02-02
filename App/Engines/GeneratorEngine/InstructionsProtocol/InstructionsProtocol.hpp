@@ -88,6 +88,10 @@ public:
 	 */
 	void setParameters(const std::vector<InstructionParameters *> &params);
 
+	void bindParameter(const uint &instructionID, InstructionParameters * &param);
+
+	InstructionParameters * getParameters(const uint &instructionID) { return m_instructionsOrderParameters[instructionID]; };
+
 	/**
 	 Set the protocol name if it has any
 
@@ -122,6 +126,7 @@ private:
 
 	std::map<std::string, InstructionObject *> m_instructions;
 	std::vector<std::string> m_instructionsOrder;
+	std::vector<InstructionParameters *> m_instructionsOrderParameters;
 
 	std::string m_name;
 };

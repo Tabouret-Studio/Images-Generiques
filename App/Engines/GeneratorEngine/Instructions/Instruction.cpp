@@ -32,6 +32,7 @@ std::u16string Instruction::getTypeName() const
 	{
 		case INSTRUCTION_PROPERTY_ORDER : return u"ordre"; break;
 		case INSTRUCTION_PROPERTY_GEOMETRY : return u"géometrie"; break;
+		case INSTRUCTION_PROPERTY_SCATTER : return u"diffusion"; break;
 	}
 }
 
@@ -41,6 +42,7 @@ std::u16string Instruction::getTypePrefix() const
 	{
 		case INSTRUCTION_PROPERTY_ORDER : return u"l'"; break;
 		case INSTRUCTION_PROPERTY_GEOMETRY : return u"la "; break;
+		case INSTRUCTION_PROPERTY_SCATTER : return u"la "; break;
 	}
 }
 

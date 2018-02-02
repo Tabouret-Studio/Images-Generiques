@@ -15,6 +15,7 @@ class Font;
 class Interface;
 class UIButton;
 class InstructionsProtocol;
+class InstructionParameters;
 class VectorImage;
 class SimpleRenderer;
 class VectorImageExcerpt;
@@ -74,6 +75,7 @@ namespace Scenes
 		UIButton * m_shapesIndexBtn = nullptr;
 		UIButton * m_saveSVGBtn = nullptr;
 		Interface * m_instructionsInterface = nullptr;
+		UIButton * m_pathsCount = nullptr;
 		std::vector<Mesh *> m_lines;
 		Mesh * m_vertSeparator;
 
@@ -110,6 +112,7 @@ namespace Scenes
 		Mesh * m_loopCursor = nullptr;
 		Mesh * m_workingMesh = nullptr;
 		VectorImage * m_workingImage = nullptr;
+		VectorImage * m_savedImage = nullptr;
 		VectorImage * m_excerpt = nullptr;
 		VectorImage * m_renderingImage = nullptr;
 		
@@ -120,6 +123,8 @@ namespace Scenes
 
 		void applyPathsIndex();
 		void applyShapesIndex();
+
+		std::string floatToString(const float &val);
 
 	};
 }

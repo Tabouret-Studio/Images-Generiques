@@ -5,41 +5,45 @@ Instruction * ShapesChaining::get()
 	return new ShapesChaining();
 }
 
+/// OK FOR V2
+
 std::vector<VectorImage *> ShapesChaining::execute(std::vector<VectorImage *> &vectorImages)
 {
-	std::vector<std::vector<Shape>> imagesShapes;
+	glm::vec3 bezierPos, bezierDim, lastPos;
 
-	for(unsigned int i=0; i<vectorImages.size(); ++i)
+	for(VectorImage * vImage : vectorImages)
 	{
-		imagesShapes.push_back(*vectorImages[i]->getShapes());
-	}
+		vImage->getCursor()->reset();
 
-	Shape rshape;
-	std::vector<Bezier> paths;
-
-	Bezier firstPath = (*imagesShapes[0][0].getPaths())[0];
-	firstPath.applyCursor();
-	glm::vec3 currentPos(0, 0, 0);
-
-	for(std::vector<Shape> shapes : imagesShapes)
-	{
-		for(Shape shape : shapes)
+		for(Shape &shape : *vImage->getShapes())
 		{
-			paths = *shape.getPaths();
-			for(Bezier path : paths)
+			shape.getCursor()->reset();
+			lastPos = glm::vec3(0, 0, 0);
+
+			for(Bezier &path : *shape.getPaths())
 			{
-				path.getCursor()->reset();
-				path.move(currentPos);
-				rshape << path;
-				currentPos = path.getEndPoint();
+				bezierPos = path.getPosition();
+				bezierDim = path.getDimensions();
+
+				//Move bezier to origin
+				path.getCursor()
+				->reset()
+				->translate(-(bezierPos.x + bezierDim.x / 2.0), -(bezierPos.y + bezierDim.y / 2.0), 0);
+
+				//Move bezier start point to origin
+				path.getCursor()
+				->translate(-path.getStartPoint());
+
+				//Move besier to lastPos
+				path.getCursor()
+				->translate(lastPos);
+
+				Bezier pathTemp = path;
+				pathTemp.applyCursor();
+				lastPos = pathTemp.getEndPoint();
 			}
 		}
 	}
 
-	//rshape.getCursor()->setMatrix(imagesShapes[0][0].getCursor()->getMatrix());
-	//VectorImage* image = new VectorImage(rshape);
-	//image->getCursor()->setMatrix(vectorImages[0]->getCursor()->getMatrix());
-
-	return {new VectorImage(rshape)};
-
+	return vectorImages;
 }

@@ -38,11 +38,22 @@ Asset * SVGImporter::getAsset(const std::string &path)
 		paths.clear();
 
 		//Parse the shape's paths
-		for (NSVGpath * path = shape->paths; path != NULL; path = path->next)
+		for (NSVGpath * svgPath = shape->paths; svgPath != NULL; svgPath = svgPath->next)
 		{
-			for (int i = 0; i < path->npts-1; i += 3)
+			for (int i = 0; i < svgPath->npts-1; i += 3)
 			{
-				p = &path->pts[i * 2];
+				p = &svgPath->pts[i * 2];
+
+				//Ignore bad positions
+				if(p[0] <= -2E+5 ||
+				   p[1] <= -2E+5 ||
+				   p[2] <= -2E+5 ||
+				   p[3] <= -2E+5 ||
+				   p[4] <= -2E+5 ||
+				   p[5] <= -2E+5 ||
+				   p[6] <= -2E+5 ||
+				   p[7] <= -2E+5)
+					continue; //Ignore corrupted points
 
 				//Path coordinates
 				glm::vec3 startP(p[0], p[1], 0);
