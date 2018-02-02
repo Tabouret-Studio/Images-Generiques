@@ -20,7 +20,11 @@ std::vector<VectorImage *> BeziersHandlesReversing::execute(std::vector<VectorIm
 				tmp = path.getStartHandle();
 				path.setStartHandle(path.getEndHandle());
 				path.setEndHandle(tmp);
+
+				path.calculateBounds();
 			}
+
+			shape.calculateBounds();
 		}
 	}
 

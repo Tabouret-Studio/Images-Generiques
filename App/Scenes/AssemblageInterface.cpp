@@ -148,6 +148,7 @@ namespace Scenes
 		m_pathsCount->setSelectable(false);
 
 		m_baseInterface->addItem(m_pathsCount);
+		m_pathsCount->hide();
 
 		//Protocol elements
 		m_protocol = new InstructionsProtocol();
