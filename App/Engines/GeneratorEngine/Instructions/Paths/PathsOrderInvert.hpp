@@ -16,7 +16,7 @@ public:
 
 private:
 
-	PathsOrderInvert(): Instruction(INSTRUCTION_SOURCE_PATHS, INSTRUCTION_PROPERTY_ORDER, u"inverser") {};
+	PathsOrderInvert(): Instruction(INSTRUCTION_SOURCE_PATHS, INSTRUCTION_PROPERTY_ORDER, u"renverser") {};
 };
 
 #endif /* PathsOrderInvert_hpp */

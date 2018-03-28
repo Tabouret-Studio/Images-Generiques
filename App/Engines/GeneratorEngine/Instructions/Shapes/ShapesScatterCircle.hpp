@@ -24,7 +24,7 @@ public:
 
 private:
 
-	ShapesScatterCircle(): Instruction(INSTRUCTION_SOURCE_SHAPES, INSTRUCTION_PROPERTY_SCATTER, u"diffuser circulairement") {};
+	ShapesScatterCircle(): Instruction(INSTRUCTION_SOURCE_SHAPES, INSTRUCTION_PROPERTY_SCATTER, u"embobiner") {};
 };
 
 #endif /* ShapesScatterCircle_hpp */
