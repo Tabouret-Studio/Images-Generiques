@@ -26,6 +26,8 @@ std::vector<VectorImage *> BeziersAmplitude::execute(std::vector<VectorImage *> 
 
 				path.calculateBounds();
 			}
+
+			shape.calculateBounds();
 		}
 	}
 

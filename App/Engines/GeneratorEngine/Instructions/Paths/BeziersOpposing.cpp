@@ -17,7 +17,11 @@ std::vector<VectorImage *> BeziersOpposing::execute(std::vector<VectorImage *> &
 			{
 				path.setStartHandle(2 * path.getStartPoint() - path.getStartHandle());
 				path.setEndHandle(2 * path.getEndPoint() - path.getEndHandle());
+
+				path.calculateBounds();
 			}
+
+			shape.calculateBounds();
 		}
 	}
 
