@@ -24,7 +24,7 @@ public:
 
 private:
 
-	ShapeSymY(): Instruction(INSTRUCTION_SOURCE_SHAPES, INSTRUCTION_PROPERTY_GEOMETRY, u"symetrie verticale") {};
+	ShapeSymY(): Instruction(INSTRUCTION_SOURCE_SHAPES, INSTRUCTION_PROPERTY_GEOMETRY, u"reflêter verticalement") {};
 };
 
 #endif /* ShapeSymY_hpp */

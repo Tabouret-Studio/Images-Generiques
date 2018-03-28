@@ -24,7 +24,7 @@ public:
 
 private:
 
-	ShapeNoise(): Instruction(INSTRUCTION_SOURCE_SHAPES, INSTRUCTION_PROPERTY_GEOMETRY, u"translater aléatoirement") {};
+	ShapeNoise(): Instruction(INSTRUCTION_SOURCE_SHAPES, INSTRUCTION_PROPERTY_GEOMETRY, u"translater") {};
 };
 
 #endif /* ShapeNoise_hpp */

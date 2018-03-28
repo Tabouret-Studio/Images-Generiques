@@ -108,14 +108,14 @@ public:
 
 	 @return The type name
 	 */
-	std::u16string getTypeName() const;
+//	std::u16string getTypeName() const;
 
 	/**
 	 Get the type prefix for pretty printing
 
 	 @return The prefix
 	 */
-	std::u16string getTypePrefix() const;
+//	std::u16string getTypePrefix() const;
 
 	/**
 	 Get the instruction name

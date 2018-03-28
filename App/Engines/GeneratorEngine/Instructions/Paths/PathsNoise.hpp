@@ -24,7 +24,7 @@ public:
 
 private:
 
-	PathsNoise(): Instruction(INSTRUCTION_SOURCE_PATHS, INSTRUCTION_PROPERTY_GEOMETRY, u"translater aléatoirement") {};
+	PathsNoise(): Instruction(INSTRUCTION_SOURCE_PATHS, INSTRUCTION_PROPERTY_GEOMETRY, u"translater") {};
 };
 
 #endif /* PathsNoise_hpp */
