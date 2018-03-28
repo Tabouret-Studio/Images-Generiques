@@ -39,7 +39,6 @@ void GeneratorEngine::instanciate()
 	m_instanciated = true;
 }
 
-
 GeneratorEngine::GeneratorEngine()
 {
 	//Ugly conversion because Py_SetProgramName is not marked as const despite not modifying the var (thx c89)
@@ -54,7 +53,6 @@ GeneratorEngine::GeneratorEngine()
 	registerCPPInstructions();
 	registerPythonInstructions();
 }
-
 
 Instruction * GeneratorEngine::getInstruction(const std::string &instruction) const
 {
@@ -95,7 +93,6 @@ bool GeneratorEngine::instructionExist(const std::string &instruction) const
 	return true;
 }
 
-
 std::vector<InstructionsProtocol *> GeneratorEngine::getProtocols() const
 {
 	std::vector<InstructionsProtocol *> protocols;
@@ -113,7 +110,6 @@ InstructionsProtocol * GeneratorEngine::getProtocol(const std::string &protocolN
 
 	return m_protocols.at(protocolName);
 }
-
 
 void GeneratorEngine::registerCPPInstructions()
 {
