@@ -16,7 +16,7 @@ public:
 
 private:
 
-	ShapesOrderInvert(): Instruction(INSTRUCTION_SOURCE_SHAPES, INSTRUCTION_PROPERTY_ORDER, u"inverser") {};
+	ShapesOrderInvert(): Instruction(INSTRUCTION_SOURCE_SHAPES, INSTRUCTION_PROPERTY_ORDER, u"renverser") {};
 };
 
 #endif /* ShapesOrderInvert_hpp */
