@@ -16,7 +16,7 @@ public:
 
 private:
 
-	ShapesGeometryRandomizer(): Instruction(INSTRUCTION_SOURCE_SHAPES, INSTRUCTION_PROPERTY_GEOMETRY, u"pivoter aléatoirement") {};
+	ShapesGeometryRandomizer(): Instruction(INSTRUCTION_SOURCE_SHAPES, INSTRUCTION_PROPERTY_GEOMETRY, u"pivoter") {};
 };
 
 #endif /* ShapesGeometryRandomizer_hpp */

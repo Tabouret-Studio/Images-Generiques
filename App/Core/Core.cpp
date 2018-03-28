@@ -23,7 +23,7 @@ void Core::ignite(std::string appPath)
 	Igniter igniter = Igniter();
 
 	igniter.igniteAppObject(appPath);
-	igniter.igniteSDL(1200, 650);
+	igniter.igniteSDL(1200, 850);
 	igniter.igniteOpenGL();
 	igniter.igniteEngines();
 }

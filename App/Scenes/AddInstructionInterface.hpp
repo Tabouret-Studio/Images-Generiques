@@ -72,37 +72,32 @@ namespace Scenes
 		//Elements
 		Font * m_font = nullptr;
 		Interface * m_baseInterface = nullptr;
-		Interface * m_sourceListInterface = nullptr;
-		Interface * m_typeListInterface = nullptr;
 		Interface * m_actionListInterface = nullptr;
+		Interface * m_sourceListInterface = nullptr;
 		Interface * m_instructionConfirmInterface = nullptr;
 
 		UIButton * m_backButton = nullptr;
 
-		UIButton * m_sourceBtn = nullptr;
-		UIButton * m_typeBtn = nullptr;
 		UIButton * m_actionBtn = nullptr;
+		UIButton * m_sourceBtn = nullptr;
 
 		Mesh * m_topSeparator = nullptr;
 		Mesh * m_bottomSeparator = nullptr;
-		Mesh * m_vertSeparatorA = nullptr;
-		Mesh * m_vertSeparatorB = nullptr;
+		Mesh * m_vertSeparator = nullptr;
 
 		uint m_listsLeftMargin;
 
 		std::u16string m_currentSource = u"";
-		std::u16string m_currentType = u"";
 		std::u16string m_currentAction = u"";
 
 		//Lists
-		//[SOURCE, [TYPE, [ACTION, ID]]]
-		std::map<std::u16string, std::map<std::u16string, std::map<std::u16string, std::string>>> m_instructionsLists;
+		//[ACTION, [SOURCE, ID]]
+		std::map<std::u16string, std::map<std::u16string, std::string>> m_instructionsLists;
 
 		void parseInstructions();
-		void displaySourceList();
-		void displayTypeList(const std::u16string &source);
-		void displayActionList(const std::u16string &source, const std::u16string &type);
-		void displayConfirm(const std::u16string &source, const std::u16string &type, const std::u16string &action);
+		void displayActionsList();
+		void displaySourcesList(const std::u16string &action);
+		void displayConfirm(const std::u16string &action, const std::u16string &source);
 		void addInstructionAndQuit(const std::string &instruction);
 	};
 }
