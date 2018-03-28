@@ -50,7 +50,8 @@ namespace Scenes
 
 		});
 
-		VectorImage * imageTransformed = protocol.execute({m_svg})[0];
+		std::vector<VectorImage *> images = {m_svg};
+		VectorImage * imageTransformed = protocol.execute(images)[0];
 
 		//Export
 		SVGExporter exporter;

@@ -19,8 +19,8 @@ public:
 	UIElement():
 		m_display(true),
 		m_selected(false),
-		m_topItem(nullptr), m_rightItem(nullptr), m_bottomItem(nullptr), m_leftItem(nullptr),
-		m_callback(nullptr), m_selectable(true) {};
+		m_selectable(true),
+		m_topItem(nullptr), m_rightItem(nullptr), m_bottomItem(nullptr), m_leftItem(nullptr), m_callback(nullptr) {};
 
 	/**
 	 Print the Item

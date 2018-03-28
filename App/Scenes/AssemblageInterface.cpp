@@ -148,6 +148,7 @@ namespace Scenes
 		m_pathsCount->setSelectable(false);
 
 		m_baseInterface->addItem(m_pathsCount);
+		m_pathsCount->hide();
 
 		//Protocol elements
 		m_protocol = new InstructionsProtocol();
@@ -277,7 +278,7 @@ namespace Scenes
 	void AssemblageInterface::generateInstructionLine(const std::string &instructionName, uint &posY, const uint &i, const std::vector<std::string> &instructionNames)
 	{
 		Instruction * instruction = App->generatorEngine->getInstruction(instructionName);
-		InstructionParameters * iParams = m_protocol->getParameters(i);
+		//InstructionParameters * iParams = m_protocol->getParameters(i);
 
 		//Remove Button
 		UIButton * instructionRemoveBtn = new UIButton(UI_BUTTON_TEXT, 10, posY + 12, 30, 30);
@@ -294,8 +295,8 @@ namespace Scenes
 		std::u16string instructionTextName = instruction->getFullName();
 
 		//Instruction name
-		UIButton * instructionBtn = new UIButton(UI_BUTTON_TEXT, 45, posY-13, 425, 30);
-		instructionBtn->setFont(m_font, 20);
+		UIButton * instructionBtn = new UIButton(UI_BUTTON_TEXT, 45, posY+10, 425, 30);
+		instructionBtn->setFont(m_font, 30);
 		instructionBtn->setCaptionAlign(UI_TEXT_LEFT);
 		instructionBtn->setCaption(instructionTextName);
 		instructionBtn->setSelectable(false);
@@ -336,6 +337,7 @@ namespace Scenes
 
 		//Intensity controls
 
+		/*
 		//Intensity label
 		UIButton * intensityLabel = new UIButton(UI_BUTTON_TEXT, 67, posY, 30, 15);
 		intensityLabel->setFont(m_font, 15);
@@ -391,6 +393,7 @@ namespace Scenes
 		m_instructionsInterface->addItem(intensityUpBtn);
 
 		m_instructionsInterface->addItem(intensityDownBtn);
+		*/
 
 		//*BEAUTIFUL* line
 		Mesh * line = App->ressourcesEngine->gen2DTile(300, posY + 12, 600, 4);
