@@ -22,22 +22,33 @@
 
 UIButton::UIButton(const UIButtonType &type, const uint &posX, const uint &posY, const uint &width, const uint &height):
 	m_type(type),
-	m_posX(posX),
-	m_posY(posY),
-	m_width(width),
-	m_height(height),
 	m_tile(nullptr),
 	m_backTile(nullptr),
 	m_font(nullptr),
 	m_textAlign(UI_TEXT_CENTER)
 {
-	refreshGeometry();
+	m_posX = posX;
+	m_posY = posY;
+	m_width = width;
+	m_height = height;
+
+	if(m_type == UI_BUTTON_GRAPHIC)
+		refreshGeometry();
 }
 
 void UIButton::setTextures(const GLuint &idleTexture, const GLuint &activeTexture)
 {
 	m_idleTexture = idleTexture;
 	m_activeTexture = activeTexture;
+}
+
+void UIButton::setTextures(const rId &idleTexture, const rId &activeTexture)
+{
+	Image * idle = *App->ressourcesEngine->getAsset(idleTexture);
+	m_idleTexture = idle->getTextureID();
+
+	Image * selected = *App->ressourcesEngine->getAsset(activeTexture);
+	m_idleTexture = selected->getTextureID();
 }
 
 void UIButton::setDimensions(const float &width, const float &height)
@@ -54,6 +65,7 @@ void UIButton::setPosition(const float &posX, const float &posY)
 	m_posY = posY;
 
 	refreshGeometry();
+	setTextPosition();
 }
 
 void UIButton::setFont(Font * font, const float &fontSize)
@@ -69,17 +81,42 @@ void UIButton::setCaptionAlign(const UIButtonTextAlign &alignment)
 	m_textAlign = alignment;
 }
 
-void UIButton::setCaption(const std::string &caption)
+void UIButton::setTextColors(const glm::vec4 &idleColor, const glm::vec4 &selectedColor)
+{
+	m_idleColor = idleColor;
+	m_selectedColor = selectedColor;
+
+	refreshTextColor();
+}
+
+void UIButton::setBackColors(const glm::vec4 &idleColor, const glm::vec4 &selectedColor)
+{
+	m_backIdleColor = idleColor;
+	m_backSelectedColor = selectedColor;
+
+	refreshTextColor();
+}
+
+void UIButton::setCaption(const std::u16string &caption)
 {
 	if(m_caption == caption)
 		return;
 
 	m_caption = caption;
 
+	delete m_tile;
 	m_tile = m_font->genCaption(m_caption, m_fontSize);
 	m_tile->applyCursor();
 	m_tile->generate();
 
+	setTextPosition();
+
+	refreshGeometry();
+	refreshTextColor();
+}
+
+void UIButton::setTextPosition()
+{
 	//Calculate caption position
 	float posX = m_posX;
 	float posY = m_posY + (m_height - m_fontSize);
@@ -92,7 +129,6 @@ void UIButton::setCaption(const std::string &caption)
 	}
 
 	m_tile->getCursor()->reset()->translate(posX, posY, 0);
-	refreshTextColor();
 }
 
 void UIButton::select()
@@ -125,8 +161,22 @@ void UIButton::print()
 	//Display item
 	m_tile->render();
 
-	if(m_type == UI_BUTTON_TEXT && isSelected())
+	if(m_type == UI_BUTTON_TEXT)
+	{
+		glm::vec4 backTileColor;
+
+		if(isSelected())
+			backTileColor = m_backSelectedColor;
+		else
+			backTileColor = m_backIdleColor;
+
+		if(backTileColor.a == 0)
+			return;
+
+		m_backTile->setColor(backTileColor);
+		m_backTile->generate();
 		m_backTile->render();
+	}
 }
 
 void UIButton::refreshGeometry()
@@ -135,6 +185,8 @@ void UIButton::refreshGeometry()
 	{
 		case UI_BUTTON_GRAPHIC:
 
+			delete m_tile;
+
 			m_tile = App->ressourcesEngine->gen2DTile(m_posX, m_posY, m_width, m_height);
 			m_tile->generate();
 			m_tile->getCursor()->translate(m_posX, m_posY, 0);
@@ -142,9 +194,12 @@ void UIButton::refreshGeometry()
 			break;
 		case UI_BUTTON_TEXT:
 
+			delete m_backTile;
+
 			m_backTile = App->ressourcesEngine->gen2DTile(m_posX + m_width / 2, m_posY - m_height * 0.31, m_width, m_height * 1.25);
-			m_backTile->setColor(BUTTON_TEXT_IDLE_COLOR);
 			m_backTile->generate();
+
+			setTextPosition();
 
 			break;
 	}
@@ -156,9 +211,15 @@ void UIButton::refreshTextColor()
 		return;
 
 	if(isSelected())
-		m_tile->setColor(BUTTON_TEXT_SELECTED_COLOR);
+		m_tile->setColor(m_selectedColor);
 	else
-		m_tile->setColor(BUTTON_TEXT_IDLE_COLOR);
+		m_tile->setColor(m_idleColor);
 
 	m_tile->generate();
+}
+
+UIButton::~UIButton()
+{
+	delete m_tile;
+	delete m_backTile;
 }

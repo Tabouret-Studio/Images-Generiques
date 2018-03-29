@@ -6,6 +6,8 @@
 //  Copyright © 2018 Valentin Dufois. All rights reserved.
 //
 
+#ifdef IG_PYTHON_INSTRUCTIONS
+
 #include "PythonInstruction.hpp"
 
 #include "Core/AppObject.hpp"
@@ -30,7 +32,7 @@ Instruction * PythonInstruction::get(const std::string &scriptName)
 	return instruction;
 }
 
-std::vector<VectorImage *> PythonInstruction::execute(std::vector<VectorImage *> vectorImages)
+std::vector<VectorImage *> PythonInstruction::execute(const std::vector<VectorImage *> &vectorImages)
 {
 	//Export input
 	exportInput(vectorImages);
@@ -42,12 +44,12 @@ std::vector<VectorImage *> PythonInstruction::execute(std::vector<VectorImage *>
 	runInstruction();
 
 	//Import vector images
-	vectorImages = importOutput();
+	std::vector<VectorImage *> transformedImages = importOutput();
 
 	//Erase bridge files
 	cleanup();
 
-	return vectorImages;
+	return transformedImages;
 }
 
 void PythonInstruction::runInstruction()
@@ -98,3 +100,5 @@ void PythonInstruction::cleanup()
 	std::string output = App->getAppPath() + "assets/instructions/output.json";
 	std::remove(output.c_str());
 }
+
+#endif /* IG_PYTHON_INSTRUCTIONS */

@@ -39,12 +39,7 @@ namespace Scenes
 		m_fullImage = m_svg->getMesh();
 		m_fullImage->generate();
 
-		float factor;
-
-		if(m_svg->getWidth() > m_svg->getHeight())
-			factor = 400.0 / m_svg->getWidth();
-		else
-			factor = 400.0 / m_svg->getHeight();
+		float factor = std::min(400.0 / m_svg->getDimensions().x, 400.0 / m_svg->getDimensions().y) * 0.9f;
 
 		m_fullImage->getCursor()
 			->translate(225, 225, 0)
@@ -64,14 +59,15 @@ namespace Scenes
 		int j = 0;
 		int roofLine = 25;
 
-		for(Shape shape : m_svg->getShapes())
+		for(Shape shape : *m_svg->getShapes())
 		{
-			std::vector<Bezier> paths = shape.getPaths();
+			std::vector<Bezier> paths = *shape.getPaths();
 
 			int i = 0;
 
 			//Gen Shape text
-			textMesh = font->genCaption("Shape " + std::to_string(j+1), 25);
+			std::string str = "Shape " + std::to_string(j+1);
+			textMesh = font->genCaption(std::u16string(str.begin(), str.end()), 25);
 			textMesh->getCursor()->translate(175, roofLine, 0);
 			textMesh->generate();
 

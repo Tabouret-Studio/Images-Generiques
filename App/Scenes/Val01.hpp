@@ -50,7 +50,6 @@ namespace Scenes
 	private:
 
 		//Elements
-		VectorImage * m_svg;
 		Mesh * m_mesh;
 
 		Interface m_interface;

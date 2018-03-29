@@ -16,6 +16,8 @@ class InstructionParameters;
 #include "../GeneratorEngine.hpp"
 #include "../InstructionObject.hpp"
 
+#include <iostream>
+
 /**
  Holds a list of instructions to be executed in the given order
 */
@@ -34,7 +36,7 @@ public:
 	 @param vectorImages The starting VectorImage
 	 @return A new vectorImage with all the instruction applied on
 	 */
-	std::vector<VectorImage *> execute(std::vector<VectorImage *> vectorImages);
+	std::vector<VectorImage *> execute(std::vector<VectorImage *> &vectorImages);
 
 	/**
 	 Add a new instruction at the end of the protocol
@@ -55,7 +57,7 @@ public:
 
 	 @return All the instruction in a vector
 	 */
-	std::vector<InstructionObject *> getInstructions() const;
+	std::map<std::string, InstructionObject *> getInstructions() const;
 
 	/**
 	 Return all the instruction names in the protocol
@@ -63,6 +65,13 @@ public:
 	 @return All the instruction names in a vector
 	 */
 	std::vector<std::string> getInstructionsNames() const;
+
+	/**
+	 Return the exact instruction order by name
+
+	 @return All the instructions name in order
+	 */
+	std::vector<std::string> getInstructionsInOrder() const;
 
 	/**
 	 Set the given parameter for the instruction.s
@@ -79,6 +88,10 @@ public:
 	 */
 	void setParameters(const std::vector<InstructionParameters *> &params);
 
+	void bindParameter(const uint &instructionID, InstructionParameters * &param);
+
+	InstructionParameters * getParameters(const uint &instructionID) { return m_instructionsOrderParameters[instructionID]; };
+
 	/**
 	 Set the protocol name if it has any
 
@@ -94,6 +107,16 @@ public:
 	inline std::string getName() const { return m_name; };
 
 	/**
+	 Swap to instruction in the execution order
+
+	 @param first First instruction
+	 @param second Second instruction
+	 */
+	void swapInstructions(const uint &first, const uint &second);
+
+	void removeInstruction(const uint &instructionIndex);
+	
+	/**
 	 Protocol destructor
 	 Delete all instructions in the group
 	 */
@@ -103,6 +126,7 @@ private:
 
 	std::map<std::string, InstructionObject *> m_instructions;
 	std::vector<std::string> m_instructionsOrder;
+	std::vector<InstructionParameters *> m_instructionsOrderParameters;
 
 	std::string m_name;
 };

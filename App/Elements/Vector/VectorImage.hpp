@@ -13,9 +13,13 @@
 //Forward declarations
 class Mesh;
 
+#include "libraries.hpp"
+
 #include "../Asset.hpp"
 #include "Elements/Vector/Bezier.hpp"
 #include "Elements/Vector/Shape.hpp"
+
+#include "Utils/DrawCursor.hpp"
 
 #include <iostream>
 #include <vector>
@@ -31,43 +35,22 @@ public:
 	VectorImage(const float &width, const float &height);
 	VectorImage(const float &width, const float &height, const Shape &shape);
 	VectorImage(const float &width, const float &height, const std::vector<Shape> &shapes);
-
-
-	/**
-	 Set the picture dimensions
-
-	 @param width New width
-	 @param height New height
-	 */
-	void setDimensions(const float &width, const float &height);
+	VectorImage(const VectorImage * vectorImage); //Copy constructor
+	
 
 	/**
-	 Return the with of the image
-
-	 @return Width
-	 */
-	inline uint getWidth() const { return m_width; }
-
-	/**
-	 Return the height of the image
-
-	 @return Height
-	 */
-	inline uint getHeight() const { return m_height; }
-
-	/**
-	 Return all shapes in the image
+	 Return a reference to all shapes in the image
 
 	 @return shapes vector
 	 */
-	inline std::vector<Shape> getShapes() const { return m_shapes; };
+	inline std::vector<Shape> * getShapes() { return &m_shapes; };
 
 	/**
 	 Return all the Beziers in the image
 
 	 @return Beziers vector
 	 */
-	std::vector<Bezier> getBeziers() const;
+	std::vector<Bezier> getBeziers();
 
 	/**
 	 Return all the points in the image
@@ -91,7 +74,7 @@ public:
 
 	 @return The VectorImage as a renderable Mesh
 	 */
-	inline Mesh * getMesh() const { return getMesh(0); };
+	inline Mesh * getMesh() const { return getMesh(1.0); };
 
 	/**
 	 Return a Mesh object build with the current image for the given precision
@@ -99,16 +82,60 @@ public:
 
 	 @return The VectorImage as a renderable Mesh
 	 */
-	Mesh * getMesh(const uint &precision) const;
+	Mesh * getMesh(const float &precision) const;
 
-	inline VectorImage &operator <<(const Shape &shape) { m_shapes.push_back(shape); return *this; }
+	/**
+	 Get vectorImage cursor
+
+	 @return The cursor
+	 */
+	inline DrawCursor * getCursor() { return &m_cursor; };
+
+	/**
+	 Apply the cursor
+	 */
+	void applyCursor();
+
+	/**
+	 Tell shape position (min XYZ coordinates)
+
+	 @return The position
+	 */
+	inline glm::vec3 getPosition() const { return m_boundsMin; };
+
+	/**
+	 Tell the dimensions of the shape
+
+	 @return XYZ dimensions
+	 */
+	inline glm::vec3 getDimensions() const { return glm::abs(m_boundsMax - m_boundsMin); };
+
+	/**
+	 Tell the shape max XYZ coordinates
+
+	 @return XYZ coordinates
+	 */
+	inline glm::vec3 getBoundsMax() const { return m_boundsMax; };
+
+	/**
+	 Insert shape in the VectorImage
+
+	 @param shape Shape to add
+	 */
+	VectorImage &operator <<(const Shape &shape);
 
 private:
 
-	float m_width;
-	float m_height;
-
 	std::vector<Shape> m_shapes;
+
+	DrawCursor m_cursor;
+
+	glm::vec3 m_boundsMin;
+	glm::vec3 m_boundsMax;
+
+	void calculateBounds();
+	void updateBounds(const std::vector<Shape> &shapes);
+	void compareAndUpdateBounds(const Shape &shape);
 };
 
 #endif /* VectorImage_hpp */

@@ -57,7 +57,7 @@ public:
 	 @param type Type of the asset
 	 @return The asset ressourceID
 	 */
-	rId loadAsset(std::string path, ressourceType type);
+	rId loadAsset(const std::string &path, const ressourceType &type);
 
 	/**
 	 Return an asset
@@ -66,7 +66,7 @@ public:
 	 @param assetID ID of the asset
 	 @return Pointer to the asset
 	 */
-	Asset * getAsset(rId assetID);
+	Asset * getAsset(const rId &assetID);
 
 	/**
 	 Tell if the given file exist
@@ -74,7 +74,7 @@ public:
 	 @param filePath Path to the file
 	 @return True if it exists, false otherwise
 	 */
-	bool fileExist(std::string filePath);
+	bool fileExist(const std::string &filePath);
 
 	/**
 	 Return the handle to FreeType
@@ -82,6 +82,16 @@ public:
 	 @return The FreeType Library
 	 */
 	inline FT_Library getFTLibrary() const { return m_FTLibrary; };
+
+	/**
+	 Remove asset from engine
+	 This will free the asset.
+	 -Warning : Because assets are returned as pointers, you need to make sure
+	 is not in use anymore or you will be handling a nullptr
+
+	 @param assetID rId of the asset
+	 */
+	void removeAsset(const rId &assetID);
 
 	/////////////////////////
 	//Basic assets generation
@@ -123,7 +133,7 @@ private:
 	 @param type Type of the asset
 	 @return The importer for the given type
 	 */
-	Importer * getImporter(ressourceType &type);
+	Importer * getImporter(const ressourceType &type);
 
 	//Utilities
 	/**
@@ -133,7 +143,7 @@ private:
 	 @param type Asset type
 	 @return The full path to the asset
 	 */
-	std::string buildPath(std::string &file, ressourceType &type);
+	std::string buildPath(const std::string &file, const ressourceType &type);
 
 	//FreeType handle
 	FT_Library m_FTLibrary;

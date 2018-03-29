@@ -29,6 +29,7 @@
 //FreeType 2
 #include <ft2build.h>
 #include FT_FREETYPE_H
+#include FT_OUTLINE_H
 #include FT_GLYPH_H
 
 //Assimp
@@ -37,6 +38,8 @@
 //#include <assimp/postprocess.h>
 
 //GLM
+#define GLM_SWIZZLE_RGBA
+#define GLM_SWIZZLE_XYZW
 #include <glm/glm.hpp>
 #include <glm/ext.hpp>
 #include <glm/gtc/type_ptr.hpp>
@@ -46,7 +49,6 @@
 
 //////////
 //NanoSVG
-#define NANOSVG_ALL_COLOR_KEYWORDS
 #include <NanoSVG/nanosvg.h>
 
 //////////
@@ -58,6 +60,9 @@
 #include <boost/uuid/uuid.hpp>
 #include <boost/uuid/uuid_generators.hpp>
 #include <boost/uuid/uuid_io.hpp>
+
+//PYTHON INSTRUCTION
+//#define IG_PYTHON_INSTRUCTIONS
 
 
 //////////////////

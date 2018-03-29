@@ -23,7 +23,7 @@ void Core::ignite(std::string appPath)
 	Igniter igniter = Igniter();
 
 	igniter.igniteAppObject(appPath);
-	igniter.igniteSDL(800, 600);
+	igniter.igniteSDL(1200, 850);
 	igniter.igniteOpenGL();
 	igniter.igniteEngines();
 }
@@ -35,7 +35,7 @@ void Core::main()
 
 	//////////////////////
 	//Load the first scene
-	Scenes::ProtocolsMenu::load();
+	Scenes::AssemblageInterface::load();
 
 	while(App->isRunning())
 	{

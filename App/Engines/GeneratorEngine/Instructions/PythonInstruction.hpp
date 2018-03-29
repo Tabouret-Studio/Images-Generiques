@@ -9,6 +9,8 @@
 #ifndef PythonInstruction_hpp
 #define PythonInstruction_hpp
 
+#ifdef IG_PYTHON_INSTRUCTIONS
+
 #include "Instruction.hpp"
 
 class PythonInstruction: public Instruction
@@ -30,7 +32,7 @@ public:
 	 @param vectorImages Input vectors
 	 @return Output vectors
 	 */
-	std::vector<VectorImage *> execute(std::vector<VectorImage *> vectorImages);
+	std::vector<VectorImage *> execute(const std::vector<VectorImage *> &vectorImages);
 
 private:
 
@@ -62,5 +64,7 @@ private:
 	 */
 	void cleanup();
 };
+
+#endif /* IG_PYTHON_INSTRUCTIONS */
 
 #endif /* PythonInstruction_hpp */

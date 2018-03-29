@@ -11,7 +11,7 @@
             "program": "${workspaceFolder}/App/build/ImagesGeneriques",
             "args": [],
             "stopAtEntry": false,
-            "cwd": "${workspaceFolder}",
+            "cwd": "${workspaceFolder}/App",
             "environment": [],
             "externalConsole": true,
             "MIMode": "gdb",

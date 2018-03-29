@@ -39,7 +39,6 @@ void GeneratorEngine::instanciate()
 	m_instanciated = true;
 }
 
-
 GeneratorEngine::GeneratorEngine()
 {
 	//Ugly conversion because Py_SetProgramName is not marked as const despite not modifying the var (thx c89)
@@ -55,18 +54,36 @@ GeneratorEngine::GeneratorEngine()
 	registerPythonInstructions();
 }
 
-
-Instruction * GeneratorEngine::getInstruction(const std::string &instruction)
+Instruction * GeneratorEngine::getInstruction(const std::string &instruction) const
 {
 	if(!instructionExist(instruction))
 		throw std::runtime_error("Could not run instruction "+instruction+".\nThe instruction "+instruction+" could not be found.");
 
-	if(m_instructionsFormats[instruction] == INSTRUCTION_CPP)
-		return m_instructionsIndex[instruction]();
+	if(m_instructionsFormats.at(instruction) == INSTRUCTION_CPP)
+		return m_instructionsIndex.at(instruction)();
 
 	return getPythonInstruction(instruction);
 }
 
+std::map<std::string, Instruction *> GeneratorEngine::getAllInstructions() const
+{
+	std::map<std::string, Instruction *> instructions;
+
+	for(std::map<std::string, std::function<Instruction *(void)>>::const_iterator it = m_instructionsIndex.begin(); it != m_instructionsIndex.end(); ++it)
+		instructions.insert(std::pair<std::string, Instruction *>(it->first, getInstruction(it->first)));
+
+	return instructions;
+}
+
+std::vector<std::string> GeneratorEngine::getAllInstructionNames() const
+{
+	std::vector<std::string> instructions;
+
+	for(std::map<std::string, std::function<Instruction *(void)>>::const_iterator it = m_instructionsIndex.begin(); it != m_instructionsIndex.end(); ++it)
+		instructions.push_back(it->first);
+
+	return instructions;
+}
 
 bool GeneratorEngine::instructionExist(const std::string &instruction) const
 {
@@ -75,7 +92,6 @@ bool GeneratorEngine::instructionExist(const std::string &instruction) const
 
 	return true;
 }
-
 
 std::vector<InstructionsProtocol *> GeneratorEngine::getProtocols() const
 {
@@ -95,53 +111,77 @@ InstructionsProtocol * GeneratorEngine::getProtocol(const std::string &protocolN
 	return m_protocols.at(protocolName);
 }
 
-
 void GeneratorEngine::registerCPPInstructions()
 {
 	//Register all instructions
 
 	//Paths
+	registerInstruction(INSTRUCTION_CPP, "PATHS_GEOMETRY_AMPLITUDE", BeziersAmplitude::get);
+	registerInstruction(INSTRUCTION_CPP, "PATHS_GEOMETRY_OPPOSING1", BeziersHandlesReversing::get);
+	registerInstruction(INSTRUCTION_CPP, "PATHS_GEOMETRY_OPPOSING2", BeziersOpposing::get);
+	registerInstruction(INSTRUCTION_CPP, "PATHS_ORDER_CHAINING", PathsChaining::get);
+	registerInstruction(INSTRUCTION_CPP, "PATHS_INDEX", PathsIndex::get);
+	registerInstruction(INSTRUCTION_CPP, "PATHS_GEOMETRY_INVERT", PathsInvert::get);
+	registerInstruction(INSTRUCTION_CPP, "PATHS_GEOMETRY_LINEARALIZER", PathsLinearAlizer::get);
+	registerInstruction(INSTRUCTION_CPP, "PATHS_GEOMETRY_NOISETRANSLATE", PathsNoise::get);
+	registerInstruction(INSTRUCTION_CPP, "PATHS_ORDER_INVERT", PathsOrderInvert::get);
 	registerInstruction(INSTRUCTION_CPP, "PATHS_ORDER_RANDOMIZER", PathsOrderRandomizer::get);
-	registerInstruction(INSTRUCTION_CPP, "PATHS_CHAINING", PathsChaining::get);
+	registerInstruction(INSTRUCTION_CPP, "PATHS_GEOMETRY_ORIENTRANDOMIZER", PathsOrientRandomizer::get);
+	registerInstruction(INSTRUCTION_CPP, "PATHS_GEOMETRY_SQUARIFY", PathsSquarify::get);
+
+	//Shapes
+	registerInstruction(INSTRUCTION_CPP, "SHAPES_INDEX", ShapeIndex::get);
+	registerInstruction(INSTRUCTION_CPP, "SHAPES_GEOMETRY_NOISETRANSLATE", ShapeNoise::get);
+	registerInstruction(INSTRUCTION_CPP, "SHAPES_CHAINING", ShapesChaining::get);
+	registerInstruction(INSTRUCTION_CPP, "SHAPES_GEOMETRY_NOISEROTATE", ShapesGeometryRandomizer::get);
+	registerInstruction(INSTRUCTION_CPP, "SHAPES_ORDER_INVERT", ShapesOrderInvert::get);
+	registerInstruction(INSTRUCTION_CPP, "SHAPES_ORDER_RANDOMIZER", ShapesOrderRandomizer::get);
+	registerInstruction(INSTRUCTION_CPP, "SHAPES_SYMX", ShapeSymX::get);
+	registerInstruction(INSTRUCTION_CPP, "SHAPES_SYMY", ShapeSymY::get);
+	registerInstruction(INSTRUCTION_CPP, "SHAPES_SCATTER_CIRCLE", ShapesScatterCircle::get);
 }
 
 
 void GeneratorEngine::registerPythonInstructions()
 {
-#ifdef __WIN32__
+#ifndef IG_PYTHON_INSTRUCTIONS
+	return;
+#elif
+#	ifdef __WIN32__
 
-	std::cout << "Directory parsing has not been implemented yet for windows.\nPython instructions will not be available." << std::endl;
+		std::cout << "Directory parsing has not been implemented yet for windows.\nPython instructions will not be available." << std::endl;
 
-#else
+#	else
 
-	DIR *dir;
-	struct dirent *ent;
+		DIR *dir;
+		struct dirent *ent;
 
-	std::string path = App->getAppPath() + "/assets/instructions/";
+		std::string path = App->getAppPath() + "/assets/instructions/";
 
-	if((dir = opendir(path.c_str())) == NULL)
-	{
-		std::cout << "Python instructions folder could not be parsed.\nPython instructions will not be available" << std::endl;
-		return;
-	}
+		if((dir = opendir(path.c_str())) == NULL)
+		{
+			std::cout << "Python instructions folder could not be parsed.\nPython instructions will not be available" << std::endl;
+			return;
+		}
 
-	while((ent = readdir(dir)) != NULL)
-	{
-		std::string scriptName = ent->d_name;
+		while((ent = readdir(dir)) != NULL)
+		{
+			std::string scriptName = ent->d_name;
 
-		if(scriptName.size() < 4)
-			continue;
+			if(scriptName.size() < 4)
+				continue;
 
-		if(scriptName.substr(scriptName.length() - 3, std::string::npos) != ".py")
-			continue; //Ignore non python script
+			if(scriptName.substr(scriptName.length() - 3, std::string::npos) != ".py")
+				continue; //Ignore non python script
 
-		scriptName = scriptName.substr(0, scriptName.length() - 3);
+			scriptName = scriptName.substr(0, scriptName.length() - 3);
 
-		registerInstruction(INSTRUCTION_PYTHON, scriptName, nullptr);
-	}
+			registerInstruction(INSTRUCTION_PYTHON, scriptName, nullptr);
+		}
 
-	closedir(dir);
+		closedir(dir);
 
+	#endif
 #endif
 }
 
@@ -152,12 +192,14 @@ void GeneratorEngine::registerInstruction(const instructionFormat &format, const
 	m_instructionsFormats.insert(std::pair<std::string, instructionFormat>(instructionName, format));
 }
 
-
-Instruction * GeneratorEngine::getPythonInstruction(const std::string &scriptName)
+Instruction * GeneratorEngine::getPythonInstruction(const std::string &scriptName) const
 {
+#ifndef IG_PYTHON_INSTRUCTIONS
+	throw std::runtime_error("Python instructions have been deactivated.");
+#elif
 	return PythonInstruction::get(scriptName);
+#endif
 }
-
 
 void GeneratorEngine::registerProtocols()
 {
@@ -210,13 +252,14 @@ void GeneratorEngine::registerProtocol(const std::string &filename)
 	std::string content((std::istreambuf_iterator<char>(file)), (std::istreambuf_iterator<char>()));
 	nlohmann::json protocolJSON = nlohmann::json::parse(content);
 
-	InstructionsProtocol * protocol = new InstructionsProtocol;
+	InstructionsProtocol * protocol = new InstructionsProtocol();
 	protocol->setName(filename);
 
 	for(const std::string &instructionName : protocolJSON)
 	{
 		if(!instructionExist(instructionName))
 		{
+			delete protocol;
 			std::cout << "Protocol " + filename + " has not been registered because the instruction " + instructionName + " could not be found." << std::endl;
 			return;
 		}

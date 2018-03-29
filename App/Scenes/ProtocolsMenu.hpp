@@ -45,7 +45,7 @@ namespace Scenes
 		/**
 		 Destructor, used to properly free all the memory used by the scene
 		 */
-		~ProtocolsMenu() {};
+		~ProtocolsMenu();
 
 	private:
 

@@ -119,6 +119,8 @@ public:
 	 */
 	void generate();
 
+	inline bool isGenerated() const { return m_generated; };
+
 	/**
 	 Get a pointer to the mesh VBO ID
 
@@ -169,6 +171,20 @@ public:
 	 Mainly used to render text
 	 */
 	void setColor(const glm::vec4 &color);
+
+	/**
+	 Tell the point size for this mesh
+
+	 @return The point size
+	 */
+	inline uint getPointSize() const { return m_pointSize; };
+
+	/**
+	 Set the point size for this mesh
+
+	 @param pointSize the point size
+	 */
+	inline void setPointSize(const uint &pointSize) { m_pointSize = pointSize; };
 
 	/**
 	 Shortcut to render the mesh with its own cursor
@@ -240,10 +256,11 @@ private:
 	bool m_freeTexture;
 	
 	//Shader program
-	ShaderProgram * m_program;
+	ShaderProgram * m_program = nullptr;
 
 	//Render type
 	GLenum m_renderFormat;
+	uint m_pointSize = 1;
 
 	void deleteBuffers();
 };

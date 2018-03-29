@@ -44,7 +44,7 @@ RessourcesEngine::RessourcesEngine()
 
 
 
-rId RessourcesEngine::loadAsset(std::string path, ressourceType type)
+rId RessourcesEngine::loadAsset(const std::string &path, const ressourceType &type)
 {
 	std::string assetPath = buildPath(path, type);
 
@@ -76,14 +76,46 @@ rId RessourcesEngine::loadAsset(std::string path, ressourceType type)
 	return newAssetId;
 }
 
-Asset * RessourcesEngine::getAsset(rId assetID)
+Asset * RessourcesEngine::getAsset(const rId &assetID)
 {
 	//Is this asset already loaded ?
 	if(m_assets.find(assetID) == m_assets.end())
-	{
 		throw std::runtime_error("Error fetching ressource. The ressource #" + boost::uuids::to_string(assetID) + " does not exist.");
-	}
+
 	return m_assets[assetID];
+}
+
+bool RessourcesEngine::fileExist(const std::string &filePath)
+{
+	std::ifstream file(filePath);
+
+	if(file)
+		return true;
+
+	return false;
+}
+
+void RessourcesEngine::removeAsset(const rId &assetID)
+{
+	//Is this asset loaded ?
+	if(m_assets.find(assetID) == m_assets.end())
+		throw std::runtime_error("Error removing ressource. The ressource #" + boost::uuids::to_string(assetID) + " does not exist.");
+
+	//Free the asset
+	delete m_assets[assetID];
+	m_assets[assetID] = nullptr;
+
+	//Erase from engine
+	m_assets.erase(assetID);
+
+	for(std::map<std::string, rId>::const_iterator entry = m_loadedPaths.begin(); entry != m_loadedPaths.end(); ++entry)
+	{
+		if(entry->second != assetID)
+			continue;
+
+		m_loadedPaths.erase(entry);
+		return;
+	}
 }
 
 RessourcesEngine::~RessourcesEngine()
@@ -100,7 +132,7 @@ RessourcesEngine::~RessourcesEngine()
 /////////
 //PRIVATE
 
-Importer * RessourcesEngine::getImporter(ressourceType &type)
+Importer * RessourcesEngine::getImporter(const ressourceType &type)
 {
 	switch (type)
 	{
@@ -116,7 +148,7 @@ Importer * RessourcesEngine::getImporter(ressourceType &type)
 }
 
 
-std::string RessourcesEngine::buildPath(std::string &file, ressourceType &type)
+std::string RessourcesEngine::buildPath(const std::string &file, const ressourceType &type)
 {
 	std::string prefix;
 
@@ -132,14 +164,4 @@ std::string RessourcesEngine::buildPath(std::string &file, ressourceType &type)
 	}
 
 	return App->getAppPath() + prefix + file;
-}
-
-bool RessourcesEngine::fileExist(std::string filePath)
-{
-	std::ifstream file(filePath);
-
-	if(file)
-		return true;
-
-	return false;
 }

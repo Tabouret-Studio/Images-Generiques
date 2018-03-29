@@ -43,7 +43,21 @@ public:
 	 @param instruction The instructionName to return
 	 @return An instanciated Instruction
 	 */
-	Instruction * getInstruction(const std::string &instruction);
+	Instruction * getInstruction(const std::string &instruction) const;
+
+	/**
+	 Return all instructions ready-to-use in a vector
+
+	 @return All available instructions
+	 */
+	std::map<std::string, Instruction *> getAllInstructions() const;
+
+	/**
+	 Return the list of all the available instructions
+
+	 @return Insructions names in a vector
+	 */
+	std::vector<std::string> getAllInstructionNames() const;
 
 	/**
 	 Tell if the instruction exist for the given name
@@ -71,7 +85,7 @@ public:
 	/**
 	 Register all predefined protocols
 	 */
-	void registerProtocols();
+	void registerProtocols(); 
 
 private:
 
@@ -105,7 +119,7 @@ private:
 	 */
 	void registerInstruction(const instructionFormat &format, const std::string &instructionName, std::function<Instruction *(void)> loader);
 
-	Instruction * getPythonInstruction(const std::string &scriptName);
+	Instruction * getPythonInstruction(const std::string &scriptName) const;
 
 	/**
 	 Parse and register protocoles

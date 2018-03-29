@@ -63,6 +63,9 @@ void Mesh::generate()
 
 void Mesh::applyCursor()
 {
+	if(m_cursor == glm::mat4(1.0))
+		return;
+	
 	Vertex temp;
 
 	for(std::vector<Vertex>::iterator it = m_vertexList.begin(); it!= m_vertexList.end(); ++it)
@@ -101,6 +104,7 @@ Mesh &Mesh::operator <<(const std::vector<Vertex> &vertexList)
 {
 	updateBoundaries(vertexList);
 	m_vertexList.insert(m_vertexList.end(), vertexList.begin(), vertexList.end());
+
 	return *this;
 }
 
@@ -108,6 +112,7 @@ Mesh &Mesh::operator <<(const Vertex &vertex)
 {
 	updateBoundaries({vertex});
 	m_vertexList.push_back(vertex);
+
 	return *this;
 }
 
@@ -118,6 +123,7 @@ Mesh &Mesh::operator <<(const Mesh * mesh)
 
 	updateBoundaries(meshVal.m_vertexList);
 	m_vertexList.insert(m_vertexList.end(), meshVal.m_vertexList.begin(), meshVal.m_vertexList.end());
+
 	return *this;
 }
 

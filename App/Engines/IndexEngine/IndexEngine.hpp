@@ -28,13 +28,13 @@ public:
 	 */
 	void loadLibrary();
 
-	std::vector<srcId> * getImagesIds() const;
+	std::vector<srcId> getImagesIds() const;
 	
 	VectorImage * getVectorImage(const srcId &imgId) const;
 	
 	std::vector<std::string> getImageTags(const srcId &imgId) const;
 	
-	void insertVectorIMage(const VectorImage * image, const std::vector<std::string> &tags);
+	std::string insertVectorImage(VectorImage * image, const std::vector<std::string> &tags);
 	
 	void exportIndexToJSON() const;
 	
@@ -59,6 +59,7 @@ private:
 	std::map<srcId, std::string> m_ImagesIdsPaths;
 	std::map<srcId, std::vector<std::string>> m_ImagesIdsTags;
 
+	std::string buildPath(const std::string &imgPath) const;
 	
 };
 
