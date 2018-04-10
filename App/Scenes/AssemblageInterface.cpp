@@ -13,6 +13,7 @@
 #include "Engines/RessourcesEngine/RessourcesEngine.hpp"
 #include "Engines/GeneratorEngine/GeneratorEngine.hpp"
 #include "Engines/IndexEngine/IndexEngine.hpp"
+#include "Engines/AppEngine/AppEngine.hpp"
 
 #include "Engines/GeneratorEngine/InstructionsProtocol/InstructionsProtocol.hpp"
 #include "Engines/GeneratorEngine/InstructionParameters.hpp"
@@ -83,25 +84,17 @@ namespace Scenes
 
 		m_baseInterface->addItem(m_addInstructionBtn);
 
-		//PlayPause Btn
+		// PlayPause Btn
 		m_playPauseBtn = new UIButton(UI_BUTTON_TEXT, 430, 50, 150, 30);
 		m_playPauseBtn->setFont(m_font, 30);
 		m_playPauseBtn->setCaption(u"boucle");
 		m_playPauseBtn->setAction([this] () -> void {
-			if(m_playing)
-			{
-				m_playing = false;
-				m_playPauseBtn->setCaption(u"boucle");
-				return;
-			}
-
-			m_playing = true;
-			m_playPauseBtn->setCaption(u"pause");
+			toggleLoop();
 		});
 
 		m_baseInterface->addItem(m_playPauseBtn);
 
-		//Paths index Btn
+		// Paths index Btn
 		m_pathsIndexBtn = new UIButton(UI_BUTTON_TEXT, 25, 0, 175, 20);
 		m_pathsIndexBtn->setFont(m_font, 20);
 		m_pathsIndexBtn->setCaption(u"index des tracés");
@@ -111,7 +104,7 @@ namespace Scenes
 
 		m_baseInterface->addItem(m_pathsIndexBtn);
 
-		//Paths index Btn
+		// Paths index Btn
 		m_shapesIndexBtn = new UIButton(UI_BUTTON_TEXT, 25, 0, 175, 20);
 		m_shapesIndexBtn->setFont(m_font, 20);
 		m_shapesIndexBtn->setCaption(u"index des formes");
@@ -121,7 +114,7 @@ namespace Scenes
 
 		m_baseInterface->addItem(m_shapesIndexBtn);
 
-		//Reset Btn
+		// Reset Btn
 		m_resetBtn = new UIButton(UI_BUTTON_TEXT, 25, 0, 175, 20);
 		m_resetBtn->setFont(m_font, 20);
 		m_resetBtn->setCaption(u"recommencer");
@@ -131,7 +124,7 @@ namespace Scenes
 
 		m_baseInterface->addItem(m_resetBtn);
 
-		//Reset Btn
+		// Save Btn
 		m_saveSVGBtn = new UIButton(UI_BUTTON_TEXT, App->getWidth() - 185, App->getHeight() - 20, 175, 20);
 		m_saveSVGBtn->setFont(m_font, 20);
 		m_saveSVGBtn->setCaption(u"enregistrer");
@@ -184,8 +177,37 @@ namespace Scenes
 	///////////
 	void AssemblageInterface::execute()
 	{
+		// Check keyboard events
+		// TODO: Handle keyboard event with designated methods like `onKeyPressed`
+		//		  defined in Scene sueprclass
+		if(App->appEngine->getKeys().ENTER)
+		{
+			m_showInterface = !m_showInterface;
+			App->toggleFullScreen();
+
+			if(m_showInterface)
+				m_renderer->setBounds(600, 0, 0, 0);
+			else
+				m_renderer->setBounds(0, 0, 0, 0);
+		}
+
+		if(App->appEngine->getKeys().SPACE)
+		{
+			toggleLoop();
+		}
+
+		if(App->appEngine->getKeys().S)
+		{
+			saveWorkingImage();
+		}
+
+		App->appEngine->flushKeys();
+
+		// Execute the loop actions
 		m_baseInterface->execute();
-		m_instructionsInterface->execute();
+
+		if(m_showInterface)
+			m_instructionsInterface->execute();
 
 		if(m_reloadList)
 			generateInstructionList();
@@ -215,8 +237,12 @@ namespace Scenes
 		//Make sure renderer is active
 		m_renderer->enable();
 
+		if(!m_showInterface)
+			return;
+
 		//Interface
 		m_baseInterface->render();
+
 		m_instructionsInterface->render();
 
 		for(Mesh * mesh : m_lines)
@@ -227,6 +253,19 @@ namespace Scenes
 		//Display arrow only if instructions are present
 		if(m_protocol->getInstructionsInOrder().size() > 0)
 			m_loopCursor->render();
+	}
+
+	void AssemblageInterface::toggleLoop()
+	{
+		if(m_playing)
+		{
+			m_playing = false;
+			m_playPauseBtn->setCaption(u"boucle");
+			return;
+		}
+
+		m_playing = true;
+		m_playPauseBtn->setCaption(u"pause");
 	}
 
 	void AssemblageInterface::generateInstructionList()

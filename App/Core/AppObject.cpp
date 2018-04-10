@@ -40,3 +40,19 @@ void AppObject::removeScene(Scene * scene)
 		return;
 	}
 }
+
+// Window
+void AppObject::toggleFullScreen()
+{
+	if(m_windowIsFullScreen)
+	{
+		SDL_SetWindowFullscreen(mainWindow, 0);
+
+		m_windowIsFullScreen = false;
+		return;
+	}
+
+	SDL_SetWindowFullscreen(mainWindow, SDL_WINDOW_FULLSCREEN);
+
+	m_windowIsFullScreen = true;
+}

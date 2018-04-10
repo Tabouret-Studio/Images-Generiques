@@ -46,6 +46,7 @@ struct keyboard
 	bool ESC = false;
 	bool BACKSPACE = false;
 	bool ENTER = false;
+	bool SPACE = false;
 };
 
 struct mouse {

@@ -81,6 +81,20 @@ public:
 	 */
 	inline void setHeigth(const uint &height) { m_height = height; };
 
+	/**
+	 Tell if the current window is fullscreen or not
+
+	 @return True if fullscreen, false otherwise
+	 */
+	inline bool isFullScreen() { return m_windowIsFullScreen; };
+
+	/**
+	 Toggle window fullscreen state
+	 */
+	void toggleFullScreen();
+
+
+
 	////////////
 	//App States
 
@@ -157,6 +171,9 @@ private:
 	//window dimensions
 	uint m_width;
 	uint m_height;
+
+	//Window state
+	bool m_windowIsFullScreen = false;
 
 	//Scenes
 	std::vector<Scene *> m_scenes;
