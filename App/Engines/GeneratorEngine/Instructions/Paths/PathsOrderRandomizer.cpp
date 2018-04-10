@@ -10,6 +10,8 @@
 
 #include "Utils/Utils.hpp"
 
+#include <algorithm>
+
 Instruction * PathsOrderRandomizer::get()
 {
 	return new PathsOrderRandomizer();
