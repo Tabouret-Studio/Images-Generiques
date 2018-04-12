@@ -156,7 +156,7 @@ void GeneratorEngine::registerPythonInstructions()
 		DIR *dir;
 		struct dirent *ent;
 
-		std::string path = App->getAppPath() + "/assets/instructions/";
+		std::string path = App->getAppPath() + "assets/instructions/";
 
 		if((dir = opendir(path.c_str())) == NULL)
 		{
@@ -212,7 +212,7 @@ void GeneratorEngine::registerProtocols()
 	DIR *dir;
 	struct dirent *ent;
 
-	std::string path = App->getAppPath() + "/assets/protocols/";
+	std::string path = App->getAppPath() + "assets/protocols/";
 
 	if((dir = opendir(path.c_str())) == NULL)
 	{
@@ -244,7 +244,7 @@ void GeneratorEngine::registerProtocols()
 void GeneratorEngine::registerProtocol(const std::string &filename)
 {
 	//Open file
-	std::ifstream file(App->getAppPath() + "/assets/protocols/" + filename + ".json");
+	std::ifstream file(App->getAppPath() + "assets/protocols/" + filename + ".json");
 
 	if(!file)
 		return;

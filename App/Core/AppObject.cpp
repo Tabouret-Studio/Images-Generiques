@@ -21,7 +21,11 @@ void AppObject::instanciate(const std::string &appPath)
 		return;
 	}
 
-	App = new AppObject(appPath + "/");
+//#ifdef COCOA_APP
+	App = new AppObject(appPath + "/../Resources/");
+//#else
+//	App = new AppObject(appPath + "/");
+//#endif
 
 	m_instanciated = true;
 }

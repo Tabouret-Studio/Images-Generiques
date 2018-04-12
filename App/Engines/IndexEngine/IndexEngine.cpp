@@ -41,7 +41,7 @@ IndexEngine::IndexEngine()
 void IndexEngine::loadLibrary()
 {
 	JSONImporter jsonImport;
-	jsonObject * jsonFile = *jsonImport.getAsset(App->getAppPath()+"/indexLibrary/indexLibrary.json");
+	jsonObject * jsonFile = *jsonImport.getAsset(App->getAppPath()+"indexLibrary/indexLibrary.json");
 	
 	nlohmann::json * j = jsonFile->get();
 	
@@ -81,7 +81,7 @@ std::vector<srcId> IndexEngine::getImagesIds() const
 VectorImage * IndexEngine::getVectorImage(const srcId &imgId) const
 {
 	SVGImporter svgImporter;
-	return *svgImporter.getAsset(App->getAppPath() + "/indexLibrary/" + m_ImagesIdsPaths.at(imgId));
+	return *svgImporter.getAsset(App->getAppPath() + "indexLibrary/" + m_ImagesIdsPaths.at(imgId));
 }
 
 std::vector<std::string> IndexEngine::getImageTags(const srcId &imgId) const
