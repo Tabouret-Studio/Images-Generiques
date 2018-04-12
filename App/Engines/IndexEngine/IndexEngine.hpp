@@ -23,22 +23,16 @@ public:
 	static void instanciate();
 
 	/**
-	 * Browse a jsonObject to get each image path
+	 * Browse the "sources" directory to register each SVG image
 	 * Fill a map which linking an image unique_ID to its path 
 	 */
-	void loadLibrary();
+	void parseSVGSources();
+	
+	VectorImage * getVectorImage(const std::string fileName) const;
+	
+	VectorImage * getRandomVectorImage() const;
 
-	std::vector<srcId> getImagesIds() const;
-	
-	VectorImage * getVectorImage(const srcId &imgId) const;
-	
-	std::vector<std::string> getImageTags(const srcId &imgId) const;
-	
-	std::string insertVectorImage(VectorImage * image, const std::vector<std::string> &tags);
-	
-	void exportIndexToJSON() const;
-	
-	VectorImage * getRandomVectorImage();
+	void exportVectorImage(VectorImage * image);
 
 	///////
 	//Utils
@@ -52,12 +46,9 @@ private:
 	IndexEngine();
 	~IndexEngine();
 
-
-	bool imageIdIsValid(const srcId &imgId) const;
-
 	//Fields
-	std::map<srcId, std::string> m_ImagesIdsPaths;
-	std::map<srcId, std::vector<std::string>> m_ImagesIdsTags;
+	std::string m_sourcesPath = "indexLibrary/sources/";
+	std::vector<std::string> m_sources;
 
 	std::string buildPath(const std::string &imgPath) const;
 	
