@@ -159,7 +159,7 @@ std::string RessourcesEngine::buildPath(const std::string &file, const ressource
 		case SOUND: prefix = "assets/sounds/"; break;
 		case MESH: prefix = "assets/meshs/"; break;
 		case FONT: prefix = "assets/fonts/"; break;
-		case VECTOR: prefix = "assets/SVG/"; break;
+		case VECTOR: prefix = ""; break;
 		case JSON: prefix ="assets/JSON/"; break;
 	}
 

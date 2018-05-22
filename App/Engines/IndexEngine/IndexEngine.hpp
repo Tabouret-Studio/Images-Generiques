@@ -30,7 +30,7 @@ public:
 	
 	VectorImage * getVectorImage(const std::string fileName) const;
 	
-	VectorImage * getRandomVectorImage() const;
+	VectorImage * getRandomVectorImage();
 
 	void exportVectorImage(VectorImage * image);
 

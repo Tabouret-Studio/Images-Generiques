@@ -7,12 +7,12 @@
 void SVGExporter::exportSVG(VectorImage * vectorImg, const std::string &fileName)
 {
 	std::ofstream f;
-	std::string filePath = App->getAppPath()+fileName+".svg";
+	std::string filePath = fileName + ".svg";
 	f.open(filePath);
 
 	if(!f.is_open())
 	{
-		throw std::runtime_error("Unable to create file "+fileName);
+		throw std::runtime_error("Unable to create file " + filePath + strerror(errno));
 	}
 
 	f << getHeader(1200, 850);

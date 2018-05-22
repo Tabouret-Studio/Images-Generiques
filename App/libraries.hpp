@@ -55,6 +55,10 @@
 //JSON
 #include "JSON/json.hpp"
 
+//////////
+//Tiny FD
+#include "tinyFD/tinyfiledialogs.h"
+
 /////////////////
 //UUID generation
 #include <boost/uuid/uuid.hpp>

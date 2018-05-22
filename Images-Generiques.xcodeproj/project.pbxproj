@@ -7,15 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		39043C0A207F6C63000451D8 /* libGLEW.2.1.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 39043C05207F6C62000451D8 /* libGLEW.2.1.0.dylib */; };
-		39043C0B207F6C63000451D8 /* SDL2_image.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39043C06207F6C63000451D8 /* SDL2_image.framework */; };
-		39043C0C207F6C63000451D8 /* SDL2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39043C07207F6C63000451D8 /* SDL2.framework */; };
-		39043C0D207F6C63000451D8 /* libfreetype.6.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 39043C08207F6C63000451D8 /* libfreetype.6.dylib */; };
 		39043C0F207F6CEE000451D8 /* libfreetype.6.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 39043C08207F6C63000451D8 /* libfreetype.6.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		39043C10207F6CEE000451D8 /* libGLEW.2.1.0.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 39043C05207F6C62000451D8 /* libGLEW.2.1.0.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
-		39043C11207F6CEE000451D8 /* SDL2_image.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39043C06207F6C63000451D8 /* SDL2_image.framework */; };
 		39043C12207F6CEE000451D8 /* SDL2_image.framework in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 39043C06207F6C63000451D8 /* SDL2_image.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		39043C13207F6CEE000451D8 /* SDL2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39043C07207F6C63000451D8 /* SDL2.framework */; };
 		39043C14207F6CEE000451D8 /* SDL2.framework in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 39043C07207F6C63000451D8 /* SDL2.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		3909C0DC201E47AC00AF66F6 /* FontOutliner.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3909C0DA201E47AC00AF66F6 /* FontOutliner.cpp */; };
 		39131671200F6FE700F691B5 /* Val02.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3913166F200F6FE700F691B5 /* Val02.cpp */; };
@@ -46,6 +40,8 @@
 		392360602009105600400C45 /* Shader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3923603B2009105500400C45 /* Shader.cpp */; };
 		392360622009105600400C45 /* Sound.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3923603F2009105500400C45 /* Sound.cpp */; };
 		392360662009105600400C45 /* primitives.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 392360472009105500400C45 /* primitives.cpp */; };
+		3929414F207F81BA007D7097 /* tinyfiledialogs.c in Sources */ = {isa = PBXBuildFile; fileRef = 3929414E207F81BA007D7097 /* tinyfiledialogs.c */; };
+		39294150207F81BA007D7097 /* tinyfiledialogs.c in Sources */ = {isa = PBXBuildFile; fileRef = 3929414E207F81BA007D7097 /* tinyfiledialogs.c */; };
 		392C9EAF200902E70006ECB9 /* Igniter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 392C9E93200902E70006ECB9 /* Igniter.cpp */; };
 		392C9EB0200902E70006ECB9 /* Core.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 392C9E94200902E70006ECB9 /* Core.cpp */; };
 		392C9EB1200902E70006ECB9 /* AppObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 392C9E95200902E70006ECB9 /* AppObject.cpp */; };
@@ -142,6 +138,10 @@
 		3952DCAE200BFA820098779F /* SVGImporter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3952DCAC200BFA820098779F /* SVGImporter.cpp */; };
 		3952DCB1200BFC600098779F /* VectorImage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3952DCAF200BFC600098779F /* VectorImage.cpp */; };
 		3952DCBA200E4BB50098779F /* Shape.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3952DCB8200E4BB50098779F /* Shape.cpp */; };
+		39668EFE207F95F80080494C /* libfreetype.6.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 39043C08207F6C63000451D8 /* libfreetype.6.dylib */; };
+		39668EFF207F95F80080494C /* libGLEW.2.1.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 39043C05207F6C62000451D8 /* libGLEW.2.1.0.dylib */; };
+		39668F00207F95F80080494C /* SDL2_image.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39043C06207F6C63000451D8 /* SDL2_image.framework */; };
+		39668F01207F95F80080494C /* SDL2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39043C07207F6C63000451D8 /* SDL2.framework */; };
 		3967C57120108C2A006E31AB /* MeshGroup.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3967C56F20108C2A006E31AB /* MeshGroup.cpp */; };
 		3967C577201117BA006E31AB /* ml2.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3967C575201117B9006E31AB /* ml2.cpp */; };
 		3967C57A2011F94D006E31AB /* Gen01.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3967C5782011F94D006E31AB /* Gen01.cpp */; };
@@ -280,6 +280,12 @@
 		392360452009105500400C45 /* Image.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Image.hpp; sourceTree = "<group>"; };
 		392360472009105500400C45 /* primitives.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = primitives.cpp; sourceTree = "<group>"; };
 		392360482009105500400C45 /* RessourcesEngine.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = RessourcesEngine.hpp; sourceTree = "<group>"; };
+		3929414D207F81B9007D7097 /* tinyfiledialogs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tinyfiledialogs.h; sourceTree = "<group>"; };
+		3929414E207F81BA007D7097 /* tinyfiledialogs.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = tinyfiledialogs.c; sourceTree = "<group>"; };
+		39294151207F822E007D7097 /* hello.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = hello.c; sourceTree = "<group>"; };
+		39294152207F853B007D7097 /* Images Génériques.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = "Images Génériques.entitlements"; path = "Images Génériques/Images Génériques.entitlements"; sourceTree = SOURCE_ROOT; };
+		39294153207F8AE4007D7097 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
+		39294154207F8AE4007D7097 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		392C9E8F200901370006ECB9 /* libraries.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = libraries.hpp; sourceTree = "<group>"; };
 		392C9E93200902E70006ECB9 /* Igniter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Igniter.cpp; sourceTree = "<group>"; };
 		392C9E94200902E70006ECB9 /* Core.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Core.cpp; sourceTree = "<group>"; };
@@ -396,14 +402,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				39043C13207F6CEE000451D8 /* SDL2.framework in Frameworks */,
-				39043C0A207F6C63000451D8 /* libGLEW.2.1.0.dylib in Frameworks */,
-				39043C0B207F6C63000451D8 /* SDL2_image.framework in Frameworks */,
-				39043C0C207F6C63000451D8 /* SDL2.framework in Frameworks */,
-				39043C0D207F6C63000451D8 /* libfreetype.6.dylib in Frameworks */,
+				39668EFE207F95F80080494C /* libfreetype.6.dylib in Frameworks */,
+				39668EFF207F95F80080494C /* libGLEW.2.1.0.dylib in Frameworks */,
 				39392C81207F5E9C0021D619 /* Python.framework in Frameworks */,
 				39392C80207F5E980021D619 /* OpenGL.framework in Frameworks */,
-				39043C11207F6CEE000451D8 /* SDL2_image.framework in Frameworks */,
+				39668F00207F95F80080494C /* SDL2_image.framework in Frameworks */,
+				39668F01207F95F80080494C /* SDL2.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -448,6 +452,7 @@
 		391AB4C0207F5C290086C8F4 /* Images Génériques */ = {
 			isa = PBXGroup;
 			children = (
+				39294152207F853B007D7097 /* Images Génériques.entitlements */,
 				391AB4C1207F5C290086C8F4 /* AppDelegate.h */,
 				391AB4C2207F5C290086C8F4 /* AppDelegate.m */,
 				391AB4C6207F5C2B0086C8F4 /* MainMenu.xib */,
@@ -550,6 +555,16 @@
 				3952DCB7200E4B980098779F /* Vector */,
 			);
 			path = Elements;
+			sourceTree = "<group>";
+		};
+		3929414B207F8155007D7097 /* tinyFD */ = {
+			isa = PBXGroup;
+			children = (
+				39294151207F822E007D7097 /* hello.c */,
+				3929414E207F81BA007D7097 /* tinyfiledialogs.c */,
+				3929414D207F81B9007D7097 /* tinyfiledialogs.h */,
+			);
+			path = tinyFD;
 			sourceTree = "<group>";
 		};
 		392C9E92200902E70006ECB9 /* Core */ = {
@@ -803,6 +818,8 @@
 		39D90C3D1FDB403E00282ED1 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				39294153207F8AE4007D7097 /* CoreFoundation.framework */,
+				39294154207F8AE4007D7097 /* Foundation.framework */,
 				39043C08207F6C63000451D8 /* libfreetype.6.dylib */,
 				39043C05207F6C62000451D8 /* libGLEW.2.1.0.dylib */,
 				39043C06207F6C63000451D8 /* SDL2_image.framework */,
@@ -816,6 +833,7 @@
 		39D90C421FDB486E00282ED1 /* libs */ = {
 			isa = PBXGroup;
 			children = (
+				3929414B207F8155007D7097 /* tinyFD */,
 				391C9045201744760003E2B7 /* JSON */,
 				390196D91FDE7E34000F2113 /* NanoSVG */,
 			);
@@ -889,6 +907,11 @@
 					391AB4BE207F5C290086C8F4 = {
 						CreatedOnToolsVersion = 9.3;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Sandbox = {
+								enabled = 1;
+							};
+						};
 					};
 					397BE0CF1FDAED60006254F0 = {
 						CreatedOnToolsVersion = 9.2;
@@ -1007,6 +1030,7 @@
 				39392C75207F5DB60021D619 /* FontImporter.cpp in Sources */,
 				39392C76207F5DB60021D619 /* ImageImporter.cpp in Sources */,
 				39392C77207F5DB60021D619 /* MeshImporter.cpp in Sources */,
+				39294150207F81BA007D7097 /* tinyfiledialogs.c in Sources */,
 				39392C78207F5DB60021D619 /* ShaderImporter.cpp in Sources */,
 				39392C79207F5DB60021D619 /* SoundImporter.cpp in Sources */,
 				39392C7A207F5DB60021D619 /* SVGImporter.cpp in Sources */,
@@ -1092,6 +1116,7 @@
 				3923605C2009105600400C45 /* Image.cpp in Sources */,
 				39B371662022FEDF008EACAA /* BeziersOpposing.cpp in Sources */,
 				39B3714B2021C581008EACAA /* VectorImageExcerpt.cpp in Sources */,
+				3929414F207F81BA007D7097 /* tinyfiledialogs.c in Sources */,
 				39B3717E2022FEE7008EACAA /* ShapesOrderRandomizer.cpp in Sources */,
 				397AE6362020E09D007B2B04 /* AddInstructionInterface.cpp in Sources */,
 				3915234F2019E25A002AF97A /* UIButton.cpp in Sources */,
@@ -1123,7 +1148,7 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				COCOA_APP = 1;
-				CODE_SIGN_ENTITLEMENTS = "Images Génériques/Images_Ge_ne_riques.entitlements";
+				CODE_SIGN_ENTITLEMENTS = "Images Génériques/Images Génériques.entitlements";
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
@@ -1132,7 +1157,6 @@
 					"$(inherited)",
 					"$(LOCAL_LIBRARY_DIR)/Frameworks",
 					"$(PROJECT_DIR)",
-					"$(PROJECT_DIR)/App/build/assets/Frameworks",
 					"$(PROJECT_DIR)/Frameworks",
 				);
 				INFOPLIST_FILE = "Images Génériques/Info.plist";
@@ -1141,7 +1165,6 @@
 					"$(inherited)",
 					/usr/local/Cellar/freetype/2.9/lib,
 					"$(PROJECT_DIR)",
-					"$(PROJECT_DIR)/App/build/assets/Frameworks",
 					"$(PROJECT_DIR)/Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
@@ -1157,7 +1180,7 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				COCOA_APP = 1;
-				CODE_SIGN_ENTITLEMENTS = "Images Génériques/Images_Ge_ne_riques.entitlements";
+				CODE_SIGN_ENTITLEMENTS = "Images Génériques/Images Génériques.entitlements";
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
@@ -1166,7 +1189,6 @@
 					"$(inherited)",
 					"$(LOCAL_LIBRARY_DIR)/Frameworks",
 					"$(PROJECT_DIR)",
-					"$(PROJECT_DIR)/App/build/assets/Frameworks",
 					"$(PROJECT_DIR)/Frameworks",
 				);
 				INFOPLIST_FILE = "Images Génériques/Info.plist";
@@ -1175,7 +1197,6 @@
 					"$(inherited)",
 					/usr/local/Cellar/freetype/2.9/lib,
 					"$(PROJECT_DIR)",
-					"$(PROJECT_DIR)/App/build/assets/Frameworks",
 					"$(PROJECT_DIR)/Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.10;

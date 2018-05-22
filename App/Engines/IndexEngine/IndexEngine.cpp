@@ -39,6 +39,15 @@ void IndexEngine::instanciate()
  * Private constructor
  */
 IndexEngine::IndexEngine() {
+
+	// Get Source folder
+	//char const * sourceFolderPath = tinyfd_selectFolderDialog("sources directory", NULL);
+
+	//if(!sourceFolderPath)
+		m_sourcesPath = App->getAppPath() + "indexLibrary/sources/";
+//	else
+//		m_sourcesPath = std::string(sourceFolderPath);
+
 	parseSVGSources();
 }
 
@@ -53,7 +62,7 @@ void IndexEngine::parseSVGSources() {
 	DIR *dir;
 	struct dirent *ent;
 
-	std::string path = App->getAppPath() + "/indexLibrary/sources/";
+	std::string path = m_sourcesPath;
 	
 	if((dir = opendir(path.c_str())) == NULL)
 	{
@@ -65,12 +74,15 @@ void IndexEngine::parseSVGSources() {
 	{
 		std::string srcFileName = ent->d_name;
 
+		if(srcFileName.size() < 4)
+			continue;
+
 		if(srcFileName.substr(srcFileName.length() - 4, std::string::npos) != ".svg")
 		{
 			continue; // ignore non-SVG files
 		}
 			
-		srcFileName = srcFileName.substr(0, srcFileName.length() - 4);
+		//srcFileName = srcFileName.substr(0, srcFileName.length() - 4);
 
 		m_sources.push_back(srcFileName);
 		
@@ -89,14 +101,15 @@ std::string IndexEngine::buildPath(const std::string &imgPath) const{
 
 VectorImage * IndexEngine::getVectorImage(const std::string fileName) const
 {
-	rId vecId = App->ressourcesEngine->loadAsset(m_sourcesPath + fileName, VECTOR);
-	return *App->ressourcesEngine->getAsset(vecId);
+	SVGImporter importer;
+	return (VectorImage *)importer.getAsset(m_sourcesPath + fileName);
 }
 
 
-VectorImage * IndexEngine::getRandomVectorImage() const
+VectorImage * IndexEngine::getRandomVectorImage()
 {
-	int randomIndex = Utils::rand(m_sources.size());
+	parseSVGSources();
+	int randomIndex = Utils::rand((int)m_sources.size());
 	std::string randomFileName = m_sources[randomIndex];
 
 	return getVectorImage(randomFileName);
@@ -109,5 +122,5 @@ void IndexEngine::exportVectorImage(VectorImage * image)
 	std::string imgFileName = std::to_string(std::time(0));
 	std::string exportPath = "exports/" + imgFileName;
 
-	exporter.exportSVG(image, buildPath(exportPath));
+	exporter.exportSVG(image, imgFileName);
 }
