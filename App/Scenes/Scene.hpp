@@ -113,6 +113,12 @@ public:
 
 protected:
 
+	/**
+	 Tell if the scene is currenlty enabled.
+	 A disabled scene doesn't get executed nor rendered.
+	 Everything set up in it stays intact
+	 Useful to 'pause' a scene.
+	 */
 	bool m_enable = true;
 
 private:

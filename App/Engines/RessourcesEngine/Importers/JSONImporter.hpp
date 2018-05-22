@@ -6,6 +6,9 @@
 
 #include "Importer.hpp"
 
+/**
+ Import json file (JSON)
+ */
 class JSONImporter: public Importer
 {
 public:
