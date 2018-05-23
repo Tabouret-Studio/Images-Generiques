@@ -44,3 +44,13 @@ Afin de rendre accessible le plus facilement certaines méthodes, sans pour auta
 
 ### Les Scenes
 
+Les scènes sont l'aboutissements de tous les éléments précédents. Composées uniquement de logique pure, leur but est de donner vie à l'application grâce aux différents éléments développés précedemment.
+
+Stockées dans le AppObj une fois instanciées, il peut y avoir plusieurs scènes à l'écran. Elles sont rafraichis à chaque tour de boucle par le Core, et peuvent répondre aux évènements utilisateurs. Toutes les scènes découlent d'une structure communes, et implémentes des méthodes supplémentaires selon leur besoin.
+
+{% hint style="warning" %}
+Toute fonction liée à la manipulation des informations au-delà d'un simple affichage à l'écran devrait être placée à l'exterieur des scènes, ceci afin de garantir une plus grande modularité et de limiter la duplication de code.
+{% endhint %}
+
+Par ailleurs, les interactions entre les scènes devrait être limitées au maximum. Si une grande quantité d'informations passe directement d'une scène à une autre \(sans passer par un moteur\) c'est qu'il y a possibilité de déplacer du code autre part. Théoriquement, une scène devrait être complètement indépendante des autres scènes.
+
