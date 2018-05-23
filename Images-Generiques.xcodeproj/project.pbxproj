@@ -196,6 +196,7 @@
 		392C9EAC200902E70006ECB9 /* ShaderProgram.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ShaderProgram.cpp; sourceTree = "<group>"; };
 		392C9EAD200902E70006ECB9 /* FilePath.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = FilePath.hpp; sourceTree = "<group>"; };
 		392C9EAE200902E70006ECB9 /* DrawCursor.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DrawCursor.cpp; sourceTree = "<group>"; };
+		393768BF20B5848B00EE7C51 /* indexLibrary.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = indexLibrary.json; path = indexLibrary/indexLibrary.json; sourceTree = "<group>"; };
 		394F942B20161C340065CE25 /* Python.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Python.framework; path = System/Library/Frameworks/Python.framework; sourceTree = SDKROOT; };
 		394F942D2016209C0065CE25 /* Python.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Python.cpp; sourceTree = "<group>"; };
 		394F942E2016209C0065CE25 /* Python.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Python.hpp; sourceTree = "<group>"; };
@@ -786,6 +787,7 @@
 		39D90C3A1FDAF0C400282ED1 /* build */ = {
 			isa = PBXGroup;
 			children = (
+				393768BF20B5848B00EE7C51 /* indexLibrary.json */,
 				39930A79202388B300FEEFF8 /* enfant_machine.svg */,
 				39930A7A202388B400FEEFF8 /* enfants_dos_classe.svg */,
 				39930A7B202388B400FEEFF8 /* groupe_travail.svg */,

@@ -59,8 +59,8 @@ void Core::main()
 		/////////////////////////////////
 	}
 
-	// End of game, clear everything
-	// TODO
+	// End of app, clear everything
+	// (Engines auto-clear at delete)
 }
 
 void Core::tempo(std::chrono::high_resolution_clock::time_point start, std::chrono::high_resolution_clock::time_point end)
