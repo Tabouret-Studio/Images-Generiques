@@ -21,6 +21,19 @@ Les inclusions de haut niveau, internes à l'application, se font en deux étape
 * **Dans les headers** `hpp` - Utilisation au maximum de _Forward declarations_, ceci afin d'empecher tout risque d'inclusion cyclique. Si une _Forward declarations_ n'est pas possible, et seulement dans ce cas, alors on peut inclure directement le header nécessaire. Les inclusion de la librairie standard se font aussi dans les headers.
 * **Dans les unité de compilation** **`cpp`** - Inclusion des headers nécessaires non-inclus dans le header correspondant. Un header inclus dans une unité de compilation n'entrera pas en conflit avec des inclusion dans d'autres unités.
 
+### Dénominations
+
+Le nommage des différentes entités de l'application est très classique : 
+
+* Variables : lowerCamelCase
+* Classes : UpperCamelCase
+
+Uniquement exception à la rêgle : la variable `App`, point d'accroche du AppObject.
+
+Toutes les entités sont en anglais, et possède des noms explicites, exception fait des itérateurs variables de boucle \(`i`, `j`, etc.\). L'intéret est de comprendre directement ce que contient la varible de part son nom.
+
+Les variables membres privés des classes commencent par `m_`, ceci afin de bien les différencier des variables locales.
+
 ### Commentaires
 
 > On dit qu'une applicaiton correctement codé s'auto-documente, et ne nécessite pas de commentaires. Ce n'est pas le cas ici, et c'est le cas partout d'ailleurs.
