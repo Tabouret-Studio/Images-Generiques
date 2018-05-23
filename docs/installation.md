@@ -1,3 +1,7 @@
+---
+description: Procédure d'installation de l'application sur MacOS & Linux
+---
+
 # Installation
 
 Images-génériques prend la forme d'une application C++/OpenGL qui doit être compilé pour pouvoir être utilisé. Actuellement, l'installation fonctionne sur les systèmes UNIX \(MacOS, Linux, etc.\)
@@ -15,7 +19,9 @@ Images Génériques requiert plusieurs dépendances pour pouvoir fonctionner. Ce
 
 Il est possible d'installer ces dépendances manuellement, et certaines sont surement déjà installées sur votre système \(OpenGL\). Les guident suivant vous indiquent comment installer ces dépendances via **brew** sur Mac, et **Aptitude** sur Linux.
 
-Si vous avez déjà installés ces dépendances, vous pouvez passer cette partie.
+{% hint style="info" %}
+Si vous avez déjà installés ces dépendances, vous pouvez aller directement à la [Compilation](installation.md#compilation)
+{% endhint %}
 
 ## MacOS
 
@@ -133,8 +139,6 @@ $ make -j4
 ========================================
 $ ./build/ImagesGeneriques
 ```
-
-## ![](https://github.com/Boisier/Images-Generiques/tree/c2dc94668a8ba56c4144fbf8613115c7e73c9b5f/docs/assets/Capture%20d’écran%202018-05-23%20à%2013.19.42.png) {#interface}
 
 ## Résolution des problèmes
 

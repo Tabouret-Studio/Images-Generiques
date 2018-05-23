@@ -2,4 +2,5 @@
 
 * [Introduction](README.md)
 * [Installation](installation.md)
+* [Architecture](architecture.md)
 
