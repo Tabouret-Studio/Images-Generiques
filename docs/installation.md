@@ -75,7 +75,7 @@ $ glxinfo | grep 'version'
 
 Images Générique requiert OpenGL Core 3.3 ou plus.
 
-Pour la suite, nous utiliserons **Aptitude **\(apt-get\) pour installer les paquets. L'utilisation d'Aptitude requiert des authorizations administrateur \(`sudo`\)
+Pour la suite, nous utiliserons **Aptitude** \(apt-get\) pour installer les paquets. L'utilisation d'Aptitude requiert des authorizations administrateur \(`sudo`\)
 
 ### SDL2
 
@@ -134,7 +134,7 @@ $ make -j4
 $ ./build/ImagesGeneriques
 ```
 
-## ![](/docs/assets/Capture d’écran 2018-05-23 à 13.19.42.png) {#interface}
+## ![](https://github.com/Boisier/Images-Generiques/tree/c2dc94668a8ba56c4144fbf8613115c7e73c9b5f/docs/assets/Capture%20d’écran%202018-05-23%20à%2013.19.42.png) {#interface}
 
 ## Résolution des problèmes
 
@@ -146,9 +146,7 @@ Il se peut que plusieurs problème au cours de l'installation, ou au lancement d
 
 ### Erreurs au lancement
 
-* " **Could not find '.../indexlibrary.json' " **- Le fichier de librairie est manquant, assurez qu'il existe bien dans le dossier `App/build/indexLibrary/`. Plusieurs fichiers exemple sont données en exemple.
+* " **Could not find '.../indexlibrary.json' "** - Le fichier de librairie est manquant, assurez qu'il existe bien dans le dossier `App/build/indexLibrary/`. Plusieurs fichiers exemple sont données en exemple.
 * " **Segmentation fault "** - Cause la plus probable, vous indiquez des images dans le fichier d'index qui ne sont cependant pas présentes. Assurez-vous que les chemin indiqués sont exacts
-* **Crash à la sauvegarde : **Assurez-vous que le dossier `App/build/indexLibrary/exports/` éxiste bien.
-
-
+* **Crash à la sauvegarde :** Assurez-vous que le dossier `App/build/indexLibrary/exports/` éxiste bien.
 
