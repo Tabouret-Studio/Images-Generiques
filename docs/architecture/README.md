@@ -42,7 +42,7 @@ La scène de démarrage se définie au début de la methode `Core::main()`
 
 Afin de rendre accessible le plus facilement certaines méthodes, sans pour autant créer de nouveaux moteurs car leur utilisation/taille ne le justifierais pas, plusieurs classes sont rangés dans le dossier **Utils/**. Le but principale de cette fragmentation est de trouver en un seul lui des méthodes utilisées à plusieurs endroits de l'application, et de décharger certaines classes afin de limiter leur poid ou complexité.
 
-### Les Scenes
+### Les Scènes
 
 Les scènes sont l'aboutissements de tous les éléments précédents. Composées uniquement de logique pure, leur but est de donner vie à l'application grâce aux différents éléments développés précedemment.
 
