@@ -141,7 +141,7 @@ Mesh * Font::genCaption(const std::u16string &caption, const float &fontSize)
 	glDeleteFramebuffers(1, &frameBuffer);
 
 	App->renderEngine->setClearColor(externClearColor);
-	
+
 	Mesh * mesh = App->ressourcesEngine->gen2DTile(0, 0, textureWidth, textureHeight);
 	mesh->setTexture(texture, true);
 	mesh->getCursor()->scale(1, -1, 1);

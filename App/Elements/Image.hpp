@@ -17,8 +17,18 @@ public:
 
 	Image(SDL_Surface * imageSurface);
 
+	/**
+	 Return the SDL Surface for the image
+
+	 @return SDL_Surface
+	 */
 	inline SDL_Surface * getSurface() const { return m_surface; };
 
+	/**
+	 Get the texture ID in OpenGl for the texture
+
+	 @return TextureID
+	 */
 	inline GLuint getTextureID() const { return m_textureID; };
 
 	~Image();

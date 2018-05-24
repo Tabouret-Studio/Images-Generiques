@@ -65,7 +65,7 @@ void Mesh::applyCursor()
 {
 	if(m_cursor == glm::mat4(1.0))
 		return;
-	
+
 	Vertex temp;
 
 	for(std::vector<Vertex>::iterator it = m_vertexList.begin(); it!= m_vertexList.end(); ++it)

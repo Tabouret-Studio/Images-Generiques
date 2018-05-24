@@ -15,6 +15,9 @@ class VectorImage;
 
 #include "libraries.hpp"
 
+/**
+ Import a JSON file (JSON) directly as a vector IMAGE
+ */
 class JSONToVectorImagesImporter
 {
 public:

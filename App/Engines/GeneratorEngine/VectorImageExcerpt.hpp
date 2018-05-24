@@ -16,7 +16,6 @@ public:
 
     VectorImageExcerpt(VectorImage * srcVecImg) : m_sourceVectorImage(srcVecImg) {}
 	
-
     /**
 	 Call getter of the corresponding excerpt type
      Sets the values of excpert end/begin

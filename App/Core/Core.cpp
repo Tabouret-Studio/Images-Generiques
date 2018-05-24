@@ -34,33 +34,33 @@ void Core::main()
 	std::chrono::high_resolution_clock::time_point start, end;
 
 	//////////////////////
-	//Load the first scene
+	// Load the first scene
 	Scenes::AssemblageInterface::load();
 
 	while(App->isRunning())
 	{
 		////////////////////////////////
-		//The main loop
+		// The main loop
 
 		start = std::chrono::high_resolution_clock::now();
 
-		//Actions
+		// Actions
 		App->appEngine->executeScenes();
 
-		//Render
+		// Render
 		App->appEngine->renderScenes();
 
 		end = std::chrono::high_resolution_clock::now();
 
-		//Tempo
+		// Tempo
 		Core::tempo(start, end);
 
 		//
 		/////////////////////////////////
 	}
 
-	//End of game, clear everything
-	//TODO
+	// End of app, clear everything
+	// (Engines auto-clear at delete)
 }
 
 void Core::tempo(std::chrono::high_resolution_clock::time_point start, std::chrono::high_resolution_clock::time_point end)

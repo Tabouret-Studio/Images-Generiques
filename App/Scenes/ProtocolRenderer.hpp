@@ -16,6 +16,7 @@ class Mesh;
 class Interface;
 class UIButton;
 class InstructionsProtocol;
+class VectorImage;
 
 #include "Scene.hpp"
 namespace Scenes

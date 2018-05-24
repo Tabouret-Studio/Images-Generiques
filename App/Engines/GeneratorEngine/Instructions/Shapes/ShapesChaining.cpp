@@ -1,3 +1,11 @@
+//
+//  PathsChaining.cpp
+//  Xcode
+//
+//  Created by Alexane Leguerne on 19/01/2018.
+//  Copyright © 2018 Alexane Leguerne. All rights reserved.
+//
+
 #include "ShapesChaining.hpp"
 
 Instruction * ShapesChaining::get()

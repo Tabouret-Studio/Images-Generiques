@@ -79,6 +79,9 @@ namespace Scenes
 		std::vector<Mesh *> m_lines;
 		Mesh * m_vertSeparator;
 
+		//Hide user interface
+		bool m_showInterface = true;
+
 		rId m_upArrowTexID; rId m_upArrowTexIDSelected;
 		rId m_downArrowTexID; rId m_downArrowTexIDSelected;
 		rId m_deleteTexID; rId m_deleteTexIDSelected;
@@ -100,6 +103,7 @@ namespace Scenes
 		//THE LOOP
 
 		void initLoop();
+		void toggleLoop();
 		void resetLoop();
 		void protocolLoop();
 

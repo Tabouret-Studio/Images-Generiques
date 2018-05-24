@@ -28,8 +28,8 @@ public:
 	/**
 	 Start the SDL and create the window
 
-	 @param width <#width description#>
-	 @param height <#height description#>
+	 @param width Hidth of the window
+	 @param height Height of the window
 	 */
 	void igniteSDL(const uint &width, const uint &height);
 

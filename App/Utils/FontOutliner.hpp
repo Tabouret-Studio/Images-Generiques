@@ -12,6 +12,10 @@
 #include "libraries.hpp"
 #include "Elements/Vector/Shape.hpp"
 
+/**
+ Used by Font elements to render a character outlines.
+ These methods are sent to FreeType for parsing
+ */
 struct FontOutliner
 {
 	glm::vec3 m_lastPoint;

@@ -44,6 +44,12 @@ private:
 	 */
 	std::string getFooter();
 
+	/**
+	 std::to_string shortcut, because, you know
+
+	 @param val val to transliterate
+	 @return int as string
+	 */
 	inline std::string toStr(const int &val) { return std::to_string(val); };
 
 	std::string vec2ToString(const glm::vec2 &vec);

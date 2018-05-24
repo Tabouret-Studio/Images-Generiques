@@ -14,6 +14,12 @@
 
 namespace Utils
 {
+	/**
+	 Return a random int using the given parameter as a seed
+
+	 @param i The seed
+	 @return Random (Semi random because nothing is truly random) number
+	 */
 	int rand(int i);
 
 	/**
@@ -32,6 +38,14 @@ namespace Utils
 		return A + ((B - A) * coef);
 	}
 
+	/**
+	 String.split(del) method
+	 Split a string by a delimiter and return an array of string
+
+	 @param s The full string
+	 @param delimiter The delimiter
+	 @return Array of strings
+	 */
 	std::vector<std::string> decomposeByDelimiter(std::string s, const std::string &delimiter);
 }
 

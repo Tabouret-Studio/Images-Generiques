@@ -79,12 +79,12 @@ linker: $(OBJECTS)
 	@echo "\n========================================"
 	@echo "   LINKING"
 	@echo "========================================\n"
-	@echo "  $(CXX) $^ -o $(TARGET) $(LDFLAGS) $(LDLIBS) $(OSLIB)\n"; $(CXX) $^ -o $(TARGET) $(LDFLAGS) $(LDLIBS) $(OSLIB)
+	@echo " Working... "; $(CXX) $^ -o $(TARGET) $(LDFLAGS) $(LDLIBS) $(OSLIB)
 #    @echo "  Cleaning objects..."
 #    @$(RM) -r $(OBJECTS)
 	@echo "\n========================================"
 	@echo "   $(TARGETNAME) successfully compiled!"
-	@echo "   Type \"./$(TARGET) to launch $(TARGETNAME)\""
+	@echo "   Type \"./$(TARGET)\" to launch $(TARGETNAME)"
 	@echo "========================================\n"
 
 # COMPILE THE SOURCES

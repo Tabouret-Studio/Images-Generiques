@@ -12,7 +12,7 @@
 void AppEngine::parseEvents()
 {
 	SDL_Event event;
-	
+
 	m_mouse.scrollX = 0;
 	m_mouse.scrollY = 0;
 	m_window.resized = false;
@@ -38,8 +38,6 @@ void AppEngine::parseEvents()
 				mouseEvents(event);
 				break;
 		}
-
-
 	}
 }
 
@@ -70,7 +68,7 @@ void AppEngine::keyBoardEvents(const SDL_Event &event)
 		case         SDLK_a:         m_keys.A = newVal; break;
 		case         SDLK_b:         m_keys.B = newVal; break;
 		case         SDLK_c:         m_keys.C = newVal; break;
-		case         SDLK_d:     m_keys.RIGHT = newVal; break;
+		case         SDLK_d:     m_keys.RIGHT = newVal; m_keys.D = newVal; break;
 		case         SDLK_e:         m_keys.E = newVal; break;
 		case         SDLK_f:         m_keys.F = newVal; break;
 		case         SDLK_g:         m_keys.G = newVal; break;
@@ -83,16 +81,16 @@ void AppEngine::keyBoardEvents(const SDL_Event &event)
 		case         SDLK_n:         m_keys.N = newVal; break;
 		case         SDLK_o:         m_keys.O = newVal; break;
 		case         SDLK_p:         m_keys.P = newVal; break;
-		case         SDLK_q:      m_keys.LEFT = newVal; break;
+		case         SDLK_q:      m_keys.LEFT = newVal; m_keys.Q = newVal; break;
 		case         SDLK_r:         m_keys.R = newVal; break;
-		case         SDLK_s:      m_keys.DOWN = newVal; break;
+		case         SDLK_s:      m_keys.DOWN = newVal; m_keys.S = newVal; break;
 		case         SDLK_t:         m_keys.T = newVal; break;
 		case         SDLK_u:         m_keys.U = newVal; break;
 		case         SDLK_v:         m_keys.V = newVal; break;
 		case         SDLK_w:         m_keys.W = newVal; break;
 		case         SDLK_x:         m_keys.X = newVal; break;
 		case         SDLK_y:         m_keys.Y = newVal; break;
-		case         SDLK_z:        m_keys.UP = newVal; break;
+		case         SDLK_z:        m_keys.UP = newVal; m_keys.Z = newVal; break;
 		case        SDLK_UP:        m_keys.UP = newVal; break;
 		case      SDLK_DOWN:      m_keys.DOWN = newVal; break;
 		case      SDLK_LEFT:      m_keys.LEFT = newVal; break;
@@ -100,6 +98,7 @@ void AppEngine::keyBoardEvents(const SDL_Event &event)
 		case    SDLK_ESCAPE:       m_keys.ESC = newVal; break;
 		case SDLK_BACKSPACE: m_keys.BACKSPACE = newVal; break;
 		case    SDLK_RETURN:     m_keys.ENTER = newVal; break;
+		case     SDLK_SPACE:     m_keys.SPACE = newVal; break;
 	}
 }
 
