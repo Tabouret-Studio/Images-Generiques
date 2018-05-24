@@ -109,7 +109,7 @@ void RenderEngine::setClearColor(const glm::vec4 &clearColor)
 void RenderEngine::initVBO(Mesh * mesh)
 {
 	//Get Manager for VBO
-	
+
 	//Generate & bind VBO
 	glGenBuffers(1, mesh->getVBO());
 	glBindBuffer(GL_ARRAY_BUFFER, *mesh->getVBO());

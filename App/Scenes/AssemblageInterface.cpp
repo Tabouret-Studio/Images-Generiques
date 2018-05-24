@@ -69,7 +69,6 @@ namespace Scenes
 		m_addInstructionBtn->setFont(m_font, 30);
 		m_addInstructionBtn->setCaption(u"ajouter +");
 		m_addInstructionBtn->setAction([this] () -> void {
-
 			//Disable current interface
 			disable();
 			m_renderer->disable();
@@ -291,7 +290,7 @@ namespace Scenes
 			emptyProtocol->setCaptionAlign(UI_TEXT_LEFT);
 			emptyProtocol->setCaption(u"l'assemblage est vide");
 			emptyProtocol->setSelectable(false);
-			
+
 			m_instructionsInterface->addItem(emptyProtocol);
 
 			posY += 45;

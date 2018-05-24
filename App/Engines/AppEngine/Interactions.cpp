@@ -12,7 +12,7 @@
 void AppEngine::parseEvents()
 {
 	SDL_Event event;
-	
+
 	m_mouse.scrollX = 0;
 	m_mouse.scrollY = 0;
 	m_window.resized = false;
@@ -38,8 +38,6 @@ void AppEngine::parseEvents()
 				mouseEvents(event);
 				break;
 		}
-
-
 	}
 }
 

@@ -42,9 +42,9 @@ void IndexEngine::loadLibrary()
 {
 	JSONImporter jsonImport;
 	jsonObject * jsonFile = *jsonImport.getAsset(App->getAppPath()+"/indexLibrary/indexLibrary.json");
-	
+
 	nlohmann::json * j = jsonFile->get();
-	
+
 	nlohmann::json imagesList = (*j)["images"];
 
 	for(const nlohmann::json &jsonImage : imagesList)
@@ -117,7 +117,7 @@ void IndexEngine::exportIndexToJSON() const
 	for(std::map<srcId, std::string>::const_iterator it = m_ImagesIdsPaths.begin(); it != m_ImagesIdsPaths.end(); ++it)
 	{
 		nlohmann::json imageJSON;
-		
+
 		imageJSON["path"] = (*it).second;
 		imageJSON["tags"] = m_ImagesIdsTags.at((*it).first);
 
