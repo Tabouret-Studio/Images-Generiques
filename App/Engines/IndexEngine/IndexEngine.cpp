@@ -83,12 +83,6 @@ void IndexEngine::parseSVGSources() {
 #endif
 }
 
-
-std::string IndexEngine::buildPath(const std::string &imgPath) const{
-	return "indexLibrary/sources/"+imgPath;
-}
-
-
 VectorImage * IndexEngine::getVectorImage(const std::string fileName) const
 {
 	SVGImporter svgImporter;
@@ -111,5 +105,5 @@ void IndexEngine::exportVectorImage(VectorImage * image)
 	std::string imgFileName = std::to_string(std::time(0));
 	std::string exportPath = "exports/" + imgFileName;
 
-	exporter.exportSVG(image, buildPath(exportPath));
+	exporter.exportSVG(image, "indexLibrary/" + exportPath);
 }
