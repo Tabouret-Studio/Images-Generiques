@@ -591,9 +591,6 @@ namespace Scenes
 	void AssemblageInterface::applyPathsIndex()
 	{
 		m_playing = false;
-		m_playPauseBtn->setCaption(u"boucle");
-
-		m_playing = false;
 
 		Instruction * indexInstruction = App->generatorEngine->getInstruction("PATHS_INDEX");
 		std::vector<VectorImage *> images = {new VectorImage(m_savedImage)};

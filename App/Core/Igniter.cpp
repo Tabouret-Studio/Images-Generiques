@@ -36,6 +36,8 @@ void Igniter::igniteAppObject(const std::string &appPath)
 	RenderEngine::instanciate();
 	GeneratorEngine::instanciate();
 	IndexEngine::instanciate();
+
+	App->generatorEngine->registerProtocols();
 }
 
 void Igniter::igniteSDL(const uint &width, const uint &height)
