@@ -21,7 +21,7 @@ std::vector<VectorImage *> PathsNoise::execute(std::vector<VectorImage *> &vecto
 	glm::mat4 tempCursor;
 	DrawCursor modificationCursor;
 
-	float intensity = m_parameters->getParam("intensity");
+	float intensity = 1.0;
 	float amplitude = 10.0 * intensity; float demiAmplitude = amplitude / 2.0;
 
 	for(VectorImage * vImage : vectorImages)

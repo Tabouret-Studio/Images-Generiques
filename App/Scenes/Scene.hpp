@@ -134,4 +134,6 @@ private:
 #include "SimpleRenderer.hpp"
 #include "AddInstructionInterface.hpp"
 
+#include "Keynote.hpp"
+
 #endif /* Scene_h */

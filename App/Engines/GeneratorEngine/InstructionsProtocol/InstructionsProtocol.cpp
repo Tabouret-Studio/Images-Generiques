@@ -8,6 +8,7 @@
 
 #include "InstructionsProtocol.hpp"
 #include "../InstructionParameters.hpp"
+#include "Engines/GeneratorEngine/GeneratorEngine.hpp"
 
 #include "Core/AppObject.hpp"
 
@@ -64,6 +65,12 @@ void InstructionsProtocol::addInstruction(const std::string &instructionName)
 		return; //Instruction already stored, do not store again
 
 	m_instructions.insert(std::pair<std::string, InstructionObject *>(instructionName, (InstructionObject *)App->generatorEngine->getInstruction(instructionName)));
+
+
+	InstructionParameters * params = new InstructionParameters();
+	params->createParam("intensity", 1.0);
+
+	bindParameter(m_instructions.size() - 1, params);
 }
 
 void InstructionsProtocol::addInstructions(const std::vector<std::string> &instructionNames)

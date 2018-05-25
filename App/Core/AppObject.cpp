@@ -46,13 +46,17 @@ void AppObject::toggleFullScreen()
 {
 	if(m_windowIsFullScreen)
 	{
+#ifndef __APPLE__
 		SDL_SetWindowFullscreen(mainWindow, 0);
+#endif
 
 		m_windowIsFullScreen = false;
 		return;
 	}
 
+#ifndef __APPLE__
 	SDL_SetWindowFullscreen(mainWindow, SDL_WINDOW_FULLSCREEN);
+#endif
 
 	m_windowIsFullScreen = true;
 }

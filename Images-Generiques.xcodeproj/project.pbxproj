@@ -43,6 +43,7 @@
 		392C9EB7200902E70006ECB9 /* SDL.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 392C9EA8200902E70006ECB9 /* SDL.cpp */; };
 		392C9EB8200902E70006ECB9 /* ShaderProgram.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 392C9EAC200902E70006ECB9 /* ShaderProgram.cpp */; };
 		392C9EB9200902E70006ECB9 /* DrawCursor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 392C9EAE200902E70006ECB9 /* DrawCursor.cpp */; };
+		3939827520B8003100707573 /* Keynote.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3939827320B8003100707573 /* Keynote.cpp */; };
 		394F942C20161C350065CE25 /* Python.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 394F942B20161C340065CE25 /* Python.framework */; };
 		394F942F2016209C0065CE25 /* Python.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 394F942D2016209C0065CE25 /* Python.cpp */; };
 		3952DCAB200BEBCE0098779F /* libraries.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3952DCAA200BEBCE0098779F /* libraries.cpp */; };
@@ -108,7 +109,6 @@
 		3915234D2019E25A002AF97A /* UIButton.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = UIButton.cpp; sourceTree = "<group>"; };
 		3915234E2019E25A002AF97A /* UIButton.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = UIButton.hpp; sourceTree = "<group>"; };
 		391523502019F038002AF97A /* textPrinter.fs.glsl */ = {isa = PBXFileReference; lastKnownFileType = text; name = textPrinter.fs.glsl; path = App/build/assets/shaders/textPrinter.fs.glsl; sourceTree = SOURCE_ROOT; };
-		39152353201AA398002AF97A /* STEPPER.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = STEPPER.json; sourceTree = "<group>"; };
 		39152354201B1541002AF97A /* ProtocolRenderer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ProtocolRenderer.cpp; sourceTree = "<group>"; };
 		39152355201B1541002AF97A /* ProtocolRenderer.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = ProtocolRenderer.hpp; sourceTree = "<group>"; };
 		39152358201B2DCF002AF97A /* IndexEngine.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = IndexEngine.cpp; sourceTree = "<group>"; };
@@ -186,6 +186,10 @@
 		392C9EAD200902E70006ECB9 /* FilePath.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = FilePath.hpp; sourceTree = "<group>"; };
 		392C9EAE200902E70006ECB9 /* DrawCursor.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DrawCursor.cpp; sourceTree = "<group>"; };
 		393768BF20B5848B00EE7C51 /* indexLibrary.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = indexLibrary.json; path = indexLibrary/indexLibrary.json; sourceTree = "<group>"; };
+		3939827320B8003100707573 /* Keynote.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Keynote.cpp; sourceTree = "<group>"; };
+		3939827420B8003100707573 /* Keynote.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Keynote.hpp; sourceTree = "<group>"; };
+		3939827620B8334D00707573 /* SCATTER.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = SCATTER.json; sourceTree = "<group>"; };
+		3939827720B8338A00707573 /* LINEARIZER.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = LINEARIZER.json; sourceTree = "<group>"; };
 		394F942B20161C340065CE25 /* Python.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Python.framework; path = System/Library/Frameworks/Python.framework; sourceTree = SDKROOT; };
 		394F942D2016209C0065CE25 /* Python.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Python.cpp; sourceTree = "<group>"; };
 		394F942E2016209C0065CE25 /* Python.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Python.hpp; sourceTree = "<group>"; };
@@ -240,18 +244,10 @@
 		397A72D3201B3C510025058C /* PathsInvert.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = PathsInvert.cpp; path = App/Engines/GeneratorEngine/Instructions/Paths/PathsInvert.cpp; sourceTree = SOURCE_ROOT; };
 		397A72D4201B3C510025058C /* PathsSquarify.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = PathsSquarify.cpp; path = App/Engines/GeneratorEngine/Instructions/Paths/PathsSquarify.cpp; sourceTree = SOURCE_ROOT; };
 		397A72D5201B3C510025058C /* PathsNoise.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = PathsNoise.cpp; path = App/Engines/GeneratorEngine/Instructions/Paths/PathsNoise.cpp; sourceTree = SOURCE_ROOT; };
-		397A72E1201B45DE0025058C /* ORIENT_RANDOMIZER_CHAINER_SQUARIFIER.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ORIENT_RANDOMIZER_CHAINER_SQUARIFIER.json; sourceTree = "<group>"; };
-		397A72E2201B45DE0025058C /* CHAINER_INVERTER.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = CHAINER_INVERTER.json; sourceTree = "<group>"; };
-		397A72E3201B45DE0025058C /* ORIENT_RANDOMIZER_CHAINER.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ORIENT_RANDOMIZER_CHAINER.json; sourceTree = "<group>"; };
-		397A72E4201B45DE0025058C /* INVERTER_SQUARIFIER.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = INVERTER_SQUARIFIER.json; sourceTree = "<group>"; };
-		397A72E5201B45DF0025058C /* LINEARIZER.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = LINEARIZER.json; sourceTree = "<group>"; };
-		397A72E6201CF9690025058C /* NOISER_SQUARIFIER.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = NOISER_SQUARIFIER.json; sourceTree = "<group>"; };
-		397A72E7201CF9690025058C /* INVERTER.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = INVERTER.json; sourceTree = "<group>"; };
-		397A72E8201CF9690025058C /* DO_NOTHING.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = DO_NOTHING.json; sourceTree = "<group>"; };
-		397A72E9201CF96A0025058C /* NOISER.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = NOISER.json; sourceTree = "<group>"; };
+		397A72E6201CF9690025058C /* NOISE.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = NOISE.json; sourceTree = "<group>"; };
+		397A72E7201CF9690025058C /* AMPLITUDE.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = AMPLITUDE.json; sourceTree = "<group>"; };
+		397A72E9201CF96A0025058C /* OPPOSING.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = OPPOSING.json; sourceTree = "<group>"; };
 		397A72EA201CF96A0025058C /* MAP_GENERATOR.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = MAP_GENERATOR.json; sourceTree = "<group>"; };
-		397A72EB201CF96A0025058C /* ORDER_RANDOMIZER_NOISER.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ORDER_RANDOMIZER_NOISER.json; sourceTree = "<group>"; };
-		397A72EC201CF96A0025058C /* SQUARIFIER.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = SQUARIFIER.json; sourceTree = "<group>"; };
 		397A72ED201CF96A0025058C /* CHAINER.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = CHAINER.json; sourceTree = "<group>"; };
 		397AE6342020E09D007B2B04 /* AddInstructionInterface.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = AddInstructionInterface.cpp; sourceTree = "<group>"; };
 		397AE6352020E09D007B2B04 /* AddInstructionInterface.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = AddInstructionInterface.hpp; sourceTree = "<group>"; };
@@ -382,19 +378,12 @@
 			isa = PBXGroup;
 			children = (
 				397A72ED201CF96A0025058C /* CHAINER.json */,
-				397A72E8201CF9690025058C /* DO_NOTHING.json */,
-				397A72E7201CF9690025058C /* INVERTER.json */,
+				397A72E7201CF9690025058C /* AMPLITUDE.json */,
 				397A72EA201CF96A0025058C /* MAP_GENERATOR.json */,
-				397A72E6201CF9690025058C /* NOISER_SQUARIFIER.json */,
-				397A72E9201CF96A0025058C /* NOISER.json */,
-				397A72EB201CF96A0025058C /* ORDER_RANDOMIZER_NOISER.json */,
-				397A72EC201CF96A0025058C /* SQUARIFIER.json */,
-				397A72E2201B45DE0025058C /* CHAINER_INVERTER.json */,
-				397A72E4201B45DE0025058C /* INVERTER_SQUARIFIER.json */,
-				397A72E5201B45DF0025058C /* LINEARIZER.json */,
-				397A72E1201B45DE0025058C /* ORIENT_RANDOMIZER_CHAINER_SQUARIFIER.json */,
-				397A72E3201B45DE0025058C /* ORIENT_RANDOMIZER_CHAINER.json */,
-				39152353201AA398002AF97A /* STEPPER.json */,
+				397A72E6201CF9690025058C /* NOISE.json */,
+				397A72E9201CF96A0025058C /* OPPOSING.json */,
+				3939827620B8334D00707573 /* SCATTER.json */,
+				3939827720B8338A00707573 /* LINEARIZER.json */,
 			);
 			path = protocols;
 			sourceTree = "<group>";
@@ -439,6 +428,8 @@
 				396CDD7F201FC7C800660A7B /* SimpleRenderer.hpp */,
 				397AE6342020E09D007B2B04 /* AddInstructionInterface.cpp */,
 				397AE6352020E09D007B2B04 /* AddInstructionInterface.hpp */,
+				3939827320B8003100707573 /* Keynote.cpp */,
+				3939827420B8003100707573 /* Keynote.hpp */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";
@@ -879,6 +870,7 @@
 				39B3717F2022FEE7008EACAA /* ShapeIndex.cpp in Sources */,
 				397A72D7201B3C510025058C /* PathsOrientRandomizer.cpp in Sources */,
 				39B371832022FEE7008EACAA /* ShapeNoise.cpp in Sources */,
+				3939827520B8003100707573 /* Keynote.cpp in Sources */,
 				392C9EB9200902E70006ECB9 /* DrawCursor.cpp in Sources */,
 				3952DCAE200BFA820098779F /* SVGImporter.cpp in Sources */,
 				391CFE472016409D00780A4C /* PythonInstruction.cpp in Sources */,
