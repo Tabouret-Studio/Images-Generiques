@@ -474,6 +474,7 @@ namespace Scenes
 		//m_workingImage = new VectorImage(*App->ressourcesEngine->getAsset(svgID)); //Copy constructor
 
 		//Dynamic load from index
+		App->indexEngine->parseSVGSources();
 		m_workingImage = App->indexEngine->getRandomVectorImage();
 		m_savedImage = new VectorImage(m_workingImage);
 
@@ -559,7 +560,7 @@ namespace Scenes
 
 	void AssemblageInterface::saveWorkingImage()
 	{
-		App->indexEngine->insertVectorImage(m_workingImage, {"export", "loop"});
+		App->indexEngine->exportVectorImage(m_workingImage);
 	}
 
 	void AssemblageInterface::sendToRenderer(VectorImage * vectorImage, const uint &pointSize)

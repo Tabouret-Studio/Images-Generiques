@@ -10,6 +10,12 @@
 #include "Engines/RessourcesEngine/Exporters/JSONExporter.hpp"
 #include "Utils/Utils.hpp"
 
+#ifdef __WIN32__
+
+#else
+	#include <dirent.h>
+#endif
+
 #include <fstream>
 #include <algorithm>
 #include <ctime>
@@ -32,123 +38,72 @@ void IndexEngine::instanciate()
 /**
  * Private constructor
  */
-IndexEngine::IndexEngine()
-{
-	loadLibrary();
+IndexEngine::IndexEngine() {
+	parseSVGSources();
 }
 
 
-void IndexEngine::loadLibrary()
-{
-	JSONImporter jsonImport;
-	jsonObject * jsonFile = *jsonImport.getAsset(App->getAppPath()+"/indexLibrary/indexLibrary.json");
+void IndexEngine::parseSVGSources() {
+#ifdef __WIN32__
 
-	nlohmann::json * j = jsonFile->get();
+	std::cout << "The source directory could not be parsed.\nImpossible to load SVG sources." << std::endl;
 
-	nlohmann::json imagesList = (*j)["images"];
+#else
 
-	for(const nlohmann::json &jsonImage : imagesList)
+	DIR *dir;
+	struct dirent *ent;
+
+	std::string path = App->getAppPath() + "/indexLibrary/sources/";
+	
+	if((dir = opendir(path.c_str())) == NULL)
 	{
-		srcId imgId = App->genUUID();
+		std::cout << "IndexLibrary folder could not be parsed.\nImpossible to load source files." << std::endl;
+		return;
+	} 
 
-		m_ImagesIdsPaths.insert(std::pair<srcId, std::string>(imgId, jsonImage["path"].get<std::string>()));
-		m_ImagesIdsTags.insert(std::pair<srcId, std::vector<std::string>>(imgId, jsonImage["tags"].get<std::vector<std::string>>()));
+	while((ent = readdir(dir)) != NULL)
+	{
+		std::string srcFileName = ent->d_name;
+		std::cout << srcFileName << std::endl;
+
+		if(srcFileName.size() < 5)
+			continue;
+
+		if(srcFileName.substr(srcFileName.length() - 4, std::string::npos) != ".svg")
+		{
+			continue; // ignore non-SVG files
+		}
+			
+		m_sources.push_back(srcFileName);
+		
 	}
 
-	delete jsonFile;
+	closedir(dir);
+
+#endif
 }
 
-bool IndexEngine::imageIdIsValid(const srcId &imgId) const {
-	if(m_ImagesIdsPaths.find(imgId) == m_ImagesIdsPaths.end())
-		return false;
-
-	return true;
-}
-
-
-std::vector<srcId> IndexEngine::getImagesIds() const
-{
-	std::vector<srcId> imagesIds;
-
-	for(std::map<srcId, std::string>::const_iterator it = m_ImagesIdsPaths.begin(); it != m_ImagesIdsPaths.end(); ++it)
-	{
-		imagesIds.push_back(it->first);
-	}
-
-	return imagesIds;
-}
-
-VectorImage * IndexEngine::getVectorImage(const srcId &imgId) const
+VectorImage * IndexEngine::getVectorImage(const std::string fileName) const
 {
 	SVGImporter svgImporter;
-	return *svgImporter.getAsset(App->getAppPath() + "/indexLibrary/" + m_ImagesIdsPaths.at(imgId));
+	return *svgImporter.getAsset(App->getAppPath() + "/indexLibrary/sources/" + fileName);
 }
 
-std::vector<std::string> IndexEngine::getImageTags(const srcId &imgId) const
+
+VectorImage * IndexEngine::getRandomVectorImage() const
 {
-	if(!imageIdIsValid(imgId)) {
-		throw std::runtime_error("Given ID is not a valid imgId.");
-	}
+	int randomIndex = Utils::rand(m_sources.size());
+	std::string randomFileName = m_sources[randomIndex];
 
-	return m_ImagesIdsTags.at(imgId);
+	return getVectorImage(randomFileName);
 }
 
-std::string IndexEngine::insertVectorImage(VectorImage * image, const std::vector<std::string> &tags)
+
+void IndexEngine::exportVectorImage(VectorImage * image)
 {
 	SVGExporter exporter;
-	srcId imgId = App->genUUID();
 	std::string imgFileName = std::to_string(std::time(0));
 	std::string exportPath = "exports/" + imgFileName;
 
-	exporter.exportSVG(image, buildPath(exportPath));
-
-	m_ImagesIdsPaths.insert(std::pair<srcId, std::string>(imgId, exportPath+".svg"));
-	m_ImagesIdsTags.insert(std::pair<srcId, std::vector<std::string>>(imgId, tags));
-
-	exportIndexToJSON();
-
-	return boost::uuids::to_string(imgId);
-}
-
-void IndexEngine::exportIndexToJSON() const
-{
-	nlohmann::json imagesToJSON;
-
-	for(std::map<srcId, std::string>::const_iterator it = m_ImagesIdsPaths.begin(); it != m_ImagesIdsPaths.end(); ++it)
-	{
-		nlohmann::json imageJSON;
-
-		imageJSON["path"] = (*it).second;
-		imageJSON["tags"] = m_ImagesIdsTags.at((*it).first);
-
-		imagesToJSON.push_back(imageJSON);
-	}
-
-	nlohmann::json index;
-	index["images"] = imagesToJSON;
-
-	std::string exportPath = buildPath("indexLibrary");
-
-	JSONExporter jExporter;
-	jExporter.exportJSON(index, exportPath);
-}
-
-
-VectorImage * IndexEngine::getRandomVectorImage() {
-	std::vector<srcId> imagesIds = getImagesIds();
-
-	srcId imgId;
-
-	do
-	{
-		std::random_shuffle(imagesIds.begin(), imagesIds.end(), Utils::rand);
-		imgId = imagesIds[0];
-	} while(std::find(m_ImagesIdsTags[imgId].begin(), m_ImagesIdsTags[imgId].end(), "source") == m_ImagesIdsTags[imgId].end());
-
-	return getVectorImage(imgId);
-}
-
-
-std::string IndexEngine::buildPath(const std::string &imgPath) const{
-	return "indexLibrary/"+imgPath;
+	exporter.exportSVG(image, "indexLibrary/" + exportPath);
 }
