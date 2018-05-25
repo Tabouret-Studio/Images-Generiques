@@ -37,7 +37,7 @@
 *.pbxproj
 
 #APP specific
-App/libs/
+App/libs/glm
 App/build/ImagesGeneriques
 App/build/Images-Generiques.build/
 
