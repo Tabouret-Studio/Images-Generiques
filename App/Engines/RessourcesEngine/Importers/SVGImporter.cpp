@@ -32,6 +32,9 @@ Asset * SVGImporter::getAsset(const std::string &path)
 	std::vector<glm::vec3> points;
 	Bezier curve;
 
+	std::cout << path << std::endl;
+
+
 	//Preload its content -> Store every path of the image as Bezier objects
 	for (NSVGshape * shape = image->shapes; shape != NULL; shape = shape->next)
 	{

@@ -64,14 +64,16 @@ void IndexEngine::parseSVGSources() {
 	while((ent = readdir(dir)) != NULL)
 	{
 		std::string srcFileName = ent->d_name;
+		std::cout << srcFileName << std::endl;
+
+		if(srcFileName.size() < 5)
+			continue;
 
 		if(srcFileName.substr(srcFileName.length() - 4, std::string::npos) != ".svg")
 		{
 			continue; // ignore non-SVG files
 		}
 			
-		srcFileName = srcFileName.substr(0, srcFileName.length() - 4);
-
 		m_sources.push_back(srcFileName);
 		
 	}
@@ -89,8 +91,8 @@ std::string IndexEngine::buildPath(const std::string &imgPath) const{
 
 VectorImage * IndexEngine::getVectorImage(const std::string fileName) const
 {
-	rId vecId = App->ressourcesEngine->loadAsset(m_sourcesPath + fileName, VECTOR);
-	return *App->ressourcesEngine->getAsset(vecId);
+	SVGImporter svgImporter;
+	return *svgImporter.getAsset(App->getAppPath() + "/indexLibrary/sources/" + fileName);
 }
 
 
