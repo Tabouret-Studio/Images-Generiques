@@ -88,8 +88,20 @@ public:
 	 */
 	void setParameters(const std::vector<InstructionParameters *> &params);
 
+	/**
+	 Attach the given parameter to a specific instruction in the protocol
+
+	 @param instructionID Instruction to attach to
+	 @param param Parameter
+	 */
 	void bindParameter(const uint &instructionID, InstructionParameters * &param);
 
+	/**
+	 Return all the parameters currently binded to the protocol
+
+	 @param instructionID <#instructionID description#>
+	 @return <#return value description#>
+	 */
 	InstructionParameters * getParameters(const uint &instructionID) { return m_instructionsOrderParameters[instructionID]; };
 
 	/**
@@ -114,6 +126,12 @@ public:
 	 */
 	void swapInstructions(const uint &first, const uint &second);
 
+	/**
+	 Remove the instruction from the protocol by its index.
+	 All the instructions after this one have their ID reduced by 1
+
+	 @param instructionIndex Index of the instruction to remove
+	 */
 	void removeInstruction(const uint &instructionIndex);
 	
 	/**

@@ -95,14 +95,35 @@ public:
 	/////////////////
 	//Transformations
 
+	/**
+	 Return the transformation cursor used by the shape
+
+	 @return <#return value description#>
+	 */
 	inline DrawCursor * getCursor() { return &m_cursor; };
 
+	/**
+	 Apply the current cursor to the shape and reset the cursor
+	 */
 	inline void applyCursor() { applyCursor(glm::mat4(1.0)); };
 
+	/**
+	 Apply the given cursor to the shape and reset the cursor
+
+	 @param imageCursor Cursor to apply
+	 */
 	void applyCursor(const glm::mat4 &imageCursor);
 
+	/**
+	 Translate the shape by the given vector
+
+	 @param dest Translation vector
+	 */
 	void move(const glm::vec3 &dest);
 	
+	/**
+	 Calculate and update the bounds of the shape
+	 */
 	void calculateBounds();
 
 private:

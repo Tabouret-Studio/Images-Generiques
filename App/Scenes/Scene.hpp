@@ -113,6 +113,12 @@ public:
 
 protected:
 
+	/**
+	 Tell if the scene is currenlty enabled.
+	 A disabled scene doesn't get executed nor rendered.
+	 Everything set up in it stays intact
+	 Useful to 'pause' a scene.
+	 */
 	bool m_enable = true;
 
 private:
@@ -121,17 +127,8 @@ private:
 };
 
 //TestScenes
-#include "Val01.hpp"
-#include "Val02.hpp"
-#include "ml1.hpp"
-#include "ml2.hpp"
-#include "Gen01.hpp"
-#include "ken01.hpp"
-#include "ken02.hpp"
-#include "ken03.hpp"
 #include "ProtocolsMenu.hpp"
 #include "ProtocolRenderer.hpp"
-#include "AlexGen01.hpp"
 
 #include "AssemblageInterface.hpp"
 #include "SimpleRenderer.hpp"

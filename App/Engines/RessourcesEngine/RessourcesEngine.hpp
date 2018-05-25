@@ -114,6 +114,15 @@ public:
 	 */
 	Mesh * genSphere(const float &radius, const uint &precisionLat, const uint &precisionLong, glm::vec4 baseColor = glm::vec4(255, 255, 255, 1));
 
+	/**
+	 Generate a 2D Tile as a mesh
+
+	 @param posX X position
+	 @param posY Y position
+	 @param width Width
+	 @param height Height
+	 @return The 2D Tile as a Mesh
+	 */
 	Mesh * gen2DTile(const float &posX, const float &posY, const float &width, const float &height);
 
 	~RessourcesEngine();

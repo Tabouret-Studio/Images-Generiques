@@ -52,7 +52,6 @@ namespace Scenes
 		//Elements
 		Font * m_font;
 		Interface * m_interface;
-
 		std::vector<UIButton *> m_buttons;
 
 		float m_fontSize;

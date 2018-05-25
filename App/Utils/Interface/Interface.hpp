@@ -41,6 +41,17 @@ public:
 	 */
 	void addItem(UIElement * newItem);
 
+	/**
+	 Set the interface interactions behaviour
+	 INTERFACE_INTERACTIONS_MOUSE - Interact with the mouse
+	 INTERFACE_INTERACTIONS_KEYBOARD - Interact with the keyboard
+
+	 @warning Multiple interfaces with keyboard interactions at the same time
+	 will all receive the exact same keyboard informations. Meaning you may
+	 end up with multiple interactions happening at the same time
+
+	 @param interactionsFormat Behaviour
+	 */
 	void setInteractionFormat(const InterfaceInteractionsType &interactionsFormat) { m_interactionsFormat = interactionsFormat; };
 
 	/**
@@ -60,6 +71,11 @@ public:
 	 */
 	void moveCursor(UIElement * item);
 
+	/**
+	 Return all the UIElements stored in the interface
+
+	 @return UIElement vector
+	 */
 	std::vector<UIElement *> * getElements() { return &m_items; };
 
 	~Interface();

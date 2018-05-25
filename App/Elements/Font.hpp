@@ -56,7 +56,6 @@ public:
 	 */
 	bool sizeIsLoaded(const float &fontSize);
 
-
 	/**
 	 Generate the font for a specified size
 	 */
@@ -73,6 +72,12 @@ public:
 	 */
 	Mesh * genCaption(const std::u16string &caption, const float &fontSize);
 
+	/**
+	 Generate the outline as a VectorImage for the given caption
+
+	 @param caption Caption to render
+	 @return VectorImage for the caption outlines
+	 */
 	VectorImage * genOutlines(const std::u16string &caption);
 
 	/**
@@ -114,6 +119,12 @@ private:
 	 */
 	FontCharacter genFontCharacter(FT_ULong charID);
 
+	/**
+	 Gen the outline pf th given character
+
+	 @param charID Character to generate outlines for
+	 @return Shape with the outline
+	 */
 	Shape genCharacterOutline(FT_ULong charID);
 
 	/**
