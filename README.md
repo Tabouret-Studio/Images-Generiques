@@ -7,18 +7,7 @@ Developed as a tutored project with students from IMAC Engineering school, the p
 Project from Gaëtan Robillard
 With Marie-Lou Barbier, Valentin Dufois, Alexane Le Guern and Kenthyvong Tan.
 
-##How to use
+## Be a part of it
 
-The project is still in early developpement phase, and using it requires for you to compile it yourself.
-It has been tested with GCC on macOS and Ubuntu and with CLang on Mac.
-
-**Needed Libraries**
-The following libraries need to be installed on you machine
-* OpenGL Core (3.3)
-* GLEW
-* SDL2
-* SDL2 Image
-* boost
-* glm
-* FreeType2
-* Python
+Read the docs (French) to get familiar with the application
+https://tabouret-studio.gitbook.io/images-generiques/
