@@ -13,10 +13,16 @@ The project is still in early developpement phase, and using it requires for you
 It has been tested with GCC on macOS and Ubuntu and with CLang on Mac.
 
 ##Tips
+
 To toggle presentation mode find file Core.ccp in App/Core/
 then modify "AssemblageInterface" by "Keynote" then recompile
 
+##Fixes V1.3
+
+- no more closing shape when exporting
+
 ##More information
+
 on http://github.com/Tabouret-Studio/Images-Generiques
 
 

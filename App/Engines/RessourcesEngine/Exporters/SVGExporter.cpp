@@ -73,7 +73,7 @@ std::string SVGExporter::shapeToPath(Shape &shape)
 		lastPoint = bez.getEndPoint();
 	}
 
-	path += "Z\"/>\n";
+	path += "\"/>\n";
 
 	return path;
 }
