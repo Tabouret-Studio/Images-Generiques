@@ -14,8 +14,10 @@ It has been tested with GCC on macOS and Ubuntu and with CLang on Mac.
 
 ##Tips
 
+To display drawing in full screen mode with hiding interface press enter. Press enter again to toggle standard mode.
+
 To toggle presentation mode find file Core.ccp in App/Core/
-then modify "AssemblageInterface" by "Keynote" then recompile
+then replace "AssemblageInterface" by "Keynote" then recompile.
 
 ##Fixes V1.3
 
