@@ -25,7 +25,8 @@ then replace "AssemblageInterface" by "Keynote" then recompile.
 
 ##More information
 
-Github 	http://github.com/Tabouret-Studio/Images-Generiques
+Github http://github.com/Tabouret-Studio/Images-Generiques
+
 Website	https://tabouret-studio.github.io/Images-Generiques/index.html
 
 
