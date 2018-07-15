@@ -1,4 +1,4 @@
-# Images Génériques V1.3
+# Images Génériques V1.3.2
 
 Images Génériques (Indexing, generation, learning) is an open workshop for research and creations revolving around generative art, computer art and computational aesthetics.
 
@@ -25,7 +25,8 @@ then replace "AssemblageInterface" by "Keynote" then recompile.
 
 ##More information
 
-on http://github.com/Tabouret-Studio/Images-Generiques
+Github 	http://github.com/Tabouret-Studio/Images-Generiques
+Website	https://tabouret-studio.github.io/Images-Generiques/index.html
 
 
 **Needed Libraries**
