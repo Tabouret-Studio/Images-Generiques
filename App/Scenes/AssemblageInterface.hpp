@@ -74,6 +74,7 @@ namespace Scenes
 		UIButton * m_pathsIndexBtn = nullptr;
 		UIButton * m_shapesIndexBtn = nullptr;
 		UIButton * m_saveSVGBtn = nullptr;
+		UIButton * m_autoSaveSVGBtn = nullptr;
 		Interface * m_instructionsInterface = nullptr;
 		UIButton * m_pathsCount = nullptr;
 		std::vector<Mesh *> m_lines;
@@ -94,6 +95,7 @@ namespace Scenes
 		InstructionsProtocol * m_protocol = nullptr;
 
 		bool m_playing = false;
+		bool m_autoSave = false;
 
 		//internal functions
 		void generateInstructionList();
@@ -104,6 +106,7 @@ namespace Scenes
 
 		void initLoop();
 		void toggleLoop();
+		void toggleAutoSave();
 		void resetLoop();
 		void protocolLoop();
 

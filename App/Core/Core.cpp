@@ -35,7 +35,7 @@ void Core::main()
 
 	//////////////////////
 	// Load the first scene
-	Scenes::Keynote::load();
+	Scenes::AssemblageInterface::load();
 
 	while(App->isRunning())
 	{

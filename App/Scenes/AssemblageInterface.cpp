@@ -133,6 +133,16 @@ namespace Scenes
 
 		m_baseInterface->addItem(m_saveSVGBtn);
 
+		// Autosave Btn
+		m_autoSaveSVGBtn = new UIButton(UI_BUTTON_TEXT, 20, App->getHeight() - 20, 130, 20);
+		m_autoSaveSVGBtn->setFont(m_font, 20);
+		m_autoSaveSVGBtn->setCaption(u"autosave off");
+		m_autoSaveSVGBtn->setAction([this] () -> void {
+			toggleAutoSave();
+		});
+
+		m_baseInterface->addItem(m_autoSaveSVGBtn);
+
 		//Paths count
 		m_pathsCount = new UIButton(UI_BUTTON_TEXT, 10, App->getHeight() - 17, 175, 20);
 		m_pathsCount->setFont(m_font, 20);
@@ -190,15 +200,14 @@ namespace Scenes
 				m_renderer->setBounds(0, 0, 0, 0);
 		}
 
+		if(m_playing && m_autoSave)
+			saveWorkingImage();
+
 		if(App->appEngine->getKeys().SPACE)
-		{
 			toggleLoop();
-		}
 
 		if(App->appEngine->getKeys().S)
-		{
 			saveWorkingImage();
-		}
 
 		App->appEngine->flushKeys();
 
@@ -225,6 +234,7 @@ namespace Scenes
 			->scale(4, App->getHeight(), 0);
 
 		m_saveSVGBtn->setPosition(App->getWidth() - 185, App->getHeight() - 20);
+		m_autoSaveSVGBtn->setPosition(20, App->getHeight() - 20);
 	}
 
 
@@ -265,6 +275,19 @@ namespace Scenes
 
 		m_playing = true;
 		m_playPauseBtn->setCaption(u"pause");
+	}
+
+	void AssemblageInterface::toggleAutoSave()
+	{
+		if(m_autoSave)
+		{
+			m_autoSave = false;
+			m_autoSaveSVGBtn->setCaption(u"autosave off");
+			return;
+		}
+
+		m_autoSave = true;
+		m_autoSaveSVGBtn->setCaption(u"autosave on");
 	}
 
 	void AssemblageInterface::generateInstructionList()
